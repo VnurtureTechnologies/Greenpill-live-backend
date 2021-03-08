@@ -1,0 +1,244 @@
+@media screen and (max-width:1200px) 
+{			
+	.navbar-default.sidebar {
+		overflow-y: scroll;
+	}	
+}
+
+@media screen and (max-width:1024px) 
+{
+	.sidebar-nav {
+		position: relative;
+		width: 100%;
+	}
+	.main_header {
+		padding: 10px 15px 10px 15px;
+	}
+	.side_nav_sec {
+		left: -300px;
+		transition: .5s;
+	}
+	.side_nav_sec.open {
+		left: 0;
+		transition: .5s;
+	}
+	.sidebar .sidebar-nav.collapse {
+
+		display: block;
+
+	}
+	.content-wrapper {
+		padding-left: 0px;
+	}
+	.maobile_menu {
+		float: left;
+		margin-top: -4px;
+		height: 45px;
+		display:block;
+	}
+	.log_out {
+		padding-right: 15px;
+		padding-left: 15px;
+	}
+	.notify {
+		float: left;
+		padding-right: 30px;
+	}
+	.filter_four .filter_fields {
+		width: 25% !important;
+		padding: 0px 5px !important;
+	} 
+	.filter_five .filter_fields {
+		width: 20% !important;
+		padding: 0px 5px !important;
+	} 
+	.common_filter_inner {
+		padding: 24px 10px 15px;
+	}
+
+
+
+}
+@media screen and (max-width:991px) 
+{
+	.srch_control {
+		width: auto;
+		float: left;
+	}
+	.common_left_sc {
+		width: calc(100% - 200px);
+	}
+	.common_left_sc {
+		width: calc(100% - 200px);
+	}
+	.common_right_sc {
+		width: 200px;
+		float: left;
+		padding-left: 15px;
+	}
+	
+}
+@media (max-width: 768px) {
+	.search_fld {
+		width: 100%;
+	}
+	.maobile_menu {
+		float: right;
+	}
+	.srch_control {
+		max-width: calc(100% - 60px);
+	}
+	.notify {
+		display: none;
+	}
+	.admin_dtl {
+		float: right;
+		width: 100%;
+	}
+	.content-wrapper {
+		margin-top: 112px;
+	}
+	.resource_block {
+		width: 50%
+	}
+	.left_fld {
+		width: 100%;
+		padding-right: 0;
+	}
+	.right_fld {
+		width: 100%;
+		padding-left:0;
+	}
+	.floating-label.right_fld label {
+		left: 0;
+	}
+	.floating-label {
+		position: relative;
+		margin-bottom: 15px;
+	}
+	.comn_doc {
+		width: 33.3%;
+		padding: 0px 5px 10px;
+	}
+	.field_inner_sec {
+		padding: 15px;
+		margin-bottom: 15px;
+	}
+	.common_field_sec {
+		padding: 15px;
+	}
+	.filter_four .filter_fields {
+		width: 50% !important;
+	}
+	.filter_five .filter_fields {
+		width: 50% !important;
+	}	
+	.dataTables_length {
+		margin-top: 0;
+	}
+	.table_with_btn .datatable_title {
+		width: 100%;
+		display: inline-block;
+		padding-right: 35px;
+	}
+	.login_sec {
+		position: relative;
+		top: 0;
+		left: 50%;
+		transform: translate(-50%, 0);
+		margin: 25px 0px;
+	}
+	.login_page {
+		overflow-y: scroll;
+	}
+	.login_form {
+		padding: 33px 15px 30px;
+	}
+	.view_left_sc {
+		width: 100%;
+		float: left;
+	}
+	.view_right_sc {
+		width: 100%;
+		float: right;
+	}
+	.table_with_fiter .dataTables_wrapper .dataTables_length {
+		position: relative;
+		top: 0px;
+		margin-top: 0;
+		right: 0;
+		letter-spacing: 1px;
+		padding-right: 29px;
+		font-size: 13px;
+		float: left;
+		padding-left: 28px;
+	}
+	.table_with_btn .dataTables_length {
+		margin-top: 0px;
+		margin-bottom: 10px;
+	}
+}
+
+
+@media screen and (max-width:600px){
+
+	.common_left_sc {
+		width: 100%;
+	}
+	.common_right_sc {
+		width: 100%;
+		padding-left: 0;
+	}
+	.comn_doc {
+		width: 50%;
+	}
+	.View_control {
+		width: 100%;
+	}
+}
+@media screen and (max-width:480px)
+{
+	.resource_block {
+		width: 100%;
+	}
+	.comn_doc {
+		width: 100%;
+	}
+	.filter_four .filter_fields {
+		width: 100% !important;
+	}
+	.filter_five .filter_fields {
+		width: 100% !important;
+	}	
+	.datatable_title h4 {
+    float: left;
+    width: 100%;
+	padding: 27px 15px 10px;
+}
+.datatable_title .btn {
+    float: right;
+    margin-top: 10px;
+    float: left;
+    margin-left: 15px;
+}
+.table_with_btn .datatable_title {
+    width: 100%;
+    display: inline-block;
+    padding-right: 0px;
+}
+.dataTables_length {
+    float: left;
+    padding-left: 15px;
+    padding-top: 10px;
+    padding-right: 0px;
+}
+
+}
+@media screen and (max-width:360px){
+
+}
+	
+@media screen and (max-width:320px)
+{
+	
+}
