@@ -26,28 +26,12 @@ app.use(bodyParser.text());
 
 /* MULTER CONFIG */
 
-
-// const upload = multer({
-//     dest: 'uploads/',
-//     filename: function(req, file, cb) {
-//         cb(null, file.fieldname + '-' + Date.now() + path.extname(file.originalname));
-//     }
-// })
-
-const storage = multer.diskStorage({
-    destination: function(req, file, cb) {
-        cb(null, 'uploads/');
-    },
-
-    // By default, multer removes file extensions so let's add them back
-    filename: function(req, file, cb) {
-        cb(null, file.fieldname + path.extname(file.originalname));
+const upload = multer({
+    storage: multer.memoryStorage(),
+    limits: {
+        fileSize: 5 * 1024 * 1024
     }
-});
-
-
-
-const upload = multer({storage: storage})
+})
 
 //Firebase configuration
 
@@ -63,6 +47,7 @@ database.settings({ ignoreUndefinedProperties: true });
 /* CONTROLLER MODULES IMPORTS */
 const userController = require('./controllers/userController');
 const productController = require('./controllers/productController');
+const productSubCategoryController = require('./controllers/productSubCategoryController')
 
 /* BASE ROUTE */
 app.get('/', function(req,res) {
@@ -90,7 +75,7 @@ app.get('/dashboard', function(req,res) {
 
 app.post('/user-list', userController.get_all_users_list);
 
-/* PRODUCT ROUTE */
+/* PRODUCT ROUTEs */
 app.get('/products/add', function(req,res) {
     res.render('products/add', {
         title: 'Products',
@@ -111,6 +96,7 @@ app.get('/products/edit/:id', function(req,res) {
 
     productController.get_products_data(id, function(products) {
         data.push({'products_data': products})
+        console.log(data[0]['products_data'])
         res.render('products/edit', {
             title: "Products Edit",
             page_title: "Edit product",
@@ -120,9 +106,50 @@ app.get('/products/edit/:id', function(req,res) {
 })
 
 app.post('/product-list', upload.none() ,productController.get_products_list);
-
-app.post('/products/do_add', upload.none() , productController.add_product);
+app.post('/products/do_add', upload.single('product_image') , productController.add_product);
 app.post('/products/do_edit/:id', upload.none() ,productController.edit_product);
+
+
+/* PRODUCT SUB CATEGORY ROUTES */
+app.get('/productSubCategory/add', function(req,res) {
+    var data = [];
+    productController.get_products_id( function(products) {
+        res.render('product-subCategory/add', {
+            title: 'Product Subcategory',
+            page_title: 'Add subcategory for products' ,
+            products: products
+        })
+    })
+})
+
+app.get('/productSubCategory', function(req,res) {
+    res.render('product-subCategory/index', {
+        title: 'Product Sub Categories',
+        page_title: 'Products Sub Categories list'
+    })
+})
+
+app.get('/productSubCategory/edit/:id', function(req,res) {
+    var id = req.params.id;
+    var data = [];
+
+    productSubCategoryController.get_subProducts_data(id, function(products) {
+        data.push({'products_data': products})
+        productController.get_products_id(products => {
+            res.render('product-subCategory/edit', {
+                title: "Products Edit",
+                page_title: "Edit product",
+                product: data[0]['products_data'],
+                products: products
+            })
+        })
+    })
+})
+
+app.post('/productSubCategory-list', upload.none(), productSubCategoryController.get_sub_products_list);
+app.post('/productSubCategory/do_edit/:id', upload.none(), productSubCategoryController.edit_subProduct);
+app.post('/productSubCategory/delete/:id',upload.none(), productSubCategoryController.delete_subProduct);
+
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT);

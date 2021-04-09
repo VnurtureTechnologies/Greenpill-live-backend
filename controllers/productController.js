@@ -2,27 +2,17 @@ const admin = require('firebase-admin');
 const fs = require('fs');
 const helpers = require('../helpers');
 
-module.exports.add_product = (req,res,next) => {
+module.exports.add_product = async(req,res,next) => {
     var db = admin.firestore();
-    var storage = admin.storage().bucket('gs://greenpill-live.appspot.com');
+
     const data = {
         title : req.body.product_title,
         description : req.body.product_description,
-        image_url: null
+        image_url: await helpers.uploadImage(req.file)
     }
     
-    // storage.upload('../uploads/product_image.png')
-    // .then( (r) =>{
-    //     console.log("image uploaded");
-    // })
-
     db.collection('product').add(data)
     .then( (result) => {
-        // fs.unlink('../uploads/product_image.png', (err) => {
-        //     if(err) {
-        //         console.log(err);
-        //     }
-        // })
         res.json({
             status: true,
             status_code: 200,
@@ -39,17 +29,8 @@ module.exports.add_product = (req,res,next) => {
     })
 }
 
-// async function do_add_product_image(req,res) {
-//     var file_keys = Object.keys(req.files);
-//     console.log(file_keys);
 
-//     for (let key of file_keys) {
-//         const aman = await helpers.uploadImage(req.files[key][0])
-//         console.log(aman);
-//     }
-// }
-
-module.exports.get_products_list = (req,res,next) => {
+module.exports.get_products_list = (req,res) => {
     var db = admin.firestore();
     var products_list = [];
 
@@ -58,6 +39,7 @@ module.exports.get_products_list = (req,res,next) => {
     .then( (results) => {
         results.forEach( (r) => {
             var row = {
+                "id": r.id,
                 "title" : r.data().title,
                 "description" : r.data().description,
                 "get_action_button": get_action_button(req,res,r)
@@ -99,9 +81,30 @@ module.exports.get_products_data = function(product_id,callback) {
         const data = {
             id: r.id,
             title: r.data().title,
-            description: r.data().description
+            description: r.data().description,
+            image_url: r.data().image_url
         }
         callback(data);
+    })
+    .catch( (err) => {
+        callback([]);
+    })
+}
+
+module.exports.get_products_id = function(callback) {
+    var db = admin.firestore();
+    const products_data = [];
+    db.collection('product')
+    .get()
+    .then( (results) => {
+        results.docs.forEach( (r) => {
+            data = {
+                id: r.id,
+                title: r.data().title
+            }
+            products_data.push(data);
+        })
+        callback(products_data);
     })
     .catch( (err) => {
         callback([]);

@@ -1,11 +1,12 @@
 const Cloud = require('@google-cloud/storage');
 const path = require('path');
-const serviceKey = require('./firebase-storage-key.json');
+const serviceKey = require('../greenpill-live-firebase-admin');
 
 const { Storage } = Cloud;
+
 const storage = new Storage({
-    keyFileName: serviceKey,
-    projectId: 'greenpill-live'
+    projectId: 'greenpill-live',
+    keyFileName: serviceKey
 })
 
 module.exports = storage;
