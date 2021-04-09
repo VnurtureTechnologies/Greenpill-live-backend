@@ -7,6 +7,7 @@ const { Storage } = Cloud;
 const storage = new Storage({
     projectId: 'greenpill-live',
     keyFileName: serviceKey
+    
 })
 
 module.exports = storage;
