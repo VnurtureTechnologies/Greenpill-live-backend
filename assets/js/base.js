@@ -39,11 +39,11 @@ function form_action(url, type, datatype, data) {
         // }, 'slow');
         if (response.status == true) {
             Swal.fire('Success!', response.message, "success");
-            // if (response.redirect != '') {
-            //     setTimeout(function() {
-            //         location.replace(response.redirect);
-            //     }, 1200);
-            // }
+            if (response.redirect != '') {
+                setTimeout(function() {
+                    location.replace(response.redirect);
+                }, 1200);
+            }
         } else {
             if (typeof response.message == "string") {
                 Swal.fire("Sorry!", response.message, "error");

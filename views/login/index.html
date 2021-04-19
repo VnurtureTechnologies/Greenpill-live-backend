@@ -45,7 +45,7 @@
                             <input class="floating-input" name="password" type="password" placeholder="Password">
                         </div>
                         <div class="log_submit">
-                            <button class="btn">Login</button>
+                            <button class="btn" href="/login">Login</button>
                             <a class="login_btn" href="/forgot-password">Forgot Password?</a>
                         </div>
                     </form>
@@ -66,7 +66,7 @@ $(document).on('submit', '.login-form', function () {
     $('form :submit').attr("disabled", "disabled");
     var formData = $(this).serialize();
     $.ajax({
-        url: '/authenticate',
+        url: '/login',
         type: 'POST',
         data: formData,
         dataType: 'json',

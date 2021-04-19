@@ -1,0 +1,84 @@
+<html lang="en">
+
+<head>
+    <title>{{title}}</title>
+    {{> header}}
+    <style>
+        .tag_fields {
+            height: 150px;
+            overflow-y: scroll;
+            scrollbar-color: rgb(78, 140, 191);
+            scrollbar-width: thin;
+        }
+    </style>
+</head>
+
+<body>
+    {{> sidebars}}
+    <div class="content-wrapper">
+        <div class="body_content">
+            <div class="common_field_sec">
+                <div class="common_sec_title">
+                    <h2>{{page_title}}</h2>
+                </div>
+
+                <form action="javascript:void(0);" class="edit_form" data-id={{project.id}} enctype="multipart/form-data">
+                    <div class="field_inner_sec">
+
+                        <div class="floating-label left_fld">
+                            <label> Title <span class="required">*</span></label>
+                            <input class="floating-input" id="title" value="{{project.title}}" name="project_title" type="text">
+                        </div>
+
+                        <div class="claerfix"></div>
+                        
+                        <div class="floating-label left_fld">
+                            <label> Project Details <span class="required">*</span></label>
+                            <input class="floating-input" id="project_details" value="{{project.projectDetails}}" name="project_details" type="text">
+                        </div>
+
+                        <div class="claerfix"></div>
+                        
+                        <div class="floating-label left_fld">
+                            <label>Work Scope <span class="required">*</span></label>
+                            <input class="floating-input" id="work_scope" value="{{project.workScope}}" name="work_scope" type="text">
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld">
+                            <label>Choose a product Subcategory<span class="required">*</span></label>
+                            <select class="floating-select" name="int_user_id">
+                                    <option value="">--Choose--</option>
+                                    {{#each productSubCategory}}
+                                    <option value="{{this.id}}">{{this.title}}</option>
+                                    {{/each}}
+                            </select>
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <h4>Add a project image</h4>
+                        <div class="floating-label right_fld browse2">
+                            <label>
+                                <input class="" type="file" accept='image/jpeg, image/png' name="project_image"> <img src="{{project.image_url}}">
+                            </label>
+                        </div>
+                        </div>
+
+
+                    <div class="form_submit_sec">
+                        <button type="submit" class="btn">Submit</button>
+                    </div>
+                </form>        
+                 </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END -->
+{{> footer}}
+<script src="/js/projects/edit.js"></script>
+</body>
+
+</html>

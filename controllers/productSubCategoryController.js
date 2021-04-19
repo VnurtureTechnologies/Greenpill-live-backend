@@ -45,6 +45,27 @@ function get_action_button(req,res,data) {
     return html;
 }
 
+module.exports.get_productSubCategory_id = function(callback) {
+    var db = admin.firestore();
+    const productSubcategory_data = [];
+    db.collection('productSubcategory')
+    .get()
+    .then( (results) => {
+        results.docs.forEach( (r) => {
+            data = {
+                id: r.id,
+                title: r.data().title
+            }
+            productSubcategory_data.push(data);
+        })
+        callback(productSubcategory_data);
+    })
+    .catch( (err) => {
+        console.log(err)
+        callback([]);
+    })
+}
+
 module.exports.get_subProducts_data = function(product_id,callback) {
     var db = admin.firestore();
 
@@ -75,7 +96,6 @@ module.exports.edit_subProduct = (req,res,next) => {
         'shortDescription': req.body.shortDescription,
         "longDescription": req.body.longDescription,
     }
-    console.log(update_data)
     db.collection('productSubCategory').doc(`${id}`).update(update_data)
     .then( (r) => {
         res.json({
@@ -85,6 +105,7 @@ module.exports.edit_subProduct = (req,res,next) => {
         })
     })
     .catch( (err) => {
+        console.log(err);
         res.json({
             status: false,
             status_code: 501,
