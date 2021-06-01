@@ -37,9 +37,9 @@
                     <div class=" login_title">
                         <h4>Login</h4>
                     </div>
-                    <form class="login-form" action="javascript:void(0);">
+                    <form class="login-form" action="/login" method="POST">
                         <div class="floating-label email_fld">      
-                            <input class="floating-input" name="username" type="text" placeholder="Email or Phone Number">
+                            <input class="floating-input" name="email" type="text" placeholder="Email or Phone Number">
                         </div>
                         <div class="floating-label password_fld">      
                             <input class="floating-input" name="password" type="password" placeholder="Password">
@@ -65,6 +65,7 @@ $(document).on('submit', '.login-form', function () {
     $('.validation_error').remove();
     $('form :submit').attr("disabled", "disabled");
     var formData = $(this).serialize();
+    console.log("aman");
     $.ajax({
         url: '/login',
         type: 'POST',
