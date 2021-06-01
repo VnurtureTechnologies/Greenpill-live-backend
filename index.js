@@ -3,96 +3,34 @@ const hbs = require('hbs');
 const path = require('path');
 const admin = require('firebase-admin');
 const bodyParser = require('body-parser');
-const constants = require('constants');
 const multer = require('multer');
 const session = require('express-session');
-const okta = require('@okta/okta-sdk-nodejs');
-const ExpressOIDC = require('@okta/oidc-middleware').ExpressOIDC;
 const serviceAccount = require("./greenpill-live-firebase-admin");
-
+const flash = require('flash');
+const ensureLogin = require('connect-ensure-login');
+const passport = require('passport');
 
 var app = express();
 
-// OKTA configuration for User authentication
-// var oktaClient = new okta.Client({
-//     orgUrl: "https://dev-52468545.okta.com/app/UserHome",
-//     token: "00cFm1JzOlbtTioxzZfNq6oIdc706MFB1e6V66KBm4"
-// });
-
-// var oidc = new ExpressOIDC({
-//     issuer: "https://dev-52468545.okta.com/oauth2/default",
-//     client_id: "0oakqwgs6a8CTDHXU5d6",
-//     client_secret: "pKQ6Srss-07Yq7RGrLToZnh39iEOtchSF296PdSg",
-//     appBaseUrl: "http://localhost:8080",
-//     redirect_uri: "http://localhost:8080/users/callback",
-//     scope: "openid profile",
-//     routes: {
-//         login: {
-//             path: "/login"
-//         },
-//         loginCallback: {
-//             path: "/users/callback",
-//             defaultRedirect: "/dashboard"
-//         }
-//     }
-// })
-
-//common header and footer
-hbs.registerPartials(__dirname + '/views/common');
-
-app.set('view engine', 'html');
-app.engine('html', hbs.__express);
-
-app.use(express.static(path.join(__dirname, 'assets')));
-app.use(express.static(path.join(__dirname, 'uploads'))); 
-
-// Bodyparser middleware
-app.use(bodyParser.urlencoded({extended: true}));
-app.use(bodyParser.json());
-app.use(bodyParser.text());
-
-// SESSTION CONFIGURATION
-// app.use(session({
-//     secret: "Aman_V",
-//     resave: true,
-//     saveUninitialized: false
-// }))
-
-// app.use(oidc.router);
-
-// app.use((req, res, next) => {
-//     if (!req.userinfo) {
-//       return next();
-//     }
+/* PASSPORT CONFIG */
+passport.serializeUser(function(user, cb) {
+    cb(null, user);
+});
   
-//     oktaClient.getUser(req.userinfo.sub)
-//       .then(user => {
-//         req.user = user;
-//         res.locals.user = user;
-//         next();
-//       }).catch(err => {
-//         next(err);
-//       });
-// });
-
-// function loginRequired(req,res,next) {
-//     if(!req.user) {
-//         return res.status(401).render("Unauthenticated !! Please login to continue ...")
-//     }
-//     next();
-// }
-
-/* MULTER CONFIG */
-
-const upload = multer({
-    storage: multer.memoryStorage(),
-    limits: {
-        fileSize: 5 * 1024 * 1024
-    }
-})
-
-//Firebase configuration
-
+passport.deserializeUser(async (email, cb) => {
+    var db = admin.firestore();
+    await db.collection('admin').where('email', '==', email)
+    .get()
+    .then((r) => {
+        r.forEach( rr => {
+            if(rr.data().email == email) {
+                cb(null,email);
+            }
+        })
+    })
+});
+  
+/* Firebase configuration */
 admin.initializeApp({
     credential: admin.credential.cert(serviceAccount),
     databaseURL: `${process.env.firebase_database_url}`
@@ -101,6 +39,39 @@ admin.initializeApp({
 var database = admin.firestore();
 database.settings({ ignoreUndefinedProperties: true });
   
+
+/* common header and footer */
+hbs.registerPartials(__dirname + '/views/common');
+
+app.set('view engine', 'html');
+app.engine('html', hbs.__express);
+
+app.use(express.static(path.join(__dirname, 'assets')));
+app.use(express.static(path.join(__dirname, 'uploads'))); 
+
+/* Bodyparser middleware */
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.json());
+app.use(bodyParser.text());
+
+/* SESSTION CONFIGURATION  */
+app.use(session({
+    secret: "Aman_V",
+    resave: true,
+    saveUninitialized: false
+}))
+app.use(passport.initialize())
+require("./storage-config/passport_config")(passport);
+app.use(flash());
+app.use(passport.session());
+
+/* MULTER CONFIG */
+const upload = multer({
+    storage: multer.memoryStorage(),
+    limits: {
+        fileSize: 5 * 1024 * 1024
+    }
+})
 
 /* CONTROLLER MODULES IMPORTS */
 const userController = require('./controllers/userController');
@@ -114,13 +85,21 @@ app.get('/', function(req,res) {
     res.render("login/index");
 })
 
+app.post('/login',passport.authenticate('local',{
+    successRedirect:'/dashboard',
+    failureRedirect:'/',
+    failureFlash: 'Invalid email or password'
+}), (req,res) => {
+        res.status(200).send("All is well")
+})
+
 app.get('/logout', (req,res) => {
     req.logout();
     res.redirect("/");
 });
 
 /* DASHBOARD ROUTE */
-app.get('/dashboard',function(req,res) {
+app.get('/dashboard', ensureLogin.ensureLoggedIn(), function(req,res) {
     var data = []
     userController.get_all_users_count( function(users) {
         data.push({'users_count': users})
@@ -141,14 +120,14 @@ app.get('/dashboard',function(req,res) {
 app.post('/user-list', userController.get_all_users_list);
 
 /* PRODUCT ROUTEs */
-app.get('/products/add', function(req,res) {
+app.get('/products/add', ensureLogin.ensureLoggedIn(),function(req,res) {
     res.render('products/add', {
         title: 'Products',
         page_title: 'Add products' 
     })
 })
 
-app.get('/products', function(req,res) {
+app.get('/products', ensureLogin.ensureLoggedIn(), function(req,res) {
     res.render('products/index', {
         title: 'Products',
         page_title: 'Products-list'
@@ -285,3 +264,4 @@ app.post("/news/do_edit/:id", upload.none(), newsController.edit_news);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT);
+console.log('Server is listening on port 8080');
