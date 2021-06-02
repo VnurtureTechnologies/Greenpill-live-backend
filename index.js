@@ -93,8 +93,12 @@ app.post('/login',passport.authenticate('local',{
         res.status(200).send("All is well")
 })
 
-app.get('/logout', (req,res) => {
+app.get('/logout', ensureLogin.ensureLoggedIn(), (req,res) => {
     req.logout();
+    res.redirect("/");
+});
+
+app.get('/login',(req,res) => {
     res.redirect("/");
 });
 
@@ -117,7 +121,7 @@ app.get('/dashboard', ensureLogin.ensureLoggedIn(), function(req,res) {
     })
 })
 
-app.post('/user-list', userController.get_all_users_list);
+app.post('/user-list', ensureLogin.ensureLoggedIn(),userController.get_all_users_list);
 
 /* PRODUCT ROUTEs */
 app.get('/products/add', ensureLogin.ensureLoggedIn(),function(req,res) {
@@ -134,7 +138,7 @@ app.get('/products', ensureLogin.ensureLoggedIn(), function(req,res) {
     })
 })
 
-app.get('/products/edit/:id', function(req,res) {
+app.get('/products/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
     var id = req.params.id;
     var data = [];
 
@@ -149,13 +153,13 @@ app.get('/products/edit/:id', function(req,res) {
     })
 })
 
-app.post('/product-list', upload.none() ,productController.get_products_list);
-app.post('/products/do_add', upload.single('product_image') , productController.add_product);
-app.post('/products/do_edit/:id', upload.none() ,productController.edit_product);
+app.post('/product-list',ensureLogin.ensureLoggedIn(), upload.none() ,productController.get_products_list);
+app.post('/products/do_add',ensureLogin.ensureLoggedIn(), upload.single('product_image') , productController.add_product);
+app.post('/products/do_edit/:id',ensureLogin.ensureLoggedIn(), upload.none() ,productController.edit_product);
 
 
 /* PRODUCT SUB CATEGORY ROUTES */
-app.get('/productSubCategory/add', function(req,res) {
+app.get('/productSubCategory/add',ensureLogin.ensureLoggedIn(), function(req,res) {
     var data = [];
     productController.get_products_id( function(products) {
         res.render('product-subCategory/add', {
@@ -166,14 +170,14 @@ app.get('/productSubCategory/add', function(req,res) {
     })
 })
 
-app.get('/productSubCategory', function(req,res) {
+app.get('/productSubCategory', ensureLogin.ensureLoggedIn(),function(req,res) {
     res.render('product-subCategory/index', {
         title: 'Product Sub Categories',
         page_title: 'Products Sub Categories list'
     })
 })
 
-app.get('/productSubCategory/edit/:id', function(req,res) {
+app.get('/productSubCategory/edit/:id',ensureLogin.ensureLoggedIn(), function(req,res) {
     var id = req.params.id;
     var data = [];
 
@@ -190,13 +194,13 @@ app.get('/productSubCategory/edit/:id', function(req,res) {
     })
 })
 
-app.post('/productSubCategory-list', upload.none(), productSubCategoryController.get_sub_products_list);
+app.post('/productSubCategory-list',ensureLogin.ensureLoggedIn(), upload.none(), productSubCategoryController.get_sub_products_list);
 // app.post('/productSubCategory/do_add', upload.single('productSubCategory_image') , productSubCategoryController.add_productSubCategory);
-app.post('/productSubCategory/do_edit/:id', upload.none(), productSubCategoryController.edit_subProduct);
+app.post('/productSubCategory/do_edit/:id',ensureLogin.ensureLoggedIn(), upload.none(), productSubCategoryController.edit_subProduct);
 
 
 /* PROJECT ROUTES */
-app.get('/projects/add', function(req,res) {
+app.get('/projects/add',ensureLogin.ensureLoggedIn(), function(req,res) {
     var data = [];
     productSubCategoryController.get_productSubCategory_id( function(productSubCategory) {
         res.render('projects/add', {
@@ -207,14 +211,14 @@ app.get('/projects/add', function(req,res) {
     })
 })
 
-app.get('/projects', (req,res) => {
+app.get('/projects',ensureLogin.ensureLoggedIn(), (req,res) => {
     res.render('projects/index',{
         title: 'Product Sub Categories',
         page_title: 'Products Sub Categories list'
     })
 })
 
-app.get('/projects/edit/:id', function(req,res) {
+app.get('/projects/edit/:id',ensureLogin.ensureLoggedIn(), function(req,res) {
     var id = req.params.id;
     var data = [];
 
@@ -231,20 +235,20 @@ app.get('/projects/edit/:id', function(req,res) {
     })
 })
 
-app.post('/project-list', upload.none(), projectController.get_projects_list);
+app.post('/project-list',ensureLogin.ensureLoggedIn(), upload.none(), projectController.get_projects_list);
 // app.post('/projects/do_add', upload.single('project_image') , projectController.add_project);
-app.post('/projects/do_edit/:id', upload.none(), projectController.edit_project);
+app.post('/projects/do_edit/:id',ensureLogin.ensureLoggedIn(), upload.none(), projectController.edit_project);
 
 /* NEWS ROUTES */
 
-app.get('/news', (req,res) => {
+app.get('/news',ensureLogin.ensureLoggedIn(), (req,res) => {
     res.render('news/index',{
         title: 'News',
         page_title: 'News list'
     })
 })
 
-app.get('/news/edit/:id', function(req,res) {
+app.get('/news/edit/:id',ensureLogin.ensureLoggedIn(), function(req,res) {
     var id = req.params.id;
     var data = [];
 
@@ -258,8 +262,8 @@ app.get('/news/edit/:id', function(req,res) {
         })
 })
 
-app.post('/news-list', upload.none(), newsController.get_news_list);
-app.post("/news/do_edit/:id", upload.none(), newsController.edit_news);
+app.post('/news-list',ensureLogin.ensureLoggedIn(), upload.none(), newsController.get_news_list);
+app.post("/news/do_edit/:id",ensureLogin.ensureLoggedIn(), upload.none(), newsController.edit_news);
 
 
 const PORT = process.env.PORT || 8080;
