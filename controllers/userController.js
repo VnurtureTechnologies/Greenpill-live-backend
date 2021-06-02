@@ -73,3 +73,30 @@ module.exports.get_all_projects_count = function(callback) {
         callback([])
     })
 }
+
+module.exports.add_admin = async(req,res,next) => {
+    var db = admin.firestore();
+
+    const data = {
+        name : req.body.name,
+        email : req.body.email,
+        password : req.body.password
+    }
+    
+    db.collection('admin').add(data)
+    .then( (result) => {
+        res.render('register/index',{
+            status: true,
+            status_code: 200,
+            message: "admin added successfully"
+        })
+    })
+    .catch( (err) => {
+        res.render('register/index',{
+            status: false,
+            status_code: 501,
+            error: err,
+            message: "Something went wrong"
+        })
+    })
+}

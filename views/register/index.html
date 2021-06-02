@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <!-- TITLE -->
+        <title>{{title}}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <!-- <link rel="shortcut icon" type="image/png" href="/images/favicon.png"/> -->
+        <!-- CSS LIBRARY -->
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
+        <!-- MAIN STYLE -->
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <link rel="stylesheet" type="text/css" href="/css/responsive.css">
+        <!--sweetalert2-->
+        <!-- <link rel="stylesheet" type="text/css" href="/plugins/sweetalert2/sweetalert2.min.css"> -->
+        <!-- JS LIBRARY -->
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <!--sweetalert2-->
+        <!-- <script src="/plugins/sweetalert2/sweetalert2.min.js"></script> -->
+
+    </head>
+
+    <body>
+        <!-- Login  -->
+        <!-- <div style="display: none;" class="page_loader"><span><img src="/images/ajax-loader.gif" alt="loader"></span></div> -->
+        <div class="col-md-12 col-sm-12 col-xs-12 login_page">
+            <div class="login_sec">
+                <div class="col-md-12 col-sm-12 col-xs-12 login_logo">
+                    <!--<img src="images/logo.png" alt="" />-->
+                    <h2 style="color: whitesmoke;">Greenpill Admin Register Dashboard</h2>
+                </div> 
+                <div class="login_form">
+                    <div class=" login_title">
+                        <h4>Register</h4>
+                        <p>{{message}}</p>
+                    </div>
+                    <form class="login-form" action="/register" method="POST">
+                        <div class="floating-label name_fld">      
+                            <input class="floating-input" name="name" type="text" required placeholder="Full Name">
+                        </div>
+                        <div class="floating-label email_fld">      
+                            <input class="floating-input" name="email" type="text" required placeholder="Email or Phone Number">
+                        </div>
+                        <div class="floating-label password_fld">      
+                            <input class="floating-input" id="password" name="password" required type="password" placeholder="Password">
+                        </div>
+                        
+                        <div class="floating-label password_fld">      
+                            <input class="floating-input" id="confirm_password" name="confirm_password" required type="password" placeholder="Confirm Password">
+                        </div>
+                        <div class="log_submit">
+                            <button class="btn" >Register</button>
+                            <p>Already have an account <b><a  href="/">SignIn</a></b></p>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+        <!-- END - Login  -->
+        <script src="/js/register/passwordconfirm.js"></script>
+    </body>
+</html> 
