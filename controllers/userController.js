@@ -1,5 +1,5 @@
 const admin = require("firebase-admin");
-
+const bcrypt = require("bcrypt")
 module.exports.get_all_users_list = (req, res, next) => {
   var db = admin.firestore();
   var user_data = [];
@@ -82,6 +82,9 @@ module.exports.add_admin = async (req, res, next) => {
     email: req.body.email,
     password: req.body.password,
   };
+  const salt = await bcrypt.genSalt(10);
+  data.password=await bcrypt.hash(data.password, salt);
+
   const users = await db
     .collection("admin")
     .where("email", "==", data.email)
