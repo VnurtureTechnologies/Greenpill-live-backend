@@ -15,13 +15,16 @@ module.exports = passport => {
         await db.collection('admin').where('email', '==', email)
         .get()
         .then((result) => {
-          result.forEach((userData) => {
+          result.forEach(async (userData) => {
             if (userData.data().email == email) {
-              if (userData.data().password == password) {
+                const validPassword =await bcrypt.compare(password, userData.data().password);
+                if (validPassword) {
                 return done(null, userData.data().email)
-              }
+              }else{
+              return done(null, false, {
+                message: "Invalid Password"
+              })}
             }
-            
             return done(null, false, {
               message: "user not found"
             })
