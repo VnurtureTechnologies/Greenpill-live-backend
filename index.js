@@ -85,6 +85,11 @@ app.get('/', function(req,res) {
     res.render("login/index");
 })
 
+app.get('/register',ensureLogin.ensureLoggedIn(), function(req,res) {
+    res.render("register/index");
+})
+app.post('/register',userController.add_admin)
+
 app.post('/login',passport.authenticate('local',{
     successRedirect:'/dashboard',
     failureRedirect:'/',
