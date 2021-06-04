@@ -122,6 +122,12 @@ app.get('/dashboard', ensureLogin.ensureLoggedIn(), function(req,res) {
 })
 
 app.post('/user-list',userController.get_all_users_list);
+app.get('/user-list',function(req,res){
+    res.render("user/index", {
+        title: 'users',
+        page_title: 'Users-list'
+    })
+});
 
 /* PRODUCT ROUTEs */
 app.get('/products/add', ensureLogin.ensureLoggedIn(),function(req,res) {
