@@ -54,6 +54,7 @@ $(document).ready(function () {
             {"data": "mobileNumber", "name": "mobileNumber"},
             {"data": "role", "name": "role"},
             {"data": "companyName", "name": "companyName"},
+            {"data": "get_action_button", "name": "get_action_button"}
         ],
         "columnDefs": [
             {"targets": -1, "orderable": false, },

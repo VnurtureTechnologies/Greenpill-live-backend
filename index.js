@@ -121,13 +121,40 @@ app.get('/dashboard', ensureLogin.ensureLoggedIn(), function(req,res) {
     })
 })
 
-app.post('/user-list',userController.get_all_users_list);
-app.get('/user-list',function(req,res){
-    res.render("user/index", {
+
+/* DASHBOARD ROUTE */
+app.get('/users/add', ensureLogin.ensureLoggedIn(),function(req,res) {
+    res.render('users/add', {
+        title: 'Users',
+        page_title: 'Add Users' 
+    })
+})
+
+app.get('/user-list', ensureLogin.ensureLoggedIn(),function(req,res){
+    res.render("users/index", {
         title: 'users',
         page_title: 'Users-list'
     })
 });
+
+app.get('/users/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
+    var id = req.params.id;
+    var data = [];
+
+    userController.get_users_data(id, function(users) {
+        data.push({'users_data': users})
+        console.log(data[0]['users_data'])
+        res.render('users/edit', {
+            title: "User Edit",
+            page_title: "Edit user",
+            user: data[0]['users_data']
+        })
+    })
+})
+
+app.post('/user-list',upload.none(),userController.get_all_users_list);
+app.post('/users-list/do_add',userController.add_users);
+
 
 /* PRODUCT ROUTEs */
 app.get('/products/add', ensureLogin.ensureLoggedIn(),function(req,res) {
