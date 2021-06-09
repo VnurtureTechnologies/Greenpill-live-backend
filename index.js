@@ -66,7 +66,7 @@ app.use(flash());
 app.use(passport.session());
 
 /* MULTER CONFIG */
-const upload = multer({
+const   upload = multer({
     storage: multer.memoryStorage(),
     limits: {
         fileSize: 5 * 1024 * 1024
@@ -122,7 +122,7 @@ app.get('/dashboard', ensureLogin.ensureLoggedIn(), function(req,res) {
 })
 
 
-/* DASHBOARD ROUTE */
+/* USER ROUTE */
 app.get('/users/add', ensureLogin.ensureLoggedIn(),function(req,res) {
     res.render('users/add', {
         title: 'Users',
@@ -153,8 +153,9 @@ app.get('/users/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
 })
 
 app.post('/user-list',upload.none(),userController.get_all_users_list);
-app.post('/users-list/do_add',userController.add_users);
-
+app.post('/users/do_add',upload.none(),userController.add_users);
+app.post('/users/do_edit/:id', upload.none() ,userController.edit_user);
+app.post('/users/do_delete/:id', upload.none() ,userController.delete_user);
 
 /* PRODUCT ROUTEs */
 app.get('/products/add', ensureLogin.ensureLoggedIn(),function(req,res) {
