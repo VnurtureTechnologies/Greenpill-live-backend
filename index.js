@@ -9,6 +9,7 @@ const serviceAccount = require("./greenpill-live-firebase-admin");
 const flash = require('flash');
 const ensureLogin = require('connect-ensure-login');
 const passport = require('passport');
+const methodOverride = require('method-override');
 
 var app = express();
 
@@ -65,6 +66,20 @@ require("./storage-config/passport_config")(passport);
 app.use(flash());
 app.use(passport.session());
 
+
+app.use( function( req, res, next ) {
+    // this middleware will call for each requested
+    // and we checked for the requested query properties
+    // if _method was existed
+    // then we know, clients need to call DELETE request instead
+    if ( req.query._method == 'DELETE' ) {
+        // change the original METHOD
+        // into DELETE method
+        req.method = 'DELETE';
+        req.url = req.path;
+    }       
+    next(); 
+});
 /* MULTER CONFIG */
 const   upload = multer({
     storage: multer.memoryStorage(),
@@ -155,7 +170,7 @@ app.get('/users/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
 app.post('/user-list',upload.none(),userController.get_all_users_list);
 app.post('/users/do_add',upload.none(),userController.add_users);
 app.post('/users/do_edit/:id', upload.none() ,userController.edit_user);
-app.post('/users/do_delete/:id', upload.none() ,userController.delete_user);
+app.delete('/users/do_delete/:id', upload.none() ,userController.delete_user);
 
 /* PRODUCT ROUTEs */
 app.get('/products/add', ensureLogin.ensureLoggedIn(),function(req,res) {

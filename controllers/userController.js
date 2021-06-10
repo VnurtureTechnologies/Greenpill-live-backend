@@ -16,7 +16,8 @@ module.exports.add_users = async(req,res,next) => {
         res.json({
             status: true,
             status_code: 200,
-            message: "User added successfully"
+            message: "User added successfully",
+            redirect:"/users/add"
         })
     })
     .catch( (err) => {
@@ -67,8 +68,7 @@ function get_action_button(req,res,data) {
     var html = '';
     html += '<span class="action_tools">';
     html += '<a class="dt_edit" href="/users/edit/' + data.id + '" data-toggle="tooltip" title="Edit!"><i class="fa fa-pencil"></i></a>';
-    // html += '<a class="dt_del delete" href="/users/do_delete/' + data.id + '" data-toggle="tooltip" title="Delete!" data-action="trash" data-id="' + data.id + '" ><i class="fa fa-trash"></i></a>';
-    html += '<form ></form><a class="dt_del delete" href="/users/do_delete/' + data.id + '" data-toggle="tooltip" title="Delete!" data-action="trash" data-id="' + data.id + '" ><i class="fa fa-trash"></i></a>';
+    html += '<a class="dt_del delete" href="/users/do_delete/' + data.id + '?_method=DELETE" data-toggle="tooltip" title="Delete!" data-action="trash" data-id="' + data.id + '" ><i class="fa fa-trash"></i></a>';
     html += '</span';
     return html;
 }
@@ -190,7 +190,8 @@ module.exports.edit_user = (req,res,next) => {
         res.json({
             status: true,
             status_code: 200,
-            message: "user edited successfully"
+            message: "user edited successfully",
+            redirect:"/user-list"
         })
     })
     .catch( (err) => {
@@ -210,14 +211,15 @@ module.exports.delete_user = (req,res,next) => {
         res.json({
             status: true,
             status_code: 200,
-            message: "user deleted successfully"
+            message: "user deleted successfully",
+            redirect:"/user-list"
         })
     })
     .catch( (err) => {
         res.json({
             status: false,
             status_code: 501,
-            message: "Internal server error"
+            message: "Internal server error",
         })
     })
 }
