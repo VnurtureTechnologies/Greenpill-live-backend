@@ -78,6 +78,9 @@ const productController = require('./controllers/productController');
 const productSubCategoryController = require('./controllers/productSubCategoryController')
 const projectController = require('./controllers/projectController');
 const newsController = require('./controllers/newsController');
+const whatsnewController = require('./controllers/whatsnewController');
+
+
 
 /* BASE ROUTE */
 app.get('/', function(req,res) {
@@ -226,6 +229,26 @@ app.get('/news/edit/:id',ensureLogin.ensureLoggedIn(), function(req,res) {
 
 app.post('/news-list', upload.none(), newsController.get_news_list);
 app.post("/news/do_edit/:id", upload.none(), newsController.edit_news);
+
+
+/* WHATSNEW ROUTES */
+app.get('/whatsnew/add', ensureLogin.ensureLoggedIn(),function(req,res) {
+    res.render('whatsnew/add', {
+        title: 'Whatsnew Idea',
+        page_title: 'Add New Idea'
+    })
+})
+
+
+app.get('/whatsnew/list', ensureLogin.ensureLoggedIn(), function(req,res) {
+    res.render('whatsnew/index', {
+        title: 'whatsnew',
+        page_title: 'Whatsnew-Idea-List'
+    })
+})
+
+app.post('/whatsnew-list', upload.none() ,whatsnewController.get_whatsnew_list);
+app.post('/whatsnew/do_add', upload.single('image') , whatsnewController.add_whatsnew);
 
 /* PRODUCT SUB CATEGORY ROUTES */
 /* NOT NEEDED FOR NOW UNCOMMENT WHEN IN NEED
