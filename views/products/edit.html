@@ -34,8 +34,12 @@
 
                         
                         <div class="floating-label left_fld">
-                            <label> Description <span class="required">*</span></label>
-                            <input class="floating-input" id="description" value="{{product.description}}" name="product_description" type="text">
+                            <label>Product Type<span class="required">*</span></label>
+                            <select class="floating-select" name="product_type">
+                                <option value="">--Choose--</option>
+                                <option value="product">Product</option>
+                                <option value="News and resources">News and resources</option>
+                            </select>
                         </div>
 
                         <div class="claerfix"></div>

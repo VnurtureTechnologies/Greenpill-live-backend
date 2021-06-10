@@ -10,19 +10,10 @@ exports.uploadImage = (file) => new Promise((resolve, reject) => {
     const blobStream = blob.createWriteStream({
         resumable: false
     });
-    const urlOptions = {
-        version: "v4",
-        action: "read",
-        expires: Date.now() + 1000 * 60 * 60, // 2 minutes      
-      }
-      
+    
     blobStream.on('finish', async() => {
-        const publicUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
+        const publicUrl = `https://firebasestorage.googleapis.com/v0/b/${bucket.name}/o/${encodeURIComponent(blob.name)}?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436`;
         resolve(publicUrl)
-        // await bucket.file(blob.name).getSignedUrl(urlOptions)
-        // .then( (url) => {
-        //     resolve(url[0]);
-        // })
     }).on('error',err => {
         console.log(err)
     }).end(buffer);

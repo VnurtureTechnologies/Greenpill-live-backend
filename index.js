@@ -38,8 +38,7 @@ admin.initializeApp({
   
 var database = admin.firestore();
 database.settings({ ignoreUndefinedProperties: true });
-  
-
+ 
 /* common header and footer */
 hbs.registerPartials(__dirname + '/views/common');
 
@@ -160,7 +159,7 @@ app.get('/products/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
 
 app.post('/product-list', upload.none() ,productController.get_products_list);
 app.post('/products/do_add', upload.single('product_image') , productController.add_product);
-app.post('/products/do_edit/:id', upload.none() ,productController.edit_product);
+app.post('/products/do_edit/:id', upload.single('product_image') ,productController.edit_product);
 
 /* PROJECT ROUTES */
 app.get('/projects/add',ensureLogin.ensureLoggedIn(), function(req,res) {

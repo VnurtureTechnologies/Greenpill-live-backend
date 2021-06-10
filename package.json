@@ -28,6 +28,7 @@
     "express": "^4.17.1",
     "express-generator": "^4.16.1",
     "express-session": "^1.17.1",
+    "firebase": "^8.6.5",
     "firebase-admin": "^9.5.0",
     "flash": "^1.1.0",
     "hbs": "^4.1.1",
