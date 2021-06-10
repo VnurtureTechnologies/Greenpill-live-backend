@@ -120,7 +120,7 @@ module.exports.edit_product = async(req,res,next) => {
         'type': req.body.product_type,
         'image_url': await helpers.uploadImage(req.file),
     }
-    console.log(update_data)
+
     db.collection('product').doc(`${id}`).update(update_data)
     .then( (r) => {
         res.json({

@@ -210,6 +210,18 @@ app.get('/news',ensureLogin.ensureLoggedIn(), (req,res) => {
     })
 })
 
+app.get('/news/add',ensureLogin.ensureLoggedIn(), function(req,res) {
+    var data = [];
+    productController.get_products_id( function(products) {
+        res.render('news/add', {
+            title: 'News and Innovation',
+            page_title: 'Add news and innovation' ,
+            products: products
+        })
+    })
+})
+
+
 app.get('/news/edit/:id',ensureLogin.ensureLoggedIn(), function(req,res) {
     var id = req.params.id;
     var data = [];
@@ -225,6 +237,7 @@ app.get('/news/edit/:id',ensureLogin.ensureLoggedIn(), function(req,res) {
 })
 
 app.post('/news-list', upload.none(), newsController.get_news_list);
+app.post('/news/do_add', upload.single('news_image'), newsController.add_news);
 app.post("/news/do_edit/:id", upload.none(), newsController.edit_news);
 
 /* PRODUCT SUB CATEGORY ROUTES */
