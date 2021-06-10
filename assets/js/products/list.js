@@ -50,7 +50,7 @@ $(document).ready(function () {
         },
         "columns": [
             {"data": "title", "name": "title"},
-            {"data": "description", "name": "description"},
+            {"data": "type", "name": "type"},
             {"data": "get_action_button", "name": "get_action_button"}
         ],
         "columnDefs": [
