@@ -7,7 +7,7 @@ module.exports.add_product = async(req,res,next) => {
 
     const data = {
         title : req.body.product_title,
-        description : req.body.product_description,
+        type: req.body.type,
         image_url: await helpers.uploadImage(req.file)
     }
     
@@ -16,7 +16,8 @@ module.exports.add_product = async(req,res,next) => {
         res.json({
             status: true,
             status_code: 200,
-            message: "Product added successfully"
+            message: "Product added successfully",
+            redirect: '/dashboard'
         })
     })
     .catch( (err) => {
@@ -41,7 +42,7 @@ module.exports.get_products_list = (req,res) => {
             var row = {
                 "id": r.id,
                 "title" : r.data().title,
-                "description" : r.data().description,
+                "type" : r.data().type,
                 "get_action_button": get_action_button(req,res,r)
             };
             products_list.push(row)
@@ -81,7 +82,7 @@ module.exports.get_products_data = function(product_id,callback) {
         const data = {
             id: r.id,
             title: r.data().title,
-            description: r.data().description,
+            type: r.data().type,
             image_url: r.data().image_url
         }
         callback(data);
@@ -111,14 +112,15 @@ module.exports.get_products_id = function(callback) {
     })
 }
 
-module.exports.edit_product = (req,res,next) => {
+module.exports.edit_product = async(req,res,next) => {
     var db = admin.firestore();
     var id = req.params.id;
     var update_data = {
         'title': req.body.product_title,
-        'description': req.body.product_description
+        'type': req.body.product_type,
+        'image_url': await helpers.uploadImage(req.file),
     }
-    console.log(update_data)
+
     db.collection('product').doc(`${id}`).update(update_data)
     .then( (r) => {
         res.json({

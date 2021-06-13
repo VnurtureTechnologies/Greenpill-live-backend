@@ -38,8 +38,7 @@ admin.initializeApp({
   
 var database = admin.firestore();
 database.settings({ ignoreUndefinedProperties: true });
-  
-
+ 
 /* common header and footer */
 hbs.registerPartials(__dirname + '/views/common');
 
@@ -84,6 +83,11 @@ const newsController = require('./controllers/newsController');
 app.get('/', function(req,res) {
     res.render("login/index");
 })
+
+app.get('/register',ensureLogin.ensureLoggedIn(), function(req,res) {
+    res.render("register/index");
+})
+app.post('/register',userController.add_admin)
 
 app.post('/login',passport.authenticate('local',{
     successRedirect:'/dashboard',
@@ -189,49 +193,7 @@ app.get('/products/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
 
 app.post('/product-list', upload.none() ,productController.get_products_list);
 app.post('/products/do_add', upload.single('product_image') , productController.add_product);
-app.post('/products/do_edit/:id', upload.none() ,productController.edit_product);
-
-
-/* PRODUCT SUB CATEGORY ROUTES */
-app.get('/productSubCategory/add',ensureLogin.ensureLoggedIn(), function(req,res) {
-    var data = [];
-    productController.get_products_id( function(products) {
-        res.render('product-subCategory/add', {
-            title: 'Product Subcategory',
-            page_title: 'Add subcategory for products' ,
-            products: products
-        })
-    })
-})
-
-app.get('/productSubCategory', ensureLogin.ensureLoggedIn(),function(req,res) {
-    res.render('product-subCategory/index', {
-        title: 'Product Sub Categories',
-        page_title: 'Products Sub Categories list'
-    })
-})
-
-app.get('/productSubCategory/edit/:id',ensureLogin.ensureLoggedIn(), function(req,res) {
-    var id = req.params.id;
-    var data = [];
-
-    productSubCategoryController.get_subProducts_data(id, function(products) {
-        data.push({'products_data': products})
-        productController.get_products_id(products => {
-            res.render('product-subCategory/edit', {
-                title: "Products Edit",
-                page_title: "Edit product",
-                product: data[0]['products_data'],
-                products: products
-            })
-        })
-    })
-})
-
-app.post('/productSubCategory-list', upload.none(), productSubCategoryController.get_sub_products_list);
-// app.post('/productSubCategory/do_add', upload.single('productSubCategory_image') , productSubCategoryController.add_productSubCategory);
-app.post('/productSubCategory/do_edit/:id', upload.none(), productSubCategoryController.edit_subProduct);
-
+app.post('/products/do_edit/:id', upload.single('product_image') ,productController.edit_product);
 
 /* PROJECT ROUTES */
 app.get('/projects/add',ensureLogin.ensureLoggedIn(), function(req,res) {
@@ -282,6 +244,18 @@ app.get('/news',ensureLogin.ensureLoggedIn(), (req,res) => {
     })
 })
 
+app.get('/news/add',ensureLogin.ensureLoggedIn(), function(req,res) {
+    var data = [];
+    productController.get_products_id( function(products) {
+        res.render('news/add', {
+            title: 'News and Innovation',
+            page_title: 'Add news and innovation' ,
+            products: products
+        })
+    })
+})
+
+
 app.get('/news/edit/:id',ensureLogin.ensureLoggedIn(), function(req,res) {
     var id = req.params.id;
     var data = [];
@@ -297,7 +271,50 @@ app.get('/news/edit/:id',ensureLogin.ensureLoggedIn(), function(req,res) {
 })
 
 app.post('/news-list', upload.none(), newsController.get_news_list);
+app.post('/news/do_add', upload.single('news_image'), newsController.add_news);
 app.post("/news/do_edit/:id", upload.none(), newsController.edit_news);
+
+/* PRODUCT SUB CATEGORY ROUTES */
+/* NOT NEEDED FOR NOW UNCOMMENT WHEN IN NEED
+app.get('/productSubCategory/add',ensureLogin.ensureLoggedIn(), function(req,res) {
+    var data = [];
+    productController.get_products_id( function(products) {
+        res.render('product-subCategory/add', {
+            title: 'Product Subcategory',
+            page_title: 'Add subcategory for products' ,
+            products: products
+        })
+    })
+})
+
+app.get('/productSubCategory', ensureLogin.ensureLoggedIn(),function(req,res) {
+    res.render('product-subCategory/index', {
+        title: 'Product Sub Categories',
+        page_title: 'Products Sub Categories list'
+    })
+})
+
+app.get('/productSubCategory/edit/:id',ensureLogin.ensureLoggedIn(), function(req,res) {
+    var id = req.params.id;
+    var data = [];
+
+    productSubCategoryController.get_subProducts_data(id, function(products) {
+        data.push({'products_data': products})
+        productController.get_products_id(products => {
+            res.render('product-subCategory/edit', {
+                title: "Products Edit",
+                page_title: "Edit product",
+                product: data[0]['products_data'],
+                products: products
+            })
+        })
+    })
+})
+
+app.post('/productSubCategory-list', upload.none(), productSubCategoryController.get_sub_products_list);
+app.post('/productSubCategory/do_add', upload.single('productSubCategory_image') , productSubCategoryController.add_productSubCategory);
+app.post('/productSubCategory/do_edit/:id', upload.none(), productSubCategoryController.edit_subProduct);
+*/
 
 
 const PORT = process.env.PORT || 8080;

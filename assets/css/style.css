@@ -83,11 +83,12 @@ li{
     background: url(../images/loginbg.jpg);
     opacity: 1;
 	width: 100%;
-	min-height: 100vh;
+	min-height: 110vh;
 	position: fixed;
 	background-size: cover;
 	height: 100%;
 	top: 0;
+    overflow-y:scroll;
 }
 
 .login_sec {
@@ -170,6 +171,11 @@ li{
     margin-bottom: 25px;
 }
 
+.login_p {
+    margin-top:10px;
+    margin-bottom:5px;
+
+}
 
 .main_header {
     width: 100%;
