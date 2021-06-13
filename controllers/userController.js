@@ -10,7 +10,7 @@ module.exports.add_users = async(req,res,next) => {
         role : req.body.user_role,
         companyName : req.body.user_companyname,
     }
-    console.log(data)
+    
     db.collection('users').add(data)
     .then( (result) => {
         res.json({
@@ -68,7 +68,7 @@ function get_action_button(req,res,data) {
     var html = '';
     html += '<span class="action_tools">';
     html += '<a class="dt_edit" href="/users/edit/' + data.id + '" data-toggle="tooltip" title="Edit!"><i class="fa fa-pencil"></i></a>';
-    html += '<a class="dt_del delete" href="/users/do_delete/' + data.id + '?_method=DELETE" data-toggle="tooltip" title="Delete!" data-action="trash" data-id="' + data.id + '" ><i class="fa fa-trash"></i></a>';
+    html += '<a class="dt_del delete" href="javascript:void(0);" data-toggle="tooltip" title="Delete!" data-action="delete" data-id="' + data.id + '" ><i class="fa fa-trash"></i></a>';
     html += '</span';
     return html;
 }
@@ -156,7 +156,7 @@ module.exports.edit_product = (req,res,next) => {
         'title': req.body.product_title,
         'description': req.body.product_description
     }
-    console.log(update_data)
+
     db.collection('product').doc(`${id}`).update(update_data)
     .then( (r) => {
         res.json({
@@ -184,7 +184,7 @@ module.exports.edit_user = (req,res,next) => {
         'role' : req.body.role,
         'companyName' : req.body.companyName,
     }
-    console.log(update_data)
+    
     db.collection('users').doc(`${id}`).update(update_data)
     .then( (r) => {
         res.json({
@@ -206,6 +206,7 @@ module.exports.edit_user = (req,res,next) => {
 module.exports.delete_user = (req,res,next) => {
     var db = admin.firestore();
     var id = req.params.id;
+    
     db.collection('users').doc(`${id}`).delete()
     .then( (r) => {
         res.json({
