@@ -65,7 +65,7 @@ app.use(flash());
 app.use(passport.session());
 
 /* MULTER CONFIG */
-const upload = multer({
+const   upload = multer({
     storage: multer.memoryStorage(),
     limits: {
         fileSize: 5 * 1024 * 1024
@@ -125,7 +125,41 @@ app.get('/dashboard', ensureLogin.ensureLoggedIn(), function(req,res) {
     })
 })
 
-app.post('/user-list',userController.get_all_users_list);
+
+/* USER ROUTE */
+app.get('/users/add', ensureLogin.ensureLoggedIn(),function(req,res) {
+    res.render('users/add', {
+        title: 'Users',
+        page_title: 'Add Users' 
+    })
+})
+
+app.get('/user-list', ensureLogin.ensureLoggedIn(),function(req,res){
+    res.render("users/index", {
+        title: 'users',
+        page_title: 'Users-list'
+    })
+});
+
+app.get('/users/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
+    var id = req.params.id;
+    var data = [];
+
+    userController.get_users_data(id, function(users) {
+        data.push({'users_data': users})
+        console.log(data[0]['users_data'])
+        res.render('users/edit', {
+            title: "User Edit",
+            page_title: "Edit user",
+            user: data[0]['users_data']
+        })
+    })
+})
+
+app.post('/user-list',upload.none(),userController.get_all_users_list);
+app.post('/users/do_add',upload.none(),userController.add_users);
+app.post('/users/do_edit/:id', upload.none() ,userController.edit_user);
+app.delete('/users-delete/:id', userController.delete_user);
 
 /* PRODUCT ROUTEs */
 app.get('/products/add', ensureLogin.ensureLoggedIn(),function(req,res) {
