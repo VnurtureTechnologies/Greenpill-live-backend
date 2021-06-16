@@ -33,25 +33,25 @@
                         <div class="claerfix"></div>
 
                         <div class="floating-label left_fld">
-                            <label> Project Details <span class="required">*</span></label>
-                            <input class="floating-input" id="project_details" name="project_details" type="text">
+                            <label> Long Description <span class="required">*</span></label>
+                            <input class="floating-input" id="long_description" name="long_description" type="text">
                         </div>
 
                         <div class="claerfix"></div>
 
                         
                         <div class="floating-label left_fld">
-                            <label> Work Scope <span class="required">*</span></label>
-                            <input class="floating-input" id="work_scope" name="work_scope" type="text">
+                            <label> Short Description <span class="required">*</span></label>
+                            <input class="floating-input" id="short_description" name="short_description" type="text">
                         </div>
 
                         <div class="claerfix"></div>
 
                         <div class="floating-label left_fld">
-                            <label>Choose a product subcategory<span class="required">*</span></label>
-                            <select class="floating-select" name="int_user_id">
+                            <label>Choose a project<span class="required">*</span></label>
+                            <select class="floating-select" name="product_id">
                                     <option value="">--Choose--</option>
-                                    {{#each productSubCategory}}
+                                    {{#each products}}
                                     <option value="{{this.id}}">{{this.title}}</option>
                                     {{/each}}
                             </select>
@@ -59,10 +59,10 @@
 
                         <div class="claerfix"></div>
 
-                        <h4>Add a product image</h4>
+                        <h4>Add a project image</h4>
                         <div class="floating-label right_fld browse2">
                             <label>
-                                <input class="" type="file" accept='image/jpeg, image/png' name="product_image"> <img src="/images/car.png">
+                                <input class="" type="file" accept='image/jpeg, image/png' name="project_image"> <img src="/images/car.png">
                             </label>
                         </div>
                         </div>
@@ -79,7 +79,7 @@
 </div>
 <!-- END -->
 {{> footer}}
-<script src="/js/products-subCategory/add.js"></script>
+<script src="/js/projects/add.js"></script>
 </body>
 
 </html>

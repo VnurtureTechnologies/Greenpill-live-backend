@@ -33,24 +33,24 @@
                         <div class="claerfix"></div>
                         
                         <div class="floating-label left_fld">
-                            <label> Project Details <span class="required">*</span></label>
-                            <input class="floating-input" id="project_details" value="{{project.projectDetails}}" name="project_details" type="text">
+                            <label> Long Description <span class="required">*</span></label>
+                            <input class="floating-input" id="long_description" value="{{project.long_description}}" name="long_description" type="text">
                         </div>
 
                         <div class="claerfix"></div>
                         
                         <div class="floating-label left_fld">
-                            <label>Work Scope <span class="required">*</span></label>
-                            <input class="floating-input" id="work_scope" value="{{project.workScope}}" name="work_scope" type="text">
+                            <label> Short Description <span class="required">*</span></label>
+                            <input class="floating-input" id="short_description" value="{{project.short_description}}" name="short_description" type="text">
                         </div>
 
                         <div class="claerfix"></div>
 
                         <div class="floating-label left_fld">
-                            <label>Choose a product Subcategory<span class="required">*</span></label>
-                            <select class="floating-select" name="int_user_id">
+                            <label>Choose a product<span class="required">*</span></label>
+                            <select class="floating-select" name="product_id">
                                     <option value="">--Choose--</option>
-                                    {{#each productSubCategory}}
+                                    {{#each products}}
                                     <option value="{{this.id}}">{{this.title}}</option>
                                     {{/each}}
                             </select>

@@ -1,4 +1,41 @@
 const admin = require('firebase-admin');
+const helpers = require('../helpers');
+
+module.exports.add_project = async(req, res) => {
+    var db = admin.firestore();
+
+    console.log(req.body)
+
+    var data = {
+        title: req.body.title,
+        longDesc: req.body.long_description,
+        shortDesc: req.body.short_description,
+        productRef: req.body.product_id,
+        images: [await helpers.uploadImage(req.file)]
+    }
+
+    console.log(data);
+    
+    await db.collection('project')
+    .add(data)
+    .then((r) => {
+        res.json({
+            status: true,
+            status_code: 200,
+            message: "Project added successfully",
+            redirect: "/projects"
+        })
+    })
+    .catch((err) => {
+        console.log(err);
+        res.json({
+            status: false,
+            status_code: 501,
+            message: "Something went wrong",
+            redirect: "/projects/add"
+        })
+    })
+}
 
 module.exports.get_projects_list = async(req,res) => {
     var db = admin.firestore();
@@ -11,8 +48,8 @@ module.exports.get_projects_list = async(req,res) => {
             var row = {
                 "id": r.id,
                 "title" : r.data().title,
-                "work_scope" : r.data().workScope,
-                "project_details": r.data().projectDetails,
+                "long_description" : r.data().longDesc,
+                "short_description": r.data().shortDesc,
                 "get_action_button": get_action_button(req,res,r)
             };
             project_list.push(row)
@@ -52,9 +89,9 @@ module.exports.get_projects_data = function(project_id,callback) {
         const data = {
             id: r.id,
             title: r.data().title,
-            projectDetails: r.data().projectDetails,
-            workScope: r.data().workScope,
-            image_url: r.data().imgUrl1
+            long_description: r.data().longDesc,
+            short_description: r.data().shortDesc,
+            image_url: r.data().images[0]
         }
         callback(data);
     })
@@ -63,20 +100,36 @@ module.exports.get_projects_data = function(project_id,callback) {
     })
 }
 
-module.exports.edit_project = (req,res,next) => {
+module.exports.edit_project = async(req,res,next) => {
     var db = admin.firestore();
     var id = req.params.id;
-    var update_data = {
-        'title': req.body.project_title,
-        'projectDetails': req.body.project_details,
-        'workScope': req.body.work_scope
+    var update_data="";
+
+    if(req.file) {
+        update_data = {
+            'title': req.body.project_title,
+            'longDesc': req.body.long_description,
+            'shortDesc': req.body.short_description,
+            'productRef': req.body.product_id,
+            'images': [await helpers.uploadImage(req.file)]
+        }
     }
+    else {
+        update_data = {
+            'title': req.body.project_title,
+            'longDesc': req.body.long_description,
+            'shortDesc': req.body.short_description,
+            'productRef': req.body.product_id
+        }
+    }
+    
     db.collection('project').doc(`${id}`).update(update_data)
     .then( (r) => {
         res.json({
             status: true,
             status_code: 200,
-            message: "Product edited successfully"
+            message: "Product edited successfully",
+            redirect: 'projects'
         })
     })
     .catch( (err) => {
