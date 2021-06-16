@@ -112,6 +112,27 @@ module.exports.get_products_id = function(callback) {
     })
 }
 
+module.exports.get_products_where_type_product = function(callback) {
+    var db = admin.firestore();
+    const product_data = [];
+    db.collection('product')
+    .where('type', '==', 'product' )
+    .get()
+    .then((results) => {
+        results.docs.forEach( (r) => {
+            data = {
+                id: r.id,
+                title: r.data().title
+            }
+            product_data.push(data);
+        })
+        callback(product_data);
+    })
+    .catch((err) => {
+        callback([]);
+    })
+}
+
 module.exports.edit_product = async(req,res,next) => {
     var db = admin.firestore();
     var id = req.params.id;

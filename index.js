@@ -198,19 +198,20 @@ app.post('/products/do_edit/:id', upload.single('product_image') ,productControl
 /* PROJECT ROUTES */
 app.get('/projects/add',ensureLogin.ensureLoggedIn(), function(req,res) {
     var data = [];
-    productSubCategoryController.get_productSubCategory_id( function(productSubCategory) {
+    productController.get_products_where_type_product( function(products) {
+        console.log(products)
         res.render('projects/add', {
             title: 'Projects',
             page_title: 'Add projects' ,
-            productSubCategory: productSubCategory
+            products: products
         })
     })
 })
 
 app.get('/projects',ensureLogin.ensureLoggedIn(), (req,res) => {
     res.render('projects/index',{
-        title: 'Product Sub Categories',
-        page_title: 'Products Sub Categories list'
+        title: 'Projects',
+        page_title: 'Projects list'
     })
 })
 
@@ -220,20 +221,20 @@ app.get('/projects/edit/:id',ensureLogin.ensureLoggedIn(), function(req,res) {
 
     projectController.get_projects_data(id, function(projects) {
         data.push({'projects_data': projects})
-        productSubCategoryController.get_productSubCategory_id(productSubCategory => {
+        productController.get_products_id(products => {
             res.render('projects/edit', {
                 title: "Products Edit",
                 page_title: "Edit product",
                 project: data[0]['projects_data'],
-                productSubCategory: productSubCategory
+                products: products
             })
         })
     })
 })
 
 app.post('/project-list', upload.none(), projectController.get_projects_list);
-// app.post('/projects/do_add', upload.single('project_image') , projectController.add_project);
-app.post('/projects/do_edit/:id', upload.none(), projectController.edit_project);
+app.post('/projects/do_add', upload.single('project_image') , projectController.add_project);
+app.post('/projects/do_edit/:id', upload.single('project_image'), projectController.edit_project);
 
 /* NEWS ROUTES */
 

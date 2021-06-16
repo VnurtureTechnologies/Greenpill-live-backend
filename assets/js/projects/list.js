@@ -50,8 +50,8 @@ $(document).ready(function () {
         },
         "columns": [
             {"data": "title", "name": "title"},
-            {"data": "work_scope", "name": "work_scope"},
-            {"data": "project_details", "name": "project_details"},
+            {"data": "long_description", "name": "long_description"},
+            {"data": "short_description", "name": "short_description"},
             {"data": "get_action_button", "name": "get_action_button"}
         ],
         "columnDefs": [
