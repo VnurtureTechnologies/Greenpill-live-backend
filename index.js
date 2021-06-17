@@ -247,8 +247,26 @@ app.get('/whatsnew/list', ensureLogin.ensureLoggedIn(), function(req,res) {
     })
 })
 
+app.get('/whatsnew/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
+    var id = req.params.id;
+    var data = [];
+
+    whatsnewController.get_whatsnew_data(id, function(products) {
+        data.push({'whatsnew_data': products})
+        console.log(data[0]['whatsnew_data'])
+        res.render('whatsnew/edit', {
+            title: "Whats New Idea Edit",
+            page_title: "Edit Idea",
+            whatsnew: data[0]['whatsnew_data']
+        })
+    })
+})
+
+
 app.post('/whatsnew-list', upload.none() ,whatsnewController.get_whatsnew_list);
 app.post('/whatsnew/do_add', upload.single('image') , whatsnewController.add_whatsnew);
+app.post('/products/do_edit/:id', upload.single('product_image') ,whatsnewController.edit_whatsnew);
+
 
 /* PRODUCT SUB CATEGORY ROUTES */
 /* NOT NEEDED FOR NOW UNCOMMENT WHEN IN NEED
