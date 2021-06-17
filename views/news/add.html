@@ -22,33 +22,34 @@
                     <h2>{{page_title}}</h2>
                 </div>
 
-                <form action="javascript:void(0);" class="edit_form" data-id={{project.id}} enctype="multipart/form-data">
+                <form action="javascript:void(0);" class="add_form" enctype="multipart/form-data">
                     <div class="field_inner_sec">
 
                         <div class="floating-label left_fld">
                             <label> Title <span class="required">*</span></label>
-                            <input class="floating-input" id="title" value="{{project.title}}" name="project_title" type="text">
+                            <input class="floating-input" id="title" name="title" type="text">
                         </div>
 
                         <div class="claerfix"></div>
-                        
+
                         <div class="floating-label left_fld">
-                            <label> Long Description <span class="required">*</span></label>
-                            <input class="floating-input" id="long_description" value="{{project.long_description}}" name="long_description" type="text">
+                            <label> Category <span class="required">*</span></label>
+                            <input class="floating-input" id="category" name="category" type="text">
                         </div>
 
                         <div class="claerfix"></div>
+
                         
                         <div class="floating-label left_fld">
-                            <label> Short Description <span class="required">*</span></label>
-                            <input class="floating-input" id="short_description" value="{{project.short_description}}" name="short_description" type="text">
+                            <label> Description <span class="required">*</span></label>
+                            <input class="floating-input" id="description" name="description" type="text">
                         </div>
 
                         <div class="claerfix"></div>
 
                         <div class="floating-label left_fld">
                             <label>Choose a product<span class="required">*</span></label>
-                            <select class="floating-select" name="product_id">
+                            <select class="floating-select" name="int_user_id">
                                     <option value="">--Choose--</option>
                                     {{#each products}}
                                     <option value="{{this.id}}">{{this.title}}</option>
@@ -58,10 +59,24 @@
 
                         <div class="claerfix"></div>
 
-                        <h4>Add a project image</h4>
+                        <div class="floating-label left_fld">
+                            <label> Source Link <span class="required">*</span></label>
+                            <input class="floating-input" id="source_link" name="source_link" type="text">
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld">
+                            <label> Youtube URL <span class="required">*</span></label>
+                            <input class="floating-input" id="youtube_url" name="youtube_url" type="text">
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <h4>Add a news image</h4>
                         <div class="floating-label right_fld browse2">
                             <label>
-                                <input class="" type="file" accept='image/jpeg, image/png' name="project_image"> <img src="{{project.image_url}}">
+                                <input class="" type="file" accept='image/jpeg, image/png' name="news_image"> <img src="/images/car.png">
                             </label>
                         </div>
                         </div>
@@ -78,7 +93,7 @@
 </div>
 <!-- END -->
 {{> footer}}
-<script src="/js/projects/edit.js"></script>
+<script src="/js/news/add.js"></script>
 </body>
 
 </html>

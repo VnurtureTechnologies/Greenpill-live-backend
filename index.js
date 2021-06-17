@@ -65,7 +65,7 @@ app.use(flash());
 app.use(passport.session());
 
 /* MULTER CONFIG */
-const upload = multer({
+const   upload = multer({
     storage: multer.memoryStorage(),
     limits: {
         fileSize: 5 * 1024 * 1024
@@ -128,7 +128,41 @@ app.get('/dashboard', ensureLogin.ensureLoggedIn(), function(req,res) {
     })
 })
 
-app.post('/user-list',userController.get_all_users_list);
+
+/* USER ROUTE */
+app.get('/users/add', ensureLogin.ensureLoggedIn(),function(req,res) {
+    res.render('users/add', {
+        title: 'Users',
+        page_title: 'Add Users' 
+    })
+})
+
+app.get('/user-list', ensureLogin.ensureLoggedIn(),function(req,res){
+    res.render("users/index", {
+        title: 'users',
+        page_title: 'Users-list'
+    })
+});
+
+app.get('/users/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
+    var id = req.params.id;
+    var data = [];
+
+    userController.get_users_data(id, function(users) {
+        data.push({'users_data': users})
+        console.log(data[0]['users_data'])
+        res.render('users/edit', {
+            title: "User Edit",
+            page_title: "Edit user",
+            user: data[0]['users_data']
+        })
+    })
+})
+
+app.post('/user-list',upload.none(),userController.get_all_users_list);
+app.post('/users/do_add',upload.none(),userController.add_users);
+app.post('/users/do_edit/:id', upload.none() ,userController.edit_user);
+app.delete('/users-delete/:id', userController.delete_user);
 
 /* PRODUCT ROUTEs */
 app.get('/products/add', ensureLogin.ensureLoggedIn(),function(req,res) {
@@ -167,19 +201,20 @@ app.post('/products/do_edit/:id', upload.single('product_image') ,productControl
 /* PROJECT ROUTES */
 app.get('/projects/add',ensureLogin.ensureLoggedIn(), function(req,res) {
     var data = [];
-    productSubCategoryController.get_productSubCategory_id( function(productSubCategory) {
+    productController.get_products_where_type_product( function(products) {
+        console.log(products)
         res.render('projects/add', {
             title: 'Projects',
             page_title: 'Add projects' ,
-            productSubCategory: productSubCategory
+            products: products
         })
     })
 })
 
 app.get('/projects',ensureLogin.ensureLoggedIn(), (req,res) => {
     res.render('projects/index',{
-        title: 'Product Sub Categories',
-        page_title: 'Products Sub Categories list'
+        title: 'Projects',
+        page_title: 'Projects list'
     })
 })
 
@@ -189,20 +224,20 @@ app.get('/projects/edit/:id',ensureLogin.ensureLoggedIn(), function(req,res) {
 
     projectController.get_projects_data(id, function(projects) {
         data.push({'projects_data': projects})
-        productSubCategoryController.get_productSubCategory_id(productSubCategory => {
+        productController.get_products_id(products => {
             res.render('projects/edit', {
                 title: "Products Edit",
                 page_title: "Edit product",
                 project: data[0]['projects_data'],
-                productSubCategory: productSubCategory
+                products: products
             })
         })
     })
 })
 
 app.post('/project-list', upload.none(), projectController.get_projects_list);
-// app.post('/projects/do_add', upload.single('project_image') , projectController.add_project);
-app.post('/projects/do_edit/:id', upload.none(), projectController.edit_project);
+app.post('/projects/do_add', upload.single('project_image') , projectController.add_project);
+app.post('/projects/do_edit/:id', upload.single('project_image'), projectController.edit_project);
 
 /* NEWS ROUTES */
 
@@ -212,6 +247,18 @@ app.get('/news',ensureLogin.ensureLoggedIn(), (req,res) => {
         page_title: 'News list'
     })
 })
+
+app.get('/news/add',ensureLogin.ensureLoggedIn(), function(req,res) {
+    var data = [];
+    productController.get_products_id( function(products) {
+        res.render('news/add', {
+            title: 'News and Innovation',
+            page_title: 'Add news and innovation' ,
+            products: products
+        })
+    })
+})
+
 
 app.get('/news/edit/:id',ensureLogin.ensureLoggedIn(), function(req,res) {
     var id = req.params.id;
@@ -228,6 +275,7 @@ app.get('/news/edit/:id',ensureLogin.ensureLoggedIn(), function(req,res) {
 })
 
 app.post('/news-list', upload.none(), newsController.get_news_list);
+app.post('/news/do_add', upload.single('news_image'), newsController.add_news);
 app.post("/news/do_edit/:id", upload.none(), newsController.edit_news);
 
 
