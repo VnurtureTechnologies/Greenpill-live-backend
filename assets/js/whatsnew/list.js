@@ -61,6 +61,8 @@ $(document).ready(function () {
 
     $('#list_table').delegate('a.delete', 'click', function () {
         var id = $(this).attr('data-id');
+        var action = $(this).attr('data-action');
+		var data = {action: action};
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -71,26 +73,29 @@ $(document).ready(function () {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.value) {
-                user_delete_action('/user-delete/' + id);
+                do_btn_action('/whatsnew-delete/' + id, data ,'delete');
             }
         });
     });
 });
 
-function user_delete_action(url) {
+function do_btn_action(url, data, type) {
     $.ajax({
         url: url,
-        type: 'delete',
+        type: type,
+        data: data,
         dataType: 'json',
     }).done(function (response) {
         if (response.status == false) {
             Swal.fire("Sorry!", "Unable to process your request. Please try again later.)", "error");
         } else {
-            Swal.fire('Deleted!', response.message , "success");
+            Swal.fire(response.title, response.message , "success");
+            if (response.redirect != '') {
             setTimeout(function () {
-                location.replace('/dashboard');
+                location.replace(response.redirect);
             }, 1200);
         }
+      }
     }).fail(function (error) {
         Swal.fire({
             icon: 'error',

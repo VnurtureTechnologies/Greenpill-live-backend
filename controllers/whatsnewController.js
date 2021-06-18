@@ -10,9 +10,8 @@ module.exports.add_whatsnew = async (req, res, next) => {
     description: req.body.description,
     type: req.body.type,
     sourceLink: req.body.sourcelink,
-    img: await helpers.uploadImage(req.file),
+    img: await helpers.uploadImage(req.file)
   };
-  console.log(data);
   db.collection("whatsnew")
     .add(data)
     .then((result) => {
@@ -57,7 +56,6 @@ module.exports.get_whatsnew_list = (req, res) => {
       res.json(output);
     })
     .catch((err) => {
-      console.log(err);
       res.json({
         status: false,
         status_code: 501,
