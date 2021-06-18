@@ -299,8 +299,8 @@ app.get('/whatsnew/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
     var id = req.params.id;
     var data = [];
 
-    whatsnewController.get_whatsnew_data(id, function(products) {
-        data.push({'whatsnew_data': products})
+    whatsnewController.get_whatsnew_data(id, function(whatsnew) {
+        data.push({'whatsnew_data': whatsnew})
         console.log(data[0]['whatsnew_data'])
         res.render('whatsnew/edit', {
             title: "Whats New Idea Edit",
@@ -312,8 +312,8 @@ app.get('/whatsnew/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
 
 
 app.post('/whatsnew-list', upload.none() ,whatsnewController.get_whatsnew_list);
-app.post('/whatsnew/do_add', upload.single('image') , whatsnewController.add_whatsnew);
-app.post('/products/do_edit/:id', upload.single('product_image') ,whatsnewController.edit_whatsnew);
+app.post('/whatsnew/do_add', upload.single('whatsnew_image') , whatsnewController.add_whatsnew);
+app.post('/whatsnew/do_edit/:id', upload.single('whatsnew_image') ,whatsnewController.edit_whatsnew);
 
 
 /* PRODUCT SUB CATEGORY ROUTES */

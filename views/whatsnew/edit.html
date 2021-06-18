@@ -22,7 +22,7 @@
                     <h2>{{page_title}}</h2>
                 </div>
 
-                <form action="javascript:void(0);" class="add_form" data-id={{whatsnew.id}} enctype="multipart/form-data">
+                <form action="javascript:void(0);" class="edit_form" data-id={{whatsnew.id}} enctype="multipart/form-data">
                     <div class="field_inner_sec">
 
                         <div class="floating-label left_fld">
@@ -60,7 +60,7 @@
                         <h4>Add a image</h4>
                         <div class="floating-label right_fld browse2">
                             <label>
-                                <input class="" type="file" accept='image/jpeg, image/png' name="image"> <img src="/images/car.png">
+                                <input class="" type="file" accept='image/jpeg, image/png' name="whatsnew_img"> <img src="{{whatsnew.img}}">
                             </label>
                         </div>
                         </div>
