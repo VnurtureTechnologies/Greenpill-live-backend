@@ -78,7 +78,8 @@ const productController = require('./controllers/productController');
 const productSubCategoryController = require('./controllers/productSubCategoryController')
 const projectController = require('./controllers/projectController');
 const newsController = require('./controllers/newsController');
-
+const partnerpController = require('./controllers/partnerpController');
+const greeniController = require('./controllers/greeniController');
 /* BASE ROUTE */
 app.get('/', function(req,res) {
     res.render("login/index");
@@ -147,7 +148,6 @@ app.get('/users/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
 
     userController.get_users_data(id, function(users) {
         data.push({'users_data': users})
-        console.log(data[0]['users_data'])
         res.render('users/edit', {
             title: "User Edit",
             page_title: "Edit user",
@@ -182,7 +182,6 @@ app.get('/products/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
 
     productController.get_products_data(id, function(products) {
         data.push({'products_data': products})
-        console.log(data[0]['products_data'])
         res.render('products/edit', {
             title: "Products Edit",
             page_title: "Edit product",
@@ -199,7 +198,6 @@ app.post('/products/do_edit/:id', upload.single('product_image') ,productControl
 app.get('/projects/add',ensureLogin.ensureLoggedIn(), function(req,res) {
     var data = [];
     productController.get_products_where_type_product( function(products) {
-        console.log(products)
         res.render('projects/add', {
             title: 'Projects',
             page_title: 'Add projects' ,
@@ -317,6 +315,28 @@ app.post('/productSubCategory/do_add', upload.single('productSubCategory_image')
 app.post('/productSubCategory/do_edit/:id', upload.none(), productSubCategoryController.edit_subProduct);
 */
 
+/* partner program routes */
+app.get('/partnerp-list', ensureLogin.ensureLoggedIn(),function(req,res){
+    res.render("partnerp/index", {
+        title: 'partner program',
+        page_title: 'Partner Program'
+    })
+});
+
+app.post('/partnerp-list',upload.none(),partnerpController.get_all_partnerp_list);
+
+app.delete('/partnerp-delete/:id', partnerpController.delete_partnerp);
+
+app.get('/greeni-list', ensureLogin.ensureLoggedIn(),function(req,res){
+    res.render("greeni/index", {
+        title: 'green idea',
+        page_title: 'Green Idea'
+    })
+});
+
+app.post('/greeni-list',upload.none(),greeniController.get_all_greeni_list);
+
+app.delete('/greeni-delete/:id', greeniController.delete_greeni);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT);
