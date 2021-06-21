@@ -314,7 +314,7 @@ app.get('/whatsnew/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
 app.post('/whatsnew-list', upload.none() ,whatsnewController.get_whatsnew_list);
 app.post('/whatsnew/do_add', upload.single('whatsnew_image') , whatsnewController.add_whatsnew);
 app.post('/whatsnew/do_edit/:id', upload.single('whatsnew_image') ,whatsnewController.edit_whatsnew);
-
+app.delete('/whatsnew-delete/:id', whatsnewController.delete_whatsnew);
 
 /* PRODUCT SUB CATEGORY ROUTES */
 /* NOT NEEDED FOR NOW UNCOMMENT WHEN IN NEED

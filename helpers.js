@@ -18,3 +18,9 @@ exports.uploadImage = (file) => new Promise((resolve, reject) => {
         console.log(err)
     }).end(buffer);
 });
+
+exports.deleteImage = (filelink) => new Promise((resolve, reject) => {
+    var filename = filelink.split('/o/')[1].split('?')[0]
+    const bucket = admin.storage().bucket('greenpill-live.appspot.com');
+    bucket.file(filename).delete();
+});

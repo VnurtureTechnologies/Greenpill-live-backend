@@ -141,3 +141,39 @@ module.exports.edit_whatsnew = async (req, res, next) => {
       });
     });
 };
+
+module.exports.delete_whatsnew = async (req, res, next) => {
+  var db = admin.firestore();
+  var id = req.params.id;
+  var filelink = "";
+  db.collection("whatsnew")
+  .doc(`${id}`)
+  .get()
+  .then(async (r) => {
+    const data={
+      filelink1 : r.data().img
+    }
+    filelink = data.filelink1
+    await helpers.deleteImage(filelink)
+  })
+  .catch((err) => {
+    console.log(err)
+  });
+
+  db.collection('whatsnew').doc(`${id}`).delete()
+    .then( (r) => {
+        res.json({
+            status: true,
+            status_code: 200,
+            message: "Idea deleted successfully",
+            redirect:"/whatsnew/list"
+        })
+    })
+    .catch( (err) => {
+        res.json({
+            status: false,
+            status_code: 501,
+            message: "Internal server error",
+        })
+    })
+};
