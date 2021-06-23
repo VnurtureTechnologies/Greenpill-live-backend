@@ -1,22 +1,22 @@
 const admin = require('firebase-admin');
 
-module.exports.add_notification = async(req,res,next) => {
+module.exports.add_resources = async(req,res,next) => {
     var db = admin.firestore();
 
     const data = {
         title : req.body.title,
-        shortDescription: req.body.shortdescription,
-        category: req.body.category,
+        description: req.body.description,
+        pdfUrl: req.body.pdfUrl,
         createdAt: Date.now(),
     }
 
-    db.collection('notifications').add(data)
+    db.collection('resources').add(data)
     .then( (result) => {
         res.json({
             status: true,
             status_code: 200,
-            message: "Notification added successfully",
-            redirect: '/notification-list'
+            message: "Resource added successfully",
+            redirect: '/resources-list'
         })
     })
     .catch( (err) => {
@@ -29,28 +29,28 @@ module.exports.add_notification = async(req,res,next) => {
     })
 }
 
-module.exports.get_notification_list = async(req,res) => {
+module.exports.get_resources_list = async(req,res) => {
     var db = admin.firestore();
-    var notification_list = [];
+    var resources_list = [];
 
-    await db.collection('notifications')
+    await db.collection('resources')
     .get()
     .then( (result) => {
         result.forEach(r => {
             var row = {
                 "id": r.id,
                 "title" : r.data().title,
-                "shortdescription": r.data().shortDescription,
-                "category" : r.data().category,
+                "description": r.data().description,
+                "get_download_button": get_download_button(r.data().pdfUrl),
                 "get_action_button": get_action_button(req,res,r)
             };
-            notification_list.push(row)
+            resources_list.push(row)
         })
         res.json({
             status: true,
             status_code: 201,
-            data: notification_list,
-            message: "Notification fetched successfully"
+            data: resources_list,
+            message: "Resources fetched successfully"
         })
     })
     .catch( (err) => {
@@ -64,21 +64,21 @@ module.exports.get_notification_list = async(req,res) => {
 }
 
 
-module.exports.edit_notification = (req,res,next) => {
+module.exports.edit_resources = (req,res,next) => {
     var db = admin.firestore();
     var id = req.params.id;
     var update_data = {
         'title': req.body.title,
-        'shortDescription': req.body.shortdescription,
-        'category': req.body.category,
+        'description': req.body.description,
+        "pdfUrl": req.body.pdfUrl,
     }
-    db.collection('notifications').doc(`${id}`).update(update_data)
+    db.collection('resources').doc(`${id}`).update(update_data)
     .then( (r) => {
         res.json({
             status: true,
             status_code: 200,
-            message: "Notification edited successfully",
-            redirect: "/notification-list"
+            message: "Resources edited successfully",
+            redirect: "/resources-list"
         })
     })
     .catch( (err) => {
@@ -93,23 +93,32 @@ module.exports.edit_notification = (req,res,next) => {
 function get_action_button(req,res,data) {
     var html = '';
     html += '<span class="action_tools">';
-    html += '<a class="dt_edit" href="/notification/edit/' + data.id + '" data-toggle="tooltip" title="Edit!"><i class="fa fa-pencil"></i></a>';
+    html += '<a class="dt_edit" href="/resources/edit/' + data.id + '" data-toggle="tooltip" title="Edit!"><i class="fa fa-pencil"></i></a>';
     html += '<a class="dt_del delete" href="javascript:void(0);" data-toggle="tooltip" title="Delete!" data-action="trash" data-id="' + data.id + '" ><i class="fa fa-trash"></i></a>';
     html += '</span';
     return html;
 }
 
-module.exports.get_notification_data = function(notification_id,callback) {
+function get_download_button(data) {
+    var html = '';
+    html += '<span class="action_tools">';
+    html += '<a class="dt_edit" href="' + data+ '" target="_blank" data-toggle="tooltip" title="Download!"><i class="fa fa-download"></i></a>';
+    html += '</span';
+    return html;
+}
+
+
+module.exports.get_resources_data = function(resources_id,callback) {
     var db = admin.firestore();
 
-    db.collection('notifications').doc(`${notification_id}`)
+    db.collection('resources').doc(`${resources_id}`)
     .get()
     .then( (r) => {
         const data = {
             id: r.id,
             title: r.data().title,
-            shortdescription: r.data().shortDescription,
-            category: r.data().category,
+            description: r.data().description,
+            pdfUrl: r.data().pdfUrl,
         }
         callback(data);
     })
@@ -117,17 +126,17 @@ module.exports.get_notification_data = function(notification_id,callback) {
         callback([]);
     })
 }
-module.exports.delete_notification = (req,res,next) => {
+module.exports.delete_resources = (req,res,next) => {
     var db = admin.firestore();
     var id = req.params.id;
     
-    db.collection('notifications').doc(`${id}`).delete()
+    db.collection('resources').doc(`${id}`).delete()
     .then( (r) => {
         res.json({
             status: true,
             status_code: 200,
-            message: "notification deleted successfully",
-            redirect:"/notification-list"
+            message: "resources deleted successfully",
+            redirect:"/resources-list"
         })
     })
     .catch( (err) => {
