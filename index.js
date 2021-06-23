@@ -78,6 +78,7 @@ const productController = require('./controllers/productController');
 const productSubCategoryController = require('./controllers/productSubCategoryController')
 const projectController = require('./controllers/projectController');
 const newsController = require('./controllers/newsController');
+const notificationController = require('./controllers/notificationController');
 
 /* BASE ROUTE */
 app.get('/', function(req,res) {
@@ -274,6 +275,43 @@ app.get('/news/edit/:id',ensureLogin.ensureLoggedIn(), function(req,res) {
 app.post('/news-list', upload.none(), newsController.get_news_list);
 app.post('/news/do_add', upload.single('news_image'), newsController.add_news);
 app.post("/news/do_edit/:id", upload.none(), newsController.edit_news);
+
+/*notification routes*/
+app.get('/notification-list', ensureLogin.ensureLoggedIn(),function(req,res){
+    res.render("notification/index", {
+        title: 'Notification',
+        page_title: 'Notification list'
+    })
+});
+
+app.get('/notification/add', ensureLogin.ensureLoggedIn(),function(req,res) {
+    res.render('notification/add', {
+        title: 'notification',
+        page_title: 'Add Notification' 
+    })
+})
+
+app.get('/notification/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
+    var id = req.params.id;
+    var data = [];
+
+    notificationController.get_notification_data(id, function(notification) {
+        data.push({'notification_data': notification})
+        console.log(data[0]['notification_data'])
+        res.render('notification/edit', {
+            title: "Notification Edit",
+            page_title: "Edit notification",
+            notification: data[0]['notification_data']
+        })
+    })
+})
+
+
+
+app.post('/notification-list',upload.none(),notificationController.get_notification_list);
+app.post('/notification/do_add',upload.none(),notificationController.add_notification);
+app.post('/notification/do_edit/:id', upload.none() ,notificationController.edit_notification);
+app.delete('/notification-delete/:id', notificationController.delete_notification);
 
 /* PRODUCT SUB CATEGORY ROUTES */
 /* NOT NEEDED FOR NOW UNCOMMENT WHEN IN NEED
