@@ -54,7 +54,6 @@ module.exports.get_notification_list = async(req,res) => {
         })
     })
     .catch( (err) => {
-        console.log(err);
         res.json({
             status: false,
             status_code: 501,
