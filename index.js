@@ -78,6 +78,8 @@ const productController = require('./controllers/productController');
 const productSubCategoryController = require('./controllers/productSubCategoryController')
 const projectController = require('./controllers/projectController');
 const newsController = require('./controllers/newsController');
+const notificationController = require('./controllers/notificationController');
+const resourcesController = require('./controllers/resourcesController');
 const whatsnewController = require('./controllers/whatsnewController');
 const partnerpController = require('./controllers/partnerpController');
 const greeniController = require('./controllers/greeniController');
@@ -275,6 +277,69 @@ app.post('/news-list', upload.none(), newsController.get_news_list);
 app.post('/news/do_add', upload.single('news_image'), newsController.add_news);
 app.post("/news/do_edit/:id", upload.none(), newsController.edit_news);
 
+/*notification routes*/
+app.get('/notification-list', ensureLogin.ensureLoggedIn(),function(req,res){
+    res.render("notification/index", {
+        title: 'Notification',
+        page_title: 'Notification list'
+    })
+});
+
+app.get('/notification/add', ensureLogin.ensureLoggedIn(),function(req,res) {
+    res.render('notification/add', {
+        title: 'notification',
+        page_title: 'Add Notification' 
+    })
+})
+
+app.get('/notification/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
+    var id = req.params.id;
+    var data = [];
+
+    notificationController.get_notification_data(id, function(notification) {
+        data.push({'notification_data': notification})
+        res.render('notification/edit', {
+            title: "Notification Edit",
+            page_title: "Edit notification",
+            notification: data[0]['notification_data']
+        })
+    })
+})
+
+app.post('/notification-list',upload.none(),notificationController.get_notification_list);
+app.post('/notification/do_add',upload.none(),notificationController.add_notification);
+app.post('/notification/do_edit/:id', upload.none() ,notificationController.edit_notification);
+app.delete('/notification-delete/:id', notificationController.delete_notification);
+
+
+/*resources routes*/
+app.get('/resources-list', ensureLogin.ensureLoggedIn(),function(req,res){
+    res.render("resources/index", {
+        title: 'Resources',
+        page_title: 'Resources list'
+    })
+});
+
+app.get('/resources/add', ensureLogin.ensureLoggedIn(),function(req,res) {
+    res.render('resources/add', {
+        title: 'resources',
+        page_title: 'Add Resources' 
+    })
+})
+
+app.get('/resources/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
+    var id = req.params.id;
+    var data = [];
+
+    resourcesController.get_resources_data(id, function(resources) {
+        data.push({'resources_data': resources})
+        res.render('resources/edit', {
+            title: "Resources Edit",
+            page_title: "Edit resources",
+            resources: data[0]['resources_data']
+        })
+    })
+})
 
 /* WHATSNEW ROUTES */
 app.get('/whatsnew/add', ensureLogin.ensureLoggedIn(),function(req,res) {
@@ -307,6 +372,10 @@ app.get('/whatsnew/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
     })
 })
 
+app.post('/resources-list',upload.none(),resourcesController.get_resources_list);
+app.post('/resources/do_add',upload.none(),resourcesController.add_resources);
+app.post('/resources/do_edit/:id', upload.none() ,resourcesController.edit_resources);
+app.delete('/resources-delete/:id', resourcesController.delete_resources);
 
 app.post('/whatsnew-list', upload.none() ,whatsnewController.get_whatsnew_list);
 app.post('/whatsnew/do_add', upload.single('whatsnew_image') , whatsnewController.add_whatsnew);
