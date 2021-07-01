@@ -79,11 +79,9 @@ const productSubCategoryController = require('./controllers/productSubCategoryCo
 const projectController = require('./controllers/projectController');
 const newsController = require('./controllers/newsController');
 const whatsnewController = require('./controllers/whatsnewController');
-
-
-
 const partnerpController = require('./controllers/partnerpController');
 const greeniController = require('./controllers/greeniController');
+
 /* BASE ROUTE */
 app.get('/', function(req,res) {
     res.render("login/index");
