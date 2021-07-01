@@ -1,5 +1,6 @@
 const gc = require('./storage-config/storage');
 const admin = require("firebase-admin");
+var db = admin.firestore();
 
 exports.uploadImage = (file) => new Promise((resolve, reject) => {
     const bucket = admin.storage().bucket('greenpill-live.appspot.com');
@@ -24,3 +25,17 @@ exports.deleteImage = (filelink) => new Promise((resolve, reject) => {
     const bucket = admin.storage().bucket('greenpill-live.appspot.com');
     bucket.file(filename).delete();
 });
+
+exports.findProductValue = (ref)=>new Promise(async (resolve, reject) => {
+    await db.collection('product').doc(`${ref}`)
+    .get()
+    .then( (r) => {
+        const x = r.data().title;
+        console.log(x);
+        resolve(x);
+        })
+    .catch( (err) => {
+        resolve(err);
+    })
+}
+);
