@@ -19,7 +19,7 @@ module.exports.add_whatsnew = async (req, res, next) => {
         status: true,
         status_code: 200,
         message: "Idea added successfully",
-        redirect: "/whatsnew/add",
+        redirect: "/whatsnew/list"
       });
     })
     .catch((err) => {
@@ -131,6 +131,7 @@ module.exports.edit_whatsnew = async (req, res, next) => {
         status: true,
         status_code: 200,
         message: "Idea edited successfully",
+        redirect: "/whatsnew/list"
       });
     })
     .catch((err) => {
