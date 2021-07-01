@@ -80,6 +80,9 @@ const projectController = require('./controllers/projectController');
 const newsController = require('./controllers/newsController');
 const notificationController = require('./controllers/notificationController');
 const resourcesController = require('./controllers/resourcesController');
+const whatsnewController = require('./controllers/whatsnewController');
+const partnerpController = require('./controllers/partnerpController');
+const greeniController = require('./controllers/greeniController');
 
 /* BASE ROUTE */
 app.get('/', function(req,res) {
@@ -149,7 +152,6 @@ app.get('/users/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
 
     userController.get_users_data(id, function(users) {
         data.push({'users_data': users})
-        console.log(data[0]['users_data'])
         res.render('users/edit', {
             title: "User Edit",
             page_title: "Edit user",
@@ -184,7 +186,6 @@ app.get('/products/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
 
     productController.get_products_data(id, function(products) {
         data.push({'products_data': products})
-        console.log(data[0]['products_data'])
         res.render('products/edit', {
             title: "Products Edit",
             page_title: "Edit product",
@@ -201,7 +202,6 @@ app.post('/products/do_edit/:id', upload.single('product_image') ,productControl
 app.get('/projects/add',ensureLogin.ensureLoggedIn(), function(req,res) {
     var data = [];
     productController.get_products_where_type_product( function(products) {
-        console.log(products)
         res.render('projects/add', {
             title: 'Projects',
             page_title: 'Add projects' ,
@@ -341,10 +341,46 @@ app.get('/resources/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
     })
 })
 
+/* WHATSNEW ROUTES */
+app.get('/whatsnew/add', ensureLogin.ensureLoggedIn(),function(req,res) {
+    res.render('whatsnew/add', {
+        title: 'Whatsnew Idea',
+        page_title: 'Add New Idea'
+    })
+})
+
+
+app.get('/whatsnew/list', ensureLogin.ensureLoggedIn(), function(req,res) {
+    res.render('whatsnew/index', {
+        title: 'whatsnew',
+        page_title: 'Whatsnew-Idea-List'
+    })
+})
+
+app.get('/whatsnew/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
+    var id = req.params.id;
+    var data = [];
+
+    whatsnewController.get_whatsnew_data(id, function(whatsnew) {
+        data.push({'whatsnew_data': whatsnew})
+        console.log(data[0]['whatsnew_data'])
+        res.render('whatsnew/edit', {
+            title: "Whats New Idea Edit",
+            page_title: "Edit Idea",
+            whatsnew: data[0]['whatsnew_data']
+        })
+    })
+})
+
 app.post('/resources-list',upload.none(),resourcesController.get_resources_list);
 app.post('/resources/do_add',upload.none(),resourcesController.add_resources);
 app.post('/resources/do_edit/:id', upload.none() ,resourcesController.edit_resources);
 app.delete('/resources-delete/:id', resourcesController.delete_resources);
+
+app.post('/whatsnew-list', upload.none() ,whatsnewController.get_whatsnew_list);
+app.post('/whatsnew/do_add', upload.single('whatsnew_image') , whatsnewController.add_whatsnew);
+app.post('/whatsnew/do_edit/:id', upload.single('whatsnew_image') ,whatsnewController.edit_whatsnew);
+app.delete('/whatsnew-delete/:id', whatsnewController.delete_whatsnew);
 
 /* PRODUCT SUB CATEGORY ROUTES */
 /* NOT NEEDED FOR NOW UNCOMMENT WHEN IN NEED
@@ -388,6 +424,28 @@ app.post('/productSubCategory/do_add', upload.single('productSubCategory_image')
 app.post('/productSubCategory/do_edit/:id', upload.none(), productSubCategoryController.edit_subProduct);
 */
 
+/* partner program routes */
+app.get('/partnerp-list', ensureLogin.ensureLoggedIn(),function(req,res){
+    res.render("partnerp/index", {
+        title: 'partner program',
+        page_title: 'Partner Program'
+    })
+});
+
+app.post('/partnerp-list',upload.none(),partnerpController.get_all_partnerp_list);
+
+app.delete('/partnerp-delete/:id', partnerpController.delete_partnerp);
+
+app.get('/greeni-list', ensureLogin.ensureLoggedIn(),function(req,res){
+    res.render("greeni/index", {
+        title: 'green idea',
+        page_title: 'Green Idea'
+    })
+});
+
+app.post('/greeni-list',upload.none(),greeniController.get_all_greeni_list);
+
+app.delete('/greeni-delete/:id', greeniController.delete_greeni);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT);

@@ -156,33 +156,6 @@ module.exports.get_all_projects_count = function (callback) {
       });
 };
 
-
-
-module.exports.edit_product = (req,res,next) => {
-    var db = admin.firestore();
-    var id = req.params.id;
-    var update_data = {
-        'title': req.body.product_title,
-        'description': req.body.product_description
-    }
-
-    db.collection('product').doc(`${id}`).update(update_data)
-    .then( (r) => {
-        res.json({
-            status: true,
-            status_code: 200,
-            message: "Product edited successfully"
-        })
-    })
-    .catch( (err) => {
-        res.json({
-            status: false,
-            status_code: 501,
-            message: "Internal server error"
-        })
-    })
-}
-
 module.exports.edit_user = (req,res,next) => {
     var db = admin.firestore();
     var id = req.params.id;
