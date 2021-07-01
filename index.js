@@ -78,8 +78,10 @@ const productController = require('./controllers/productController');
 const productSubCategoryController = require('./controllers/productSubCategoryController')
 const projectController = require('./controllers/projectController');
 const newsController = require('./controllers/newsController');
+const whatsnewController = require('./controllers/whatsnewController');
 const partnerpController = require('./controllers/partnerpController');
 const greeniController = require('./controllers/greeniController');
+
 /* BASE ROUTE */
 app.get('/', function(req,res) {
     res.render("login/index");
@@ -272,6 +274,44 @@ app.get('/news/edit/:id',ensureLogin.ensureLoggedIn(), function(req,res) {
 app.post('/news-list', upload.none(), newsController.get_news_list);
 app.post('/news/do_add', upload.single('news_image'), newsController.add_news);
 app.post("/news/do_edit/:id", upload.none(), newsController.edit_news);
+
+
+/* WHATSNEW ROUTES */
+app.get('/whatsnew/add', ensureLogin.ensureLoggedIn(),function(req,res) {
+    res.render('whatsnew/add', {
+        title: 'Whatsnew Idea',
+        page_title: 'Add New Idea'
+    })
+})
+
+
+app.get('/whatsnew/list', ensureLogin.ensureLoggedIn(), function(req,res) {
+    res.render('whatsnew/index', {
+        title: 'whatsnew',
+        page_title: 'Whatsnew-Idea-List'
+    })
+})
+
+app.get('/whatsnew/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
+    var id = req.params.id;
+    var data = [];
+
+    whatsnewController.get_whatsnew_data(id, function(whatsnew) {
+        data.push({'whatsnew_data': whatsnew})
+        console.log(data[0]['whatsnew_data'])
+        res.render('whatsnew/edit', {
+            title: "Whats New Idea Edit",
+            page_title: "Edit Idea",
+            whatsnew: data[0]['whatsnew_data']
+        })
+    })
+})
+
+
+app.post('/whatsnew-list', upload.none() ,whatsnewController.get_whatsnew_list);
+app.post('/whatsnew/do_add', upload.single('whatsnew_image') , whatsnewController.add_whatsnew);
+app.post('/whatsnew/do_edit/:id', upload.single('whatsnew_image') ,whatsnewController.edit_whatsnew);
+app.delete('/whatsnew-delete/:id', whatsnewController.delete_whatsnew);
 
 /* PRODUCT SUB CATEGORY ROUTES */
 /* NOT NEEDED FOR NOW UNCOMMENT WHEN IN NEED

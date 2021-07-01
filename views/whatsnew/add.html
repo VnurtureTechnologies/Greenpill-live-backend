@@ -1,0 +1,83 @@
+<html lang="en">
+
+<head>
+    <title>{{title}}</title>
+    {{> header}}
+    <style>
+        .tag_fields {
+            height: 150px;
+            overflow-y: scroll;
+            scrollbar-color: rgb(78, 140, 191);
+            scrollbar-width: thin;
+        }
+    </style>
+</head>
+
+<body>
+    {{> sidebars}}
+    <div class="content-wrapper">
+        <div class="body_content">
+            <div class="common_field_sec">
+                <div class="common_sec_title">
+                    <h2>{{page_title}}</h2>
+                </div>
+
+                <form action="javascript:void(0);" class="add_form" enctype="multipart/form-data">
+                    <div class="field_inner_sec">
+
+                        <div class="floating-label left_fld">
+                            <label> Title <span class="required">*</span></label>
+                            <input class="floating-input" id="rest_name" name="title" type="text">
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld">
+                            <label> Description <span class="required">*</span></label>
+                            <input class="floating-input" id="rest_name" name="description" type="text">
+                        </div>
+
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld">
+                            <label> Type <span class="required">*</span></label>
+                            <input class="floating-input" id="rest_name" name="type" type="text">
+                        </div>
+
+
+                        <div class="claerfix"></div>
+
+                        
+                        <div class="floating-label left_fld">
+                            <label> Source Link <span class="required">*</span></label>
+                            <input class="floating-input" id="rest_name" name="sourcelink" type="text">
+                        </div>
+
+
+                        <div class="claerfix"></div>
+
+                        <h4>Add a image</h4>
+                        <div class="floating-label right_fld browse2">
+                            <label>
+                                <input class="" type="file" accept='image/jpeg, image/png' name="whatsnew_image"> <img src="/images/car.png">
+                            </label>
+                        </div>
+                        </div>
+
+
+                    <div class="form_submit_sec">
+                        <button type="submit" class="btn">Submit</button>
+                    </div>
+                </form>        
+                 </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END -->
+{{> footer}}
+<script src="/js/whatsnew/add.js"></script>
+</body>
+
+</html>
