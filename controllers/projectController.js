@@ -1,20 +1,6 @@
 const admin = require('firebase-admin');
 const helpers = require('../helpers');
 
-
-async function findProductValue (ref){
-    var db = admin.firestore();
-    await db.collection('product').doc(`${ref}`)
-    .get()
-    .then( async (r) => {
-        const x = await r.data().title;  
-        return x;
-        })
-    .catch( (err) => {
-        return err;
-    })
-};
-
 module.exports.add_project = async(req, res) => {
     var db = admin.firestore();
 
@@ -51,34 +37,42 @@ module.exports.add_project = async(req, res) => {
     })
 }
 
+function response(res,project_list) {
+    res.json({
+        status: true,
+        status_code: 201,
+        data: project_list,
+        message: "Project list fetched successfully"
+    })
+}
+
 module.exports.get_projects_list = async(req,res) => {
     var db = admin.firestore();
     var project_list = [];
-    // var x;
 
     await db.collection('project')
     .get()
-    .then((result) => {
-        result.forEach((r) => {
-            var row = {
-                "id": r.id,
-                "title" : r.data().title,
-                "long_description" : r.data().longDesc,
-                "short_description": r.data().shortDesc,
-                "product":helpers.findProductValue(r.data().productRef),
-                "get_action_button": get_action_button(req,res,r)
-            };
-            project_list.push(row)
-            console.log(row.product)
+    .then((outerResult) => {
+        outerResult.forEach( async(result) => { 
+            await db.collection('product').doc(result.data().productRef)
+            .get()
+            .then( async (innerResult) => {
+                const x = await innerResult.data().title;
+                var row = {
+                    "id": result.id,
+                    "title" : result.data().title,
+                    "long_description" : result.data().longDesc,
+                    "short_description": result.data().shortDesc,
+                    "product": x,
+                    "get_action_button": get_action_button(req,res,result)
+                };
+                project_list.push(row)
+            })
         })
-        res.json({
-            status: true,
-            status_code: 201,
-            data: project_list,
-            message: "Project list fetched successfully"
-        })
+        setTimeout(response,1000,res,project_list);
     })
     .catch( (err) => {
+        console.log(err);
         res.json({
             status: false,
             status_code: 501,

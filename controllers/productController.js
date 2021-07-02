@@ -39,19 +39,24 @@ module.exports.get_products_list = (req,res) => {
     .get()
     .then( (results) => {
         results.forEach( (r) => {
-            var row = {
-                "id": r.id,
-                "title" : r.data().title,
-                "type" : r.data().type,
-                "get_action_button": get_action_button(req,res,r)
-            };
-            products_list.push(row)
+            db.collection('project').where(`productRef`, '==', `${r.id}`)
+            .get()
+            .then((result) => {
+                var row = {
+                    "id": r.id,
+                    "title" : r.data().title,
+                    "type" : r.data().type,
+                    "no_of_projects": result._size,
+                    "get_action_button": get_action_button(req,res,r)
+                };
+                products_list.push(row)
+            })
         })
-        
-        var output = {
+
+        setTimeout(function() {var output = {
             data: products_list
         }
-        res.json(output)
+        res.json(output)},1000);
     })
     .catch ( (err) => {
         console.log(err);
