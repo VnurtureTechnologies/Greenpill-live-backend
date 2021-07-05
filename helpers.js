@@ -1,5 +1,6 @@
 const gc = require('./storage-config/storage');
 const admin = require("firebase-admin");
+var db = admin.firestore();
 
 exports.uploadImage = (file) => new Promise((resolve, reject) => {
     const bucket = admin.storage().bucket('greenpill-live.appspot.com');
