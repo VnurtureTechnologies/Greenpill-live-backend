@@ -19,13 +19,9 @@
         <div class="admin_dtl">
             <div class="admin_profile">
                 <aside class="admin_img">
-                    {{#if session_user.user_image}}
-                    <a href="/edit-profile"><img title="profile" src="{{session_user.user_image}}" style="height:40px;width:40px;"></a>
-                    {{else}}
-                    <a href="/edit-profile"><img title="profile" src="/images/profile.png"></a>
-                    {{/if}}
+                    <a href="/admin"><img title="profile" src="/images/profile.png"></a>
                 </aside>
-                <a href="/edit-profile"><h4 title="profile">Administrator - {{session_user.user_name}}</h4></a>
+                <a href="/admin"><h4 title="profile">Admin</h4></a>
             </div>
             <div class="log_out">
                 <a href="/logout" data-toggle="tooltip" data-placement="bottom" title="Log Out!"><img src="/images/logout.png" alt="log out"></a>
@@ -59,9 +55,6 @@
                         <li>
                             <a href="/register">Add a backend admin</a>
                         </li>
-                        <!-- <li>
-                            <a href="/register/admins/restaurants">Add a restaurant admin</a>
-                        </li> -->
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
