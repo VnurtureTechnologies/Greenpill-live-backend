@@ -100,7 +100,7 @@ module.exports.get_products_data = function(product_id,callback) {
 module.exports.get_products_id = function(callback) {
     var db = admin.firestore();
     const products_data = [];
-    db.collection('product')
+    db.collection('product').where('type','==','product')
     .get()
     .then( (results) => {
         results.docs.forEach( (r) => {
@@ -116,6 +116,28 @@ module.exports.get_products_id = function(callback) {
         callback([]);
     })
 }
+
+module.exports.get_products_id_type_resource = function(callback) {
+    var db = admin.firestore();
+    const products_data = [];
+    db.collection('product').where('type','==','news & resources')
+    .get()
+    .then( (results) => {
+        results.docs.forEach( (r) => {
+            data = {
+                id: r.id,
+                title: r.data().title
+            }
+            products_data.push(data);
+        })
+        callback(products_data);
+    })
+    .catch( (err) => {
+        callback([]);
+    })
+}
+
+
 
 module.exports.get_products_where_type_product = function(callback) {
     var db = admin.firestore();

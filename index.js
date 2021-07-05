@@ -267,7 +267,7 @@ app.get('/news',ensureLogin.ensureLoggedIn(), (req,res) => {
 
 app.get('/news/add',ensureLogin.ensureLoggedIn(), function(req,res) {
     var data = [];
-    productController.get_products_id( function(products) {
+    productController.get_products_id_type_resource( function(products) {
         res.render('news/add', {
             title: 'News and Innovation',
             page_title: 'Add news and innovation' ,

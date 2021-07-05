@@ -6,7 +6,6 @@ module.exports.add_news = async(req,res,next) => {
 
     const data = {
         title : req.body.title,
-        category: req.body.category,
         description: req.body.description,
         productRef: `Product/${req.body.int_user_id}`,
         sourceLink: req.body.source_link,
@@ -45,7 +44,6 @@ module.exports.get_news_list = async(req,res) => {
             var row = {
                 "id": r.id,
                 "title" : r.data().title,
-                "category" : r.data().category,
                 "description": r.data().description,
                 "source link": r.data().sourceLink,
                 "youtube url": r.data().youtubeUrl,
@@ -76,7 +74,6 @@ module.exports.edit_news = (req,res,next) => {
     var id = req.params.id;
     var update_data = {
         'title': req.body.product_title,
-        'category': req.body.category,
         'shortDescription': req.body.short_description,
         "longDescription": req.body.long_description,
         "pdfUrl": req.body.pdf_url,
@@ -118,7 +115,6 @@ module.exports.get_news_data = function(news_id,callback) {
         const data = {
             id: r.id,
             title: r.data().title,
-            category: r.data().category,
             shortDescription: r.data().shortDescription,
             longDescription: r.data().longDescription,
             pdfUrl: r.data().pdfUrl,

@@ -50,7 +50,6 @@ $(document).ready(function () {
         },
         "columns": [
             {"data": "title", "name": "title"},
-            {"data": "category", "name": "category"},
             {"data": "description", "name": "description"},
             {"data": "source link", "name": "source link"},
             {"data": "youtube url", "name": "youtube url"},
