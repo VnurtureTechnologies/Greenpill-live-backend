@@ -83,6 +83,10 @@ const resourcesController = require('./controllers/resourcesController');
 const whatsnewController = require('./controllers/whatsnewController');
 const partnerpController = require('./controllers/partnerpController');
 const greeniController = require('./controllers/greeniController');
+const adminController = require('./controllers/adminController');
+
+
+var data_user;
 
 /* BASE ROUTE */
 app.get('/', function(req,res) {
@@ -113,6 +117,7 @@ app.get('/login',(req,res) => {
 
 /* DASHBOARD ROUTE */
 app.get('/dashboard', ensureLogin.ensureLoggedIn(), function(req,res) {
+    data_user=req.user
     var data = []
     userController.get_all_users_count( function(users) {
         data.push({'users_count': users})
@@ -123,9 +128,22 @@ app.get('/dashboard', ensureLogin.ensureLoggedIn(), function(req,res) {
                     res.render("dashboard/index", {
                         total_users: data[0]['users_count'],
                         total_projects: data[1]['projects_count'],
-                        total_products: data[2]['products_count']
+                        total_products: data[2]['products_count'],
                 })
             })
+        })
+    })
+})
+
+/*admin routes */
+app.get('/admin', ensureLogin.ensureLoggedIn(),function(req,res) {
+    var data = [];
+    adminController.get_admin_users(data_user, function(users) {
+        data.push({'users_data': users})
+        res.render('admin/index', {
+            title: 'Admin Profile',
+            page_title: 'Profile',
+            user: users[0]
         })
     })
 })
@@ -363,7 +381,6 @@ app.get('/whatsnew/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
 
     whatsnewController.get_whatsnew_data(id, function(whatsnew) {
         data.push({'whatsnew_data': whatsnew})
-        console.log(data[0]['whatsnew_data'])
         res.render('whatsnew/edit', {
             title: "Whats New Idea Edit",
             page_title: "Edit Idea",

@@ -1,0 +1,51 @@
+<html lang="en">
+
+<head>
+    <title>{{title}}</title>
+    {{> header}}
+    <style>
+        .tag_fields {
+            height: 150px;
+            overflow-y: scroll;
+            scrollbar-color: rgb(78, 140, 191);
+            scrollbar-width: thin;
+        }
+    </style>
+</head>
+
+<body>
+    {{> sidebars}}
+    <div class="content-wrapper">
+        <div class="body_content">
+            <div class="common_field_sec">
+                <div class="common_sec_title">
+                    <h2>{{page_title}}</h2>
+                </div>
+
+                <div class="add_form">
+                    <div class="field_inner_sec">
+
+                        <div class="floating-label left_fld">
+                            <h3> Name :</h3>
+                            <p>{{user.name}}</p>
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld">
+                            <h3> Email :</h3>
+                            <p>{{user.email}}</p>
+                        </div>
+
+                        <div class="claerfix"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- END -->
+    {{> footer}}
+    <!-- <script src="/js/admin/index.js"></script> -->
+</body>
+
+</html>
