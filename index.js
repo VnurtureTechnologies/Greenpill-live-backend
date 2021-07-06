@@ -267,7 +267,7 @@ app.get('/news',ensureLogin.ensureLoggedIn(), (req,res) => {
 
 app.get('/news/add',ensureLogin.ensureLoggedIn(), function(req,res) {
     var data = [];
-    productController.get_products_id( function(products) {
+    productController.get_products_id_type_resource( function(products) {
         res.render('news/add', {
             title: 'News and Innovation',
             page_title: 'Add news and innovation' ,
@@ -339,16 +339,18 @@ app.get('/resources-list', ensureLogin.ensureLoggedIn(),function(req,res){
 });
 
 app.get('/resources/add', ensureLogin.ensureLoggedIn(),function(req,res) {
-    res.render('resources/add', {
-        title: 'resources',
-        page_title: 'Add Resources' 
+    productController.get_products_id_type_resource( function(products) {
+        res.render('resources/add', {
+            title: 'resources',
+            page_title: 'resources' ,
+            products: products
+        })
     })
 })
 
 app.get('/resources/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
     var id = req.params.id;
     var data = [];
-
     resourcesController.get_resources_data(id, function(resources) {
         data.push({'resources_data': resources})
         res.render('resources/edit', {
@@ -358,6 +360,12 @@ app.get('/resources/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
         })
     })
 })
+
+app.post('/resources-list',upload.none(),resourcesController.get_resources_list);
+app.post('/resources/do_add',upload.single('resource-image'),resourcesController.add_resources);
+app.post('/resources/do_edit/:id', upload.single('resources-image'),resourcesController.edit_resources);
+app.delete('/resources-delete/:id', resourcesController.delete_resources);
+
 
 /* WHATSNEW ROUTES */
 app.get('/whatsnew/add', ensureLogin.ensureLoggedIn(),function(req,res) {
@@ -388,11 +396,6 @@ app.get('/whatsnew/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
         })
     })
 })
-
-app.post('/resources-list',upload.none(),resourcesController.get_resources_list);
-app.post('/resources/do_add',upload.none(),resourcesController.add_resources);
-app.post('/resources/do_edit/:id', upload.none() ,resourcesController.edit_resources);
-app.delete('/resources-delete/:id', resourcesController.delete_resources);
 
 app.post('/whatsnew-list', upload.none() ,whatsnewController.get_whatsnew_list);
 app.post('/whatsnew/do_add', upload.single('whatsnew_image') , whatsnewController.add_whatsnew);

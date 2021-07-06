@@ -22,7 +22,7 @@
                     <h2>{{page_title}}</h2>
                 </div>
 
-                <form action="javascript:void(0);" class="add_form" >
+                <form action="javascript:void(0);" class="add_form">
                     <div class="field_inner_sec">
 
                         <div class="floating-label left_fld">
@@ -40,23 +40,45 @@
                         <div class="claerfix"></div>
 
                         <div class="floating-label left_fld">
+                            <label>Choose a product<span class="required">*</span></label>
+                            <select class="floating-select" name="productRef">
+                                <option value="">--Choose--</option>
+                                {{#each products}}
+                                <option value="{{this.id}}">{{this.title}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld">
                             <label> PDF Url <span class="required">*</span></label>
                             <input class="floating-input" id="rest_name" name="pdfUrl" type="text" required>
                         </div>
 
-                        
-                    <div class="form_submit_sec">
-                        <button type="submit" class="btn">Submit</button>
-                    </div>
-                </form>        
-                 </div>
+                        <div class="claerfix"></div>
+
+                        <h4>Add a Resources image</h4>
+                        <div class="floating-label right_fld browse2">
+                            <label>
+                                <input class="" type="file" accept='image/jpeg, image/png' name="resource-image"> <img
+                                    src="/images/gogreen.jpg">
+                            </label>
+                        </div>
+
+
+                        <div class="form_submit_sec">
+                            <button type="submit" class="btn">Submit</button>
+                        </div>
+                </form>
+            </div>
             </form>
         </div>
     </div>
-</div>
-<!-- END -->
-{{> footer}}
-<script src="/js/resources/add.js"></script>
+    </div>
+    <!-- END -->
+    {{> footer}}
+    <script src="/js/resources/add.js"></script>
 </body>
 
 </html>

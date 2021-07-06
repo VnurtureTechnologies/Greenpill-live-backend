@@ -31,15 +31,6 @@
                         </div>
 
                         <div class="claerfix"></div>
-
-                        <div class="floating-label left_fld">
-                            <label> Category <span class="required">*</span></label>
-                            <input class="floating-input" id="category" name="category" type="text">
-                        </div>
-
-                        <div class="claerfix"></div>
-
-                        
                         <div class="floating-label left_fld">
                             <label> Description <span class="required">*</span></label>
                             <input class="floating-input" id="description" name="description" type="text">
@@ -50,10 +41,10 @@
                         <div class="floating-label left_fld">
                             <label>Choose a product<span class="required">*</span></label>
                             <select class="floating-select" name="int_user_id">
-                                    <option value="">--Choose--</option>
-                                    {{#each products}}
-                                    <option value="{{this.id}}">{{this.title}}</option>
-                                    {{/each}}
+                                <option value="">--Choose--</option>
+                                {{#each products}}
+                                <option value="{{this.id}}">{{this.title}}</option>
+                                {{/each}}
                             </select>
                         </div>
 
@@ -76,24 +67,22 @@
                         <h4>Add a news image</h4>
                         <div class="floating-label right_fld browse2">
                             <label>
-                                <input class="" type="file" accept='image/jpeg, image/png' name="news_image"> <img src="/images/car.png">
+                                <input class="" type="file" accept='image/jpeg, image/png' name="news_image"> <img src="/images/gogreen.jpg">
                             </label>
                         </div>
-                        </div>
-
-
+                    </div>
                     <div class="form_submit_sec">
                         <button type="submit" class="btn">Submit</button>
                     </div>
-                </form>        
-                 </div>
+                </form>
+            </div>
             </form>
         </div>
     </div>
-</div>
-<!-- END -->
-{{> footer}}
-<script src="/js/news/add.js"></script>
+    </div>
+    <!-- END -->
+    {{> footer}}
+    <script src="/js/news/add.js"></script>
 </body>
 
 </html>
