@@ -38,8 +38,7 @@ admin.initializeApp({
   
 var database = admin.firestore();
 database.settings({ ignoreUndefinedProperties: true });
-  
-
+ 
 /* common header and footer */
 hbs.registerPartials(__dirname + '/views/common');
 
@@ -66,7 +65,7 @@ app.use(flash());
 app.use(passport.session());
 
 /* MULTER CONFIG */
-const upload = multer({
+const   upload = multer({
     storage: multer.memoryStorage(),
     limits: {
         fileSize: 5 * 1024 * 1024
@@ -79,6 +78,15 @@ const productController = require('./controllers/productController');
 const productSubCategoryController = require('./controllers/productSubCategoryController')
 const projectController = require('./controllers/projectController');
 const newsController = require('./controllers/newsController');
+const notificationController = require('./controllers/notificationController');
+const resourcesController = require('./controllers/resourcesController');
+const whatsnewController = require('./controllers/whatsnewController');
+const partnerpController = require('./controllers/partnerpController');
+const greeniController = require('./controllers/greeniController');
+const adminController = require('./controllers/adminController');
+
+
+var data_user;
 
 /* BASE ROUTE */
 app.get('/', function(req,res) {
@@ -109,6 +117,7 @@ app.get('/login',(req,res) => {
 
 /* DASHBOARD ROUTE */
 app.get('/dashboard', ensureLogin.ensureLoggedIn(), function(req,res) {
+    data_user=req.user
     var data = []
     userController.get_all_users_count( function(users) {
         data.push({'users_count': users})
@@ -119,14 +128,60 @@ app.get('/dashboard', ensureLogin.ensureLoggedIn(), function(req,res) {
                     res.render("dashboard/index", {
                         total_users: data[0]['users_count'],
                         total_projects: data[1]['projects_count'],
-                        total_products: data[2]['products_count']
+                        total_products: data[2]['products_count'],
                 })
             })
         })
     })
 })
 
-app.post('/user-list',userController.get_all_users_list);
+/*admin routes */
+app.get('/admin', ensureLogin.ensureLoggedIn(),function(req,res) {
+    var data = [];
+    adminController.get_admin_users(data_user, function(users) {
+        data.push({'users_data': users})
+        res.render('admin/index', {
+            title: 'Admin Profile',
+            page_title: 'Profile',
+            user: users[0]
+        })
+    })
+})
+
+
+/* USER ROUTE */
+app.get('/users/add', ensureLogin.ensureLoggedIn(),function(req,res) {
+    res.render('users/add', {
+        title: 'Users',
+        page_title: 'Add Users' 
+    })
+})
+
+app.get('/user-list', ensureLogin.ensureLoggedIn(),function(req,res){
+    res.render("users/index", {
+        title: 'users',
+        page_title: 'Users-list'
+    })
+});
+
+app.get('/users/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
+    var id = req.params.id;
+    var data = [];
+
+    userController.get_users_data(id, function(users) {
+        data.push({'users_data': users})
+        res.render('users/edit', {
+            title: "User Edit",
+            page_title: "Edit user",
+            user: data[0]['users_data']
+        })
+    })
+})
+
+app.post('/user-list',upload.none(),userController.get_all_users_list);
+app.post('/users/do_add',upload.none(),userController.add_users);
+app.post('/users/do_edit/:id', upload.none() ,userController.edit_user);
+app.delete('/users-delete/:id', userController.delete_user);
 
 /* PRODUCT ROUTEs */
 app.get('/products/add', ensureLogin.ensureLoggedIn(),function(req,res) {
@@ -149,7 +204,6 @@ app.get('/products/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
 
     productController.get_products_data(id, function(products) {
         data.push({'products_data': products})
-        console.log(data[0]['products_data'])
         res.render('products/edit', {
             title: "Products Edit",
             page_title: "Edit product",
@@ -160,24 +214,24 @@ app.get('/products/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
 
 app.post('/product-list', upload.none() ,productController.get_products_list);
 app.post('/products/do_add', upload.single('product_image') , productController.add_product);
-app.post('/products/do_edit/:id', upload.none() ,productController.edit_product);
+app.post('/products/do_edit/:id', upload.single('product_image') ,productController.edit_product);
 
 /* PROJECT ROUTES */
 app.get('/projects/add',ensureLogin.ensureLoggedIn(), function(req,res) {
     var data = [];
-    productSubCategoryController.get_productSubCategory_id( function(productSubCategory) {
+    productController.get_products_where_type_product( function(products) {
         res.render('projects/add', {
             title: 'Projects',
             page_title: 'Add projects' ,
-            productSubCategory: productSubCategory
+            products: products
         })
     })
 })
 
 app.get('/projects',ensureLogin.ensureLoggedIn(), (req,res) => {
     res.render('projects/index',{
-        title: 'Product Sub Categories',
-        page_title: 'Products Sub Categories list'
+        title: 'Projects',
+        page_title: 'Projects list'
     })
 })
 
@@ -187,20 +241,20 @@ app.get('/projects/edit/:id',ensureLogin.ensureLoggedIn(), function(req,res) {
 
     projectController.get_projects_data(id, function(projects) {
         data.push({'projects_data': projects})
-        productSubCategoryController.get_productSubCategory_id(productSubCategory => {
+        productController.get_products_id(products => {
             res.render('projects/edit', {
                 title: "Products Edit",
                 page_title: "Edit product",
                 project: data[0]['projects_data'],
-                productSubCategory: productSubCategory
+                products: products
             })
         })
     })
 })
 
 app.post('/project-list', upload.none(), projectController.get_projects_list);
-// app.post('/projects/do_add', upload.single('project_image') , projectController.add_project);
-app.post('/projects/do_edit/:id', upload.none(), projectController.edit_project);
+app.post('/projects/do_add', upload.single('project_image') , projectController.add_project);
+app.post('/projects/do_edit/:id', upload.single('project_image'), projectController.edit_project);
 
 /* NEWS ROUTES */
 
@@ -210,6 +264,18 @@ app.get('/news',ensureLogin.ensureLoggedIn(), (req,res) => {
         page_title: 'News list'
     })
 })
+
+app.get('/news/add',ensureLogin.ensureLoggedIn(), function(req,res) {
+    var data = [];
+    productController.get_products_id_type_resource( function(products) {
+        res.render('news/add', {
+            title: 'News and Innovation',
+            page_title: 'Add news and innovation' ,
+            products: products
+        })
+    })
+})
+
 
 app.get('/news/edit/:id',ensureLogin.ensureLoggedIn(), function(req,res) {
     var id = req.params.id;
@@ -226,7 +292,115 @@ app.get('/news/edit/:id',ensureLogin.ensureLoggedIn(), function(req,res) {
 })
 
 app.post('/news-list', upload.none(), newsController.get_news_list);
+app.post('/news/do_add', upload.single('news_image'), newsController.add_news);
 app.post("/news/do_edit/:id", upload.none(), newsController.edit_news);
+
+/*notification routes*/
+app.get('/notification-list', ensureLogin.ensureLoggedIn(),function(req,res){
+    res.render("notification/index", {
+        title: 'Notification',
+        page_title: 'Notification list'
+    })
+});
+
+app.get('/notification/add', ensureLogin.ensureLoggedIn(),function(req,res) {
+    res.render('notification/add', {
+        title: 'notification',
+        page_title: 'Add Notification' 
+    })
+})
+
+app.get('/notification/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
+    var id = req.params.id;
+    var data = [];
+
+    notificationController.get_notification_data(id, function(notification) {
+        data.push({'notification_data': notification})
+        res.render('notification/edit', {
+            title: "Notification Edit",
+            page_title: "Edit notification",
+            notification: data[0]['notification_data']
+        })
+    })
+})
+
+app.post('/notification-list',upload.none(),notificationController.get_notification_list);
+app.post('/notification/do_add',upload.none(),notificationController.add_notification);
+app.post('/notification/do_edit/:id', upload.none() ,notificationController.edit_notification);
+app.delete('/notification-delete/:id', notificationController.delete_notification);
+
+
+/*resources routes*/
+app.get('/resources-list', ensureLogin.ensureLoggedIn(),function(req,res){
+    res.render("resources/index", {
+        title: 'Resources',
+        page_title: 'Resources list'
+    })
+});
+
+app.get('/resources/add', ensureLogin.ensureLoggedIn(),function(req,res) {
+    productController.get_products_id_type_resource( function(products) {
+        res.render('resources/add', {
+            title: 'resources',
+            page_title: 'resources' ,
+            products: products
+        })
+    })
+})
+
+app.get('/resources/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
+    var id = req.params.id;
+    var data = [];
+    resourcesController.get_resources_data(id, function(resources) {
+        data.push({'resources_data': resources})
+        res.render('resources/edit', {
+            title: "Resources Edit",
+            page_title: "Edit resources",
+            resources: data[0]['resources_data']
+        })
+    })
+})
+
+app.post('/resources-list',upload.none(),resourcesController.get_resources_list);
+app.post('/resources/do_add',upload.single('resource-image'),resourcesController.add_resources);
+app.post('/resources/do_edit/:id', upload.single('resources-image'),resourcesController.edit_resources);
+app.delete('/resources-delete/:id', resourcesController.delete_resources);
+
+
+/* WHATSNEW ROUTES */
+app.get('/whatsnew/add', ensureLogin.ensureLoggedIn(),function(req,res) {
+    res.render('whatsnew/add', {
+        title: 'Whatsnew Idea',
+        page_title: 'Add New Idea'
+    })
+})
+
+
+app.get('/whatsnew/list', ensureLogin.ensureLoggedIn(), function(req,res) {
+    res.render('whatsnew/index', {
+        title: 'whatsnew',
+        page_title: 'Whatsnew-Idea-List'
+    })
+})
+
+app.get('/whatsnew/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
+    var id = req.params.id;
+    var data = [];
+
+    whatsnewController.get_whatsnew_data(id, function(whatsnew) {
+        data.push({'whatsnew_data': whatsnew})
+        res.render('whatsnew/edit', {
+            title: "Whats New Idea Edit",
+            page_title: "Edit Idea",
+            whatsnew: data[0]['whatsnew_data']
+        })
+    })
+})
+
+app.post('/whatsnew-list', upload.none() ,whatsnewController.get_whatsnew_list);
+app.post('/whatsnew/do_add', upload.single('whatsnew_image') , whatsnewController.add_whatsnew);
+app.post('/whatsnew/do_edit/:id', upload.single('whatsnew_image') ,whatsnewController.edit_whatsnew);
+app.delete('/whatsnew-delete/:id', whatsnewController.delete_whatsnew);
 
 /* PRODUCT SUB CATEGORY ROUTES */
 /* NOT NEEDED FOR NOW UNCOMMENT WHEN IN NEED
@@ -270,6 +444,28 @@ app.post('/productSubCategory/do_add', upload.single('productSubCategory_image')
 app.post('/productSubCategory/do_edit/:id', upload.none(), productSubCategoryController.edit_subProduct);
 */
 
+/* partner program routes */
+app.get('/partnerp-list', ensureLogin.ensureLoggedIn(),function(req,res){
+    res.render("partnerp/index", {
+        title: 'partner program',
+        page_title: 'Partner Program'
+    })
+});
+
+app.post('/partnerp-list',upload.none(),partnerpController.get_all_partnerp_list);
+
+app.delete('/partnerp-delete/:id', partnerpController.delete_partnerp);
+
+app.get('/greeni-list', ensureLogin.ensureLoggedIn(),function(req,res){
+    res.render("greeni/index", {
+        title: 'green idea',
+        page_title: 'Green Idea'
+    })
+});
+
+app.post('/greeni-list',upload.none(),greeniController.get_all_greeni_list);
+
+app.delete('/greeni-delete/:id', greeniController.delete_greeni);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT);

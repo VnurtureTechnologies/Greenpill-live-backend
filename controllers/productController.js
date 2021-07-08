@@ -7,16 +7,18 @@ module.exports.add_product = async(req,res,next) => {
 
     const data = {
         title : req.body.product_title,
-        description : req.body.product_description,
+        type: req.body.type,
         image_url: await helpers.uploadImage(req.file)
     }
     
     db.collection('product').add(data)
     .then( (result) => {
+        helpers.sendProductNofication();
         res.json({
             status: true,
             status_code: 200,
-            message: "Product added successfully"
+            message: "Product added successfully",
+            redirect: '/dashboard'
         })
     })
     .catch( (err) => {
@@ -38,19 +40,24 @@ module.exports.get_products_list = (req,res) => {
     .get()
     .then( (results) => {
         results.forEach( (r) => {
-            var row = {
-                "id": r.id,
-                "title" : r.data().title,
-                "description" : r.data().description,
-                "get_action_button": get_action_button(req,res,r)
-            };
-            products_list.push(row)
+            db.collection('project').where(`productRef`, '==', `${r.id}`)
+            .get()
+            .then((result) => {
+                var row = {
+                    "id": r.id,
+                    "title" : r.data().title,
+                    "type" : r.data().type,
+                    "no_of_projects": result._size,
+                    "get_action_button": get_action_button(req,res,r)
+                };
+                products_list.push(row)
+            })
         })
-        
-        var output = {
+
+        setTimeout(function() {var output = {
             data: products_list
         }
-        res.json(output)
+        res.json(output)},1000);
     })
     .catch ( (err) => {
         console.log(err);
@@ -81,7 +88,7 @@ module.exports.get_products_data = function(product_id,callback) {
         const data = {
             id: r.id,
             title: r.data().title,
-            description: r.data().description,
+            type: r.data().type,
             image_url: r.data().image_url
         }
         callback(data);
@@ -94,7 +101,7 @@ module.exports.get_products_data = function(product_id,callback) {
 module.exports.get_products_id = function(callback) {
     var db = admin.firestore();
     const products_data = [];
-    db.collection('product')
+    db.collection('product').where('type','==','product')
     .get()
     .then( (results) => {
         results.docs.forEach( (r) => {
@@ -111,14 +118,58 @@ module.exports.get_products_id = function(callback) {
     })
 }
 
-module.exports.edit_product = (req,res,next) => {
+module.exports.get_products_id_type_resource = function(callback) {
+    var db = admin.firestore();
+    const products_data = [];
+    db.collection('product').where('type','==','news & resources')
+    .get()
+    .then( (results) => {
+        results.docs.forEach( (r) => {
+            data = {
+                id: r.id,
+                title: r.data().title
+            }
+            products_data.push(data);
+        })
+        callback(products_data);
+    })
+    .catch( (err) => {
+        callback([]);
+    })
+}
+
+
+
+module.exports.get_products_where_type_product = function(callback) {
+    var db = admin.firestore();
+    const product_data = [];
+    db.collection('product')
+    .where('type', '==', 'product' )
+    .get()
+    .then((results) => {
+        results.docs.forEach( (r) => {
+            data = {
+                id: r.id,
+                title: r.data().title
+            }
+            product_data.push(data);
+        })
+        callback(product_data);
+    })
+    .catch((err) => {
+        callback([]);
+    })
+}
+
+module.exports.edit_product = async(req,res,next) => {
     var db = admin.firestore();
     var id = req.params.id;
     var update_data = {
         'title': req.body.product_title,
-        'description': req.body.product_description
+        'type': req.body.product_type,
+        'image_url': await helpers.uploadImage(req.file),
     }
-    console.log(update_data)
+
     db.collection('product').doc(`${id}`).update(update_data)
     .then( (r) => {
         res.json({

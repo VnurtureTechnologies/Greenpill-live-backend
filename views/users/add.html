@@ -1,0 +1,81 @@
+<html lang="en">
+
+<head>
+    <title>{{title}}</title>
+    {{> header}}
+    <style>
+        .tag_fields {
+            height: 150px;
+            overflow-y: scroll;
+            scrollbar-color: rgb(78, 140, 191);
+            scrollbar-width: thin;
+        }
+    </style>
+</head>
+
+<body>
+    {{> sidebars}}
+    <div class="content-wrapper">
+        <div class="body_content">
+            <div class="common_field_sec">
+                <div class="common_sec_title">
+                    <h2>{{page_title}}</h2>
+                </div>
+
+                <form action="javascript:void(0);" class="add_form" >
+                    <div class="field_inner_sec">
+
+                        <div class="floating-label left_fld">
+                            <label> First Name <span class="required">*</span></label>
+                            <input class="floating-input" id="rest_name" name="user_firstname" type="text">
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld">
+                            <label> Last Name <span class="required">*</span></label>
+                            <input class="floating-input" id="rest_name" name="user_lastname" type="text" required>
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld">
+                            <label> Phone <span class="required">*</span></label>
+                            <input class="floating-input" id="rest_name" name="user_mobilenumber" type="text" required>
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld">
+                            <label> Role <span class="required">*</span></label>
+                            <select class="floating-select" name="user_role" required>
+                                <option value="">--Choose--</option>
+                                <option value="admin">Admin</option>
+                                <option value="client">Client</option>
+                            </select>
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld">
+                            <label> Company Name <span class="required">*</span></label>
+                            <input class="floating-input" id="rest_name" name="user_companyname" type="text">
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                    <div class="form_submit_sec">
+                        <button type="submit" class="btn">Submit</button>
+                    </div>
+                </form>        
+                 </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END -->
+{{> footer}}
+<script src="/js/users/add.js"></script>
+</body>
+
+</html>

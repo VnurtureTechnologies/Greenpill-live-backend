@@ -1,5 +1,6 @@
 const gc = require('./storage-config/storage');
 const admin = require("firebase-admin");
+var db = admin.firestore();
 
 exports.uploadImage = (file) => new Promise((resolve, reject) => {
     const bucket = admin.storage().bucket('greenpill-live.appspot.com');
@@ -10,20 +11,45 @@ exports.uploadImage = (file) => new Promise((resolve, reject) => {
     const blobStream = blob.createWriteStream({
         resumable: false
     });
-    const urlOptions = {
-        version: "v4",
-        action: "read",
-        expires: Date.now() + 1000 * 60 * 60, // 2 minutes      
-      }
-      
+    
     blobStream.on('finish', async() => {
-        const publicUrl = `https://storage.googleapis.com/${bucket.name}/${blob.name}`;
+        const publicUrl = `https://firebasestorage.googleapis.com/v0/b/${bucket.name}/o/${encodeURIComponent(blob.name)}?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436`;
         resolve(publicUrl)
-        // await bucket.file(blob.name).getSignedUrl(urlOptions)
-        // .then( (url) => {
-        //     resolve(url[0]);
-        // })
     }).on('error',err => {
         console.log(err)
     }).end(buffer);
 });
+
+exports.deleteImage = (filelink) => new Promise((resolve, reject) => {
+    var filename = filelink.split('/o/')[1].split('?')[0]
+    const bucket = admin.storage().bucket('greenpill-live.appspot.com');
+    bucket.file(filename).delete();
+});
+
+exports.sendProductNofication = async function() {
+    var db = admin.firestore();
+
+    const notification_options = {
+        priority: "high",
+        timeToLive: 60 * 60 *24
+    }
+
+    const message = {
+        notification: {
+           title: "New product notification",
+           body:  "New product added"
+        }
+    };
+   
+    await db.collection('users')
+    .where('isNotify' , '==', true)
+    .get()
+    .then((result) => {
+        result.forEach((r) => {
+            admin.messaging().sendToDevice(r.data().fcmtoken, message, notification_options)
+        })
+    })
+    .catch((err) => {
+        console.log(err);
+    })
+}

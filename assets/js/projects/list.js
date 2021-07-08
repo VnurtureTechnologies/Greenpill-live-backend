@@ -16,7 +16,7 @@ $(document).ready(function () {
         "oLanguage": {
             "sInfoFiltered": "",
             "sProcessing": "<img src='images/ajax-loader.gif' alt='loader'>",
-            "sZeroRecords": "No Users found",
+            "sZeroRecords": "No Project Found",
             "sInfo": "Showing _START_ to _END_ of _TOTAL_ Users",
             "sLengthMenu": "Show _MENU_ Users",
             "sInfoEmpty": "Showing 0 to 0 of 0 Users",
@@ -50,8 +50,9 @@ $(document).ready(function () {
         },
         "columns": [
             {"data": "title", "name": "title"},
-            {"data": "work_scope", "name": "work_scope"},
-            {"data": "project_details", "name": "project_details"},
+            {"data": "long_description", "name": "long_description"},
+            {"data": "short_description", "name": "short_description"},
+            {"data": "product", "name": "product"},
             {"data": "get_action_button", "name": "get_action_button"}
         ],
         "columnDefs": [

@@ -50,11 +50,9 @@ $(document).ready(function () {
         },
         "columns": [
             {"data": "title", "name": "title"},
-            {"data": "category", "name": "category"},
-            {"data": "short description", "name": "short description"},
-            {"data": "long description", "name": "long description"},
-            {"data": "pdf url", "name": "pdf url"},
-            {"data": "web url", "name": "web url"},
+            {"data": "description", "name": "description"},
+            {"data": "source link", "name": "source link"},
+            {"data": "youtube url", "name": "youtube url"},
             {"data": "get_action_button", "name": "get_action_button"}
         ],
         "columnDefs": [

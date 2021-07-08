@@ -1,21 +1,52 @@
 const admin = require('firebase-admin');
+const helpers = require('../helpers');
+
+module.exports.add_news = async(req,res,next) => {
+    var db = admin.firestore();
+
+    const data = {
+        title : req.body.title,
+        description: req.body.description,
+        productRef: `Product/${req.body.int_user_id}`,
+        sourceLink: req.body.source_link,
+        youtubeUrl: req.body.youtube_url,
+        createdAt: Date.now(),
+        image_url: await helpers.uploadImage(req.file)
+    }
+
+    db.collection('news_and_innovation').add(data)
+    .then( (result) => {
+        res.json({
+            status: true,
+            status_code: 200,
+            message: "Product added successfully",
+            redirect: '/news'
+        })
+    })
+    .catch( (err) => {
+        res.json({
+            status: false,
+            status_code: 501,
+            error: err,
+            message: "Something went wrong"
+        })
+    })
+}
 
 module.exports.get_news_list = async(req,res) => {
     var db = admin.firestore();
     var news_list = [];
 
-    await db.collection('news')
+    await db.collection('news_and_innovation')
     .get()
     .then( (result) => {
         result.forEach(r => {
             var row = {
                 "id": r.id,
                 "title" : r.data().title,
-                "category" : r.data().category,
-                "short description": r.data().shortDescription,
-                "long description": r.data().longDescription,
-                "pdf url": r.data().pdfUrl,
-                "web url": r.data().webUrl,
+                "description": r.data().description,
+                "source link": r.data().sourceLink,
+                "youtube url": r.data().youtubeUrl,
                 "get_action_button": get_action_button(req,res,r)
             };
             news_list.push(row)
@@ -43,7 +74,6 @@ module.exports.edit_news = (req,res,next) => {
     var id = req.params.id;
     var update_data = {
         'title': req.body.product_title,
-        'category': req.body.category,
         'shortDescription': req.body.short_description,
         "longDescription": req.body.long_description,
         "pdfUrl": req.body.pdf_url,
@@ -85,7 +115,6 @@ module.exports.get_news_data = function(news_id,callback) {
         const data = {
             id: r.id,
             title: r.data().title,
-            category: r.data().category,
             shortDescription: r.data().shortDescription,
             longDescription: r.data().longDescription,
             pdfUrl: r.data().pdfUrl,

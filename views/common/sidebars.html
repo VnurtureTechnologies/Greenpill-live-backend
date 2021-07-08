@@ -4,14 +4,12 @@
         <div class="search_fld">
             <div class="maobile_menu">
                 <svg class="ham ham6" viewBox="0 0 100 100" width="80" onclick="this.classList.toggle('active')">
-                <path	class="line top"
-                      d="m 30,33 h 40 c 13.100415,0 14.380204,31.80258 6.899646,33.421777 -24.612039,5.327373 9.016154,-52.337577 -12.75751,-30.563913 l -28.284272,28.284272" />
-                <path
-                    class="line middle"
-                    d="m 70,50 c 0,0 -32.213436,0 -40,0 -7.786564,0 -6.428571,-4.640244 -6.428571,-8.571429 0,-5.895471 6.073743,-11.783399 12.286435,-5.570707 6.212692,6.212692 28.284272,28.284272 28.284272,28.284272" />
-                <path
-                    class="line bottom"
-                    d="m 69.575405,67.073826 h -40 c -13.100415,0 -14.380204,-31.80258 -6.899646,-33.421777 24.612039,-5.327373 -9.016154,52.337577 12.75751,30.563913 l 28.284272,-28.284272" />
+                    <path class="line top"
+                        d="m 30,33 h 40 c 13.100415,0 14.380204,31.80258 6.899646,33.421777 -24.612039,5.327373 9.016154,-52.337577 -12.75751,-30.563913 l -28.284272,28.284272" />
+                    <path class="line middle"
+                        d="m 70,50 c 0,0 -32.213436,0 -40,0 -7.786564,0 -6.428571,-4.640244 -6.428571,-8.571429 0,-5.895471 6.073743,-11.783399 12.286435,-5.570707 6.212692,6.212692 28.284272,28.284272 28.284272,28.284272" />
+                    <path class="line bottom"
+                        d="m 69.575405,67.073826 h -40 c -13.100415,0 -14.380204,-31.80258 -6.899646,-33.421777 24.612039,-5.327373 -9.016154,52.337577 12.75751,30.563913 l 28.284272,-28.284272" />
                 </svg>
             </div>
         </div>
@@ -19,16 +17,15 @@
         <div class="admin_dtl">
             <div class="admin_profile">
                 <aside class="admin_img">
-                    {{#if session_user.user_image}}
-                    <a href="/edit-profile"><img title="profile" src="{{session_user.user_image}}" style="height:40px;width:40px;"></a>
-                    {{else}}
-                    <a href="/edit-profile"><img title="profile" src="/images/profile.png"></a>
-                    {{/if}}
+                    <a href="/admin"><img title="profile" src="/images/profile.png"></a>
                 </aside>
-                <a href="/edit-profile"><h4 title="profile">Administrator - {{session_user.user_name}}</h4></a>
+                <a href="/admin">
+                    <h4 title="profile">Admin</h4>
+                </a>
             </div>
             <div class="log_out">
-                <a href="/logout" data-toggle="tooltip" data-placement="bottom" title="Log Out!"><img src="/images/logout.png" alt="log out"></a>
+                <a href="/logout" data-toggle="tooltip" data-placement="bottom" title="Log Out!"><img
+                        src="/images/logout.png" alt="log out"></a>
             </div>
         </div>
     </div>
@@ -37,8 +34,10 @@
 <!-- Menu sidebar  -->
 
 <div class="side_nav_sec" role="navigation">
-    <div class="logo_sec"> 
-        <a href="/dashboard"><h3 style="color: limegreen;">Greenpill <strong style="color: red">Live</strong></h3></a>
+    <div class="logo_sec">
+        <a href="/dashboard">
+            <h3 style="color: limegreen;">Greenpill <strong style="color: red">Live</strong></h3>
+        </a>
     </div>
     <div class="navbar-default sidebar">
 
@@ -48,25 +47,22 @@
                     <a href="/dashboard">Dashboard</a>
                 </li>
                 <li class=" parent_mnu">
-                    <a href="#" class="parent">Users  <span class="ti-angle-down"></span></a>
+                    <a href="#" class="parent">Users <span class="ti-angle-down"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="/users/add">User Add</a>
                         </li>
                         <li>
-                            <a href="/users">User List</a>
+                            <a href="/user-list">User List</a>
                         </li>
                         <li>
                             <a href="/register">Add a backend admin</a>
                         </li>
-                        <!-- <li>
-                            <a href="/register/admins/restaurants">Add a restaurant admin</a>
-                        </li> -->
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
                 <li class=" parent_mnu">
-                    <a href="#" class="parent">Products  <span class="ti-angle-down"></span></a>
+                    <a href="#" class="parent">Products <span class="ti-angle-down"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
                             <a href="/products/add">Add a product</a>
@@ -87,7 +83,7 @@
                             <a href="/productSubCategory">Product subcategory list</a>
                         </li>
                     </ul> -->
-                    <!-- /.nav-second-level -->
+                <!-- /.nav-second-level -->
                 <!-- </li> -->
                 <li class=" parent_mnu">
                     <a href="#" class="parent">Projects <span class="ti-angle-down"></span></a>
@@ -101,23 +97,47 @@
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
+
+                <li class=" parent_mnu">
+                    <a href="/partnerp-list" class="parent">Partner Program</a>
+                </li>
+
+                <li class=" parent_mnu">
+                    <a href="/greeni-list" class="parent">Green Idea</a>
+                </li>
+
                 <li class=" parent_mnu">
                     <a href="#" class="parent">Notifications<span class="ti-angle-down"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#">Add a notification</a>
+                            <a href="/notification/add">Add a Notification</a>
                         </li>
                         <li>
-                            <a href="#">NotificationsList</a>
+                            <a href="/notification-list">Notifications List</a>
                         </li>
                     </ul>
                     <!-- /.nav-second-level -->
                 </li>
+
                 <li class=" parent_mnu">
-                    <a href="#" class="parent">News<span class="ti-angle-down"></span></a>
+                    <a href="#" class="parent">Resources<span class="ti-angle-down"></span></a>
                     <ul class="nav nav-second-level">
                         <li>
-                            <a href="#">Add a news article</a>
+                            <a href="/resources/add">Add a Resources</a>
+                        </li>
+                        <li>
+                            <a href="/resources-list">Resources List</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+
+
+                <li class=" parent_mnu">
+                    <a href="#" class="parent">News and Innovation<span class="ti-angle-down"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="/news/add">Add a news article</a>
                         </li>
                         <li>
                             <a href="/news">News List</a>
@@ -149,7 +169,7 @@
                             <a href="/deals">Deals List</a>
                         </li>
                     </ul> -->
-                    <!-- /.nav-second-level -->
+                <!-- /.nav-second-level -->
                 <!-- </li>
                 <li class=" parent_mnu">
                     <a href="#" class="parent">Preferences <span class="ti-angle-down"></span></a>
@@ -161,7 +181,7 @@
                             <a href="/preferences">Preferences List</a>
                         </li>
                     </ul> -->
-                    <!-- /.nav-second-level -->
+                <!-- /.nav-second-level -->
                 <!-- </li>
                 <li class=" parent_mnu">
                     <a href="#" class="parent">Manage Pages <span class="ti-angle-down"></span></a>
@@ -173,8 +193,21 @@
                             <a href="/privacy-and-policy">Privacy and Policy</a>
                         </li>
                     </ul> -->
-                    <!-- /.nav-second-level -->
+                <!-- /.nav-second-level -->
                 <!-- </li> -->
+                <li class=" parent_mnu">
+                    <a href="#" class="parent">Whatsnew<span class="ti-angle-down"></span></a>
+                    <ul class="nav nav-second-level">
+                        <li>
+                            <a href="/whatsnew/add">Add a Idea</a>
+                        </li>
+                        <li>
+                            <a href="/whatsnew/list">Whatsnew List</a>
+                        </li>
+                    </ul>
+                    <!-- /.nav-second-level -->
+                </li>
+
                 <li class=" parent_mnu">
                     <a href="#" class="parent">Trash <span class="ti-angle-down"></span></a>
                     <ul class="nav nav-second-level">
@@ -206,7 +239,8 @@
     <div class="additional_nav">
         <ul class="">
             <!--<li><a href="/settings">settings</a><li>-->
-            <li><a href="/logout">logout</a><li>
+            <li><a href="/logout">logout</a>
+            <li>
         </ul>
     </div>
 </div>
