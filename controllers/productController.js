@@ -13,6 +13,7 @@ module.exports.add_product = async(req,res,next) => {
     
     db.collection('product').add(data)
     .then( (result) => {
+        helpers.sendProductNofication();
         res.json({
             status: true,
             status_code: 200,

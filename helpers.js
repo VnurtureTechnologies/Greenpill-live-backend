@@ -25,3 +25,31 @@ exports.deleteImage = (filelink) => new Promise((resolve, reject) => {
     const bucket = admin.storage().bucket('greenpill-live.appspot.com');
     bucket.file(filename).delete();
 });
+
+exports.sendProductNofication = async function() {
+    var db = admin.firestore();
+
+    const notification_options = {
+        priority: "high",
+        timeToLive: 60 * 60 *24
+    }
+
+    const message = {
+        notification: {
+           title: "New product notification",
+           body:  "New product added"
+        }
+    };
+   
+    await db.collection('users')
+    .where('isNotify' , '==', true)
+    .get()
+    .then((result) => {
+        result.forEach((r) => {
+            admin.messaging().sendToDevice(r.data().fcmtoken, message, notification_options)
+        })
+    })
+    .catch((err) => {
+        console.log(err);
+    })
+}
