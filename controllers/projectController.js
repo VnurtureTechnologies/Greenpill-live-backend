@@ -19,6 +19,7 @@ module.exports.add_project = async(req, res) => {
     await db.collection('project')
     .add(data)
     .then((r) => {
+        helpers.sendProjecttNotification()
         res.json({
             status: true,
             status_code: 200,

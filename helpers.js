@@ -26,7 +26,7 @@ exports.deleteImage = (filelink) => new Promise((resolve, reject) => {
     bucket.file(filename).delete();
 });
 
-exports.sendProductNofication = async function() {
+exports.sendProjecttNotification = async function() {
     var db = admin.firestore();
 
     const notification_options = {
@@ -36,8 +36,8 @@ exports.sendProductNofication = async function() {
 
     const message = {
         notification: {
-           title: "New product notification",
-           body:  "New product added"
+           title: "New project notification",
+           body:  "New project added"
         }
     };
    
@@ -47,6 +47,80 @@ exports.sendProductNofication = async function() {
     .then((result) => {
         result.forEach((r) => {
             admin.messaging().sendToDevice(r.data().fcmtoken, message, notification_options)
+            .then((messagingResult) => {
+                console.log(messagingResult);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        })
+    })
+    .catch((err) => {
+        console.log(err);
+    })
+}
+
+exports.sendResourcetNotification = async function() {
+    var db = admin.firestore();
+
+    const notification_options = {
+        priority: "high",
+        timeToLive: 60 * 60 *24
+    }
+
+    const message = {
+        notification: {
+           title: "New resource notification",
+           body:  "New resource added"
+        }
+    };
+   
+    await db.collection('users')
+    .where('isNotify' , '==', true)
+    .get()
+    .then((result) => {
+        result.forEach((r) => {
+            admin.messaging().sendToDevice(r.data().fcmtoken, message, notification_options)
+            .then((r) => {
+                console.log(r);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+        })
+    })
+    .catch((err) => {
+        console.log(err);
+    })
+}
+
+exports.sendNewsNotification = async function() {
+    var db = admin.firestore();
+
+    const notification_options = {
+        priority: "high",
+        timeToLive: 60 * 60 *24
+    }
+
+    const message = {
+        notification: {
+           title: "New news notification",
+           body:  "New news added"
+        }
+    };
+   
+    await db.collection('users')
+    .where('isNotify' , '==', true)
+    .get()
+    .then((result) => {
+        result.forEach((r) => {
+            admin.messaging().sendToDevice(r.data().fcmtoken, message, notification_options)
+            .then((r) => {
+                console.log(r);
+            })
+            .catch(err => {
+                console.log(err);
+            })
         })
     })
     .catch((err) => {

@@ -15,6 +15,7 @@ module.exports.add_resources = async (req, res, next) => {
 
     db.collection('resources').add(data)
         .then((result) => {
+            helpers.sendResourcetNotification()
             res.json({
                 status: true,
                 status_code: 200,
