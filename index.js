@@ -284,17 +284,21 @@ app.get('/news/edit/:id',ensureLogin.ensureLoggedIn(), function(req,res) {
 
     newsController.get_news_data(id, function(news) {
         data.push({'news_data': news})
+        productController.get_products_id_type_resource(products=>{
             res.render('news/edit', {
                 title: "News Edit",
                 page_title: "Edit news",
                 news: data[0]['news_data'],
+                products:products
             })
         })
+    })
 })
 
 app.post('/news-list', upload.none(), newsController.get_news_list);
 app.post('/news/do_add', upload.single('news_image'), newsController.add_news);
-app.post("/news/do_edit/:id", upload.none(), newsController.edit_news);
+app.post("/news/do_edit/:id", upload.single('news_image'), newsController.edit_news);
+app.delete('/news-delete/:id', newsController.delete_news);
 
 /*notification routes*/
 app.get('/notification-list', ensureLogin.ensureLoggedIn(),function(req,res){
