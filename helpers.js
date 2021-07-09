@@ -2,11 +2,18 @@ const gc = require('./storage-config/storage');
 const admin = require("firebase-admin");
 var db = admin.firestore();
 
+
+var foldername1='';
+exports.getfolderName=(foldername)=>{
+    foldername1=foldername
+}
+
 exports.uploadImage = (file) => new Promise((resolve, reject) => {
     const bucket = admin.storage().bucket('greenpill-live.appspot.com');
     const {originalname, buffer} = file;
+    console.log(originalname)
     const file_name = originalname.replace(/ /g, "_");
-    const gcsFileName = `${Date.now()}-${file_name}`;
+    const gcsFileName = `${foldername1}/${file_name}`;
     const blob = bucket.file(gcsFileName);
     const blobStream = blob.createWriteStream({
         resumable: false
@@ -21,9 +28,10 @@ exports.uploadImage = (file) => new Promise((resolve, reject) => {
 });
 
 exports.deleteImage = (filelink) => new Promise((resolve, reject) => {
-    var filename = filelink.split('/o/')[1].split('?')[0]
+    // var filename = filelink.split('/o/')[1].split('?')[0]
     const bucket = admin.storage().bucket('greenpill-live.appspot.com');
-    bucket.file(filename).delete();
+    const filelink1 = filelink;
+    bucket.file(`${foldername1}/${filelink1}`).delete();
 });
 
 exports.sendProductNofication = async function() {

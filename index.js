@@ -255,6 +255,7 @@ app.get('/projects/edit/:id',ensureLogin.ensureLoggedIn(), function(req,res) {
 app.post('/project-list', upload.none(), projectController.get_projects_list);
 app.post('/projects/do_add', upload.single('project_image') , projectController.add_project);
 app.post('/projects/do_edit/:id', upload.single('project_image'), projectController.edit_project);
+app.delete('/projects-delete/:id', projectController.delete_project);
 
 /* NEWS ROUTES */
 
