@@ -60,7 +60,8 @@
                         <h4>Add a image</h4>
                         <div class="floating-label right_fld browse2">
                             <label>
-                                <input class="" type="file" accept='image/jpeg, image/png' name="whatsnew_img"> <img src="{{whatsnew.img}}">
+                                <input type="file" accept="image/jpeg, image/png" name="whatsnew_img"  onchange="readURL(this);" />
+                                <img id="blah" src="#" alt="your image" />
                             </label>
                         </div>
                         </div>
@@ -77,6 +78,22 @@
 </div>
 <!-- END -->
 {{> footer}}
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(150)
+                    .height(200);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 <script src="/js/whatsnew/edit.js"></script>
 </body>
 

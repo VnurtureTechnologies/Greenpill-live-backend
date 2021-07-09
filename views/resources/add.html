@@ -61,8 +61,8 @@
                         <h4>Add a Resources image</h4>
                         <div class="floating-label right_fld browse2">
                             <label>
-                                <input class="" type="file" accept='image/jpeg, image/png' name="resource-image"> <img
-                                    src="/images/gogreen.jpg">
+                                <input type="file" accept="image/jpeg, image/png" name="resource_image"  onchange="readURL(this);" />
+                                <img id="blah" src="#" alt="your image" />
                             </label>
                         </div>
 
@@ -78,6 +78,22 @@
     </div>
     <!-- END -->
     {{> footer}}
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+    
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(200);
+                };
+    
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
     <script src="/js/resources/add.js"></script>
 </body>
 
