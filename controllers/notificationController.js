@@ -7,7 +7,7 @@ module.exports.add_notification = async(req,res,next) => {
         title : req.body.title,
         shortDescription: req.body.shortdescription,
         category: req.body.category,
-        createdAt: Date.now().toString(),
+        timestamp: Date.now().toString(),
     }
 
     db.collection('notifications').add(data)
