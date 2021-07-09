@@ -76,8 +76,8 @@ module.exports.edit_news = (req,res,next) => {
         'title': req.body.product_title,
         'shortDescription': req.body.short_description,
         "longDescription": req.body.long_description,
-        "pdfUrl": req.body.pdf_url,
-        "webUrl": req.body.web_url
+        "sourceLink": req.body.sourceLink,
+        "youtubeUrl": req.body.youtubeUrl
     }
     db.collection('news').doc(`${id}`).update(update_data)
     .then( (r) => {

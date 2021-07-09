@@ -4,7 +4,7 @@ const helpers = require("../helpers");
 
 module.exports.add_whatsnew = async (req, res, next) => {
   var db = admin.firestore();
-
+  await helpers.getfolderName('whatsnew')
   const data = {
     title: req.body.title,
     description: req.body.description,
@@ -102,7 +102,7 @@ module.exports.get_whatsnew_data = function (whatsnew_id, callback) {
 };
 
 module.exports.edit_whatsnew = async (req, res, next) => {
-  
+  await helpers.getfolderName('whatsnew')
   var db = admin.firestore();
   var id = req.params.id;
   var update_data = "";
@@ -145,6 +145,7 @@ module.exports.edit_whatsnew = async (req, res, next) => {
 
 module.exports.delete_whatsnew = async (req, res, next) => {
   var db = admin.firestore();
+  await helpers.getfolderName('whatsnew')
   var id = req.params.id;
   var filelink = "";
   db.collection("whatsnew")
@@ -166,7 +167,7 @@ module.exports.delete_whatsnew = async (req, res, next) => {
         res.json({
             status: true,
             status_code: 200,
-            message: "Idea deleted successfully",
+            message: "whatsnew deleted successfully",
             redirect:"/whatsnew/list"
         })
     })
