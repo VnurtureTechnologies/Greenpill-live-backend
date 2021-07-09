@@ -52,7 +52,7 @@ $(document).ready(function () {
             {"data": "title", "name": "title"},
             {"data": "type", "name": "type"},
             {"data": "no_of_projects", "name": "no_of_projects"},
-            {"data": "get_action_button", "name": "get_action_button"}
+            // {"data": "get_action_button", "name": "get_action_button"}
         ],
         "columnDefs": [
             {"targets": -1, "orderable": false, },
