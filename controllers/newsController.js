@@ -33,6 +33,15 @@ module.exports.add_news = async (req, res, next) => {
         })
 }
 
+function response(res, news_list) {
+    res.json({
+        status: true,
+        status_code: 201,
+        data: news_list,
+        message: "Project list fetched successfully"
+    })
+}
+
 module.exports.get_news_list = async (req, res) => {
     var db = admin.firestore();
     var news_list = [];
@@ -40,23 +49,24 @@ module.exports.get_news_list = async (req, res) => {
     await db.collection('news_and_innovation')
         .get()
         .then((result) => {
-            result.forEach(r => {
-                var row = {
-                    "id": r.id,
-                    "title": r.data().title,
-                    "description": r.data().description,
-                    "source link": r.data().sourceLink,
-                    "youtube url": r.data().youtubeUrl,
-                    "get_action_button": get_action_button(req, res, r)
-                };
-                news_list.push(row)
+            result.forEach(async(r) => {
+                await db.collection('product').doc(r.data().productRef)
+                .get()
+                .then(async (innerResult) => { 
+                    const x = innerResult.data().title;
+                    var row = {
+                        "id": r.id,
+                        "title": r.data().title,
+                        "description": r.data().description,
+                        "source link": r.data().sourceLink,
+                        "youtube url": r.data().youtubeUrl,
+                        "product": x,
+                        "get_action_button": get_action_button(req, res, r)
+                    };
+                    news_list.push(row)
+                })
             })
-            res.json({
-                status: true,
-                status_code: 201,
-                data: news_list,
-                message: "News list fetched successfully"
-            })
+            setTimeout(response, 1000, res, news_list);
         })
         .catch((err) => {
             console.log(err);

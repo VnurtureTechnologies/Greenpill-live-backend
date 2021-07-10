@@ -51,6 +51,7 @@ $(document).ready(function () {
         "columns": [
             {"data": "title", "name": "title"},
             {"data": "description", "name": "description"},
+            {"data": "product", "name": "product"},
             {"data": "get_download_button", "name": "get_download_button"},
             {"data": "get_action_button", "name": "get_action_button"}
         ],
@@ -76,7 +77,7 @@ $(document).ready(function () {
                 do_btn_action('/resources-delete/' + id, data, 'delete');
             }
         });
-    });
+    }); 
 });
 
 function do_btn_action(url, data, type) {

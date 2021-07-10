@@ -53,6 +53,7 @@ $(document).ready(function () {
             {"data": "description", "name": "description"},
             {"data": "source link", "name": "source link"},
             {"data": "youtube url", "name": "youtube url"},
+            {"data": "product", "name": "product"},
             {"data": "get_action_button", "name": "get_action_button"}
         ],
         "columnDefs": [
@@ -62,6 +63,8 @@ $(document).ready(function () {
 
     $('#list_table').delegate('a.delete', 'click', function () {
         var id = $(this).attr('data-id');
+        var action = $(this).attr('data-action');
+		var data = {action: action};
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",

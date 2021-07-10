@@ -58,7 +58,7 @@ module.exports.get_projects_list = async (req, res) => {
                 await db.collection('product').doc(result.data().productRef)
                     .get()
                     .then(async (innerResult) => {
-                        const x = await innerResult.data().title;
+                        const x = innerResult.data().title;
                         var row = {
                             "id": result.id,
                             "title": result.data().title,

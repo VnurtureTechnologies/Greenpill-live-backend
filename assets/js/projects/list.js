@@ -62,6 +62,8 @@ $(document).ready(function () {
 
     $('#list_table').delegate('a.delete', 'click', function () {
         var id = $(this).attr('data-id');
+        var action = $(this).attr('data-action');
+		var data = {action: action};
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",

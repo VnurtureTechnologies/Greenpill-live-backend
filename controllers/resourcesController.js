@@ -32,6 +32,15 @@ module.exports.add_resources = async (req, res, next) => {
         })
 }
 
+function response(res, resources_list) {
+    res.json({
+        status: true,
+        status_code: 201,
+        data: resources_list,
+        message: "Project list fetched successfully"
+    })
+}
+
 module.exports.get_resources_list = async (req, res) => {
     var db = admin.firestore();
     var resources_list = [];
@@ -39,22 +48,23 @@ module.exports.get_resources_list = async (req, res) => {
     await db.collection('resources')
         .get()
         .then((result) => {
-            result.forEach(r => {
-                var row = {
-                    "id": r.id,
-                    "title": r.data().title,
-                    "description": r.data().description,
-                    "get_download_button": get_download_button(r.data().pdfUrl),
-                    "get_action_button": get_action_button(req, res, r)
-                };
-                resources_list.push(row)
+            result.forEach(async(r) => {
+                await db.collection('product').doc(r.data().productRef)
+                .get()
+                .then(async (innerResult) => { 
+                    var x = innerResult.data().title;
+                    var row = {
+                        "id": r.id,
+                        "title": r.data().title,
+                        "description": r.data().description,
+                        "product": x,
+                        "get_download_button": get_download_button(r.data().pdfUrl),
+                        "get_action_button": get_action_button(req, res, r)
+                    };
+                    resources_list.push(row)
+                })
             })
-            res.json({
-                status: true,
-                status_code: 201,
-                data: resources_list,
-                message: "Resources fetched successfully"
-            })
+            setTimeout(response, 1000, res, resources_list);
         })
         .catch((err) => {
             console.log(err);
