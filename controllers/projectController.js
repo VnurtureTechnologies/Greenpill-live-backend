@@ -18,13 +18,14 @@ module.exports.add_project = async (req, res) => {
     console.log(data);
 
     await db.collection('project')
-        .add(data)
-        .then((r) => {
-            res.json({
-                status: true,
-                status_code: 200,
-                message: "Project added successfully",
-                redirect: "/projects"
+    .add(data)
+    .then((r) => {
+        helpers.sendProjecttNotification()
+        res.json({
+            status: true,
+            status_code: 200,
+            message: "Project added successfully",
+            redirect: "/projects"
             })
         })
         .catch((err) => {
@@ -34,8 +35,8 @@ module.exports.add_project = async (req, res) => {
                 status_code: 501,
                 message: "Something went wrong",
                 redirect: "/projects/add"
-            })
         })
+    })
 }
 
 function response(res, project_list) {

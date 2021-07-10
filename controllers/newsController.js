@@ -15,12 +15,13 @@ module.exports.add_news = async (req, res, next) => {
     }
 
     db.collection('news_and_innovation').add(data)
-        .then((result) => {
-            res.json({
-                status: true,
-                status_code: 200,
-                message: "news added successfully",
-                redirect: '/news'
+    .then( (result) => {
+        helpers.sendNewsNotification();
+        res.json({
+            status: true,
+            status_code: 200,
+            message: "Product added successfully",
+            redirect: '/news'
             })
         })
         .catch((err) => {
@@ -30,7 +31,7 @@ module.exports.add_news = async (req, res, next) => {
                 error: err,
                 message: "Something went wrong"
             })
-        })
+    })
 }
 
 function response(res, news_list) {
