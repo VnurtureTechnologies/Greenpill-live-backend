@@ -1,7 +1,9 @@
 const admin = require('firebase-admin');
+const helpers = require('../helpers');
 
 module.exports.add_notification = async(req,res,next) => {
     var db = admin.firestore();
+    var notifier = "general notification";
 
     const data = {
         title : req.body.title,
@@ -12,6 +14,7 @@ module.exports.add_notification = async(req,res,next) => {
 
     db.collection('notifications').add(data)
     .then( (result) => {
+        helpers.sendGenericNotification(notifier)
         res.json({
             status: true,
             status_code: 200,

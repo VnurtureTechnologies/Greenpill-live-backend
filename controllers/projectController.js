@@ -4,8 +4,9 @@ const helpers = require('../helpers');
 
 module.exports.add_project = async (req, res) => {
     var db = admin.firestore();
+    var notifier = "project notification";
+
     await helpers.getfolderName('projects')
-    console.log(req.body)
 
     var data = {
         title: req.body.title,
@@ -15,12 +16,10 @@ module.exports.add_project = async (req, res) => {
         images: [await helpers.uploadImage(req.file)]
     }
 
-    console.log(data);
-
     await db.collection('project')
     .add(data)
     .then((r) => {
-        helpers.sendProjecttNotification()
+        helpers.sendGenericNotification(notifier);
         res.json({
             status: true,
             status_code: 200,
