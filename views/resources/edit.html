@@ -42,8 +42,21 @@
                         <div class="claerfix"></div>
 
                         <div class="floating-label left_fld">
-                            <label> PDF URL <span class="required">* (Provide only pdf url of drive)</span></label>
-                            <input class="floating-input" id="rest_name" value="{{resources.pdfUrl}}" name="pdfUrl"
+                            <label>Choose a product<span class="required">*</span></label>
+                            <select class="floating-select" name="productRef">
+                                <option value="">--Choose--</option>
+                                {{#each products}}
+                                <option value="{{this.id}}">{{this.title}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld">
+                            <label> PDF URL <span class="required">* (must start with http:// or https:// )</span></label>
+                            <input class="floating-input" pattern="https?://.+" id="rest_name" value="{{resources.pdfUrl}}" name="pdfUrl"
                                 type="text">
                         </div>
 

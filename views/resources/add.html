@@ -52,8 +52,8 @@
                         <div class="claerfix"></div>
 
                         <div class="floating-label left_fld">
-                            <label> PDF Url <span class="required">* (Provide only pdf url of drive) </span></label>
-                            <input class="floating-input" id="rest_name" name="pdfUrl" type="text" required>
+                            <label> PDF Url <span class="required">* (must start with http:// or https:// ) </span></label>
+                            <input class="floating-input" id="rest_name" pattern="https?://.+" name="pdfUrl" type="text" required>
                         </div>
 
                         <div class="claerfix"></div>
@@ -61,7 +61,7 @@
                         <h4>Add a Resources image</h4>
                         <div class="floating-label right_fld browse2">
                             <label>
-                                <input type="file" accept="image/jpeg, image/png" name="resource_image"  onchange="readURL(this);" />
+                                <input type="file" accept="image/jpeg, image/png" name="resource-image"  onchange="readURL(this);" />
                                 <img id="blah" src="#" alt="your image" />
                             </label>
                         </div>

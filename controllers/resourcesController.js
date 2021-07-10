@@ -71,35 +71,73 @@ module.exports.edit_resources = async (req, res, next) => {
     var db = admin.firestore();
     var id = req.params.id;
     var filelink = "";
-    db.collection("resources")
-        .doc(`${id}`)
-        .get()
-        .then(async (r) => {
-            const data = {
-                filelink1: r.data().image
-            }
-            filelink = data.filelink1
-            await helpers.deleteImage(filelink)
-        })
-        .catch((err) => {
-            console.log(err)
-        });
-
     var update_data = ""
-    if (req.file) {
-        update_data = {
-            'title': req.body.title,
-            'description': req.body.description,
-            'pdfUrl': req.body.pdfUrl,
-            'image': await helpers.uploadImage(req.file)
-        };
-    } else {
-        update_data = {
-            'title': req.body.title,
-            'description': req.body.description,
-            "pdfUrl": req.body.pdfUrl,
+
+
+    if (req.body.productRef != '') {
+        if (req.file) {
+            db.collection("resources")
+                .doc(`${id}`)
+                .get()
+                .then(async (r) => {
+                    const data = {
+                        filelink1: r.data().image
+                    }
+                    filelink = data.filelink1
+                    await helpers.deleteImage(filelink)
+                })
+                .catch((err) => {
+                    console.log(err)
+                });
+
+            update_data = {
+                'title': req.body.title,
+                'description': req.body.description,
+                'productRef': req.body.productRef,
+                'image': await helpers.uploadImage(req.file),
+                'pdfUrl': req.body.pdfUrl
+            };
+        } else {
+            update_data = {
+                'title': req.body.title,
+                'description': req.body.description,
+                'productRef': req.body.productRef,
+                'pdfUrl': req.body.pdfUrl
+            }
         }
     }
+    else {
+        if (req.file) {
+            db.collection("resources")
+                .doc(`${id}`)
+                .get()
+                .then(async (r) => {
+                    const data = {
+                        filelink1: r.data().image
+                    }
+                    filelink = data.filelink1
+                    await helpers.deleteImage(filelink)
+                })
+                .catch((err) => {
+                    console.log(err)
+                });
+
+            update_data = {
+                'title': req.body.title,
+                'description': req.body.description,
+                'image': await helpers.uploadImage(req.file),
+                'pdfUrl': req.body.pdfUrl
+            };
+        } else {
+            update_data = {
+                'title': req.body.title,
+                'description': req.body.description,
+                'pdfUrl': req.body.pdfUrl
+            }
+        }
+
+    }
+
         db.collection('resources').doc(`${id}`).update(update_data)
             .then((r) => {
                 res.json({
