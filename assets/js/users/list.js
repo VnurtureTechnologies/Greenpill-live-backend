@@ -52,6 +52,7 @@ $(document).ready(function () {
             {"data": "firstName", "name": "firstName"},
             {"data": "lastName", "name": "lastName"},
             {"data": "mobileNumber", "name": "mobileNumber"},
+            {"data": "email", "name": "email"},
             {"data": "role", "name": "role"},
             {"data": "companyName", "name": "companyName"},
             {"data": "get_action_button", "name": "get_action_button"}
