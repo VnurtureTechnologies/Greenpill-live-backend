@@ -11,7 +11,7 @@ module.exports.add_resources = async (req, res, next) => {
         productRef: req.body.productRef,
         image: await helpers.uploadImage(req.file),
         pdfUrl: req.body.pdfUrl,
-        createdAt: Date.now(),
+        createdAt: Date.now().toString(),
     }
 
     db.collection('resources').add(data)

@@ -12,7 +12,7 @@ module.exports.add_news = async (req, res, next) => {
         productRef: `Product/${req.body.int_user_id}`,
         sourceLink: req.body.source_link,
         youtubeUrl: req.body.youtube_url,
-        createdAt: Date.now(),
+        createdAt: Date.now().toString(),
         image_url: await helpers.uploadImage(req.file)
     }
 
