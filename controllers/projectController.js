@@ -9,6 +9,7 @@ module.exports.add_project = async (req, res) => {
     await helpers.getfolderName('projects')
 
     var data = {
+        createdAt: Date.now().toString(),
         title: req.body.title,
         longDesc: req.body.long_description,
         shortDesc: req.body.short_description,
@@ -28,7 +29,6 @@ module.exports.add_project = async (req, res) => {
             })
         })
         .catch((err) => {
-            console.log(err);
             res.json({
                 status: false,
                 status_code: 501,
@@ -73,7 +73,6 @@ module.exports.get_projects_list = async (req, res) => {
             setTimeout(response, 1000, res, project_list);
         })
         .catch((err) => {
-            console.log(err);
             res.json({
                 status: false,
                 status_code: 501,
@@ -129,7 +128,6 @@ module.exports.edit_project = async (req, res, next) => {
                 await helpers.deleteImage(filelink)
             })
             .catch((err) => {
-                console.log(err)
             });
             update_data = {
                 'title': req.body.project_title,
@@ -157,7 +155,6 @@ module.exports.edit_project = async (req, res, next) => {
                 await helpers.deleteImage(filelink)
             })
             .catch((err) => {
-                console.log(err)
             });
 
             update_data = {
@@ -210,7 +207,6 @@ module.exports.delete_project = async (req, res, next) => {
             await helpers.deleteImage(filelink)
         })
         .catch((err) => {
-            console.log(err)
         });
 
     db.collection('project').doc(`${id}`).delete()
