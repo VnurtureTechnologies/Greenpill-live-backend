@@ -4,6 +4,7 @@ const helpers = require('../helpers');
 module.exports.add_resources = async (req, res, next) => {
     var db = admin.firestore();
     var notifier = "resource notification";
+    await helpers.getfolderName('resource')
 
     const data = {
         title: req.body.title,
@@ -84,7 +85,7 @@ module.exports.edit_resources = async (req, res, next) => {
     var id = req.params.id;
     var filelink = "";
     var update_data = ""
-
+    await helpers.getfolderName('resource')
 
     if (req.body.productRef != '') {
         if (req.file) {
@@ -206,10 +207,12 @@ module.exports.edit_resources = async (req, res, next) => {
                 callback([]);
             })
     }
-    module.exports.delete_resources = (req, res, next) => {
+    module.exports.delete_resources = async (req, res, next) => {
         var db = admin.firestore();
         var id = req.params.id;
         var filelink = "";
+        await helpers.getfolderName('resource')
+
         db.collection("resources")
             .doc(`${id}`)
             .get()
