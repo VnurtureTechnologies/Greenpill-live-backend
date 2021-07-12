@@ -26,15 +26,15 @@
                     <div class="field_inner_sec">
 
                         <div class="floating-label left_fld">
-                            <label> Title <span class="required">*</span></label>
-                            <input class="floating-input" id="rest_name" name="title" type="text">
+                            <label> Title <span class="required">*</span> </label>
+                            <input class="floating-input" id="rest_name" name="title" type="text" required>
                         </div>
 
                         <div class="claerfix"></div>
 
                         <div class="floating-label left_fld">
                             <label> Description <span class="required">*</span></label>
-                            <input class="floating-input" id="rest_name" name="description" type="text">
+                            <input class="floating-input" id="rest_name" name="description" type="text" required>
                         </div>
 
 
@@ -42,7 +42,7 @@
 
                         <div class="floating-label left_fld">
                             <label> Type <span class="required">*</span></label>
-                            <input class="floating-input" id="rest_name" name="type" type="text">
+                            <input class="floating-input" id="rest_name" name="type" type="text" required>
                         </div>
 
 
@@ -50,8 +50,8 @@
 
                         
                         <div class="floating-label left_fld">
-                            <label> Source Link <span class="required">*</span></label>
-                            <input class="floating-input" id="rest_name" name="sourcelink" type="text">
+                            <label> Source Link <span class="required"> (must start with http:// or https:// ) </span> </label>
+                            <input class="floating-input" id="rest_name" pattern="https?://.+" name="sourcelink" type="text">
                         </div>
 
 
@@ -60,7 +60,7 @@
                         <h4>Add a image</h4>
                         <div class="floating-label right_fld browse2">
                             <label>
-                                <input type="file" accept="image/jpeg, image/png" name="whatsnew_image"  onchange="readURL(this);" />
+                                <input type="file" accept="image/jpeg, image/png" name="whatsnew_image"  onchange="readURL(this);" required />
                                 <img id="blah" src="#" alt="your image" />
                             </label>
                         </div>
