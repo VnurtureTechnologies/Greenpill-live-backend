@@ -51,15 +51,15 @@
                         <div class="claerfix"></div>
 
                         <div class="floating-label left_fld">
-                            <label> Source Link <span class="required">*</span></label>
-                            <input class="floating-input" id="source_link" name="source_link" type="text" required>
+                            <label> Source Link <span class="required">(must start with http:// or https:// )</span></label>
+                            <input class="floating-input" id="source_link" pattern="https?://.+" name="source_link" type="text" required>
                         </div>
 
                         <div class="claerfix"></div>
 
                         <div class="floating-label left_fld">
-                            <label> Youtube URL <span class="required">*</span></label>
-                            <input class="floating-input" id="youtube_url" name="youtube_url" type="text" >
+                            <label> Youtube URL <span class="required"> (must start with http:// or https:// )</span></label>
+                            <input class="floating-input" id="youtube_url" pattern="https?://.+" name="youtube_url" type="text" >
                         </div>
 
                         <div class="claerfix"></div>
@@ -67,7 +67,7 @@
                         <h4>Add a news image</h4>
                         <div class="floating-label right_fld browse2">
                             <label>
-                                <input type="file" accept="image/jpeg, image/png" name="news_image"  onchange="readURL(this);" />
+                                <input type="file" accept="image/jpeg, image/png" name="news_image"  onchange="readURL(this);" required />
                                 <img id="blah" src="#" alt="your image" />
                             </label>
                         </div>

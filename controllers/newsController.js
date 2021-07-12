@@ -9,11 +9,11 @@ module.exports.add_news = async (req, res, next) => {
     const data = {
         title: req.body.title,
         description: req.body.description,
-        productRef: `Product/${req.body.int_user_id}`,
+        productRef: req.body.int_user_id,
         sourceLink: req.body.source_link,
         youtubeUrl: req.body.youtube_url,
         createdAt: Date.now().toString(),
-        image_url: await helpers.uploadImage(req.file)
+        images: [await helpers.uploadImage(req.file)]
     }
 
     db.collection('news_and_innovation').add(data)
@@ -93,10 +93,10 @@ module.exports.edit_news = async (req, res, next) => {
             update_data = {
                 'title': req.body.title,
                 'description': req.body.description,
-                'productRef': `Product/${req.body.int_user_id}`,
+                'productRef': req.body.int_user_id,
                 'sourceLink': req.body.source_link,
                 'youtubeUrl': req.body.youtube_url,
-                'image_url': await helpers.uploadImage(req.file)
+                'images': [await helpers.uploadImage(req.file)]
 
             }
             db.collection('news_and_innovation').doc(`${id}`).update(update_data)
@@ -146,7 +146,7 @@ module.exports.edit_news = async (req, res, next) => {
                 'description': req.body.description,
                 'sourceLink': req.body.source_link,
                 'youtubeUrl': req.body.youtube_url,
-                'image_url': await helpers.uploadImage(req.file)
+                'images': [await helpers.uploadImage(req.file)]
 
             }
             db.collection('news_and_innovation').doc(`${id}`).update(update_data)
@@ -220,7 +220,7 @@ module.exports.get_news_data = function (news_id, callback) {
                 productRef: r.data().productRef,
                 sourceLink: r.data().sourceLink,
                 youtubeUrl: r.data().youtubeUrl,
-                image_url: r.data().image_url
+                image_url: r.data().images[0]
             }
             callback(data);
         })
@@ -238,7 +238,7 @@ module.exports.delete_news = async (req, res, next) => {
         .get()
         .then(async (r) => {
             const data = {
-                filelink1: r.data().image_url
+                filelink1: r.data().images[0]
             }
             filelink = data.filelink1
             await helpers.deleteImage(filelink)
