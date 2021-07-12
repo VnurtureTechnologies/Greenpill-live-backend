@@ -101,6 +101,7 @@ module.exports.get_projects_data = function (project_id, callback) {
                 id: r.id,
                 title: r.data().title,
                 long_description: r.data().longDesc,
+                productRef: r.data().productRef,
                 short_description: r.data().shortDesc,
                 image_url: r.data().images[0]
             }
