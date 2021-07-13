@@ -15,8 +15,8 @@ $(document).ready(function () {
         "order": [],
         "oLanguage": {
             "sInfoFiltered": "",
-            "sProcessing": "<img src='images/ajax-loader.gif' alt='loader'>",
-            "sZeroRecords": "No Users found",
+            "sProcessing": "<img src='/images/ajax-loader.gif' alt='loader'>",
+            "sZeroRecords": "No Data Found",
             "sInfo": "Showing _START_ to _END_ of _TOTAL_ Users",
             "sLengthMenu": "Show _MENU_ Users",
             "sInfoEmpty": "Showing 0 to 0 of 0 Users",
@@ -51,7 +51,7 @@ $(document).ready(function () {
         "columns": [
             {"data": "title", "name": "title"},
             {"data": "createdAt", "name": "createdAt"},
-            {"data": "link", "name": "link"},
+            {"data": "get_link", "name": "get_link"},
             {"data": "get_action_button", "name": "get_action_button"}
         ],
         "columnDefs": [

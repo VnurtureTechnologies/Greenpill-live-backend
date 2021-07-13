@@ -9,7 +9,7 @@ module.exports.add_video = async (req, res, next) => {
   const data = {
     createdAt: req.body.createdAt,
     link: req.body.link,
-    timestamp: "",
+    timestamp:Date.now().toString(),
     title: req.body.title,
   };
   db.collection("videoGallery")
@@ -44,7 +44,7 @@ module.exports.get_video_list = (req, res) => {
           id: r.id,
           title: r.data().title,
           createdAt: r.data().createdAt,
-          link: r.data().link,
+          get_link: get_link(r.data().link),
           get_action_button: get_action_button(req, res, r),
         };
         video_list.push(row);
@@ -63,6 +63,15 @@ module.exports.get_video_list = (req, res) => {
       });
     });
 };
+
+function get_link(data) {
+  var html = "";
+  html += '<span class="action_tools">';
+  html +=
+    '<a class="dt_edit" href="' + data+'" data-toggle="tooltip" title="Edit!" target="_blank" >Video link...</a>';
+  html += "</span";
+  return html;
+}
 
 function get_action_button(req, res, data) {
   var html = "";
@@ -89,10 +98,8 @@ module.exports.get_video_data = function (video_id, callback) {
       const data = {
         id: r.id,
         title: r.data().title,
-        description: r.data().description,
-        type: r.data().type,
-        sourceLink: r.data().sourceLink,
-        img: r.data().img,
+        createdAt: r.data().createdAt,
+        link: r.data().link
       };
       callback(data);
     })
@@ -106,22 +113,12 @@ module.exports.edit_video = async (req, res, next) => {
   var db = admin.firestore();
   var id = req.params.id;
   var update_data = "";
-  if (req.file) {
+  
     update_data = {
       'title': req.body.title,
-      'description': req.body.description,
-      'type': req.body.type,
-      'sourceLink': req.body.sourcelink,
-      'img': await helpers.uploadImage(req.file)
+      'createdAt': req.body.createdAt,
+      'link': req.body.link
     };
-  } else {
-    update_data = {
-      'title': req.body.title,
-      'description': req.body.description,
-      'type': req.body.type,
-      'sourceLink': req.body.sourcelink
-    };
-  }
 
   db.collection("videoGallery")
     .doc(`${id}`)
@@ -130,7 +127,7 @@ module.exports.edit_video = async (req, res, next) => {
       res.json({
         status: true,
         status_code: 200,
-        message: "Idea edited successfully",
+        message: "video data edited successfully",
         redirect: "/video/list"
       });
     })
@@ -146,27 +143,13 @@ module.exports.edit_video = async (req, res, next) => {
 module.exports.delete_video = async (req, res, next) => {
   var db = admin.firestore();
   var id = req.params.id;
-  var filelink = "";
-  db.collection("videoGallery")
-    .doc(`${id}`)
-    .get()
-    .then(async (r) => {
-      const data = {
-        filelink1: r.data().img
-      }
-      filelink = data.filelink1
-      await helpers.deleteImage(filelink)
-    })
-    .catch((err) => {
-      console.log(err)
-    });
 
   db.collection('videoGallery').doc(`${id}`).delete()
     .then((r) => {
       res.json({
         status: true,
         status_code: 200,
-        message: "Idea deleted successfully",
+        message: "Video deleted successfully",
         redirect: "/video/list"
       })
     })

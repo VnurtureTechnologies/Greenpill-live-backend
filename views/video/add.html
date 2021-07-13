@@ -34,14 +34,14 @@
 
                         <div class="floating-label left_fld">
                             <label> Created On <span class="required">*</span></label>
-                            <input class="floating-input" id="rest_name" name="createdOn" type="text" required>
+                            <input class="floating-input" id="rest_name" name="createdAt" type="text" required>
                         </div>
 
                         <div class="claerfix"></div>
 
                         <div class="floating-label left_fld">
-                            <label> Link <span class="required">*</span></label>
-                            <input class="floating-input" id="rest_name" name="link" type="text" required>
+                            <label> Link <span class="required">* (must start with http:// or https:// )</span></label>
+                            <input class="floating-input" id="rest_name" pattern="https?://.+" name="link" type="text" required>
                         </div>
 
                         <div class="claerfix"></div>
