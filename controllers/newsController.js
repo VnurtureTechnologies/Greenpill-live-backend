@@ -17,13 +17,13 @@ module.exports.add_news = async (req, res, next) => {
     }
 
     db.collection('news_and_innovation').add(data)
-    .then( (result) => {
-        helpers.sendGenericNotification(notifier);
-        res.json({
-            status: true,
-            status_code: 200,
-            message: "Product added successfully",
-            redirect: '/news'
+        .then((result) => {
+            helpers.sendGenericNotification(notifier);
+            res.json({
+                status: true,
+                status_code: 200,
+                message: "News added successfully",
+                redirect: '/news'
             })
         })
         .catch((err) => {
@@ -33,7 +33,7 @@ module.exports.add_news = async (req, res, next) => {
                 error: err,
                 message: "Something went wrong"
             })
-    })
+        })
 }
 
 function response(res, news_list) {
@@ -41,7 +41,7 @@ function response(res, news_list) {
         status: true,
         status_code: 201,
         data: news_list,
-        message: "Project list fetched successfully"
+        message: "News list fetched successfully"
     })
 }
 
@@ -52,22 +52,22 @@ module.exports.get_news_list = async (req, res) => {
     await db.collection('news_and_innovation')
         .get()
         .then((result) => {
-            result.forEach(async(r) => {
+            result.forEach(async (r) => {
                 await db.collection('product').doc(r.data().productRef)
-                .get()
-                .then(async (innerResult) => { 
-                    const x = innerResult.data().title;
-                    var row = {
-                        "id": r.id,
-                        "title": r.data().title,
-                        "description": r.data().description,
-                        "source link": r.data().sourceLink,
-                        "youtube url": r.data().youtubeUrl,
-                        "product": x,
-                        "get_action_button": get_action_button(req, res, r)
-                    };
-                    news_list.push(row)
-                })
+                    .get()
+                    .then(async (innerResult) => {
+                        const x = innerResult.data().title;
+                        var row = {
+                            "id": r.id,
+                            "title": r.data().title,
+                            "description": r.data().description,
+                            "source link": r.data().sourceLink,
+                            "youtube url": r.data().youtubeUrl,
+                            "product": x,
+                            "get_action_button": get_action_button(req, res, r)
+                        };
+                        news_list.push(row)
+                    })
             })
             setTimeout(response, 1000, res, news_list);
         })
@@ -88,112 +88,40 @@ module.exports.edit_news = async (req, res, next) => {
     var id = req.params.id;
     var update_data = '';
 
-    if (req.body.int_user_id != '') {
-        if (req.file) {
-            update_data = {
-                'title': req.body.title,
-                'description': req.body.description,
-                'productRef': req.body.int_user_id,
-                'sourceLink': req.body.source_link,
-                'youtubeUrl': req.body.youtube_url,
-                'images': [await helpers.uploadImage(req.file)]
-
-            }
-            db.collection('news_and_innovation').doc(`${id}`).update(update_data)
-                .then((r) => {
-                    res.json({
-                        status: true,
-                        status_code: 200,
-                        message: "News edited successfully",
-                        redirect: "/news"
-                    })
-                })
-                .catch((err) => {
-                    res.json({
-                        status: false,
-                        status_code: 501,
-                        message: "Internal server error"
-                    })
-                })
-        } else {
-            update_data = {
-                'title': req.body.title,
-                'description': req.body.description,
-                'sourceLink': req.body.source_link,
-                'youtubeUrl': req.body.youtube_url,
-            }
-            db.collection('news_and_innovation').doc(`${id}`).update(update_data)
-                .then((r) => {
-                    res.json({
-                        status: true,
-                        status_code: 200,
-                        message: "News edited successfully",
-                        redirect: "/news"
-                    })
-                })
-                .catch((err) => {
-                    res.json({
-                        status: false,
-                        status_code: 501,
-                        message: "Internal server error"
-                    })
-                })
+    if (req.file) {
+        update_data = {
+            'title': req.body.title,
+            'description': req.body.description,
+            'productRef': req.body.int_user_id,
+            'sourceLink': req.body.source_link,
+            'youtubeUrl': req.body.youtube_url,
+            'images': [await helpers.uploadImage(req.file)]
         }
     } else {
-        if (req.file) {
-            update_data = {
-                'title': req.body.title,
-                'description': req.body.description,
-                'sourceLink': req.body.source_link,
-                'youtubeUrl': req.body.youtube_url,
-                'images': [await helpers.uploadImage(req.file)]
-
-            }
-            db.collection('news_and_innovation').doc(`${id}`).update(update_data)
-                .then((r) => {
-                    res.json({
-                        status: true,
-                        status_code: 200,
-                        message: "News edited successfully",
-                        redirect: "/news"
-                    })
-                })
-                .catch((err) => {
-                    res.json({
-                        status: false,
-                        status_code: 501,
-                        message: "Internal server error"
-                    })
-                })
-        } else {
-            update_data = {
-                'title': req.body.title,
-                'description': req.body.description,
-                'sourceLink': req.body.source_link,
-                'youtubeUrl': req.body.youtube_url,
-            }
-            db.collection('news_and_innovation').doc(`${id}`).update(update_data)
-                .then((r) => {
-                    res.json({
-                        status: true,
-                        status_code: 200,
-                        message: "News edited successfully",
-                        redirect: "/news"
-                    })
-                })
-                .catch((err) => {
-                    res.json({
-                        status: false,
-                        status_code: 501,
-                        message: "Internal server error"
-                    })
-                })
+        update_data = {
+            'title': req.body.title,
+            'description': req.body.description,
+            'productRef': req.body.int_user_id,
+            'sourceLink': req.body.source_link,
+            'youtubeUrl': req.body.youtube_url,
         }
     }
-
-
-
-
+    db.collection('news_and_innovation').doc(`${id}`).update(update_data)
+        .then((r) => {
+            res.json({
+                status: true,
+                status_code: 200,
+                message: "News edited successfully",
+                redirect: "/news"
+            })
+        })
+        .catch((err) => {
+            res.json({
+                status: false,
+                status_code: 501,
+                message: "Internal server error"
+            })
+        })
 }
 
 function get_action_button(req, res, data) {
@@ -201,8 +129,8 @@ function get_action_button(req, res, data) {
     html += '<span class="action_tools">';
     html += '<a class="dt_edit" href="/news/edit/' + data.id + '" data-toggle="tooltip" title="Edit!"><i class="fa fa-pencil"></i></a>';
     html += '<a class="dt_del delete" href="javascript:void(0);" data-toggle="tooltip" title="Delete!" data-action="trash" data-id="' +
-    data.id +
-    '" ><i class="fa fa-trash"></i></a>';
+        data.id +
+        '" ><i class="fa fa-trash"></i></a>';
     html += '</span';
     return html;
 }

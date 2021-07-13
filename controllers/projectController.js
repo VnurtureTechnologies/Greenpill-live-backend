@@ -18,14 +18,14 @@ module.exports.add_project = async (req, res) => {
     }
 
     await db.collection('project')
-    .add(data)
-    .then((r) => {
-        helpers.sendGenericNotification(notifier);
-        res.json({
-            status: true,
-            status_code: 200,
-            message: "Project added successfully",
-            redirect: "/projects"
+        .add(data)
+        .then((r) => {
+            helpers.sendGenericNotification(notifier);
+            res.json({
+                status: true,
+                status_code: 200,
+                message: "Project added successfully",
+                redirect: "/projects"
             })
         })
         .catch((err) => {
@@ -34,8 +34,8 @@ module.exports.add_project = async (req, res) => {
                 status_code: 501,
                 message: "Something went wrong",
                 redirect: "/projects/add"
+            })
         })
-    })
 }
 
 function response(res, project_list) {
@@ -119,58 +119,31 @@ module.exports.edit_project = async (req, res, next) => {
     var filelink = "";
     await helpers.getfolderName('projects');
 
-    if (req.body.product_id != '') {
-        if (req.file) {
-            db.collection("project").doc(`${id}`).get().then(async (r) => {
-                const data = {
-                    filelink1: r.data().images[0]
-                }
-                filelink = data.filelink1
-                await helpers.deleteImage(filelink)
-            })
-            .catch((err) => {
-            });
-            update_data = {
-                'title': req.body.project_title,
-                'longDesc': req.body.long_description,
-                'shortDesc': req.body.short_description,
-                'productRef': req.body.product_id,
-                'images': [await helpers.uploadImage(req.file)]
+    if (req.file) {
+        db.collection("project").doc(`${id}`).get().then(async (r) => {
+            const data = {
+                filelink1: r.data().images[0]
             }
-        }
-        else {
-            update_data = {
-                'title': req.body.project_title,
-                'longDesc': req.body.long_description,
-                'shortDesc': req.body.short_description,
-                'productRef': req.body.product_id
-            }
-        }
-    } else {
-        if (req.file) {
-            db.collection("project").doc(`${id}`).get().then(async (r) => {
-                const data = {
-                    filelink1: r.data().images[0]
-                }
-                filelink = data.filelink1
-                await helpers.deleteImage(filelink)
-            })
+            filelink = data.filelink1
+            await helpers.deleteImage(filelink)
+        })
             .catch((err) => {
             });
 
-            update_data = {
-                'title': req.body.project_title,
-                'longDesc': req.body.long_description,
-                'shortDesc': req.body.short_description,
-                'images': [await helpers.uploadImage(req.file)]
-            }
+        update_data = {
+            'title': req.body.project_title,
+            'longDesc': req.body.long_description,
+            'shortDesc': req.body.short_description,
+            'productRef': req.body.product_id,
+            'images': [await helpers.uploadImage(req.file)]
         }
-        else {
-            update_data = {
-                'title': req.body.project_title,
-                'longDesc': req.body.long_description,
-                'shortDesc': req.body.short_description,
-            }
+    }
+    else {
+        update_data = {
+            'title': req.body.project_title,
+            'longDesc': req.body.long_description,
+            'shortDesc': req.body.short_description,
+            'productRef': req.body.product_id
         }
     }
 
@@ -179,7 +152,7 @@ module.exports.edit_project = async (req, res, next) => {
             res.json({
                 status: true,
                 status_code: 200,
-                message: "Product edited successfully",
+                message: "Project edited successfully",
                 redirect: '/projects'
             })
         })
