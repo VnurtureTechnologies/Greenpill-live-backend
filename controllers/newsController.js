@@ -20,7 +20,7 @@ module.exports.add_news = async (req, res, next) => {
 
     db.collection('news_and_innovation').add(data)
         .then((result) => {
-            helpers.sendGenericNotification(notifier);
+            helpers.sendGenericNotification(notifier, notifier_title, notifier_description);
             res.json({
                 status: true,
                 status_code: 200,
