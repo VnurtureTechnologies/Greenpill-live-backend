@@ -1,0 +1,70 @@
+<html lang="en">
+
+<head>
+    <title>{{title}}</title>
+    {{> header}}
+    <style>
+        .tag_fields {
+            height: 150px;
+            overflow-y: scroll;
+            scrollbar-color: rgb(78, 140, 191);
+            scrollbar-width: thin;
+        }
+    </style>
+</head>
+
+<body>
+    {{> sidebars}}
+    <div class="content-wrapper">
+        <div class="body_content">
+            <div class="common_field_sec">
+                <div class="common_sec_title">
+                    <h2>{{page_title}}</h2>
+                </div>
+
+                <form action="javascript:void(0);" class="edit_form" data-id={{video.id}} enctype="multipart/form-data">
+                    <div class="field_inner_sec">
+
+                        <div class="floating-label left_fld">
+                            <label> Title </label>
+                            <input class="floating-input" id="rest_name" value="{{video.title}}" name="title"
+                                type="text">
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld">
+                            <label> Created On </label>
+                            <input class="floating-input" id="rest_name" value="{{video.createdAt}}" name="createdAt"
+                                type="text">
+                        </div>
+
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld">
+                            <label> Link <span class="required"> (must start with http:// or https:// )</span> </label>
+                            <input class="floating-input" id="rest_name" pattern="https?://.+" value="{{video.link}}"
+                                name="link" type="text">
+                        </div>
+
+
+                        <div class="claerfix"></div>
+                    </div>
+
+
+                    <div class="form_submit_sec">
+                        <button type="submit" class="btn">Submit</button>
+                    </div>
+                </form>
+            </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    <!-- END -->
+    {{> footer}}
+    <script src="/js/video/edit.js"></script>
+</body>
+
+</html>
