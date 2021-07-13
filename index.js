@@ -84,6 +84,7 @@ const whatsnewController = require('./controllers/whatsnewController');
 const partnerpController = require('./controllers/partnerpController');
 const greeniController = require('./controllers/greeniController');
 const adminController = require('./controllers/adminController');
+const videoController = require('./controllers/videoController');
 
 
 var data_user;
@@ -401,6 +402,46 @@ app.post('/whatsnew-list', upload.none() ,whatsnewController.get_whatsnew_list);
 app.post('/whatsnew/do_add', upload.single('whatsnew_image') , whatsnewController.add_whatsnew);
 app.post('/whatsnew/do_edit/:id', upload.single('whatsnew_image') ,whatsnewController.edit_whatsnew);
 app.delete('/whatsnew-delete/:id', whatsnewController.delete_whatsnew);
+
+
+
+
+
+
+/* VIDEO ROUTES */
+app.get('/video/add', ensureLogin.ensureLoggedIn(),function(req,res) {
+    res.render('video/add', {
+        title: 'video add',
+        page_title: 'Add New Video'
+    })
+})
+
+
+app.get('/video/list', ensureLogin.ensureLoggedIn(), function(req,res) {
+    res.render('video/index', {
+        title: 'video',
+        page_title: 'video-List'
+    })
+})
+
+app.get('/video/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
+    var id = req.params.id;
+    var data = [];
+
+    videoController.get_video_data(id, function(video) {
+        data.push({'video_data': video})
+        res.render('video/edit', {
+            title: "video edit",
+            page_title: "Edit video",
+            video: data[0]['video_data']
+        })
+    })
+})
+
+app.post('/video:list', upload.none() ,videoController.get_video_list);
+app.post('/video/do_add', upload.single('video_image') , videoController.add_video);
+app.post('/video/do_edit/:id', upload.single('video_image') ,videoController.edit_video);
+app.delete('/video-delete/:id', videoController.delete_video);
 
 /* PRODUCT SUB CATEGORY ROUTES */
 /* NOT NEEDED FOR NOW UNCOMMENT WHEN IN NEED
