@@ -11,6 +11,7 @@ module.exports.add_project = async (req, res) => {
     await helpers.getfolderName('projects')
 
     var data = {
+        createdAt: Date.now().toString(),
         title: req.body.title,
         longDesc: req.body.long_description,
         shortDesc: req.body.short_description,
@@ -30,14 +31,13 @@ module.exports.add_project = async (req, res) => {
             })
         })
         .catch((err) => {
-            console.log(err);
             res.json({
                 status: false,
                 status_code: 501,
                 message: "Something went wrong",
                 redirect: "/projects/add"
+            })
         })
-    })
 }
 
 function response(res, project_list) {
@@ -76,7 +76,6 @@ module.exports.get_projects_list = async (req, res) => {
             setTimeout(response, 1000, res, project_list);
         })
         .catch((err) => {
-            console.log(err);
             res.json({
                 status: false,
                 status_code: 501,
@@ -105,6 +104,7 @@ module.exports.get_projects_data = function (project_id, callback) {
                 id: r.id,
                 title: r.data().title,
                 long_description: r.data().longDesc,
+                productRef: r.data().productRef,
                 short_description: r.data().shortDesc,
                 image_url: r.data().images[0]
             }
@@ -122,60 +122,31 @@ module.exports.edit_project = async (req, res, next) => {
     var filelink = "";
     await helpers.getfolderName('projects');
 
-    if (req.body.product_id != '') {
-        if (req.file) {
-            db.collection("project").doc(`${id}`).get().then(async (r) => {
-                const data = {
-                    filelink1: r.data().images[0]
-                }
-                filelink = data.filelink1
-                await helpers.deleteImage(filelink)
-            })
-            .catch((err) => {
-                console.log(err)
-            });
-            update_data = {
-                'title': req.body.project_title,
-                'longDesc': req.body.long_description,
-                'shortDesc': req.body.short_description,
-                'productRef': req.body.product_id,
-                'images': [await helpers.uploadImage(req.file)]
+    if (req.file) {
+        db.collection("project").doc(`${id}`).get().then(async (r) => {
+            const data = {
+                filelink1: r.data().images[0]
             }
-        }
-        else {
-            update_data = {
-                'title': req.body.project_title,
-                'longDesc': req.body.long_description,
-                'shortDesc': req.body.short_description,
-                'productRef': req.body.product_id
-            }
-        }
-    } else {
-        if (req.file) {
-            db.collection("project").doc(`${id}`).get().then(async (r) => {
-                const data = {
-                    filelink1: r.data().images[0]
-                }
-                filelink = data.filelink1
-                await helpers.deleteImage(filelink)
-            })
+            filelink = data.filelink1
+            await helpers.deleteImage(filelink)
+        })
             .catch((err) => {
-                console.log(err)
             });
 
-            update_data = {
-                'title': req.body.project_title,
-                'longDesc': req.body.long_description,
-                'shortDesc': req.body.short_description,
-                'images': [await helpers.uploadImage(req.file)]
-            }
+        update_data = {
+            'title': req.body.project_title,
+            'longDesc': req.body.long_description,
+            'shortDesc': req.body.short_description,
+            'productRef': req.body.product_id,
+            'images': [await helpers.uploadImage(req.file)]
         }
-        else {
-            update_data = {
-                'title': req.body.project_title,
-                'longDesc': req.body.long_description,
-                'shortDesc': req.body.short_description,
-            }
+    }
+    else {
+        update_data = {
+            'title': req.body.project_title,
+            'longDesc': req.body.long_description,
+            'shortDesc': req.body.short_description,
+            'productRef': req.body.product_id
         }
     }
 
@@ -184,7 +155,7 @@ module.exports.edit_project = async (req, res, next) => {
             res.json({
                 status: true,
                 status_code: 200,
-                message: "Product edited successfully",
+                message: "Project edited successfully",
                 redirect: '/projects'
             })
         })
@@ -213,7 +184,6 @@ module.exports.delete_project = async (req, res, next) => {
             await helpers.deleteImage(filelink)
         })
         .catch((err) => {
-            console.log(err)
         });
 
     db.collection('project').doc(`${id}`).delete()

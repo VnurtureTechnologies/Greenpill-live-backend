@@ -11,7 +11,6 @@ exports.getfolderName=(foldername)=>{
 exports.uploadImage = (file) => new Promise((resolve, reject) => {
     const bucket = admin.storage().bucket('greenpill-live.appspot.com');
     const {originalname, buffer} = file;
-    console.log(originalname)
     const file_name = originalname.replace(/ /g, "_");
     const gcsFileName = `${foldername1}/${file_name}`;
     const blob = bucket.file(gcsFileName);

@@ -44,6 +44,7 @@ module.exports.get_all_users_list = (req,res,next) => {
                 "firstName":r.data().firstName,
                 "lastName":r.data().lastName,
                 "mobileNumber":r.data().mobileNumber,
+                "email":r.data().email,
                 "role":r.data().role,
                 "companyName":r.data().companyName,
                 "get_action_button": get_action_button(req,res,r)

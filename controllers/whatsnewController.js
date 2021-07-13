@@ -107,6 +107,20 @@ module.exports.edit_whatsnew = async (req, res, next) => {
   var id = req.params.id;
   var update_data = "";
   if (req.file) {
+    db.collection("whatsnew")
+      .doc(`${id}`)
+      .get()
+      .then(async (r) => {
+        const data = {
+          filelink1: r.data().img
+        }
+        filelink = data.filelink1
+        await helpers.deleteImage(filelink)
+      })
+      .catch((err) => {
+        console.log("delete err", err)
+      });
+
     update_data = {
       'title': req.body.title,
       'description': req.body.description,
@@ -149,33 +163,33 @@ module.exports.delete_whatsnew = async (req, res, next) => {
   var id = req.params.id;
   var filelink = "";
   db.collection("whatsnew")
-  .doc(`${id}`)
-  .get()
-  .then(async (r) => {
-    const data={
-      filelink1 : r.data().img
-    }
-    filelink = data.filelink1
-    await helpers.deleteImage(filelink)
-  })
-  .catch((err) => {
-    console.log(err)
-  });
+    .doc(`${id}`)
+    .get()
+    .then(async (r) => {
+      const data = {
+        filelink1: r.data().img
+      }
+      filelink = data.filelink1
+      await helpers.deleteImage(filelink)
+    })
+    .catch((err) => {
+      console.log(err)
+    });
 
   db.collection('whatsnew').doc(`${id}`).delete()
-    .then( (r) => {
-        res.json({
-            status: true,
-            status_code: 200,
-            message: "whatsnew deleted successfully",
-            redirect:"/whatsnew/list"
-        })
+    .then((r) => {
+      res.json({
+        status: true,
+        status_code: 200,
+        message: "whatsnew deleted successfully",
+        redirect: "/whatsnew/list"
+      })
     })
-    .catch( (err) => {
-        res.json({
-            status: false,
-            status_code: 501,
-            message: "Internal server error",
-        })
+    .catch((err) => {
+      res.json({
+        status: false,
+        status_code: 501,
+        message: "Internal server error",
+      })
     })
 };

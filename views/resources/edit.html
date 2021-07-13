@@ -26,7 +26,7 @@
                     <div class="field_inner_sec">
 
                         <div class="floating-label left_fld">
-                            <label> Title <span class="required">*</span></label>
+                            <label> Title </label>
                             <input class="floating-input" id="rest_name" value="{{resources.title}}" name="title"
                                 type="text">
                         </div>
@@ -34,7 +34,7 @@
                         <div class="claerfix"></div>
 
                         <div class="floating-label left_fld">
-                            <label> Description <span class="required">*</span></label>
+                            <label> Description </label>
                             <input class="floating-input" id="rest_name" value="{{resources.description}}"
                                 name="description" type="text">
                         </div>
@@ -42,8 +42,8 @@
                         <div class="claerfix"></div>
 
                         <div class="floating-label left_fld">
-                            <label>Choose a product<span class="required">*</span></label>
-                            <select class="floating-select" name="productRef">
+                            <label>Choose a product</label>
+                            <select id="selected" class="floating-select" name="productRef">
                                 <option value="">--Choose--</option>
                                 {{#each products}}
                                 <option value="{{this.id}}">{{this.title}}</option>
@@ -55,7 +55,7 @@
                         <div class="claerfix"></div>
 
                         <div class="floating-label left_fld">
-                            <label> PDF URL <span class="required">* (must start with http:// or https:// )</span></label>
+                            <label> PDF URL <span class="required"> (must start with http:// or https:// )</span></label>
                             <input class="floating-input" pattern="https?://.+" id="rest_name" value="{{resources.pdfUrl}}" name="pdfUrl"
                                 type="text">
                         </div>
@@ -83,6 +83,10 @@
     </div>
     <!-- END -->
     {{> footer}}
+    <script>
+        $('#selected option[value={{resources.productRef}}]').attr("selected", "selected");
+    </script>
+    
     <script>
         function readURL(input) {
             if (input.files && input.files[0]) {
