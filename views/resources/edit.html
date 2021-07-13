@@ -43,7 +43,7 @@
 
                         <div class="floating-label left_fld">
                             <label>Choose a product</label>
-                            <select class="floating-select" name="productRef">
+                            <select id="selected" class="floating-select" name="productRef">
                                 <option value="">--Choose--</option>
                                 {{#each products}}
                                 <option value="{{this.id}}">{{this.title}}</option>
@@ -83,6 +83,10 @@
     </div>
     <!-- END -->
     {{> footer}}
+    <script>
+        $('#selected option[value={{resources.productRef}}]').attr("selected", "selected");
+    </script>
+    
     <script>
         function readURL(input) {
             if (input.files && input.files[0]) {
