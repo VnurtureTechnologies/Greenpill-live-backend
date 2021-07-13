@@ -4,6 +4,8 @@ const helpers = require('../helpers');
 module.exports.add_resources = async (req, res, next) => {
     var db = admin.firestore();
     var notifier = "resource notification";
+    var notifier_title = req.body.title;
+    var notifier_description = req.body.description;
 
     const data = {
         title: req.body.title,
@@ -16,7 +18,7 @@ module.exports.add_resources = async (req, res, next) => {
 
     db.collection('resources').add(data)
         .then((result) => {
-            helpers.sendGenericNotification(notifier)
+            helpers.sendGenericNotification(notifier, notifier_title, notifier_description)
             res.json({
                 status: true,
                 status_code: 200,

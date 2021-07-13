@@ -34,7 +34,7 @@ exports.deleteImage = (filelink) => new Promise((resolve, reject) => {
     bucket.file(`${foldername1}/${filelink1}`).delete();
 });
 
-exports.sendGenericNotification = async function(notifier) {
+exports.sendGenericNotification = async function(notifier, title, description) {
     var db = admin.firestore();
 
     const notification_options = {
@@ -47,32 +47,32 @@ exports.sendGenericNotification = async function(notifier) {
     if (notifier == "general notification") {
         message = {
             notification: {
-                title: "Notification",
-                body:  "Greenpill has a notification"
+                title: `Notification - ${title}`,
+                body:  description
             }
         }   
     }
     else if(notifier = "project notification") {
         message = {
             notification: {
-                title: "New Project Notification",
-                body:  "New project added"
+                title: `New project added - ${title}`,
+                body:  description
             }
         }
     }
     else if(notifier = "news notification") {
         message = {
             notification: {
-                title: "New news Notification",
-                body:  "New news added"
+                title: `New news notification - ${title}`,
+                body:  description
             }
         }
     }   
     else if(notifier = "resource notification") {
         message = {
             notification: {
-                title: "New resource Notification",
-                body:  "New resource added"
+                title: `New resource Notification - ${title}`,
+                body:  description
             }
         }
     }

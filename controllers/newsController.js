@@ -4,6 +4,8 @@ const helpers = require('../helpers');
 module.exports.add_news = async (req, res, next) => {
     var db = admin.firestore();
     var notifier = "news notification";
+    var notifier_title = req.body.title;
+    var notifier_description = req.body.description;
 
     await helpers.getfolderName('news&innovation')
     const data = {
@@ -18,7 +20,7 @@ module.exports.add_news = async (req, res, next) => {
 
     db.collection('news_and_innovation').add(data)
     .then( (result) => {
-        helpers.sendGenericNotification(notifier);
+        helpers.sendGenericNotification(notifier, notifier_title, notifier_description);
         res.json({
             status: true,
             status_code: 200,
