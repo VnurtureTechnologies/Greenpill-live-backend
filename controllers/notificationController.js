@@ -1,17 +1,22 @@
 const admin = require('firebase-admin');
+const helpers = require('../helpers');
 
 module.exports.add_notification = async(req,res,next) => {
     var db = admin.firestore();
+    var notifier = "general notification";
+    var notifier_title = req.body.title;
+    var notifier_description = req.body.shortdescription;
 
     const data = {
         title : req.body.title,
         shortDescription: req.body.shortdescription,
         category: req.body.category,
-        createdAt: Date.now(),
+        timestamp: Date.now().toString(),
     }
 
     db.collection('notifications').add(data)
     .then( (result) => {
+        helpers.sendGenericNotification(notifier, notifier_title, notifier_description)
         res.json({
             status: true,
             status_code: 200,
@@ -42,14 +47,18 @@ module.exports.get_notification_list = async(req,res) => {
                 "title" : r.data().title,
                 "shortdescription": r.data().shortDescription,
                 "category" : r.data().category,
+                "created_at": r.data().timestamp,
                 "get_action_button": get_action_button(req,res,r)
             };
             notification_list.push(row)
         })
+        sorted_list = notification_list.sort((a,b) => {
+            return b.created_at - a.created_at;
+        })
         res.json({
             status: true,
             status_code: 201,
-            data: notification_list,
+            data: sorted_list,
             message: "Notification fetched successfully"
         })
     })

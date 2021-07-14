@@ -27,14 +27,14 @@
 
                         <div class="floating-label left_fld">
                             <label> Title <span class="required">*</span></label>
-                            <input class="floating-input" id="rest_name" name="product_title" type="text">
+                            <input class="floating-input" id="rest_name" name="product_title" type="text" required>
                         </div>
 
                         <div class="claerfix"></div>
 
                         <div class="floating-label left_fld">
                             <label>Choose a product type<span class="required">*</span></label>
-                            <select class="floating-select" name="type">
+                            <select class="floating-select" name="type" required>
                                 <option value="">--Choose--</option>
                                 <option value="product">Product</option>
                                 <option value="News and resources">News and resources</option>
@@ -46,7 +46,8 @@
                         <h4>Add a product image</h4>
                         <div class="floating-label right_fld browse2">
                             <label>
-                                <input class="" type="file" accept='image/jpeg, image/png' name="product_image"> <img src="/images/gogreen.jpg">
+                                <input type="file" accept="image/jpeg, image/png" name="product_image"  onchange="readURL(this);" />
+                                <img id="blah" src="#" alt="your image" />
                             </label>
                         </div>
                         </div>
@@ -63,6 +64,22 @@
 </div>
 <!-- END -->
 {{> footer}}
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(150)
+                    .height(200);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 <script src="/js/products/add.js"></script>
 </body>
 

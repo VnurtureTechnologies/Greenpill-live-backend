@@ -15,7 +15,7 @@ $(document).ready(function () {
         "order": [],
         "oLanguage": {
             "sInfoFiltered": "",
-            "sProcessing": "<img src='images/ajax-loader.gif' alt='loader'>",
+            "sProcessing": "<img src='/images/ajax-loader.gif' alt='loader'>",
             "sZeroRecords": "No Data Found",
             "sInfo": "Showing _START_ to _END_ of _TOTAL_ Users",
             "sLengthMenu": "Show _MENU_ Users",
@@ -41,7 +41,7 @@ $(document).ready(function () {
             }
         },
         "ajax": {
-            url: '/partnerp-list',
+            url: '/video:list',
             type: "post",
             dataType: 'json',
             // data: function (d) {
@@ -49,11 +49,9 @@ $(document).ready(function () {
             // }
         },
         "columns": [
-            {"data": "name", "name": "name"},
-            {"data": "phone", "name": "phone"},
-            {"data": "email", "name": "email"},
-            {"data": "subject", "name": "subject"},
-            {"data": "message", "name": "message"},
+            {"data": "title", "name": "title"},
+            {"data": "createdAt", "name": "createdAt"},
+            {"data": "get_link", "name": "get_link"},
             {"data": "get_action_button", "name": "get_action_button"}
         ],
         "columnDefs": [
@@ -75,29 +73,29 @@ $(document).ready(function () {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.value) {
-                partnerp_delete_action('/partnerp-delete/' + id, data, 'delete');
+                do_btn_action('/video-delete/' + id, data ,'delete');
             }
         });
     });
 });
 
-function partnerp_delete_action(url, data, type) {
+function do_btn_action(url, data, type) {
     $.ajax({
         url: url,
         type: type,
-		data: data,
+        data: data,
         dataType: 'json',
     }).done(function (response) {
         if (response.status == false) {
-            Swal.fire("Sorry!", "Unable to process your request. Please try again later.", "error");
+            Swal.fire("Sorry!", "Unable to process your request. Please try again later.)", "error");
         } else {
             Swal.fire(response.title, response.message , "success");
             if (response.redirect != '') {
-                setTimeout(function () {
-                    location.replace(response.redirect);
-                }, 1200);
-            }
+            setTimeout(function () {
+                location.replace(response.redirect);
+            }, 1200);
         }
+      }
     }).fail(function (error) {
         Swal.fire({
             icon: 'error',

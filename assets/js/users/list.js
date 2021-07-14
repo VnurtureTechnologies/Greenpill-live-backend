@@ -16,7 +16,7 @@ $(document).ready(function () {
         "oLanguage": {
             "sInfoFiltered": "",
             "sProcessing": "<img src='images/ajax-loader.gif' alt='loader'>",
-            "sZeroRecords": "No Users found",
+            "sZeroRecords": "No Data Found",
             "sInfo": "Showing _START_ to _END_ of _TOTAL_ Users",
             "sLengthMenu": "Show _MENU_ Users",
             "sInfoEmpty": "Showing 0 to 0 of 0 Users",
@@ -52,6 +52,7 @@ $(document).ready(function () {
             {"data": "firstName", "name": "firstName"},
             {"data": "lastName", "name": "lastName"},
             {"data": "mobileNumber", "name": "mobileNumber"},
+            {"data": "email", "name": "email"},
             {"data": "role", "name": "role"},
             {"data": "companyName", "name": "companyName"},
             {"data": "get_action_button", "name": "get_action_button"}

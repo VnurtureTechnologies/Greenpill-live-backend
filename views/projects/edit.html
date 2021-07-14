@@ -48,7 +48,7 @@
 
                         <div class="floating-label left_fld">
                             <label>Choose a product<span class="required">*</span></label>
-                            <select class="floating-select" name="product_id">
+                            <select id="selected" class="floating-select" name="product_id">
                                     <option value="">--Choose--</option>
                                     {{#each products}}
                                     <option value="{{this.id}}">{{this.title}}</option>
@@ -61,7 +61,8 @@
                         <h4>Add a project image</h4>
                         <div class="floating-label right_fld browse2">
                             <label>
-                                <input class="" type="file" accept='image/jpeg, image/png' name="project_image"> <img src="{{project.image_url}}">
+                                <input type="file" accept="image/jpeg, image/png" name="project_image"  onchange="readURL(this);" />
+                                <img id="blah" src="#" alt="your image" />
                             </label>
                         </div>
                         </div>
@@ -78,6 +79,25 @@
 </div>
 <!-- END -->
 {{> footer}}
+<script>
+    $('#selected option[value={{project.productRef}}]').attr("selected", "selected");
+</script>
+<script>
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#blah')
+                    .attr('src', e.target.result)
+                    .width(150)
+                    .height(200);
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
 <script src="/js/projects/edit.js"></script>
 </body>
 

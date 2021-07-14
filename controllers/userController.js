@@ -44,6 +44,7 @@ module.exports.get_all_users_list = (req,res,next) => {
                 "firstName":r.data().firstName,
                 "lastName":r.data().lastName,
                 "mobileNumber":r.data().mobileNumber,
+                "email":r.data().email,
                 "role":r.data().role,
                 "companyName":r.data().companyName,
                 "get_action_button": get_action_button(req,res,r)
@@ -159,13 +160,23 @@ module.exports.get_all_projects_count = function (callback) {
 module.exports.edit_user = (req,res,next) => {
     var db = admin.firestore();
     var id = req.params.id;
-    var update_data = {
+    var update_data = ""
+    if(req.body.role!=""){
+      update_data = {
         'firstName' : req.body.firstName,
         'lastName' : req.body.lastName,
         'mobileNumber' : req.body.mobileNumber,
         'role' : req.body.role,
         'companyName' : req.body.companyName,
     }
+    }else{update_data = {
+      'firstName' : req.body.firstName,
+      'lastName' : req.body.lastName,
+      'mobileNumber' : req.body.mobileNumber,
+      'companyName' : req.body.companyName,
+  }}
+    
+    
     
     db.collection('users').doc(`${id}`).update(update_data)
     .then( (r) => {
