@@ -38,10 +38,15 @@ module.exports.add_resources = async (req, res, next) => {
 }
 
 function response(res, resources_list) {
+
+    sorted_resourcesList = resources_list.sort((a,b) => {
+        return b.created_at - a.created_at
+    })
+
     res.json({
         status: true,
         status_code: 201,
-        data: resources_list,
+        data: sorted_resourcesList,
         message: "Resources list fetched successfully"
     })
 }
@@ -63,6 +68,7 @@ module.exports.get_resources_list = async (req, res) => {
                             "title": r.data().title,
                             "description": r.data().description,
                             "product": x,
+                            "created_at": r.data().createdAt,
                             "get_download_button": get_download_button(r.data().pdfUrl),
                             "get_action_button": get_action_button(req, res, r)
                         };

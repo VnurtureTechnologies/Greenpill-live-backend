@@ -47,14 +47,18 @@ module.exports.get_notification_list = async(req,res) => {
                 "title" : r.data().title,
                 "shortdescription": r.data().shortDescription,
                 "category" : r.data().category,
+                "created_at": r.data().timestamp,
                 "get_action_button": get_action_button(req,res,r)
             };
             notification_list.push(row)
         })
+        sorted_list = notification_list.sort((a,b) => {
+            return b.created_at - a.created_at;
+        })
         res.json({
             status: true,
             status_code: 201,
-            data: notification_list,
+            data: sorted_list,
             message: "Notification fetched successfully"
         })
     })

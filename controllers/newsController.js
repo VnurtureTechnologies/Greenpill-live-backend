@@ -39,10 +39,15 @@ module.exports.add_news = async (req, res, next) => {
 }
 
 function response(res, news_list) {
+    
+    sorted_newsList = news_list.sort((a,b) => {
+        return b.created_at - a.created_at
+    })
+
     res.json({
         status: true,
         status_code: 201,
-        data: news_list,
+        data: sorted_newsList,
         message: "News list fetched successfully"
     })
 }
@@ -65,6 +70,7 @@ module.exports.get_news_list = async (req, res) => {
                             "description": r.data().description,
                             "source link": r.data().sourceLink,
                             "youtube url": r.data().youtubeUrl,
+                            "created_at": r.data().createdAt,
                             "product": x,
                             "get_action_button": get_action_button(req, res, r)
                         };

@@ -51,7 +51,7 @@ exports.sendGenericNotification = async function(notifier, title, description) {
             }
         }   
     }
-    else if(notifier = "project notification") {
+    else if(notifier == "project notification") {
         message = {
             notification: {
                 title: `New project added - ${title}`,
@@ -59,7 +59,7 @@ exports.sendGenericNotification = async function(notifier, title, description) {
             }
         }
     }
-    else if(notifier = "news notification") {
+    else if(notifier == "news notification") {
         message = {
             notification: {
                 title: `New news notification - ${title}`,
@@ -67,7 +67,7 @@ exports.sendGenericNotification = async function(notifier, title, description) {
             }
         }
     }   
-    else if(notifier = "resource notification") {
+    else if(notifier == "resource notification") {
         message = {
             notification: {
                 title: `New resource Notification - ${title}`,

@@ -5,7 +5,7 @@ const helpers = require('../helpers');
 module.exports.add_project = async (req, res) => {
     var db = admin.firestore();
     var notifier = "project notification";
-    var notifier_title = req.body.title;x
+    var notifier_title = req.body.title;
     var notifier_description = req.body.short_description;
 
     await helpers.getfolderName('projects')
@@ -41,10 +41,15 @@ module.exports.add_project = async (req, res) => {
 }
 
 function response(res, project_list) {
+
+    sorted_projectList = project_list.sort((a,b) => {
+        return b.created_at - a.created_at
+    })
+
     res.json({
         status: true,
         status_code: 201,
-        data: project_list,
+        data: sorted_projectList,
         message: "Project list fetched successfully"
     })
 }
