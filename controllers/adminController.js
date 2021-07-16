@@ -75,6 +75,7 @@ module.exports.forgot_password = [ async(req,res,next) => {
                         
                     smtpTransport.sendMail(mailOptions, function (error, response) {
                         if (error) {
+                            console.log(error);
                             res.json({
                                 status: false,
                                 message: error
