@@ -107,6 +107,34 @@ app.post('/login', passport.authenticate('local', {
     res.status(200).send("All is well")
 })
 
+app.get('/forgot-password', function(req, res) {
+    res.render('login/forgot_pwd', { title: 'Forgot Password ' });
+});
+
+app.post('/forgot-password', adminController.forgot_password);
+
+app.post('/change-password', adminController.change_password);
+
+app.get('/reset/:token', async(req,res) => {
+    var db = admin.firestore();
+
+    await db.collection('admin').where('resetPasswordToken', '==', req.params.token)
+    .get()
+    .then((r) => {
+        if(r._size == 0) {
+            res.json({
+                status: false,
+                message: "Invalid token",
+                redirect: ('/')
+            })
+        }
+        else {
+            res.render('login/reset_pwd', {title: 'Reset Password'})
+        }
+    })
+
+})
+
 app.get('/logout', ensureLogin.ensureLoggedIn(), (req, res) => {
     req.logout();
     res.redirect("/");

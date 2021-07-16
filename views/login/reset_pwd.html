@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+
+        <!-- TITLE -->
+        <title>{{title}}</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <link rel="shortcut icon" type="image/png" href="/images/favicon.png"/>
+        <!-- CSS LIBRARY -->
+        <link rel="stylesheet" href="/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/css/font-awesome.min.css">
+        <!-- MAIN STYLE -->
+        <link rel="stylesheet" type="text/css" href="/css/style.css">
+        <link rel="stylesheet" type="text/css" href="/css/responsive.css">
+        <!--sweetalert2-->
+        <link rel="stylesheet" type="text/css" href="/plugins/sweetalert2/sweetalert2.min.css">
+        <!-- JS LIBRARY -->
+        <script src="/js/jquery.min.js"></script>
+        <script src="/js/bootstrap.min.js"></script>
+        <!--sweetalert2-->
+        <script src="/plugins/sweetalert2/sweetalert2.min.js"></script>
+    </head>
+
+    <body>
+        <!-- Login  -->
+		<div style="display: none;" class="page_loader"><span><img src="/images/ajax-loader.gif" alt="loader"></span></div>
+        <div class="col-md-12 col-sm-12 col-xs-12 login_page">
+            <div class="login_sec">
+                <div class="col-md-12 col-sm-12 col-xs-12 login_logo">
+                    <!--<img src="images/logo.png" alt="" />-->
+                    <h2 style="color: white;">Greenpill Live</h2>
+                </div>
+                <div style="min-height: 400px;" class="login_form">
+                    <div class=" login_title">
+                        <h4>Reset Password</h4>
+                    </div>
+                    <form class="forget_form"  action="javascript:void(0);">
+                        <div class="form_control">
+                            <input type="text" name="email" placeholder="Enter current email" />
+                        </div>
+                        <div class="form_control">
+                            <input type="password" name="password" placeholder="Enter new password" />
+                        </div>
+                        <div class="form_control">
+                            <input type="password" name="pwd" placeholder="Confirm new password" />
+                        </div>
+                        <div class="form_control">
+                            <button class="btn">Send</button>
+                            <a class="login_btn" href="/">Login</a>	
+                        </div>
+                    </form>
+
+                </div>
+
+            </div>
+
+        </div>
+        <!-- END - Login  -->
+        <script>
+
+$(document).on('submit', '.forget_form', function () {
+    $('.validation_error').remove();
+	$('form :submit').attr("disabled", "disabled");
+    var formData = $(this).serialize();
+    $.ajax({
+        url: '/change-password',
+        type: 'POST',
+        data: formData,
+        dataType: 'json',
+		beforeSend: function () {
+           $(".page_loader").show();
+        },
+    }).done(function (response) {
+        $('input').removeAttr('style');
+		$('form :submit').removeAttr("disabled", "disabled");
+		$(".page_loader").hide();
+        if (response.status == true) {
+            Swal.fire('Success!', response.message, "success");
+            if (response.redirect != '') {
+                setTimeout(function () {
+                    location.replace(response.redirect);
+                }, 1200);
+            }
+        } else {
+            if (typeof response.message == "string") {
+                Swal.fire("Sorry!", response.message, "error");
+            } else {
+                $.each(response.message, function (key, value) {
+                    $("[name='" + value['param'] + "']").attr('style', 'border-bottom: 1px solid red');
+                    $("[name='" + value['param'] + "']").after('<div class="validation_error">' + value['msg'] + '</div>');
+                });
+            }
+        }
+    }).fail(function (error) {
+		$('form :submit').removeAttr("disabled", "disabled");
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'Something went wrong!'
+        });
+    });
+});
+
+        </script>
+    </body>
+</html> 
