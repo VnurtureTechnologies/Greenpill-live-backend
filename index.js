@@ -414,7 +414,7 @@ app.delete('/resources-delete/:id', resourcesController.delete_resources);
 /* WHATSNEW ROUTES */
 app.get('/whatsnew/add', ensureLogin.ensureLoggedIn(), function (req, res) {
     res.render('whatsnew/add', {
-        title: 'Whatsnew Idea',
+        title: 'Add a Trending Idea',
         page_title: 'Add New Idea'
     })
 })
@@ -423,7 +423,7 @@ app.get('/whatsnew/add', ensureLogin.ensureLoggedIn(), function (req, res) {
 app.get('/whatsnew/list', ensureLogin.ensureLoggedIn(), function (req, res) {
     res.render('whatsnew/index', {
         title: 'whatsnew',
-        page_title: 'Whatsnew-Idea-List'
+        page_title: 'Trending List'
     })
 })
 
