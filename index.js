@@ -128,6 +128,13 @@ app.get('/reset/:token', async(req,res) => {
                 redirect: ('/')
             })
         }
+        else if (r.docs[0].data().resetPasswordExpires < Date.now()) {
+            res.json({
+                status: false,
+                message: "The link has expired",
+                redirect: ('/')
+            })
+        }
         else {
             res.render('login/reset_pwd', {title: 'Reset Password'})
         }

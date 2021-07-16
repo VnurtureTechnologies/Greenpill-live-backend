@@ -43,7 +43,7 @@ module.exports.forgot_password = [ async(req,res,next) => {
 
                 var data = {
                     resetPasswordToken : token,
-                    resetPasswordExpires : Date.now() + 3600000
+                    resetPasswordExpires : Date.now() + 1800000 
                 }
 
                 await db.collection('admin').doc(result.docs[0].id).update(data)
@@ -69,7 +69,8 @@ module.exports.forgot_password = [ async(req,res,next) => {
                         html: 'You are receiving this because you (or someone else) have requested the reset of the password for your account.\n\n' +
                         'Please click on the following link, or paste this into your browser to complete the process:\n\n' +
                         'http://' + req.headers.host + '/reset/' + token + '\n\n' +
-                        'If you did not request this, please ignore this email and your password will remain unchanged.\n'
+                        'If you did not request this, please ignore this email and your password will remain unchanged.\n' +
+                        'This link will expire in 30 minutes.\n'
                     };
                         
                     smtpTransport.sendMail(mailOptions, function (error, response) {
