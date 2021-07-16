@@ -2,11 +2,17 @@ const gc = require('./storage-config/storage');
 const admin = require("firebase-admin");
 var db = admin.firestore();
 
+
+var foldername1='';
+exports.getfolderName=(foldername)=>{
+    foldername1=foldername
+}
+
 exports.uploadImage = (file) => new Promise((resolve, reject) => {
     const bucket = admin.storage().bucket('greenpill-live.appspot.com');
     const {originalname, buffer} = file;
     const file_name = originalname.replace(/ /g, "_");
-    const gcsFileName = `${Date.now()}-${file_name}`;
+    const gcsFileName = `${foldername1}/${file_name}`;
     const blob = bucket.file(gcsFileName);
     const blobStream = blob.createWriteStream({
         resumable: false
@@ -21,12 +27,13 @@ exports.uploadImage = (file) => new Promise((resolve, reject) => {
 });
 
 exports.deleteImage = (filelink) => new Promise((resolve, reject) => {
-    var filename = filelink.split('/o/')[1].split('?')[0]
+    // var filename = filelink.split('/o/')[1].split('?')[0]
     const bucket = admin.storage().bucket('greenpill-live.appspot.com');
-    bucket.file(filename).delete();
+    const filelink1 = filelink;
+    bucket.file(`${foldername1}/${filelink1}`).delete();
 });
 
-exports.sendProjecttNotification = async function() {
+exports.sendGenericNotification = async function(notifier, title, description) {
     var db = admin.firestore();
 
     const notification_options = {
@@ -34,80 +41,47 @@ exports.sendProjecttNotification = async function() {
         timeToLive: 60 * 60 *24
     }
 
-    const message = {
-        notification: {
-           title: "New project notification",
-           body:  "New project added"
-        }
-    };
-   
-    await db.collection('users')
-    .where('isNotify' , '==', true)
-    .get()
-    .then((result) => {
-        result.forEach((r) => {
-            admin.messaging().sendToDevice(r.data().fcmtoken, message, notification_options)
-            .then((messagingResult) => {
-                console.log(messagingResult);
-            })
-            .catch(err => {
-                console.log(err);
-            })
-        })
-    })
-    .catch((err) => {
-        console.log(err);
-    })
-}
+    var message = "";
 
-exports.sendResourcetNotification = async function() {
-    var db = admin.firestore();
-
-    const notification_options = {
-        priority: "high",
-        timeToLive: 60 * 60 *24
+    if (notifier == "general notification") {
+        message = {
+            notification: {
+                title: `Notification - ${title}`,
+                body:  description,
+                click_action: 'generalNotification'
+            }
+        }   
     }
-
-    const message = {
-        notification: {
-           title: "New resource notification",
-           body:  "New resource added"
+    else if(notifier == "project notification") {
+        message = {
+            notification: {
+                title: `New project added - ${title}`,
+                body:  description,
+                click_action: 'projectNotification'
+            }
         }
-    };
-   
-    await db.collection('users')
-    .where('isNotify' , '==', true)
-    .get()
-    .then((result) => {
-        result.forEach((r) => {
-            admin.messaging().sendToDevice(r.data().fcmtoken, message, notification_options)
-            .then((r) => {
-                console.log(r);
-            })
-            .catch(err => {
-                console.log(err);
-            })
-        })
-    })
-    .catch((err) => {
-        console.log(err);
-    })
-}
-
-exports.sendNewsNotification = async function() {
-    var db = admin.firestore();
-
-    const notification_options = {
-        priority: "high",
-        timeToLive: 60 * 60 *24
     }
-
-    const message = {
-        notification: {
-           title: "New news notification",
-           body:  "New news added"
+    else if(notifier == "news notification") {
+        message = {
+            notification: {
+                title: `New news notification - ${title}`,
+                body:  description,
+                click_action: 'newsNotification'
+            }
         }
-    };
+    }   
+    else if(notifier == "resource notification") {
+        message = {
+            notification: {
+                title: `New resource Notification - ${title}`,
+                body:  description,
+                click_action: 'resourceNotification'
+            }
+        }
+    }
+    else {
+        console.log("Invalid notifier");
+    }
    
     await db.collection('users')
     .where('isNotify' , '==', true)

@@ -15,8 +15,8 @@ $(document).ready(function () {
         "order": [],
         "oLanguage": {
             "sInfoFiltered": "",
-            "sProcessing": "<img src='images/ajax-loader.gif' alt='loader'>",
-            "sZeroRecords": "No Users found",
+            "sProcessing": "<img src='/images/ajax-loader.gif' alt='loader'>",
+            "sZeroRecords": "No Data Found",
             "sInfo": "Showing _START_ to _END_ of _TOTAL_ Users",
             "sLengthMenu": "Show _MENU_ Users",
             "sInfoEmpty": "Showing 0 to 0 of 0 Users",
@@ -87,7 +87,7 @@ function do_btn_action(url, data, type) {
         dataType: 'json',
     }).done(function (response) {
         if (response.status == false) {
-            Swal.fire("Sorry!", "Unable to process your request. Please try again later.)", "error");
+            Swal.fire("Sorry!", "Unable to process your request. Please try again later.", "error");
         } else {
             Swal.fire(response.title, response.message , "success");
             if (response.redirect != '') {

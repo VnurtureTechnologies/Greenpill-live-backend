@@ -1,12 +1,17 @@
 const admin = require('firebase-admin');
 const helpers = require('../helpers');
 
-module.exports.add_project = async(req, res) => {
-    var db = admin.firestore();
 
-    console.log(req.body)
+module.exports.add_project = async (req, res) => {
+    var db = admin.firestore();
+    var notifier = "project notification";
+    var notifier_title = req.body.title;
+    var notifier_description = req.body.short_description;
+
+    await helpers.getfolderName('projects')
 
     var data = {
+        createdAt: Date.now().toString(),
         title: req.body.title,
         longDesc: req.body.long_description,
         shortDesc: req.body.short_description,
@@ -14,76 +19,78 @@ module.exports.add_project = async(req, res) => {
         images: [await helpers.uploadImage(req.file)]
     }
 
-    console.log(data);
-    
     await db.collection('project')
     .add(data)
     .then((r) => {
-        helpers.sendProjecttNotification()
+        helpers.sendGenericNotification(notifier, notifier_title, notifier_description);
         res.json({
             status: true,
             status_code: 200,
             message: "Project added successfully",
             redirect: "/projects"
+            })
         })
-    })
-    .catch((err) => {
-        console.log(err);
-        res.json({
-            status: false,
-            status_code: 501,
-            message: "Something went wrong",
-            redirect: "/projects/add"
+        .catch((err) => {
+            res.json({
+                status: false,
+                status_code: 501,
+                message: "Something went wrong",
+                redirect: "/projects/add"
+            })
         })
-    })
 }
 
-function response(res,project_list) {
+function response(res, project_list) {
+
+    sorted_projectList = project_list.sort((a,b) => {
+        return b.created_at - a.created_at
+    })
+
     res.json({
         status: true,
         status_code: 201,
-        data: project_list,
+        data: sorted_projectList,
         message: "Project list fetched successfully"
     })
 }
 
-module.exports.get_projects_list = async(req,res) => {
+module.exports.get_projects_list = async (req, res) => {
     var db = admin.firestore();
     var project_list = [];
 
     await db.collection('project')
-    .get()
-    .then((outerResult) => {
-        outerResult.forEach( async(result) => { 
-            await db.collection('product').doc(result.data().productRef)
-            .get()
-            .then( async (innerResult) => {
-                const x = await innerResult.data().title;
-                var row = {
-                    "id": result.id,
-                    "title" : result.data().title,
-                    "long_description" : result.data().longDesc,
-                    "short_description": result.data().shortDesc,
-                    "product": x,
-                    "get_action_button": get_action_button(req,res,result)
-                };
-                project_list.push(row)
+        .get()
+        .then((outerResult) => {
+            outerResult.forEach(async (result) => {
+                await db.collection('product').doc(result.data().productRef)
+                    .get()
+                    .then(async (innerResult) => {
+                        const x = innerResult.data().title;
+                        var row = {
+                            "id": result.id,
+                            "title": result.data().title,
+                            "long_description": result.data().longDesc,
+                            "short_description": result.data().shortDesc,
+                            "product": x,
+                            "created_at": result.data().createdAt,
+                            "get_action_button": get_action_button(req, res, result)
+                        };
+                        project_list.push(row)
+                    })
+            })
+            setTimeout(response, 1000, res, project_list);
+        })
+        .catch((err) => {
+            res.json({
+                status: false,
+                status_code: 501,
+                message: "Something went wrong"
             })
         })
-        setTimeout(response,1000,res,project_list);
-    })
-    .catch( (err) => {
-        console.log(err);
-        res.json({
-            status: false,
-            status_code: 501,
-            message: "Something went wrong"
-        })
-    })
 }
 
 
-function get_action_button(req,res,data) {
+function get_action_button(req, res, data) {
     var html = '';
     html += '<span class="action_tools">';
     html += '<a class="dt_edit" href="/projects/edit/' + data.id + '" data-toggle="tooltip" title="Edit!"><i class="fa fa-pencil"></i></a>';
@@ -92,32 +99,45 @@ function get_action_button(req,res,data) {
     return html;
 }
 
-module.exports.get_projects_data = function(project_id,callback) {
+module.exports.get_projects_data = function (project_id, callback) {
     var db = admin.firestore();
 
     db.collection('project').doc(`${project_id}`)
-    .get()
-    .then( (r) => {
-        const data = {
-            id: r.id,
-            title: r.data().title,
-            long_description: r.data().longDesc,
-            short_description: r.data().shortDesc,
-            image_url: r.data().images[0]
-        }
-        callback(data);
-    })
-    .catch( (err) => {
-        callback([]);
-    })
+        .get()
+        .then((r) => {
+            const data = {
+                id: r.id,
+                title: r.data().title,
+                long_description: r.data().longDesc,
+                productRef: r.data().productRef,
+                short_description: r.data().shortDesc,
+                image_url: r.data().images[0]
+            }
+            callback(data);
+        })
+        .catch((err) => {
+            callback([]);
+        })
 }
 
-module.exports.edit_project = async(req,res,next) => {
+module.exports.edit_project = async (req, res, next) => {
     var db = admin.firestore();
     var id = req.params.id;
-    var update_data="";
+    var update_data = "";
+    var filelink = "";
+    await helpers.getfolderName('projects');
 
-    if(req.file) {
+    if (req.file) {
+        db.collection("project").doc(`${id}`).get().then(async (r) => {
+            const data = {
+                filelink1: r.data().images[0]
+            }
+            filelink = data.filelink1
+            await helpers.deleteImage(filelink)
+        })
+            .catch((err) => {
+            });
+
         update_data = {
             'title': req.body.project_title,
             'longDesc': req.body.long_description,
@@ -134,21 +154,57 @@ module.exports.edit_project = async(req,res,next) => {
             'productRef': req.body.product_id
         }
     }
-    
+
     db.collection('project').doc(`${id}`).update(update_data)
-    .then( (r) => {
-        res.json({
-            status: true,
-            status_code: 200,
-            message: "Product edited successfully",
-            redirect: 'projects'
+        .then((r) => {
+            res.json({
+                status: true,
+                status_code: 200,
+                message: "Project edited successfully",
+                redirect: '/projects'
+            })
         })
-    })
-    .catch( (err) => {
-        res.json({
-            status: false,
-            status_code: 501,
-            message: "Internal server error"
+        .catch((err) => {
+            res.json({
+                status: false,
+                status_code: 501,
+                message: "Internal server error"
+            })
         })
-    })
+}
+
+module.exports.delete_project = async (req, res, next) => {
+    var db = admin.firestore();
+    var id = req.params.id;
+    await helpers.getfolderName('projects');
+    var filelink = "";
+    db.collection("project")
+        .doc(`${id}`)
+        .get()
+        .then(async (r) => {
+            const data = {
+                filelink1: r.data().images[0]
+            }
+            filelink = data.filelink1
+            await helpers.deleteImage(filelink)
+        })
+        .catch((err) => {
+        });
+
+    db.collection('project').doc(`${id}`).delete()
+        .then((r) => {
+            res.json({
+                status: true,
+                status_code: 200,
+                message: "project deleted successfully",
+                redirect: "/projects"
+            })
+        })
+        .catch((err) => {
+            res.json({
+                status: false,
+                status_code: 501,
+                message: "Internal server error",
+            })
+        })
 }

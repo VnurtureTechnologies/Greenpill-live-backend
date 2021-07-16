@@ -26,36 +26,47 @@
                     <div class="field_inner_sec">
 
                         <div class="floating-label left_fld">
-                            <label> Title <span class="required">*</span></label>
-                            <input class="floating-input" id="title" value="{{news.title}}" name="product_title" type="text">
-                        </div>
-
-                        <div class="claerfix"></div>
-                        
-                        <div class="floating-label left_fld">
-                            <label>Long Description <span class="required">*</span></label>
-                            <input class="floating-input" id="long_description" value="{{news.longDescription}}" name="long_description" type="text">
+                            <label> Title </label>
+                            <input class="floating-input" id="title" value="{{news.title}}" name="title"
+                                type="text">
                         </div>
 
                         <div class="claerfix"></div>
 
                         <div class="floating-label left_fld">
-                            <label>Short Description <span class="required">*</span></label>
-                            <input class="floating-input" id="short_description" value="{{news.shortDescription}}" name="short_description" type="text">
+                            <label>Description </label>
+                            <input class="floating-input" id="long_description" value="{{news.description}}"
+                                name="description" type="text">
                         </div>
 
                         <div class="claerfix"></div>
 
                         <div class="floating-label left_fld">
-                            <label>PDF URL <span class="required">*</span></label>
-                            <input class="floating-input" id="pdf_url" value="{{news.pdfUrl}}" name="pdf_url" type="text">
+                            <label>Choose a product</label>
+                            <select id="selected" class="floating-select" name="int_user_id">
+                                <option value="">--Choose--</option>
+                                {{#each products}}
+                                <option value="{{this.id}}">{{this.title}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+
+
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld">
+                            <label>Source Link <span class="required"> (must start with http:// or https:// )</span></label>
+                            <input class="floating-input" id="pdf_url" pattern="https?://.+" value="{{news.sourceLink}}" name="source_link"
+                                type="text">
                         </div>
 
                         <div class="claerfix"></div>
 
                         <div class="floating-label left_fld">
-                            <label>WEB URL<span class="required">*</span></label>
-                            <input class="floating-input" id="short_description" value="{{news.webUrl}}" name="web_url" type="text">
+                            <label>Youtube URL<span class="required">(must start with http:// or https:// )</span></label>
+                            <input class="floating-input" id="short_description" pattern="https?://.+" value="{{news.youtubeUrl}}"
+                                name="youtube_url" type="text">
                         </div>
 
                         <div class="claerfix"></div>
@@ -63,24 +74,45 @@
                         <h4>Add a news image</h4>
                         <div class="floating-label right_fld browse2">
                             <label>
-                                <input class="" type="file" accept='image/jpeg, image/png' name="news_image"> <img src="{{news.image_url}}">
+                                <input type="file" accept="image/jpeg, image/png" name="news_image"
+                                    onchange="readURL(this);" />
+                                <img id="blah" src="#" alt="your image" />
                             </label>
                         </div>
-                        </div>
+                    </div>
 
 
                     <div class="form_submit_sec">
                         <button type="submit" class="btn">Submit</button>
                     </div>
-                </form>        
-                 </div>
+                </form>
+            </div>
             </form>
         </div>
     </div>
-</div>
-<!-- END -->
-{{> footer}}
-<script src="/js/news/edit.js"></script>
+    </div>
+    <!-- END -->
+    {{> footer}}
+    <script>
+        $('#selected option[value={{news.productRef}}]').attr("selected", "selected");
+    </script>
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(200);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+    <script src="/js/news/edit.js"></script>
 </body>
 
 </html>
