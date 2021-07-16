@@ -107,6 +107,41 @@ app.post('/login', passport.authenticate('local', {
     res.status(200).send("All is well")
 })
 
+app.get('/forgot-password', function(req, res) {
+    res.render('login/forgot_pwd', { title: 'Forgot Password ' });
+});
+
+app.post('/forgot-password', adminController.forgot_password);
+
+app.post('/change-password', adminController.change_password);
+
+app.get('/reset/:token', async(req,res) => {
+    var db = admin.firestore();
+
+    await db.collection('admin').where('resetPasswordToken', '==', req.params.token)
+    .get()
+    .then((r) => {
+        if(r._size == 0) {
+            res.json({
+                status: false,
+                message: "Invalid token",
+                redirect: ('/')
+            })
+        }
+        else if (r.docs[0].data().resetPasswordExpires < Date.now()) {
+            res.json({
+                status: false,
+                message: "The link has expired",
+                redirect: ('/')
+            })
+        }
+        else {
+            res.render('login/reset_pwd', {title: 'Reset Password'})
+        }
+    })
+
+})
+
 app.get('/logout', ensureLogin.ensureLoggedIn(), (req, res) => {
     req.logout();
     res.redirect("/");
@@ -379,7 +414,7 @@ app.delete('/resources-delete/:id', resourcesController.delete_resources);
 /* WHATSNEW ROUTES */
 app.get('/whatsnew/add', ensureLogin.ensureLoggedIn(), function (req, res) {
     res.render('whatsnew/add', {
-        title: 'Whatsnew Idea',
+        title: 'Add a Trending Idea',
         page_title: 'Add New Idea'
     })
 })
@@ -388,7 +423,7 @@ app.get('/whatsnew/add', ensureLogin.ensureLoggedIn(), function (req, res) {
 app.get('/whatsnew/list', ensureLogin.ensureLoggedIn(), function (req, res) {
     res.render('whatsnew/index', {
         title: 'whatsnew',
-        page_title: 'Whatsnew-Idea-List'
+        page_title: 'Trending List'
     })
 })
 
