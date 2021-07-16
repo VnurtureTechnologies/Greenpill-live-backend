@@ -49,9 +49,9 @@ module.exports.forgot_password = [ async(req,res,next) => {
                 await db.collection('admin').doc(result.docs[0].id).update(data)
                 .then((r) => {
                     var smtpTransport = nodemailer.createTransport({
-                        host: 'smtp.gmail.com',
-                        port: 465,
-                        secure: true,
+                        host: 'Gmail',
+                        // port: 465,
+                        // secure: true,
                         auth: {
                             type: 'OAuth2',
                             user: 'success20technology@gmail.com',                            
