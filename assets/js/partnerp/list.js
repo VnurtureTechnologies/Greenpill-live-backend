@@ -102,7 +102,7 @@ function partnerp_delete_action(url, data, type) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Something went wrong!'
+            text: 'Something Went Wrong!'
         });
     });
 }

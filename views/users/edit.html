@@ -48,7 +48,7 @@
 
                         <div class="floating-label left_fld">
                             <label> Role <span class="required">*</span></label>
-                            <select class="floating-select" name="role">
+                            <select id="selected" class="floating-select" name="role">
                                 <option value="">--Choose--</option>
                                 <option value="admin">Admin</option>
                                 <option value="client">Client</option>
@@ -78,6 +78,9 @@
 </div>
 <!-- END -->
 {{> footer}}
+<script>
+    $('#selected option[value={{user.role}}]').attr("selected", "selected");
+</script>
 <script src="/js/users/edit.js"></script>
 </body>
 

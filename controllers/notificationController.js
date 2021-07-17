@@ -20,7 +20,7 @@ module.exports.add_notification = async(req,res,next) => {
         res.json({
             status: true,
             status_code: 200,
-            message: "Notification added successfully",
+            message: "Notification Added Successfully",
             redirect: '/notification-list'
         })
     })
@@ -29,7 +29,7 @@ module.exports.add_notification = async(req,res,next) => {
             status: false,
             status_code: 501,
             error: err,
-            message: "Something went wrong"
+            message: "Something Went Wrong"
         })
     })
 }
@@ -59,14 +59,14 @@ module.exports.get_notification_list = async(req,res) => {
             status: true,
             status_code: 201,
             data: sorted_list,
-            message: "Notification fetched successfully"
+            message: "Notification Fetched Successfully"
         })
     })
     .catch( (err) => {
         res.json({
             status: false,
             status_code: 501,
-            message: "Something went wrong"
+            message: "Something Went Wrong"
         })
     })
 }
@@ -85,7 +85,7 @@ module.exports.edit_notification = (req,res,next) => {
         res.json({
             status: true,
             status_code: 200,
-            message: "Notification edited successfully",
+            message: "Notification Edited Successfully",
             redirect: "/notification-list"
         })
     })
@@ -134,7 +134,7 @@ module.exports.delete_notification = (req,res,next) => {
         res.json({
             status: true,
             status_code: 200,
-            message: "notification deleted successfully",
+            message: "Notification Deleted Successfully",
             redirect:"/notification-list"
         })
     })
