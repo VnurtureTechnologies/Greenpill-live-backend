@@ -17,7 +17,7 @@ module.exports.add_users = async(req,res,next) => {
         res.json({
             status: true,
             status_code: 200,
-            message: "User added successfully",
+            message: "User Added Successfully",
             redirect:"/users/add"
         })
     })
@@ -26,7 +26,7 @@ module.exports.add_users = async(req,res,next) => {
             status: false,
             status_code: 501,
             error: err,
-            message: "Something went wrong"
+            message: "Something Went Wrong"
         })
     })
 }
@@ -184,7 +184,7 @@ module.exports.edit_user = (req,res,next) => {
         res.json({
             status: true,
             status_code: 200,
-            message: "user edited successfully",
+            message: "User Edited Successfully",
             redirect:"/user-list"
         })
     })
@@ -206,7 +206,7 @@ module.exports.delete_user = (req,res,next) => {
         res.json({
             status: true,
             status_code: 200,
-            message: "user deleted successfully",
+            message: "User Deleted Successfully",
             redirect:"/user-list"
         })
     })
@@ -242,7 +242,7 @@ module.exports.add_admin = async (req, res, next) => {
             res.render("register/index", {
               status: true,
               status_code: 200,
-              message: "Admin added auccessfully",
+              message: "Admin Added Successfully",
             });
           })
           .catch((err) => {
@@ -250,7 +250,7 @@ module.exports.add_admin = async (req, res, next) => {
               status: false,
               status_code: 501,
               error: err,
-              message: "Something went wrong",
+              message: "Something Went Wrong",
             });
           });
       } else {

@@ -23,7 +23,7 @@ module.exports.add_resources = async (req, res, next) => {
             res.json({
                 status: true,
                 status_code: 200,
-                message: "Resource added successfully",
+                message: "Resource Added Successfully",
                 redirect: '/resources-list'
             })
         })
@@ -32,7 +32,7 @@ module.exports.add_resources = async (req, res, next) => {
                 status: false,
                 status_code: 501,
                 error: err,
-                message: "Something went wrong"
+                message: "Something Went Wrong"
             })
         })
 }
@@ -47,7 +47,7 @@ function response(res, resources_list) {
         status: true,
         status_code: 201,
         data: sorted_resourcesList,
-        message: "Resources list fetched successfully"
+        message: "Resources List Fetched Successfully"
     })
 }
 
@@ -82,7 +82,7 @@ module.exports.get_resources_list = async (req, res) => {
             res.json({
                 status: false,
                 status_code: 501,
-                message: "Something went wrong"
+                message: "Something Went Wrong"
             })
         })
 }
@@ -131,7 +131,7 @@ db.collection('resources').doc(`${id}`).update(update_data)
         res.json({
             status: true,
             status_code: 200,
-            message: "Resource edited successfully",
+            message: "Resource Edited Successfully",
             redirect: "/resources-list"
         })
     })
@@ -207,7 +207,7 @@ module.exports.delete_resources = async (req, res, next) => {
             res.json({
                 status: true,
                 status_code: 200,
-                message: "Resource deleted successfully",
+                message: "Resource Deleted Successfully",
                 redirect: "/resources-list"
             })
         })
