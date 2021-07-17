@@ -1,4 +1,5 @@
 const admin = require('firebase-admin');
+const bcrypt = require('bcrypt');
 
 module.exports.add_users = async(req,res,next) => {
     var db = admin.firestore();

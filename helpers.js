@@ -47,7 +47,8 @@ exports.sendGenericNotification = async function(notifier, title, description) {
         message = {
             notification: {
                 title: `Notification - ${title}`,
-                body:  description
+                body:  description,
+                click_action: 'generalNotification'
             }
         }   
     }
@@ -55,7 +56,8 @@ exports.sendGenericNotification = async function(notifier, title, description) {
         message = {
             notification: {
                 title: `New project added - ${title}`,
-                body:  description
+                body:  description,
+                click_action: 'projectNotification'
             }
         }
     }
@@ -63,7 +65,8 @@ exports.sendGenericNotification = async function(notifier, title, description) {
         message = {
             notification: {
                 title: `New news notification - ${title}`,
-                body:  description
+                body:  description,
+                click_action: 'newsNotification'
             }
         }
     }   
@@ -71,7 +74,8 @@ exports.sendGenericNotification = async function(notifier, title, description) {
         message = {
             notification: {
                 title: `New resource Notification - ${title}`,
-                body:  description
+                body:  description,
+                click_action: 'resourceNotification'
             }
         }
     }
