@@ -47,8 +47,12 @@ exports.sendGenericNotification = async function(notifier, title, description) {
         message = {
             notification: {
                 title: `Notification - ${title}`,
-                body:  description,
-                click_action: 'generalNotification'
+                body:  description
+            },
+            data: {
+                click_action: 'FLUTTER_NOTIFICATION_CLICK',
+                status: 'done',
+                screen: 'generalNotification'
             }
         }   
     }
@@ -56,8 +60,12 @@ exports.sendGenericNotification = async function(notifier, title, description) {
         message = {
             notification: {
                 title: `New project added - ${title}`,
-                body:  description,
-                click_action: 'projectNotification'
+                body:  description
+            },
+            data: {
+                click_action: 'FLUTTER_NOTIFICATION_CLICK',
+                status: 'done',
+                screen: 'projectNotification'
             }
         }
     }
@@ -65,8 +73,12 @@ exports.sendGenericNotification = async function(notifier, title, description) {
         message = {
             notification: {
                 title: `New news notification - ${title}`,
-                body:  description,
-                click_action: 'newsNotification'
+                body:  description
+            },
+            data: {
+                click_action: 'FLUTTER_NOTIFICATION_CLICK',
+                status: 'done',
+                screen: 'newsNotification'
             }
         }
     }   
@@ -74,8 +86,12 @@ exports.sendGenericNotification = async function(notifier, title, description) {
         message = {
             notification: {
                 title: `New resource Notification - ${title}`,
-                body:  description,
-                click_action: 'resourceNotification'
+                body:  description
+            },
+            data: {
+                click_action: 'FLUTTER_NOTIFICATION_CLICK',
+                status: 'done',
+                screen: 'resourceNotification'
             }
         }
     }
