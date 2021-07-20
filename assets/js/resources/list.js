@@ -9,6 +9,7 @@ $(document).ready(function () {
         "bProcessing": true,
         "serverSide": true,
         "bServerSide": true,
+        "bSort": false,
         "bDestroy": true,
         "bPaginate": false,
         "bInfo": false,

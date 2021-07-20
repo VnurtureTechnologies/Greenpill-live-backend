@@ -11,6 +11,7 @@ $(document).ready(function () {
         "bServerSide": true,
         "bDestroy": true,
         "bPaginate": false,
+        "bSort": false,
         "bInfo": false,
         "order": [],
         "oLanguage": {

@@ -10,6 +10,7 @@ module.exports.add_whatsnew = async (req, res, next) => {
     description: req.body.description,
     type: req.body.type,
     sourceLink: req.body.sourcelink,
+    createdAt: Date.now().toString(),
     img: await helpers.uploadImage(req.file)
   };
   db.collection("whatsnew")
@@ -32,6 +33,23 @@ module.exports.add_whatsnew = async (req, res, next) => {
     });
 };
 
+
+
+function response(res, news_list) {
+    
+  sorted_newsList = news_list.sort((a,b) => {
+      return b.created_at - a.created_at
+  })
+
+  res.json({
+      status: true,
+      status_code: 201,
+      data: sorted_newsList,
+      message: "list fetched successfully"
+  })
+}
+
+
 module.exports.get_whatsnew_list = (req, res) => {
   var db = admin.firestore();
   var whatsnew_list = [];
@@ -45,15 +63,13 @@ module.exports.get_whatsnew_list = (req, res) => {
           title: r.data().title,
           description: r.data().description,
           type: r.data().type,
+          created_at: r.data().createdAt,
           get_action_button: get_action_button(req, res, r),
         };
         whatsnew_list.push(row);
       });
 
-      var output = {
-        data: whatsnew_list,
-      };
-      res.json(output);
+      setTimeout(response, 1000, res, whatsnew_list);
     })
     .catch((err) => {
       res.json({
