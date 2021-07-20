@@ -10,6 +10,7 @@ $(document).ready(function () {
         "serverSide": true,
         "bServerSide": true,
         "bDestroy": true,
+        "bSort": false,
         "bPaginate": false,
         "bInfo": false,
         "order": [],
