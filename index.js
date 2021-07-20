@@ -85,6 +85,7 @@ const partnerpController = require('./controllers/partnerpController');
 const greeniController = require('./controllers/greeniController');
 const adminController = require('./controllers/adminController');
 const videoController = require('./controllers/videoController');
+const mobiledashboardController = require('./controllers/mobiledashboardController');
 
 
 var data_user;
@@ -445,14 +446,8 @@ app.post('/whatsnew-list', upload.none(), whatsnewController.get_whatsnew_list);
 app.post('/whatsnew/do_add', upload.single('whatsnew_image'), whatsnewController.add_whatsnew);
 app.post('/whatsnew/do_edit/:id', upload.single('whatsnew_img'), whatsnewController.edit_whatsnew);
 app.delete('/whatsnew-delete/:id', whatsnewController.delete_whatsnew);
-
-
-
-
-
-
 /* VIDEO ROUTES */
-app.get('/video/add', ensureLogin.ensureLoggedIn(),function(req,res) {
+app.get('/video/add', ensureLogin.ensureLoggedIn(), function (req, res) {
     res.render('video/add', {
         title: 'video add',
         page_title: 'Add New Video'
@@ -460,19 +455,19 @@ app.get('/video/add', ensureLogin.ensureLoggedIn(),function(req,res) {
 })
 
 
-app.get('/video/list', ensureLogin.ensureLoggedIn(), function(req,res) {
+app.get('/video/list', ensureLogin.ensureLoggedIn(), function (req, res) {
     res.render('video/index', {
         title: 'video',
         page_title: 'video-List'
     })
 })
 
-app.get('/video/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
+app.get('/video/edit/:id', ensureLogin.ensureLoggedIn(), function (req, res) {
     var id = req.params.id;
     var data = [];
 
-    videoController.get_video_data(id, function(video) {
-        data.push({'video_data': video})
+    videoController.get_video_data(id, function (video) {
+        data.push({ 'video_data': video })
         res.render('video/edit', {
             title: "video edit",
             page_title: "Edit video",
@@ -481,9 +476,9 @@ app.get('/video/edit/:id', ensureLogin.ensureLoggedIn(),function(req,res) {
     })
 })
 
-app.post('/video:list', upload.none() ,videoController.get_video_list);
-app.post('/video/do_add', upload.single('video_image') , videoController.add_video);
-app.post('/video/do_edit/:id', upload.single('video_image') ,videoController.edit_video);
+app.post('/video:list', upload.none(), videoController.get_video_list);
+app.post('/video/do_add', upload.single('video_image'), videoController.add_video);
+app.post('/video/do_edit/:id', upload.single('video_image'), videoController.edit_video);
 app.delete('/video-delete/:id', videoController.delete_video);
 
 /* PRODUCT SUB CATEGORY ROUTES */
@@ -550,6 +545,29 @@ app.get('/greeni-list', ensureLogin.ensureLoggedIn(), function (req, res) {
 app.post('/greeni-list', upload.none(), greeniController.get_all_greeni_list);
 
 app.delete('/greeni-delete/:id', greeniController.delete_greeni);
+
+/* mobile dashboard routes */
+app.get('/mobiledashboard', ensureLogin.ensureLoggedIn(), function (req, res) {
+    var data = []
+    mobiledashboardController.get_products_where_type_product(function (products) {
+        data.push({ 'product': products })
+        mobiledashboardController.get_products_where_type_newsresources(function (newsResources) {
+            data.push({ 'NewsResources': newsResources })
+            res.render("mobiledashboard/index", {
+                title: 'Add image',
+                page_title: 'Add image to Mobile Dashboard',
+                products: data[0]['product'],
+                newsResources: data[1]['NewsResources'],
+            })
+        })  
+    })
+});
+
+
+// app.post('/mobiledashboard/do_add',upload.single('image'),mobiledashboardController.update_image);
+app.post('/mobiledashboard/do_add', upload.single('image'), mobiledashboardController.update_image);
+
+
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT);

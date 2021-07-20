@@ -24,7 +24,7 @@ module.exports.add_news = async (req, res, next) => {
             res.json({
                 status: true,
                 status_code: 200,
-                message: "News added successfully",
+                message: "News Added Successfully",
                 redirect: '/news'
             })
         })
@@ -33,7 +33,7 @@ module.exports.add_news = async (req, res, next) => {
                 status: false,
                 status_code: 501,
                 error: err,
-                message: "Something went wrong"
+                message: "Something Went Wrong"
             })
         })
 }
@@ -48,7 +48,7 @@ function response(res, news_list) {
         status: true,
         status_code: 201,
         data: sorted_newsList,
-        message: "News list fetched successfully"
+        message: "News List Fetched Successfully"
     })
 }
 
@@ -84,7 +84,7 @@ module.exports.get_news_list = async (req, res) => {
             res.json({
                 status: false,
                 status_code: 501,
-                message: "Something went wrong"
+                message: "Something Went Wrong"
             })
         })
 }
@@ -119,7 +119,7 @@ module.exports.edit_news = async (req, res, next) => {
             res.json({
                 status: true,
                 status_code: 200,
-                message: "News edited successfully",
+                message: "News Edited Successfully",
                 redirect: "/news"
             })
         })
@@ -188,7 +188,7 @@ module.exports.delete_news = async (req, res, next) => {
             res.json({
                 status: true,
                 status_code: 200,
-                message: "news deleted successfully",
+                message: "News Deleted Successfully",
                 redirect: "/news"
             })
         })

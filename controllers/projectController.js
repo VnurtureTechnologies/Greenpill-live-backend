@@ -26,7 +26,7 @@ module.exports.add_project = async (req, res) => {
         res.json({
             status: true,
             status_code: 200,
-            message: "Project added successfully",
+            message: "Project Added Successfully",
             redirect: "/projects"
             })
         })
@@ -34,7 +34,7 @@ module.exports.add_project = async (req, res) => {
             res.json({
                 status: false,
                 status_code: 501,
-                message: "Something went wrong",
+                message: "Something Went Wrong",
                 redirect: "/projects/add"
             })
         })
@@ -50,7 +50,7 @@ function response(res, project_list) {
         status: true,
         status_code: 201,
         data: sorted_projectList,
-        message: "Project list fetched successfully"
+        message: "Project List Fetched Successfully"
     })
 }
 
@@ -84,7 +84,7 @@ module.exports.get_projects_list = async (req, res) => {
             res.json({
                 status: false,
                 status_code: 501,
-                message: "Something went wrong"
+                message: "Something Went Wrong"
             })
         })
 }
@@ -160,7 +160,7 @@ module.exports.edit_project = async (req, res, next) => {
             res.json({
                 status: true,
                 status_code: 200,
-                message: "Project edited successfully",
+                message: "Project Edited Successfully",
                 redirect: '/projects'
             })
         })
@@ -196,7 +196,7 @@ module.exports.delete_project = async (req, res, next) => {
             res.json({
                 status: true,
                 status_code: 200,
-                message: "project deleted successfully",
+                message: "Project Deleted Successfully",
                 redirect: "/projects"
             })
         })

@@ -60,7 +60,7 @@ function form_action(url, type, datatype, data) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Something went wrong!'
+            text: 'Something Went Wrong!'
         });
     });
 }

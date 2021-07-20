@@ -25,7 +25,7 @@ module.exports.add_video = async (req, res, next) => {
       res.json({
         status: true,
         status_code: 200,
-        message: "Video added successfully",
+        message: "Video Added Successfully",
         redirect: "/video/list"
       });
     })
@@ -34,7 +34,7 @@ module.exports.add_video = async (req, res, next) => {
         status: false,
         status_code: 501,
         error: err,
-        message: "Something went wrong",
+        message: "Something Went Wrong",
       });
     });
 };
@@ -148,7 +148,7 @@ module.exports.edit_video = async (req, res, next) => {
       res.json({
         status: true,
         status_code: 200,
-        message: "video data edited successfully",
+        message: "video Data Edited Successfully",
         redirect: "/video/list"
       });
     })
@@ -170,7 +170,7 @@ module.exports.delete_video = async (req, res, next) => {
       res.json({
         status: true,
         status_code: 200,
-        message: "Video deleted successfully",
+        message: "Video Deleted Successfully",
         redirect: "/video/list"
       })
     })

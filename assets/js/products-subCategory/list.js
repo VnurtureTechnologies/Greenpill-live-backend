@@ -97,7 +97,7 @@ function user_delete_action(url) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Something went wrong!'
+            text: 'Something Went Wrong!'
         });
     });
 }

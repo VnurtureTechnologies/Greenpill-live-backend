@@ -1,0 +1,123 @@
+<html lang="en">
+
+<head>
+    <title>{{title}}</title>
+    {{> header}}
+    <style>
+        .tag_fields {
+            height: 150px;
+            overflow-y: scroll;
+            scrollbar-color: rgb(78, 140, 191);
+            scrollbar-width: thin;
+        }
+    </style>
+</head>
+
+<body>
+    {{> sidebars}}
+    <div class="content-wrapper">
+        <div class="body_content">
+            <div class="common_field_sec">
+                <div class="common_sec_title">
+                    <h2>{{page_title}}</h2>
+                </div>
+
+                <form action="javascript:void(0);" class="add_form" enctype="multipart/form-data">
+                    <div class="field_inner_sec">
+
+                        <div class="floating-label left_fld">
+                            <label>Choose a product<span class="required">*</span></label>
+                            <select id="selected" class="floating-select" name="type" required>
+                                <option value="nonex">--Choose--</option>
+                                <option value="product">Product</option>
+                                <option value="news">News</option>
+                                <option value="resources">Resources</option>
+                            </select>
+                        </div>
+
+                        <div class="claerfix"></div>
+                        <div id="product" class="floating-label left_fld">
+                            <label>Choose a product<span class="required">*</span></label>
+                            <select class="floating-select" name="producttype" required>
+                                {{#each products}}
+                                <option value="{{this.id}}">{{this.title}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div id="newsResources" class="floating-label left_fld">
+                            <label>Choose a type<span class="required">*</span></label>
+                            <select class="floating-select" name="resourcetype" required>
+                                {{#each newsResources}}
+                                <option value="{{this.id}}">{{this.title}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+
+
+                        <div class="claerfix"></div>
+
+                        <h4>Add a news image</h4>
+                        <div class="floating-label right_fld browse2">
+                            <label>
+                                <input type="file" accept="image/jpeg, image/png" name="image" onchange="readURL(this);" required />
+                                <img id="blah" src="#" alt="your image" />
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form_submit_sec">
+                        <button type="submit" class="btn">Submit</button>
+                    </div>
+                </form>
+            </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    <!-- END -->
+    {{> footer}}
+    <script>
+        $(document).ready(function () {
+            $("#product").hide();
+            $("#newsResources").hide();
+
+            $('#selected').on('change', function () {
+                if (this.value == "nonex") {
+                    $("#product").hide();
+                    $("#newsResources").hide();
+
+                } else if (this.value == 'product') {
+                    $("#product").show();
+                    $("#newsResources").hide();
+
+                }
+                else {
+                    $("#newsResources").show();
+                    $("#product").hide();
+
+                }
+            });
+        });
+    </script>
+    <script>
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+
+                reader.onload = function (e) {
+                    $('#blah')
+                        .attr('src', e.target.result)
+                        .width(150)
+                        .height(200);
+                };
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+    </script>
+    <script src="/js/mobiledashboard/add.js"></script>
+</body>
+
+</html>

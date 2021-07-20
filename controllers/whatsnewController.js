@@ -19,7 +19,7 @@ module.exports.add_whatsnew = async (req, res, next) => {
       res.json({
         status: true,
         status_code: 200,
-        message: "Idea added successfully",
+        message: "Idea Added Successfully",
         redirect: "/whatsnew/list"
       });
     })
@@ -28,7 +28,7 @@ module.exports.add_whatsnew = async (req, res, next) => {
         status: false,
         status_code: 501,
         error: err,
-        message: "Something went wrong",
+        message: "Something Went Wrong",
       });
     });
 };
@@ -160,7 +160,7 @@ module.exports.edit_whatsnew = async (req, res, next) => {
       res.json({
         status: true,
         status_code: 200,
-        message: "Idea edited successfully",
+        message: "Idea Edited Successfully",
         redirect: "/whatsnew/list"
       });
     })
@@ -197,7 +197,7 @@ module.exports.delete_whatsnew = async (req, res, next) => {
       res.json({
         status: true,
         status_code: 200,
-        message: "whatsnew deleted successfully",
+        message: "Idea Deleted Successfully",
         redirect: "/whatsnew/list"
       })
     })

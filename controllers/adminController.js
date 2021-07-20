@@ -50,8 +50,8 @@ module.exports.forgot_password = [ async(req,res,next) => {
                 .then((r) => {
                     var smtpTransport = nodemailer.createTransport({
                         host: 'smtp.gmail.com',
-                        port: 465,
-                        secure: true,
+                        port: 587,
+                        secure: false,
                         auth: {
                             type: 'OAuth2',
                             user: 'success20technology@gmail.com',                            
@@ -75,6 +75,7 @@ module.exports.forgot_password = [ async(req,res,next) => {
                         
                     smtpTransport.sendMail(mailOptions, function (error, response) {
                         if (error) {
+                            console.log(error);
                             res.json({
                                 status: false,
                                 message: error

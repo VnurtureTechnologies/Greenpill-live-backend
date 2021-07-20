@@ -102,7 +102,7 @@ function do_btn_action(url, data, type) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Something went wrong!'
+            text: 'Something Went Wrong!'
         });
     });
 }

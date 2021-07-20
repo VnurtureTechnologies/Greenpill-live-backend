@@ -62,7 +62,7 @@ module.exports.delete_greeni = (req,res,next) => {
         res.json({
             status: true,
             status_code: 200,
-            message: "Idea deleted successfully",
+            message: "Idea Deleted Successfully",
             redirect:"/greeni-list"
         })
     })

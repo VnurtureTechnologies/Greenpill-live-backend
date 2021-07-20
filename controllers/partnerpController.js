@@ -63,7 +63,7 @@ module.exports.delete_partnerp = (req,res,next) => {
         res.json({
             status: true,
             status_code: 200,
-            message: "Program deleted successfully",
+            message: "Program Deleted Successfully",
             redirect:"/partnerp-list"
         })
     })

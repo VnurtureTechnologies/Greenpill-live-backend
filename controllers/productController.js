@@ -16,7 +16,7 @@ module.exports.add_product = async(req,res,next) => {
         res.json({
             status: true,
             status_code: 200,
-            message: "Product added successfully",
+            message: "Product Added Successfully",
             redirect: '/dashboard'
         })
     })
@@ -25,7 +25,7 @@ module.exports.add_product = async(req,res,next) => {
             status: false,
             status_code: 501,
             error: err,
-            message: "Something went wrong"
+            message: "Something Went Wrong"
         })
     })
 }
@@ -174,7 +174,7 @@ module.exports.edit_product = async(req,res,next) => {
         res.json({
             status: true,
             status_code: 200,
-            message: "Product edited successfully"
+            message: "Product Edited Successfully"
         })
     })
     .catch( (err) => {
