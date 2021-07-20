@@ -72,7 +72,7 @@ exports.sendGenericNotification = async function(notifier, title, description) {
     else if(notifier == "news notification") {
         message = {
             notification: {
-                title: `New news notification - ${title}`,
+                title: `News - ${title}`,
                 body:  description
             },
             data: {
@@ -85,7 +85,7 @@ exports.sendGenericNotification = async function(notifier, title, description) {
     else if(notifier == "resource notification") {
         message = {
             notification: {
-                title: `New resource Notification - ${title}`,
+                title: `New resource added - ${title}`,
                 body:  description
             },
             data: {
