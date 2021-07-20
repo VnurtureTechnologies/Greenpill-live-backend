@@ -52,7 +52,7 @@ exports.sendGenericNotification = async function(notifier, title, description) {
             data: {
                 click_action: 'FLUTTER_NOTIFICATION_CLICK',
                 status: 'done',
-                screen: 'generalNotification'
+                screen: 'notification'
             }
         }   
     }
@@ -65,7 +65,7 @@ exports.sendGenericNotification = async function(notifier, title, description) {
             data: {
                 click_action: 'FLUTTER_NOTIFICATION_CLICK',
                 status: 'done',
-                screen: 'projectNotification'
+                screen: 'product'
             }
         }
     }
@@ -78,7 +78,7 @@ exports.sendGenericNotification = async function(notifier, title, description) {
             data: {
                 click_action: 'FLUTTER_NOTIFICATION_CLICK',
                 status: 'done',
-                screen: 'newsNotification'
+                screen: 'news'
             }
         }
     }   
@@ -91,7 +91,7 @@ exports.sendGenericNotification = async function(notifier, title, description) {
             data: {
                 click_action: 'FLUTTER_NOTIFICATION_CLICK',
                 status: 'done',
-                screen: 'resourceNotification'
+                screen: 'resources'
             }
         }
     }
