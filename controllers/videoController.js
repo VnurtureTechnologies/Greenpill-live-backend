@@ -5,11 +5,18 @@ const helpers = require("../helpers");
 module.exports.add_video = async (req, res, next) => {
   var db = admin.firestore();
   await helpers.getfolderName('videoGallery')
-
+  var today = new Date();
+  const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June",
+    "July", "Aug", "Sep", "Oct", "Nov", "Dec"
+  ];
+  const mon =monthNames[today.getMonth()];
+  const date=today.getDate();
+  const year = today.getFullYear();
+  const today1 = mon + ' ' + date + ' ' + year;
   const data = {
-    createdAt: req.body.createdAt,
+    createdAt: today1,
     link: req.body.link,
-    timestamp:Date.now().toString(),
+    timestamp: Date.now().toString(),
     title: req.body.title,
   };
   db.collection("videoGallery")
@@ -32,6 +39,22 @@ module.exports.add_video = async (req, res, next) => {
     });
 };
 
+
+function response(res, news_list) {
+    
+  sorted_newsList = news_list.sort((a,b) => {
+      return b.created_at - a.created_at
+  })
+
+  res.json({
+      status: true,
+      status_code: 201,
+      data: sorted_newsList,
+      message: "list fetched successfully"
+  })
+}
+
+
 module.exports.get_video_list = (req, res) => {
   var db = admin.firestore();
   var video_list = [];
@@ -46,14 +69,12 @@ module.exports.get_video_list = (req, res) => {
           createdAt: r.data().createdAt,
           get_link: get_link(r.data().link),
           get_action_button: get_action_button(req, res, r),
+          created_at: r.data().timestamp,
         };
         video_list.push(row);
       });
 
-      var output = {
-        data: video_list,
-      };
-      res.json(output);
+      setTimeout(response, 1000, res, video_list);
     })
     .catch((err) => {
       res.json({
@@ -68,7 +89,7 @@ function get_link(data) {
   var html = "";
   html += '<span class="action_tools">';
   html +=
-    '<a class="dt_edit" href="' + data+'" data-toggle="tooltip" title="Edit!" target="_blank" >Video link...</a>';
+    '<a class="dt_edit" href="' + data + '" data-toggle="tooltip" title="Edit!" target="_blank" >Video link...</a>';
   html += "</span";
   return html;
 }
@@ -113,12 +134,12 @@ module.exports.edit_video = async (req, res, next) => {
   var db = admin.firestore();
   var id = req.params.id;
   var update_data = "";
-  
-    update_data = {
-      'title': req.body.title,
-      'createdAt': req.body.createdAt,
-      'link': req.body.link
-    };
+
+  update_data = {
+    'title': req.body.title,
+    'createdAt': req.body.createdAt,
+    'link': req.body.link
+  };
 
   db.collection("videoGallery")
     .doc(`${id}`)
