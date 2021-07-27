@@ -407,8 +407,8 @@ app.get('/resources/edit/:id', ensureLogin.ensureLoggedIn(), function (req, res)
 })
 
 app.post('/resources-list', upload.none(), resourcesController.get_resources_list);
-app.post('/resources/do_add', upload.single('resource-image'), resourcesController.add_resources);
-app.post('/resources/do_edit/:id', upload.single('resources-image'), resourcesController.edit_resources);
+app.post('/resources/do_add', upload.array('resource-image',2), resourcesController.add_resources);
+app.post('/resources/do_edit/:id', upload.array('resources-image',2), resourcesController.edit_resources);
 app.delete('/resources-delete/:id', resourcesController.delete_resources);
 
 
