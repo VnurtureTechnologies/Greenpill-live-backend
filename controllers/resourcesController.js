@@ -23,7 +23,7 @@ module.exports.add_resources = async (req, res, next) => {
             res.json({
                 status: true,
                 status_code: 200,
-                message: "Resource Added Successfully",
+                message: "Download Added Successfully",
                 redirect: '/resources-list'
             })
         })
@@ -147,7 +147,7 @@ module.exports.edit_resources = async (req, res, next) => {
             res.json({
                 status: true,
                 status_code: 200,
-                message: "Resource Edited Successfully",
+                message: "Download Edited Successfully",
                 redirect: "/resources-list"
             })
         })
@@ -223,7 +223,7 @@ module.exports.delete_resources = async (req, res, next) => {
             res.json({
                 status: true,
                 status_code: 200,
-                message: "Resource Deleted Successfully",
+                message: "Download Deleted Successfully",
                 redirect: "/resources-list"
             })
         })

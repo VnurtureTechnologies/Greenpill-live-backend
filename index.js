@@ -375,16 +375,16 @@ app.delete('/notification-delete/:id', notificationController.delete_notificatio
 /*resources routes*/
 app.get('/resources-list', ensureLogin.ensureLoggedIn(), function (req, res) {
     res.render("resources/index", {
-        title: 'Resources',
-        page_title: 'Resources list'
+        title: 'Download',
+        page_title: 'Downloads list'
     })
 });
 
 app.get('/resources/add', ensureLogin.ensureLoggedIn(), function (req, res) {
     productController.get_products_id_type_resource(function (products) {
         res.render('resources/add', {
-            title: 'resources',
-            page_title: 'resources',
+            title: 'Download',
+            page_title: 'Add Download',
             products: products
         })
     })
@@ -397,8 +397,8 @@ app.get('/resources/edit/:id', ensureLogin.ensureLoggedIn(), function (req, res)
         data.push({ 'resources_data': resources })
         productController.get_products_id_type_resource(products => {
             res.render('resources/edit', {
-                title: "Resources Edit",
-                page_title: "Edit resources",
+                title: "Download Edit",
+                page_title: "Edit Download",
                 resources: data[0]['resources_data'],
                 products: products
             })
