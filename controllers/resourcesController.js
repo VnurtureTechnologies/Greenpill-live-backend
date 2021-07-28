@@ -12,8 +12,8 @@ module.exports.add_resources = async (req, res, next) => {
         title: req.body.title,
         description: req.body.description,
         productRef: req.body.productRef,
-        image: await helpers.uploadImage(req.file),
-        pdfUrl: req.body.pdfUrl,
+        image: await helpers.uploadImage(req.files[1]),
+        pdfUrl: await helpers.uploadImage(req.files[0]),
         createdAt: Date.now().toString(),
     }
 
@@ -23,7 +23,7 @@ module.exports.add_resources = async (req, res, next) => {
             res.json({
                 status: true,
                 status_code: 200,
-                message: "Resource Added Successfully",
+                message: "Download Added Successfully",
                 redirect: '/resources-list'
             })
         })
@@ -39,7 +39,7 @@ module.exports.add_resources = async (req, res, next) => {
 
 function response(res, resources_list) {
 
-    sorted_resourcesList = resources_list.sort((a,b) => {
+    sorted_resourcesList = resources_list.sort((a, b) => {
         return b.created_at - a.created_at
     })
 
@@ -94,55 +94,71 @@ module.exports.edit_resources = async (req, res, next) => {
     var filelink = "";
     var update_data = ""
     await helpers.getfolderName('resource')
+    if (req.files.length !== 0) {
+        if (req.files[0] && req.files[1]) {
+            update_data = {
+                'title': req.body.title,
+                'description': req.body.description,
+                'productRef': req.body.productRef,
+                'image': await helpers.uploadImage(req.files[1]),
+                'pdfUrl': await helpers.uploadImage(req.files[0]),
+            };
+        } else {
+            if (req.files[0].mimetype == "application/pdf") {
+                update_data = {
+                    'title': req.body.title,
+                    'description': req.body.description,
+                    'productRef': req.body.productRef,
+                    'pdfUrl': await helpers.uploadImage(req.files[0]),
+                };
+            } else {
+                update_data = {
+                    'title': req.body.title,
+                    'description': req.body.description,
+                    'productRef': req.body.productRef,
+                    'image': await helpers.uploadImage(req.files[0]),
+                };
+            }
+        }
+        // db.collection("resources")
+        //     .doc(`${id}`)
+        //     .get()
+        //     .then(async (r) => {
+        //         const data = {
+        //             filelink1: r.data().image
+        //         }
+        //         filelink = data.filelink1
+        //         await helpers.deleteImage(filelink)
+        //     })
+        //     .catch((err) => {
+        //         console.log(err)
+        //     });
 
-    if (req.file) {
-        db.collection("resources")
-            .doc(`${id}`)
-            .get()
-            .then(async (r) => {
-                const data = {
-                    filelink1: r.data().image
-                }
-                filelink = data.filelink1
-                await helpers.deleteImage(filelink)
-            })
-            .catch((err) => {
-                console.log(err)
-            });
-
-        update_data = {
-            'title': req.body.title,
-            'description': req.body.description,
-            'productRef': req.body.productRef,
-            'image': await helpers.uploadImage(req.file),
-            'pdfUrl': req.body.pdfUrl
-        };
     } else {
         update_data = {
             'title': req.body.title,
             'description': req.body.description,
-            'productRef': req.body.productRef,
-            'pdfUrl': req.body.pdfUrl
+            'productRef': req.body.productRef
         }
     }
 
-db.collection('resources').doc(`${id}`).update(update_data)
-    .then((r) => {
-        res.json({
-            status: true,
-            status_code: 200,
-            message: "Resource Edited Successfully",
-            redirect: "/resources-list"
+    db.collection('resources').doc(`${id}`).update(update_data)
+        .then((r) => {
+            res.json({
+                status: true,
+                status_code: 200,
+                message: "Download Edited Successfully",
+                redirect: "/resources-list"
+            })
         })
-    })
-    .catch((err) => {
-        res.json({
-            status: false,
-            status_code: 501,
-            message: "Internal server error"
+        .catch((err) => {
+            res.json({
+                status: false,
+                status_code: 501,
+                message: "Internal server error"
+            })
         })
-    })
-    }
+}
 
 function get_action_button(req, res, data) {
     var html = '';
@@ -207,7 +223,7 @@ module.exports.delete_resources = async (req, res, next) => {
             res.json({
                 status: true,
                 status_code: 200,
-                message: "Resource Deleted Successfully",
+                message: "Download Deleted Successfully",
                 redirect: "/resources-list"
             })
         })
