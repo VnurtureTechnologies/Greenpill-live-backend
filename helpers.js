@@ -79,13 +79,8 @@ exports.sendGenericNotification = async function (notifier, title, description) 
     else if (notifier == "news notification") {
         message = {
             notification: {
-<<<<<<< HEAD
-                title: `New news notification - ${title}`,
-                body: description
-=======
                 title: `News - ${title}`,
                 body:  description
->>>>>>> master
             },
             data: {
                 click_action: 'FLUTTER_NOTIFICATION_CLICK',
@@ -97,13 +92,8 @@ exports.sendGenericNotification = async function (notifier, title, description) 
     else if (notifier == "resource notification") {
         message = {
             notification: {
-<<<<<<< HEAD
                 title: `Downloads Notification - ${title}`,
                 body: description
-=======
-                title: `New resource added - ${title}`,
-                body:  description
->>>>>>> master
             },
             data: {
                 click_action: 'FLUTTER_NOTIFICATION_CLICK',
