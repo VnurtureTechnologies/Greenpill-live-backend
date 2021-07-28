@@ -59,7 +59,7 @@ exports.sendGenericNotification = async function (notifier, title, description) 
             data: {
                 click_action: 'FLUTTER_NOTIFICATION_CLICK',
                 status: 'done',
-                screen: 'generalNotification'
+                screen: 'notification'
             }
         }
     }
@@ -72,33 +72,43 @@ exports.sendGenericNotification = async function (notifier, title, description) 
             data: {
                 click_action: 'FLUTTER_NOTIFICATION_CLICK',
                 status: 'done',
-                screen: 'projectNotification'
+                screen: 'product'
             }
         }
     }
     else if (notifier == "news notification") {
         message = {
             notification: {
+<<<<<<< HEAD
                 title: `New news notification - ${title}`,
                 body: description
+=======
+                title: `News - ${title}`,
+                body:  description
+>>>>>>> master
             },
             data: {
                 click_action: 'FLUTTER_NOTIFICATION_CLICK',
                 status: 'done',
-                screen: 'newsNotification'
+                screen: 'news'
             }
         }
     }
     else if (notifier == "resource notification") {
         message = {
             notification: {
+<<<<<<< HEAD
                 title: `Downloads Notification - ${title}`,
                 body: description
+=======
+                title: `New resource added - ${title}`,
+                body:  description
+>>>>>>> master
             },
             data: {
                 click_action: 'FLUTTER_NOTIFICATION_CLICK',
                 status: 'done',
-                screen: 'resourceNotification'
+                screen: 'resources'
             }
         }
     }
