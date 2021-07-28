@@ -92,7 +92,7 @@ exports.sendGenericNotification = async function (notifier, title, description) 
     else if (notifier == "resource notification") {
         message = {
             notification: {
-                title: `New resource Notification - ${title}`,
+                title: `Downloads Notification - ${title}`,
                 body: description
             },
             data: {
