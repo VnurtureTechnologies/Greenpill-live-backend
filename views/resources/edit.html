@@ -55,19 +55,17 @@
                         <div class="claerfix"></div>
 
                         <div class="floating-label left_fld">
-                            <label> PDF URL <span class="required"> (must start with http:// or https:// )</span></label>
-                            <input class="floating-input" pattern="https?://.+" id="rest_name" value="{{resources.pdfUrl}}" name="pdfUrl"
-                                type="text">
+                            <label> Update PDF<span class="required"> (accepts PDF only )</span></label>
+                            <input type="file" accept="application/pdf" name="resources-image" />
                         </div>
 
                         <div class="claerfix"></div>
 
-                        <div class="claerfix"></div>
-
-                        <h4>Add a resource image</h4>
+                        <h4>Add a image</h4>
                         <div class="floating-label right_fld browse2">
                             <label>
-                                <input type="file" accept="image/jpeg, image/png" name="resources-image"  onchange="readURL(this);" />
+                                <input type="file" accept="image/jpeg, image/png" name="resources-image"
+                                    onchange="readURL(this);" />
                                 <img id="blah" src="#" alt="your image" />
                             </label>
                         </div>
@@ -86,19 +84,19 @@
     <script>
         $('#selected option[value={{resources.productRef}}]').attr("selected", "selected");
     </script>
-    
+
     <script>
         function readURL(input) {
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
-    
+
                 reader.onload = function (e) {
                     $('#blah')
                         .attr('src', e.target.result)
                         .width(150)
                         .height(200);
                 };
-    
+
                 reader.readAsDataURL(input.files[0]);
             }
         }
