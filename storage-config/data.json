@@ -1,0 +1,1354 @@
+[
+  "USERS",
+  {
+    "firstName": "Sanjay",
+    "companyAddress": "C 815 Development Arum Building  Prahladnagar Road Satellite  AL  Gujarat ",
+    "lastName": "Prasad ",
+    "fcmtoken": "ejFeNdwsQJaMkOJ5xD6fOx:APA91bHtPj92F2iqJeV9caZt2GgGqFEsApK0FQyTyksBOFj8JI5n1K_rUGDCUgIhVXuNVpKreejgLoJbii3xO3uWnhbfZUAkhGzubGMT0278uOgY9kt0DECQGrYJd-BKLOUHMEmwnbsr",
+    "companyName": "Greenpill Renewable Energy Pvt Ltd ",
+    "role": "client",
+    "mobileNumber": "9601935491",
+    "createdAt": "1626696417",
+    "email": "sanjay@greenpill.in"
+  },
+  {
+    "firstName": "Reshma ",
+    "companyAddress": "",
+    "timestamp": "1627130468860",
+    "lastName": "Maheshwari",
+    "mobileNumber": "9099668264",
+    "email": "reshma_v_m@yahoo.co.in",
+    "role": "client",
+    "companyName": "",
+    "isNotify": true,
+    "fcmtoken": "emVGOeu4Sxe6E07U717Fuh:APA91bHdfPcfTCps-7SLuZKbe_Dsjk8ZvwPnebjIaevV_v5wI2cIRPVWXh3hRiU-XdL4rD0s65U2G9czBJoHX0gYudjfpe9S1b1qTN2yWedOWV-ptzBrLZSGsZJoxCbGsRW2F48Ksktx"
+  },
+  {
+    "mobileNumber": "9510907731",
+    "timestamp": "1627297013107",
+    "email": "Info@greenpill.in",
+    "companyAddress": "C815 Dev Aurum,  Prahaladnagar Road,  Satellite,  Ahmedabad",
+    "firstName": "Dipak",
+    "companyName": "Greenpill Renewavle Enwrgy Pvt Ltd",
+    "fcmtoken": "fVLD9YUxRCSMAiXNvCYkW3:APA91bFwYf3WrfVYZZIoWB3WtwV9AkZHdpamva_tVT3wNU_MUMCgHNAt4uePNTB_DiHNMWTO_Fez1NZ7xr5s6A2F5-WwSLrqW8tyjLndPBCFOGow4pJ1de6FOFqEzUZf2fowNeF9hxvm",
+    "isNotify": true,
+    "lastName": "Chavda",
+    "role": "client"
+  },
+  {
+    "email": "",
+    "role": "client",
+    "mobileNumber": "9427134509",
+    "createdAt": "1626696192",
+    "companyAddress": "C-815, Dev Aurum, Satellite, Ahmedabad ",
+    "lastName": "Maheshwari ",
+    "companyName": "Greenpill Renewable Energy ",
+    "firstName": "Nilesh",
+    "fcmtoken": "dMnzig6OTOqn-h97SMCRwu:APA91bE5tVpzVpnRpZRkrBjY41baLRaTb-9PGihtdorkN9VplsU4PFdyldwTzOeviq5_jhD-lZwN4eKtbJaSzkYqkPP9BdJjvNo__8SHK0AfDDxfVzjYY1JtnxRf4eBQEKCLzjQAZOwN"
+  },
+  {
+    "email": "manishvasoya009@gmail.com",
+    "firstName": "Manish",
+    "isNotify": true,
+    "mobileNumber": "9510038624",
+    "timestamp": "1627460024096",
+    "lastName": "Vasoya",
+    "role": "client",
+    "fcmtoken": "eCf56LtyQMOAaA1b1kqbV0:APA91bFd18ch6JMw-uEdP3nr6vawIjjl-_WEdN-ENCaiwzNFUQqo57Hl8znh-FGFRMFM0eRfBUzMIDuSncUtKu5z8kTtRqVgbB1Mt9iszrf1rlEe5DgkmoGZ4sbMlQjvwYxRu3HeScJI",
+    "companyAddress": "15/A, Punit Park Nr Siddhivinayak Hospital Balvatika Road Maninagar Ahmedabad Gujarat",
+    "companyName": "Shridhar Infratel Pvt Ltd"
+  },
+  {
+    "firstName": "Bhavya",
+    "email": "bhavya.intern.cilans@gmail.com",
+    "lastName": "Bhatt",
+    "mobileNumber": "9409408044",
+    "fcmtoken": "fFpWlbf7T4CAw45PdIVK55:APA91bHiuFDyukQmPzL4OFFqRTznS-K4zpA72S81Mg_IyhMx927xqeQmXcgbqZIuFubbRlexeIPwW55Pq1nyjCN5x95iT06GyitcrSOUcBu4jlt1r_jyN_LTHhbdEZl_coCgt7WCqHha",
+    "companyAddress": "Paldi",
+    "role": "client",
+    "companyName": "VNuture",
+    "createdAt": "1626696208"
+  },
+  {
+    "role": "client",
+    "firstName": "Sana",
+    "companyName": "Vn",
+    "lastName": "Male",
+    "fcmtoken": "fAq_WyFUQByoBpLOZKVgNE:APA91bET1kisBiHEF_b4LJpzPFOmXkxGmNDx5mQ5FlRdrEc4rF03GBIUoYopoeXMcJ2qwJyDEXHeV83t_L-b9rvt1eRT0smwMokATpNFb5K-ZWCk2g2yUABPiWvz-vnoLbiPEwMrOtKh",
+    "isNotify": true,
+    "mobileNumber": "9409630529",
+    "companyAddress": "Abd",
+    "email": "sanamalek3@gmail.com",
+    "timestamp": "1628077264031"
+  },
+  {
+    "companyName": "",
+    "companyAddress": "",
+    "isNotify": true,
+    "image": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/profile%2FRg4rkqeK5DuZIwFLPJ3l?alt=media&token=9aaf11f7-df79-4102-b53e-17d04886e576",
+    "createdAt": "1626696229",
+    "email": "jp@gmail.com",
+    "lastName": "patel",
+    "fcmtoken": "eUrrsufWROeMJQAlsjW0Uq:APA91bFic8W7kTnLaPk2ByG9KpOIr2ke8NgD60RT81rihIoAtKB6BTFL3zI4bj7vrwCd-WuTazPL7PPclDUhF5TyygYUkbnWpC9N_4qHj1ppNvJbP02lm2UpFVeKrscqqd--aKFuQXaI",
+    "mobileNumber": "1111111111",
+    "role": "client",
+    "firstName": "jayesh p"
+  },
+  {
+    "role": "admin",
+    "companyAddress": "Ahmedabad ",
+    "firstName": "Vraj",
+    "isNotify": true,
+    "createdAt": "1626696245",
+    "mobileNumber": "9408926916",
+    "lastName": "Dhruv",
+    "companyName": "Greenpill Renewable Energy PVT LTD ",
+    "fcmtoken": "c6u_oh6fSAiZ0Kpm_FQmed:APA91bETQDlT8JIglZcWNAlErCAejhtNL-odVLpOFDl3X7zp2n4y9D15RU4L3sGeeh0gay77YPOjces-ptLdGcKw87ROl3QH_cEHy-d-MMO6M4Yh37AZ4Axh838YEiK8Q6JDYD9zqlYU",
+    "email": "account@greenpill.in"
+  },
+  {
+    "image": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/profile%2FUjsAcF3jXWlfrGRmKIbZ?alt=media&token=1c481efe-9933-4cf7-a524-ea2e649b1fb0",
+    "isNotify": true,
+    "fcmtoken": "f5hNmBkjTQexPhO5dySY0N:APA91bHP-X-nKCPVxUt0OS-B1wAnWmF1ZslXh7o1rzCS5_5zh8cOmgucT-U3b2PUYuKUTNv5zWbcnDNh5TPIroQc5vIS9Q4WPdWOLyiBTQebNzd7pyWLgHnDHWK17VOe92tnQ58iqhSN",
+    "companyAddress": "Andheri East, Mumbai",
+    "mobileNumber": "9725999925",
+    "lastName": "Parmar",
+    "firstName": "Ajay",
+    "email": "ajay.parmar1111@gmail.com",
+    "companyName": "A R Technologies",
+    "timestamp": "1627489064716",
+    "role": "client"
+  },
+  {
+    "lastName": "Ramanuj",
+    "firstName": "Vishwajeet",
+    "companyName": "",
+    "role": "admin",
+    "email": "",
+    "mobileNumber": "8530067675",
+    "fcmtoken": "fo80COh2SCWPVUkc8g74Bk:APA91bHjRkscD6vIenFTtxTN-p6rGd1Gs98Te0MX8hGphFZxS4uAl5C3vuIbR9GOhSOabd-7NhRBux02rVdrRpGC1ZBAq_JIoET0l6CSdX-cEshCvWxBysXk7CjUoWSpsUtwXDc_gppO",
+    "createdAt": "1626696262",
+    "companyAddress": ""
+  },
+  {
+    "fcmtoken": "fuiNWSxZRv-OWsuC6WBOkC:APA91bERwbpd7mypWqDHxjG2gic9R29-PQevRYCaN7q1voU7wAPT-EwJtQEZBUgqF-GJyQneZ0tpUCSD8k1YusbhHF9mRGyVG1DaF9Ru15jslbx5JPD9AVGBFRap21fmIu7RFLRHLLBn",
+    "role": "client",
+    "lastName": "Maheshwari",
+    "email": "",
+    "firstName": "Kuhu",
+    "isNotify": true,
+    "timestamp": "1627487983451",
+    "mobileNumber": "9313866030",
+    "companyName": "",
+    "companyAddress": ""
+  },
+  {
+    "companyName": "Praysha Tradelink",
+    "role": "client",
+    "companyAddress": "Gandhidhan",
+    "fcmtoken": "eK2xYiIxQEWa09CTKoGacA:APA91bGU6HFe-9kKxaN9teS7NnDs1GVtqmL6hsMKx5fLEBXuSn7yehKk_XkpNnVWW-niV3pFk3NycoQ5NiYygP4KtGtpQmcUUVftOgJ2MJHWbaYrCvVmNhcIHkycy0wrwrZ0rWpRUvzu",
+    "timestamp": "1627459315999",
+    "lastName": "Agrawal",
+    "isNotify": true,
+    "mobileNumber": "9825227633",
+    "firstName": "Prashant",
+    "email": "prashantagin@gmail.com"
+  },
+  {
+    "lastName": "Vishal",
+    "mobileNumber": "9099016724",
+    "companyAddress": "Dev Aurum, Ahmedabad ",
+    "role": "client",
+    "createdAt": "1626696294",
+    "email": "vishal@greenpill.in",
+    "firstName": "Vishal",
+    "companyName": "Greenpill renewable Energy Pvt Ltd "
+  },
+  {
+    "fcmtoken": "f6LC4OnOSLyLfujIcBR8jI:APA91bGHkurELixFLGDC9rh2kfTOLti9FNtpwG13k9GNamDMBee0tg4bNBWaOF56B5fMGY2LP1KSm8QcErPaSRr9-ZtaRaV5aS0Qid6m34mHkzrVlIL45Hzsj5_VrxmTn_re208cJ0lQ",
+    "role": "admin",
+    "firstName": "Vikash",
+    "lastName": "Maheshwari",
+    "companyAddress": "Ahmedabad",
+    "timestamp": "1627452187647",
+    "mobileNumber": "9825429100",
+    "companyName": "Greenpill renewable Energy Pvt Ltd ",
+    "email": "vikash@greenpill.in",
+    "isNotify": true
+  },
+  {
+    "fcmtoken": "cjemfb7YR7SttXQ7UK3fCt:APA91bHflHGjj3GEbUUFney3GK5Cw1cND5WSAbY1EwPt_d_TK3S7crQuU_LwjtPLSU4E9hkXq5Xm46vephyYmUX3N3zYhmSTjTlTm1WlyvKIjhn8h8OaD37pOeG5lgIOh0mOfqlBUXbm",
+    "mobileNumber": "8160013546",
+    "timestamp": "1627478938241",
+    "firstName": "Milan",
+    "lastName": "Kondhiya",
+    "email": "info@taurusmanagement.co.in",
+    "companyAddress": "Ahmedabad",
+    "isNotify": true,
+    "role": "client",
+    "companyName": "Taurus ManagementServices"
+  },
+  {
+    "lastName": "Sutariya",
+    "email": "",
+    "createdAt": "1626696311",
+    "role": "client",
+    "isNotify": true,
+    "mobileNumber": "7984516585",
+    "companyName": "vnuture",
+    "fcmtoken": "e-mQmdFKTtCDi4T2lSfqvI:APA91bH_TQEt_QW5HxcdT_-g-vUkbuGPD611aQxxyVmXVXI6kICCpm6GboaRUmNK-JVy_wA94kM7VBaE2t5pL1NrEyA8g7O8VDJxHYJlp8uQAcannSUHWNepCOHwozvX3t9MuAYOCtdo",
+    "firstName": "Aman",
+    "companyAddress": ""
+  },
+  {
+    "companyAddress": "C- 815; Devarum Prahalad Nagar Ahmedabad",
+    "firstName": "Nareshkumar",
+    "companyName": "Grinpill",
+    "role": "client",
+    "lastName": "Parmar",
+    "fcmtoken": "fzZAiUQzRxa6fAnd77iBAX:APA91bG6GKVAgFswJNyDTqc4HK3GRrTo8KWBgPFGe_nIZJ6lBglJbQ8hzbC_H8pCNnvLMqbAg15q94Hpgb5sC6pgnGSxJpR91CI9Bw3HI0yvXNhi0Y5oy1UsZv_U-8meEjezsAR0zzV5",
+    "isNotify": true,
+    "timestamp": "1627122484687",
+    "email": "nareshkumarparmar345@gmail.com",
+    "mobileNumber": "9924929250"
+  },
+  {
+    "mobileNumber": "9909922254",
+    "companyName": "Nexus4 Web Services",
+    "email": "acharya.tejas@gmail.com",
+    "isNotify": true,
+    "fcmtoken": "dzbdxdwkSSuuclJfsJXWTC:APA91bF3mcu-RZMf2vZfCBBXLmYmXGLy2G2HhvtZi-VbrfFhF5yz7gilPvcmarlhlzPS7v4C0IETQkAJKUsxn9jJ6KPRelANKiYvV1tvF5DsE--vg7lDTWhLtaSvTWB-bmptzFsErjXp",
+    "timestamp": "1627455770394",
+    "firstName": "Tejas",
+    "role": "client",
+    "companyAddress": "Ahmedabad",
+    "lastName": "Acharya"
+  },
+  {
+    "role": "client",
+    "timestamp": "1627457218312",
+    "lastName": "Khan ",
+    "companyAddress": "Om Cineplex Gandhidham ",
+    "companyName": "Vtv News",
+    "email": "contactsahil82@gmail.com",
+    "firstName": "Sahil ",
+    "mobileNumber": "9909944072",
+    "isNotify": true,
+    "fcmtoken": "cvncVOf0T5KXHc3xCp5_kO:APA91bEBW4kwMaraX9a4hSp-DDhJr__EmrAf8D7rLosM67D6piUu1fzo4eczaQtzNgAcauRRu0AzQIS3EY2juyUEKVdVT-Y1QI2L6w97rdQGLugOzvwSE99zorI8wVCniL9MzRYcz9G_"
+  },
+  {
+    "lastName": "Patel",
+    "companyName": "",
+    "createdAt": "1626696326",
+    "companyAddress": "",
+    "fcmtoken": "ei2ecUtMRquayxrfy1-Yv_:APA91bH_VTayYqnZ3u5IPBw_Dgua0J1OepXakAnyLW2dSDyZJalkhszx5BBIYZqIG8IciVd5uR8ixw-GBH4kN-JqQRoxIfpw79wac2gK-RhHPG5JGptGlsXRmIgrkJoVxWgu7Xhn3qLJ",
+    "email": "",
+    "role": "client",
+    "isNotify": true,
+    "firstName": "Jayesh",
+    "mobileNumber": "7359456788"
+  },
+  {
+    "fcmtoken": "f9laxL-0TJ6enC560vhGco:APA91bHonO5TYLKZTOjVIB2iO1ChQVBN8_2jKRbTKci6W6LZ-pONuUHI1RQeVxpAW2EfjE2ZiZHejsGisLVCCRzbeDxJmyUVQQs0dibQpLGOfS5xeCWyFURVFA-DUyEpW4NNXhttC0Ya",
+    "lastName": "Shah",
+    "mobileNumber": "9998822287",
+    "email": "shahnikhilb@gmail.com",
+    "isNotify": true,
+    "companyAddress": "Paldi Cross Road 501 Span Trade Cebter Ahmedabad ",
+    "companyName": "Cilans",
+    "timestamp": "1628077582175",
+    "firstName": "Nikhil",
+    "role": "client"
+  },
+  {
+    "firstName": "Kairav",
+    "lastName": "Pithadia",
+    "timestamp": "1628076840424",
+    "companyName": "Cilans",
+    "mobileNumber": "9033289693",
+    "isNotify": true,
+    "role": "client",
+    "fcmtoken": "dgixfjMOQlKI5ssdOD14Em:APA91bFg2z3BqIdEemjd6lpbJV0rJBIOk4qFNy_gXU6G7dhh508yQLtQWG5BN5ax65_uVJtQPpQdsZz5O3gjQMUtO32yjRvatSXOYrkHqa9jnAjgIGTEt8IdrePTLRMVXL6hw1KL2l_Q",
+    "email": "kairav.cilans@gmail.com",
+    "companyAddress": "Paldi"
+  },
+  [
+    "PRODUCTS",
+    {
+      "timestamp": "1",
+      "type": "product",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/product%2Fsolar_%26_Wind.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436",
+      "title": "Solar & Wind"
+    },
+    {
+      "timestamp": "3",
+      "type": "news & resources",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/product%2FFrost_Global-Grid-Battery-Energy-Storage-Market_600X350.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436",
+      "title": "Storage",
+      "imageResource": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/product%2Fssdsp.jpeg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+    },
+    {
+      "timestamp": "3",
+      "title": "Solid Waste",
+      "type": "product",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/product%2Fsolid-waste-managements-project-equipment-1528099379-3940310.jpeg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+    },
+    {
+      "timestamp": "2",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/product%2Fimages_(2).jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436",
+      "imageResource": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/product%2FVect_EV.jpeg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436",
+      "title": "EV",
+      "type": "news & resources"
+    },
+    {
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/product%2Fgreen-hydrogen-ecosystem.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436",
+      "timestamp": "4",
+      "imageResource": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/product%2F31da3aed-244d-4f40-91ea-1b6ce7cd9ba6.jpeg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436",
+      "title": "Hydrogen",
+      "type": "news & resources"
+    },
+    {
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/product%2Frain-water-harvesting.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436",
+      "timestamp": "2",
+      "title": "RWHS",
+      "type": "product"
+    },
+    {
+      "timestamp": "4",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/product%2Fthumb.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436",
+      "title": "EV & Smart City",
+      "type": "product"
+    },
+    {
+      "title": "Consultancy",
+      "type": "product",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/product%2Frainwater-harvesting-service-500x500.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436",
+      "timestamp": "5"
+    },
+    {
+      "title": "Solar",
+      "type": "news & resources",
+      "timestamp": "1",
+      "imageResource": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/product%2Fsolar_VECT.jpeg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436",
+      "imageUrl": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/product%2Fsolar1.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+    }
+  ],
+  [
+    "PROJECTS",
+    {
+      "longDesc": "2500 M Cube Rain Water Storage Tank, 2500 M cube Water Percolation and Ground water Recharging system.  ",
+      "productRef": "mGRfb57V1ROWtJASUl3w",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/projects%2Fmodular-rainwater-harvesting-system-500x500.jpeg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "title": "5000 M cube Modular Rain Water Harvesting project",
+      "createdAt": "1627195249520",
+      "shortDesc": "5000 M cube Modular RWHS at Government project- Gujarat"
+    },
+    {
+      "productRef": "5QJeLta5uF10BOjxXf8j",
+      "longDesc": "Scope of Work – \tElectrical Details: \tComplete structure & Module installation \tTrenching of DC/AC Cabling.  \tComplete structure & Module installation. \tDC cabling, Junction Box Fixing. Entire Plant Earthing.",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/projects%2FIMG-20210724-WA0018.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "createdAt": "1623480689",
+      "shortDesc": "20 MW Solar project- Doddballapur, Karnataka.",
+      "title": "20 MW Solar PV- Asian Feb Tech Ltd"
+    },
+    {
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/projects%2FIMG-20190215-WA0025.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "longDesc": "Selfi point, IOT Enable, Solar operated, Tourist attraction ",
+      "productRef": "q7BOD8o6mjkNjutYCfIO",
+      "createdAt": "1627203466507",
+      "shortDesc": "Smart city - Smart Palm Project",
+      "title": "Smart Solar Palm Tree"
+    },
+    {
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/projects%2FIMG-20180912-WA0010.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "productRef": "cHg0YDmBKooWLN6DsHm0",
+      "shortDesc": "200 KG/Day Solid Waste project - New Delhi",
+      "title": "Delhi Solid Waste Project",
+      "longDesc": "200 Kg/Day Municipal Solid waste project at New delhi",
+      "createdAt": "1627200329745"
+    },
+    {
+      "shortDesc": "44 Mw solar power project- Bidar, Karnataka",
+      "createdAt": "1627124029899",
+      "productRef": "5QJeLta5uF10BOjxXf8j",
+      "title": "44 MW Solar PV- L&T Construction",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/projects%2FIMG-20200918-WA0024.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "longDesc": "Scope of Work:-Civil Foundations, \tAuguring, Piling of 44 MW Project ,\tControl Room,  Inverter Room footing, \t Rafting, PCC & RCC for cable trench, \t Column concreting, \t Plinth beam,  \tFull lintel beam, \t Brick work, Plastering & Painting."
+    },
+    {
+      "title": "Gujarat Solid waste project",
+      "longDesc": "1 Ton/Day Municipal Solid waste project at Gujarat. No Segregation require, No Pollution, Eco-friendly treatment of waste.",
+      "shortDesc": "Solid waste project at municipal area , Gujarat",
+      "productRef": "cHg0YDmBKooWLN6DsHm0",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/projects%2FIMG-20181023-WA0012.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "createdAt": "1627202589460"
+    },
+    {
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/projects%2FIMG-20180925-WA0008.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "title": "Rajasthan Solid Waste Project ",
+      "productRef": "cHg0YDmBKooWLN6DsHm0",
+      "longDesc": "Scope of Work : Daily de-compose of 200KG green waste at Mohana Mandi, No segregation require, No Pollution, Eco-Friendly waste treatment at site.",
+      "shortDesc": "Solid Waste project at Mohana Mandi, Jaipur, Rajasthan",
+      "createdAt": "1627198811672"
+    },
+    {
+      "productRef": "5QJeLta5uF10BOjxXf8j",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/projects%2FIMG-20200901-WA0038.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "longDesc": "Erection of Inverter Rooms Complete structure & Module installation DC cabling, Junction Box Fixing Entire Plant Earthling Installation of Lightning & Earthling Protection System Trenching of DC/AC Cabling Trenches filled up with Sand, Bricks to avoid any quality issue",
+      "createdAt": "1623483421",
+      "title": "20 MW Solar PV- L & T Construction",
+      "shortDesc": "20 MW Solar Project, Dindigul, Tamilnadu"
+    },
+    {
+      "title": "1500 M cube Modular Rain Water Harvesting Project",
+      "longDesc": "Scope of Work: 1000 M Cube Ground Water Recharging System and 500 M cube Rain Water Storage system ",
+      "createdAt": "1627195437160",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/projects%2Frainwater-harvesting-service-500x500.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "productRef": "mGRfb57V1ROWtJASUl3w",
+      "shortDesc": "1500 M cube RWHS- Private Builder- Gujarat"
+    },
+    {
+      "longDesc": "Scope of Work: Complete Module installation,  DC cabling, Junction Box Fixing ,\tEntire Plant Earthling ,\tInstallation of Lightning & Earthling Protection System  , DC/AC Cabling  ,\tErection of Inverter ",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/projects%2FMeghadrigedda-floating-solar-power-plant-to-be-ready-by-Dec-end.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "shortDesc": "20 MW Floating Solar PV- Uttar Pradesh ",
+      "title": "20 MW floating PV- L&T Construction",
+      "createdAt": "1627191893161",
+      "productRef": "5QJeLta5uF10BOjxXf8j"
+    },
+    {
+      "createdAt": "1627236101978",
+      "productRef": "tyrnNWek1qHZzCyJm1UR",
+      "title": "Refinery Infrastructure Project  ",
+      "longDesc": "Scope of work: Successfully contracted civil infrastructure work, Main project connectivity, Electrical & other core project work.",
+      "shortDesc": "Oil refinery Infrastructure Work",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/projects%2Funnamed.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ]
+    },
+    {
+      "productRef": "5QJeLta5uF10BOjxXf8j",
+      "shortDesc": "3.7 MW Solar PV- Sitamu, MP",
+      "title": "3.7 MW Solar PV- L&T CONSTRUCTION",
+      "createdAt": "1623481536",
+      "longDesc": "Scope of Work: - Erection of Inverter Rooms  ,Complete structure & Module installation ,\tDC cabling, Junction Box Fixing ,\tEntire Plant Earthling ,\tInstallation of Lightning & Earthling Protection System  ,\tTrenching of DC/AC Cabling  ,\tTrenches filled up with Sand, Bricks to avoid any quality issue.",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/projects%2Fsolo10.jpg?alt=media&token=11026d66-9d45-42cb-ac1c-49214bf75c7e"
+      ]
+    },
+    {
+      "longDesc": "Scope of Work: Successfully contracted hundreds of KM optical fiber work with OFC Blowing, OLT Live and Visible to NOC and other scope of work.",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/projects%2Foptical-fiber-cable-laying-service-500x500.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "createdAt": "1627236306692",
+      "title": "Hundreds of Kms OFC Laying project  ",
+      "productRef": "tyrnNWek1qHZzCyJm1UR",
+      "shortDesc": "Optical fiber laying project at Gujarat "
+    },
+    {
+      "createdAt": "1626771303240",
+      "title": "40 MW Solar PV Plant KGF ",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/projects%2FDSC_0084.JPG?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "longDesc": "Scope of Work –  I&C \tPiling of 40 MW Project in KGF, Karnataka. |Control Room, Inverter Room footing, Rafting, PCC & RCC for cable trench |Structure & Module installation | \tDC cabling, Junction Box Fixing \t|Entire Plant Earthing. |\tInstallation of Lightning & Earthing Protection System | Trenching & Backfilling of DC/AC Cabling |",
+      "productRef": "5QJeLta5uF10BOjxXf8j",
+      "shortDesc": "40 MW Solar Power Project, Karnataka"
+    },
+    {
+      "longDesc": "Rain Water Harvesting project : Scope of Work: Water Percolation and Rain water recharging system. ",
+      "shortDesc": "50000 Ltrs RWHS at Government building- Gujarat",
+      "title": "50000 Ltrs Modular Rain Water Harvesting project",
+      "productRef": "mGRfb57V1ROWtJASUl3w",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/projects%2Fmodular-rainwater-harvesting-500x500.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "createdAt": "1627195557622"
+    },
+    {
+      "createdAt": "1627203253150",
+      "title": "Smart City- Palm Tree Project",
+      "longDesc": "Scope of Work: Solar operated, Wi-Fi enable, IOT facility, Decorative purpose, Selfi Point  ",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/projects%2FIMG-20190308-WA0014.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "shortDesc": "Smart Solar palm Tree - Government project, Bihar ",
+      "productRef": "q7BOD8o6mjkNjutYCfIO"
+    },
+    {
+      "createdAt": "1627193017418",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/projects%2FWhatsApp_Image_2021-07-25_at_11.53.32_(1).jpeg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "productRef": "mGRfb57V1ROWtJASUl3w",
+      "title": "1000 M cube Modular Rain water harvesting Project",
+      "longDesc": "Scope of Work: 1000 M Cube rain Water Storage, Rain Water percolation with PP modular system.  ",
+      "shortDesc": "Modular Rain Water harvesting project at University Campus, Gujarat"
+    },
+    {
+      "longDesc": "Scope Of Work:- \tComplete structure & Module installation. \tDC cabling, Junction Box Fixing. \tEntire Plant Earthling. \tInstallation of Lightning & Earthling Protection System.  \tTrenching of DC/AC Cabling LT & HT. \tTrenches filled up with Sand, Bricks to avoid any quality issue.",
+      "shortDesc": "25 MW Solar PV Plant, Raichur, Karnataka",
+      "createdAt": "1623483554",
+      "productRef": "5QJeLta5uF10BOjxXf8j",
+      "title": "25 MW Solar PV -Mahindra Susten Private limited",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/projects%2Fsolo7.jpg?alt=media&token=4a96c25d-a33b-4629-8fc2-a124b5735580"
+      ]
+    }
+  ],
+  [
+    "NEWS AND INNOVATION",
+    {
+      "sourceLink": "https://www.greenpill.in/",
+      "productRef": "z8wm7UZhZ2ZqcvQXzsRF",
+      "title": "Reliance vs TATA vs Adani: India’s Renewable Behemoth  ",
+      "youtubeUrl": "",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/news%26innovation%2F03_06_2021-adani1_21702587.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "createdAt": "1627400920778",
+      "description": "In true sense “Better late than never“, idiom perfect fit for Reliance, Adani , TATA the Indian conglomerates. In latest move Reliance Industries has set a target of achieving 100GW of Renewable Energy by 2030. Likewise TATA has announced achieving clean energy portfolio of 60GW by 2030. The leader of all Adani Group has already achieved 25GW of Renewable Energy capacities four year ahead of the schedule. "
+    },
+    {
+      "sourceLink": "https://www.greenpill.in/",
+      "description": "Center is planning 4000 MWh of battery storage tenders in coming days. Industry expert believes that excess renewable energy must be store in utility scale energy storage plant to offload store energy at night time thus balancing grid parity.  The IEA said that India could have 140 GW to 200 GW of battery storage capacity by 2040.",
+      "createdAt": "1627448132144",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/news%26innovation%2Fgiphy.gif?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "youtubeUrl": "",
+      "productRef": "D6pmnsmhrwRLoDmAPsJL",
+      "title": "After Utility scale Solar – Now it’s time for Utility scale Storage"
+    },
+    {
+      "title": "New Topcon solar cell achieve 25.19% Efficiency- Longi Solar",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/news%26innovation%2Flongi-solar-logo-1000x1000-1.png?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "sourceLink": "https://www.greenpill.in/",
+      "description": "Longi Solar has achieved two more efficiency records. It claimed to have reached a power conversion efficiency of 25.02% for a p-type monocrystalline bifacial TOPCon solar cell and explained it is the first time that a cell based on this technology surpasses the 25% barrier.",
+      "youtubeUrl": "",
+      "productRef": "z8wm7UZhZ2ZqcvQXzsRF",
+      "createdAt": "1627315866953"
+    },
+    {
+      "youtubeUrl": "",
+      "productRef": "iVLb2Q4VYNCAZ2D4chGL",
+      "title": "How Subsidies Electrical Vehicles to rescue your ballooned fuel budget?",
+      "description": "Petrol, diesel prices have touched three digits and household fuel budget is rising day by day with no respite for next coming years.  The freight charges have increased substantially for many months.  But there is set of option available to cool my budget. EV is the best option at lease to break my rising fuel cost. More over many states are providing subsidies on EV purchase to cut a purchase cost up to 50,000 on two wheelers and 1.5 Lakh on four wheelers. With technology advancing day by day EV cost will come down with government assistance.",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/news%26innovation%2Fgasoline2.png?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "createdAt": "1627400440212",
+      "sourceLink": "https://www.greenpill.in/"
+    },
+    {
+      "productRef": "z8wm7UZhZ2ZqcvQXzsRF",
+      "createdAt": "1627318894355",
+      "description": "Under PLI scheme for High-efficiency modules will spur investment of over 14000 Crore and build a manufacturing capacity of more than 10GW. Presently Waare Energy, First Solar, Vikram Solar, Rayzon Solar, Premier solar and others to add GW capacity plant which will be operational by mid of 2022.",
+      "title": "Decoding PLI scheme in solar sector ",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/news%26innovation%2Frobot-jumbo.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "sourceLink": "https://www.greenpill.in/",
+      "youtubeUrl": ""
+    },
+    {
+      "description": "EV truly changing the world into a better place and saving our planet from extinction. EV Can save India’s substantial crude import bill of billions of dollars. The Adoption of BEV and PHEV curve is in northern direction as companies across the globe cutting their Carbon emission and going for EV roll out. But challenges remain in terms of limited charging station and battery life cycle. Import of lithium-ion batteries is also a cause of concern because of dependency on countries that have rich resources. ",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/news%26innovation%2F1600x960_1073696-electric-cars.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "sourceLink": "https://www.greenpill.in/",
+      "productRef": "iVLb2Q4VYNCAZ2D4chGL",
+      "title": "EV- Challenges and Opportunity   ",
+      "createdAt": "1627403992783",
+      "youtubeUrl": ""
+    },
+    {
+      "sourceLink": "https://www.greenpill.in/",
+      "description": "Net Meter Vs Gross Meter Vs Zero Export Meter In first net metering system introduced with much fanfare where difference of energy unit Import and export accounting is consider for billing.     In Gross metering monetary value of Energy import and export units will taken separately in account. Difference of both will be net payable to Discom by consumer.   The world is moving toward zero export metering where consumer directly use generated solar power and ensure that no export to the grid. ",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/news%26innovation%2Fnet.png?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "youtubeUrl": "",
+      "productRef": "z8wm7UZhZ2ZqcvQXzsRF",
+      "title": "Net Meter vs Gross Meter vs Zero Export Meter  ",
+      "createdAt": "1627317261553"
+    },
+    {
+      "description": "In a bid to woo Elon Musk's Tesla, the Gujarat government has offered 1,000 acres of land free of cost to set up its manufacturing unit in the western state. The Maharashtra government also in talks with the American electric vehicle giant Tesla to invite them to invest in the state, a state minister said in a tweet. Several other states lays out red carpet for Tesla as car maker set to enter Indian market. ",
+      "productRef": "iVLb2Q4VYNCAZ2D4chGL",
+      "title": "Catch me if you can- Tesla to Gujarat, TN and Maharashtra on investment",
+      "sourceLink": "https://www.greenpill.in/",
+      "youtubeUrl": "",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/news%26innovation%2F4633.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "createdAt": "1627317757019"
+    },
+    {
+      "description": "A race is on between Delhi and Leh to become the country’s first cities running public transport system with Green Hydrogen. The Leh administration, on the other hand, now has an agreement with NTPC REL for introducing such buses. The Hydrogen buses would be a Zero emission vehicles as  hydrogen produced by Renewable Energy sources terms as a Green Coding. ",
+      "sourceLink": "https://www.greenpill.in/",
+      "productRef": "imBT3rmeACJoRaFIBsmq",
+      "title": "After Diesel & Electric Bus now ride on Hydrogen power Buses",
+      "createdAt": "1627316897389",
+      "youtubeUrl": "",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/news%26innovation%2Fcostabus_representative_image_1520941887_725x725.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ]
+    },
+    {
+      "sourceLink": "https://www.greenpill.in/",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/news%26innovation%2Fhttps___specials-images.forbesimg.com_imageserve_6023de7062b424b4a9a6818e_0x0.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "title": "Green Hydrogen Production- Who’s inn ",
+      "youtubeUrl": "",
+      "createdAt": "1627404894001",
+      "productRef": "imBT3rmeACJoRaFIBsmq",
+      "description": "In latest JSW future Energy has partner with Australian Fortescue Future Industries Pty, TATA, and Reliance Industry among others are partnering with Hydrogen technology leaders to tap opportunities in Green Hydrogen."
+    },
+    {
+      "createdAt": "1627320088986",
+      "sourceLink": "https://www.greenpill.in/",
+      "title": "Now is time to add Next EV in your Fleet  ",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/news%26innovation%2Felectric-vehicles.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "youtubeUrl": "",
+      "description": "Slew of automotive leaders are pouring billions of dollars new investment in EV roll out. BMW, KIA, MG, GM, Hyundai, JLR all are in race to launch more than 50 new EV models in next 12 Months. It seems competition remains hot and ultimately consumer gets the choice and price advantages. So plan your next vehicle all electric instead of diesel because that gives you a green number plate to rejoice.",
+      "productRef": "iVLb2Q4VYNCAZ2D4chGL"
+    },
+    {
+      "createdAt": "1627320849011",
+      "title": "Building EV Ecosystem for Net Zero",
+      "sourceLink": "https://www.greenpill.in/",
+      "youtubeUrl": "",
+      "description": "We must continue to pursue collaboration opportunities with leaders across the industry to reap EV benefits. A shift this massive requires the entire mobility and energy ecosystem to work together toward a single goal – a zero-emissions, all-electric future.  Our approach is centered on working closely with a network of leaders in the charging, ridesharing, infrastructure, battery and vehicle development fields. Uniting with experts and exploring solutions across every facet of the EV ecosystem should allow us to make EVs affordable to own and unlock the best benefits to improve the EV driving experience, charging infrastructure and EV rideshare access. - General Motors",
+      "productRef": "iVLb2Q4VYNCAZ2D4chGL",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/news%26innovation%2Felectric6.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ]
+    },
+    {
+      "youtubeUrl": "",
+      "createdAt": "1626693708433",
+      "description": "One of the answers to climate change is “Green hydrogen”. Companies around the world working overnight to become hydrogen superpower. At very low cost, say $1.5 per kg or even lower starts the hydrogen Age. Net zero emission and de-carbonization of all the processes can possible even early after entry of these new candidate.   ",
+      "title": "Green Hydrogen – “True Game Changer”",
+      "productRef": "imBT3rmeACJoRaFIBsmq",
+      "sourceLink": "https://www.greenpill.in/",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/news%26innovation%2FUK-renewable-energy-supply.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ]
+    },
+    {
+      "title": "Unit Economics after imposing 40% BCD on solar and 25% on Cell from 1st April 2022",
+      "youtubeUrl": "",
+      "productRef": "z8wm7UZhZ2ZqcvQXzsRF",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/news%26innovation%2Fenm-j-1280x720-1-750x430.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "sourceLink": "https://www.greenpill.in/",
+      "description": "Under Atmanirbhar Bharat initiative 40% BCD on solar and 25% on Solar cell will applicable with effect from 1st April 2022. The feel is already visible in under sign tenders. Latest discovered tariff are 2.43/unit to 2.62/unit, much higher than 1.99/ unit, the lowest discovered in GUVNL bid. Industry expert anticipate that tariff will rise further by 25-40 paisa/unit on account of rice of overall cost of project.",
+      "createdAt": "1627319913815"
+    },
+    {
+      "productRef": "iVLb2Q4VYNCAZ2D4chGL",
+      "youtubeUrl": "",
+      "createdAt": "1627401602737",
+      "title": "No Hybrid, drive fully electric Vehicle soon ",
+      "description": "The main difference between a hybrid car and an electric car is that the hybrid combines an internal combustion engine and electric motor(s) to send power to its wheels. However, the electric car draws power from a single source of the electric motor(s) to propel the vehicle.  While hybrid cars offer better fuel efficiency or longer distances/ranges, electric vehicles are still yet to reach that potential. That said, electric vehicles pollute lower emissions compared to hybrid cars who are dependent on an internal combustion engine. With researchers are advancing towards more power full batteries technology that drive more than 1000 KM in single charge and charge 0 to 80 percent in 30 Minutes, automobiles sector is gaining momentum building to roll out their next EV fleet. As petrol and diesel prices are sky rocketing day by day, the choice of buying EV instead of diesel car is looking a better option. ",
+      "sourceLink": "https://www.greenpill.in/",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/news%26innovation%2Funnamed.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ]
+    },
+    {
+      "description": "In February Center announced plan to launch National Hydrogen Energy Mission. Two hydrogen refueling stations have been established (one each at Indian Oil R&D Centre, Faridabad and National Institute of Solar Energy, Gurugram) as per data received from MNRE website. Policy is very soon to pave the path for Green Hydrogen Economy.",
+      "title": "Hydrogen as a fuel, Policy very soon says government sources",
+      "productRef": "imBT3rmeACJoRaFIBsmq",
+      "youtubeUrl": "",
+      "sourceLink": "https://www.greenpill.in/",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/news%26innovation%2Fshutterstock_1771574969.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "createdAt": "1627404784552"
+    },
+    {
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/news%26innovation%2Fevoindia_2021-03_9b2a2829-418a-4010-9359-b523fce8d8f1_Ola_electric_scooter.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "sourceLink": "https://www.greenpill.in/",
+      "description": "As per the Ola Electric CEO, the Ola Scooter will be launched on 15th August 2021 in a dedicated event. Ola will set up more than 1 Lakh charging points across 400 cities in India. These charging stations will be able to charge the Ola Electric bike for 75 KMS in 10 minutes of charging. Ola Electric Scooter’s colours options have emerged online. The official tweet from Ola Electric’s CEO shows there will be black, red, pink, light blue, green, yellow, white, etc 10 colour variants of this electric bike from Ola. Ola Electric Bike’s Top Speed details have also been leaked. Data has been provided at the end of this page. Customers with the Pre-booking will get an option to select the Ola scooter’s colour option before scheduling the delivery. Ola Electric Scooter price may start from ₹85,000 if recent media reports are to believed. The company is targeting 50% or more of the total two-wheelers market.",
+      "title": "Ola starts Electric Scooter Booking for just 499/-",
+      "productRef": "iVLb2Q4VYNCAZ2D4chGL",
+      "createdAt": "1627319124213",
+      "youtubeUrl": ""
+    },
+    {
+      "productRef": "imBT3rmeACJoRaFIBsmq",
+      "title": "Green Hydrogen- Trillion Dollar opportunity ",
+      "description": "We are moving towards Hydrogen Economy where Heavy transportation, Industries, Ships , planes and passenger vehicles use Green hydrogen as a fuel. It is the most abandon source of energy available today. Corporates and companies around the world investing billions of dollars new investment to be in the race. ",
+      "createdAt": "1627318029124",
+      "youtubeUrl": "",
+      "sourceLink": "https://www.greenpill.in/",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/news%26innovation%2Fbenefits-of-using-renewable-energy-illustration.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ]
+    },
+    {
+      "youtubeUrl": "",
+      "title": "Subsidy on Electrical Vehicle- Gujarat, Maharashtra, Rajasthan leads",
+      "createdAt": "1627319510695",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/news%26innovation%2Fsubsidy-on-electric-vehicle-purchase-in-India.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "description": "Tamil Nadu: Tamil Nadu Government has notified 100 per cent motor vehicle tax exemption for battery-operated vehicles (Electric Vehicles).  the state offers various incentives including 100 per cent GST reimbursement, 50 per cent capital subsidy among others to attract investments.         Maharashtra: While there’s a basic subsidy of Rs 5,000 per kwh of the battery on all kinds of EVs, the maximum incentive cap differs for two and three-wheelers – capped at Rs 10,000 and Rs 30,000 respectively – and four-wheelers (capped at Rs 1.5 lakh). Gujarat: The Gujarat Electric Vehicle Policy 2021 provides for subsidy of up to Rs 20,000 on EVs in the two-wheeler category, Rs 50,000 for three-wheelers, and up to Rs 1.5 lakh for cars. Also, the State government has exempted e-vehicles registered in Gujarat RTOs from paying registration fee.",
+      "sourceLink": "https://www.greenpill.in/",
+      "productRef": "iVLb2Q4VYNCAZ2D4chGL"
+    },
+    {
+      "productRef": "iVLb2Q4VYNCAZ2D4chGL",
+      "createdAt": "1627316292190",
+      "sourceLink": "https://www.greenpill.in/",
+      "title": "Electric vehicles are driving change",
+      "description": "Electrical vehicles takes over sooner than we think. The change is visible in people's mindset. According to JP Morgan, by the year 2025, most electric vehicles and hybrid electric vehicles will account for almost 30 % of cars on sale. This not only monopolizes the electric car industry but also enables for more innovation and advancements surrounding sustainable transportation. Consumer are willing to pay premium to buy next EV in replace of diesel car. ",
+      "youtubeUrl": "",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/news%26innovation%2FQuantum-OpenCharge-Pedestal-Tesla-Green-Background-600x400.png?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ]
+    },
+    {
+      "title": "Green Hydrogen – Dream Vs Reality",
+      "createdAt": "1627403810439",
+      "productRef": "imBT3rmeACJoRaFIBsmq",
+      "description": "The Dream is to become Net Zero and Green Hydrogen has the serious potential and abundant resources to achieve the target. Energy security and decarbonizing many processes in cement, Chemical, Steel, Fertilizer industries to ensure faster adoption. But current high prices and safety concern in transportation and utilization need to solve in short term.",
+      "sourceLink": "https://www.greenpill.in/",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/news%26innovation%2Fimages.png?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "youtubeUrl": ""
+    },
+    {
+      "productRef": "D6pmnsmhrwRLoDmAPsJL",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/news%26innovation%2FFrost_Global-Grid-Battery-Energy-Storage-Market_600X350.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "youtubeUrl": "",
+      "createdAt": "1627452703874",
+      "description": "Reliance is moving towards manufacturing batteries for Renewable energy storage. Success stories from Germany, Australia, and the United States show the way for India to integrate large-scale variable renewable into its power grid.   ",
+      "sourceLink": "http://www.greenpill.in",
+      "title": "Reliance found new Gem in Battery Storage"
+    },
+    {
+      "description": "Reliance Industries has announced plan to invest of USD $10 Billion on clean Energy and set a target of achieving 100GW RE energy by 2030. To achieve this ambitious target, Reliance is setting up GIGA factory at their Jamnagar facility to produce indigenously solar cell, wafer and solar panel. ",
+      "images": [
+        "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/news%26innovation%2FifuBWA732TfDxdz4BO07DC9XtXK0WCh2wjMweEmxjqkCecDtb0xd8J.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+      ],
+      "title": "Reliance found new gold mine in Solar",
+      "productRef": "z8wm7UZhZ2ZqcvQXzsRF",
+      "sourceLink": "https://www.greenpill.in/",
+      "createdAt": "1627404174485",
+      "youtubeUrl": ""
+    }
+  ],
+  [
+    "RESOURCES",
+    {
+      "pdfUrl": "https://drive.google.com/file/d/11fixT3cytPGffzLa5E5oX6Pq4vyJ2xGT/view?usp=sharing",
+      "createdAt": "1627314742429",
+      "image": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/resource%2Fsolar-energy-companies.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436",
+      "productRef": "z8wm7UZhZ2ZqcvQXzsRF",
+      "description": "Solar Outlook 2025",
+      "title": "Global Solar Outlook"
+    },
+    {
+      "productRef": "imBT3rmeACJoRaFIBsmq",
+      "image": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/resource%2Fartworks-3jkpLG0ZJgcxntdd-4WqIew-t500x500.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436",
+      "pdfUrl": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/resource%2Fpdfs%2FH2-_Green_Hydrogen.pdf?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436",
+      "title": "Green Hydrogen India",
+      "description": "India's approach Green Hydrogen",
+      "createdAt": "1627313035818"
+    },
+    {
+      "title": "Greenpill EV Catalogue ",
+      "description": "Greenpill E-mobility catalogue 2021",
+      "createdAt": "1627313465897",
+      "image": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/resource%2Fthumb.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436",
+      "pdfUrl": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/resource%2Fpdfs%2FGujarat_EV_policy_2021.pdf?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436",
+      "productRef": "iVLb2Q4VYNCAZ2D4chGL"
+    },
+    {
+      "description": "Government of Gujarat launch Gujarat EV policy 2021.",
+      "productRef": "iVLb2Q4VYNCAZ2D4chGL",
+      "title": "Gujarat EV Policy 2021",
+      "createdAt": "1626770995370",
+      "pdfUrl": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/resource%2Fpdfs%2FGujarat_EV_policy_2021.pdf?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436",
+      "image": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/resource%2Fimages.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+    },
+    {
+      "title": "Gujarat Solar Policy 2021",
+      "description": "Policy for Gujarat Solar power project 2021-2025",
+      "productRef": "z8wm7UZhZ2ZqcvQXzsRF",
+      "image": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/resource%2Fsolar-panel.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436",
+      "createdAt": "1627311891996",
+      "pdfUrl": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/resource%2Fpdfs%2FGujarat_Solar_Power_Policy_2021.pdf?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436"
+    },
+    {
+      "pdfUrl": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/resource%2Fpdfs%2FGlobal-dawn-of-green-hydrogen.pdf?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436",
+      "description": "Global Green Hydrogen Outlook 2025",
+      "productRef": "imBT3rmeACJoRaFIBsmq",
+      "createdAt": "1627314976826",
+      "image": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/resource%2Fshutterstock_1771574969.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436",
+      "title": "Global Hydrogen Outlook"
+    },
+    {
+      "productRef": "iVLb2Q4VYNCAZ2D4chGL",
+      "description": "Maharashtra EV Policy 2021 ",
+      "createdAt": "1627393933893",
+      "pdfUrl": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/resource%2Fpdfs%2FMaharastria_electric-vehicle-policy.pdf?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436",
+      "image": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/resource%2FWhatsApp-Image-2021-07-15-at-5.09.13-PM-1.jpeg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436",
+      "title": "Maharashtra EV Policy"
+    },
+    {
+      "image": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/projects%2Fsolo3.jpg?alt=media&token=59c833db-dea2-4706-8ac8-3d3fd8076b54",
+      "createdAt": "1624016695",
+      "productRef": "CSLw5O5gZDWV3XwR23jf",
+      "description": "Due date to implement and follow the new guideline is till 30 Dec 2021.",
+      "pdfUrl": "https://drive.google.com/file/d/1hzbJmfBb86QK9bB4ge5G2TOrNERQRrdX/view?usp=sharing",
+      "title": "All policy"
+    }
+  ],
+  [
+    "ADMIN",
+    {
+      "password": "$2b$10$eg1yZthea7mXj9A4QedP/.wzdU6OIZvx53V6kBpkS3GmwLVwaGf2S",
+      "name": "Greenpill Live",
+      "resetPasswordToken": "290e7f0142a70e4ed97bfaefe6cbaa566e7a9e6a",
+      "resetPasswordExpires": 1626504326459,
+      "email": "success20technology@gmail.com"
+    },
+    {
+      "resetPasswordExpires": 1626778405374,
+      "resetPasswordToken": "1c7c0f33c8bfcada0777143da8bd12ec0c55eb9a",
+      "password": "$2b$10$njfjiTtyLzCJQ1p32jjBiuM4TgpQE9GlIGWyQh6w.3ydaGsjJy0SG",
+      "email": "sutariyaaman1998@gmail.com",
+      "name": "Aman Sutariya"
+    }
+  ],
+  [
+    "CONTACT",
+    {
+      "address": "C-815, Dev Aurum Hiran Cicle, Prahlad Nagar Satellite, Ahmedabad -380015 Gujarat, India.",
+      "phone": "+91- 9825429100",
+      "wapp_no": "+91 9825429100",
+      "latLong": "200.0,233.0",
+      "wapp_url": "https://wa.me/919825429100?text=Hello Greenpill Team",
+      "webLink": "https://greenpill.in/",
+      "wapp_msg": "",
+      "instaLink": "https://www.instagram.com/",
+      "email": "vikash@greenpill.in",
+      "twitterLink": "https://twitter.com/",
+      "facebookLink": "https://www.facebook.com/"
+    }
+  ],
+  [
+    "GET IN TOUCH",
+    {
+      "email": "shahnikhilb@gmail.com",
+      "clientName": "Nikhil Shah",
+      "lastMsg": "congratulations",
+      "lastMsgBy": "client",
+      "image": "",
+      "mobileNumber": "9998822287",
+      "timestamp": "1628077654935",
+      "clientId": "tAvgopLGmNZYvyWZT3z0",
+      "companyName": "Cilans"
+    },
+    {
+      "timestamp": "1627467646271",
+      "lastMsgBy": "admin",
+      "image": "",
+      "lastMsg": "hi",
+      "companyName": "Grinpill",
+      "clientId": "ourBbBEb1hfdmfOqRzNJ",
+      "mobileNumber": "9924929250",
+      "clientName": "Nareshkumar Parmar",
+      "email": "nareshkumarparmar345@gmail.com"
+    },
+    {
+      "timestamp": "1627467683162",
+      "image": "",
+      "mobileNumber": "7359456788",
+      "email": "",
+      "clientId": "s7ILSysQZyOBmuNb0yED",
+      "lastMsgBy": "admin",
+      "companyName": "",
+      "lastMsg": "kk",
+      "clientName": "Jayesh Patel"
+    },
+    {
+      "clientName": "Vikash Vikash",
+      "lastMsg": "k",
+      "mobileNumber": "9825429100",
+      "companyName": "Greenpill renewable Energy Pvt Ltd ",
+      "timestamp": "1627467694507",
+      "lastMsgBy": "admin",
+      "image": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/profile%2F8t84liporv3K0blQQzhr?alt=media&token=8ccf58c5-d1ca-4d48-84b2-b0c9201ec5a6",
+      "clientId": "8t84liporv3K0blQQzhr",
+      "email": "vikash@greenpill.in"
+    },
+    {
+      "clientName": "Sanjay Prasad ",
+      "lastMsg": "hi",
+      "timestamp": "1627455333901",
+      "clientId": "0IaWyR55bL03Qsl2VzTt",
+      "image": "",
+      "email": "sanjay@greenpill.in",
+      "companyName": "Greenpill Renewable Energy Pvt Ltd ",
+      "lastMsgBy": "admin",
+      "mobileNumber": "9601935491"
+    },
+    {
+      "clientId": "lhabl5hRBt2Nclyoj2ya",
+      "clientName": "Aman Sutariya",
+      "lastMsgBy": "client",
+      "companyName": "vnuture",
+      "lastMsg": "sorry jain priyank",
+      "email": "",
+      "timestamp": "1628077699827",
+      "image": "",
+      "mobileNumber": "7984516585"
+    },
+    {
+      "timestamp": "1626517289678",
+      "clientId": "Rg4rkqeK5DuZIwFLPJ3l",
+      "clientName": "jayesh p patel",
+      "lastMsgBy": "admin",
+      "email": "jp@gmail.com",
+      "companyName": "",
+      "lastMsg": "gi",
+      "mobileNumber": "1111111111",
+      "image": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/profile%2FRg4rkqeK5DuZIwFLPJ3l?alt=media&token=9aaf11f7-df79-4102-b53e-17d04886e576"
+    }
+  ],
+  [
+    "GREEN IDEAS",
+    {
+      "name": "Priyank Jain",
+      "message": "message 1",
+      "subject": "inquiry 1",
+      "email": "jainpriyank789@gmail.com",
+      "phone": "8141301286",
+      "timestamp": "1626772079088"
+    },
+    {
+      "phone": "2356892312",
+      "email": "hshd@dndn.xnxn",
+      "name": "hdhdd",
+      "timestamp": "1623427210209",
+      "message": "dhbdbd",
+      "subject": "hzhzhz"
+    },
+    {
+      "timestamp": "1623427197502",
+      "name": "hdhdd",
+      "phone": "2356892312",
+      "subject": "hzhzhz",
+      "message": "dhbdbd",
+      "email": "hshd@dndn.xnxn"
+    },
+    {
+      "timestamp": "1623427193670",
+      "phone": "2356892312",
+      "message": "dhbdbd",
+      "subject": "hzhzhz",
+      "email": "hshd@dndn.xnxn",
+      "name": "hdhdd"
+    },
+    {
+      "message": "dghgh",
+      "subject": "jjj",
+      "name": "jayesh p patel",
+      "phone": "1111111111",
+      "email": "jp@gmail.com",
+      "timestamp": "1626508857794"
+    },
+    {
+      "phone": "2356892312",
+      "message": "dhbdbd",
+      "timestamp": "1623427200536",
+      "email": "hshd@dndn.xnxn",
+      "subject": "hzhzhz",
+      "name": "hdhdd"
+    },
+    {
+      "name": "yehd",
+      "message": "vshdh",
+      "timestamp": "1623770570968",
+      "phone": "1234567891",
+      "subject": "zvzb",
+      "email": "bshs@d.bdndn"
+    },
+    {
+      "message": "dhbdbd",
+      "phone": "2356892312",
+      "name": "hdhdd",
+      "subject": "hzhzhz",
+      "timestamp": "1623427191730",
+      "email": "hshd@dndn.xnxn"
+    },
+    {
+      "subject": "vjjfj",
+      "phone": "1111111111",
+      "name": "jayesh p patel",
+      "email": "jp@gmail.com",
+      "message": "bn",
+      "timestamp": "1626508880040"
+    },
+    {
+      "email": "jp@gmail.com",
+      "message": "ff",
+      "phone": "1111111111",
+      "timestamp": "1626772395369",
+      "subject": "ttt",
+      "name": "jayesh p patel"
+    },
+    {
+      "message": "dhbdbd",
+      "subject": "hzhzhz",
+      "name": "hdhdd",
+      "email": "hshd@dndn.xnxn",
+      "timestamp": "1623427195371",
+      "phone": "2356892312"
+    },
+    {
+      "message": "vshdh",
+      "name": "yehd",
+      "email": "bshs@d.bdndn",
+      "subject": "zvzb",
+      "phone": "1234567891",
+      "timestamp": "1623770556732"
+    },
+    {
+      "subject": "subject inquiry",
+      "message": "message inquiry",
+      "phone": "8141301286",
+      "name": "Priyank Jain",
+      "email": "jainpriyank789@gmail.com",
+      "timestamp": "1626689161911"
+    },
+    {
+      "subject": "hzhzhz",
+      "name": "hdhdd",
+      "email": "hshd@dndn.xnxn",
+      "message": "dhbdbd",
+      "phone": "2356892312",
+      "timestamp": "1623427198595"
+    },
+    {
+      "timestamp": "1623768653427",
+      "name": "dggdgd",
+      "message": "vdvdcvd",
+      "phone": "1234567891",
+      "subject": "hzhsh",
+      "email": "dhhdh@hdhd.jxjdh"
+    },
+    {
+      "subject": "vdbdbx",
+      "message": "dhdhhdd",
+      "name": "hddbbd",
+      "phone": "5995951234",
+      "timestamp": "1623428178185",
+      "email": "dbjd@jdjd.djdj"
+    },
+    {
+      "timestamp": "1626508857750",
+      "name": "jayesh p patel",
+      "email": "jp@gmail.com",
+      "phone": "1111111111",
+      "subject": "jjj",
+      "message": "dghgh"
+    },
+    {
+      "message": "vert ideal",
+      "email": "bhatt@jdsfjkk.asdfjksj",
+      "subject": "not",
+      "phone": "1234567898",
+      "name": "bhvaya\t",
+      "timestamp": "1623768455151"
+    },
+    {
+      "timestamp": "1626867084747",
+      "subject": "testimonial",
+      "phone": "7990386654",
+      "email": "pinank.vnurture@gmail.com",
+      "name": "GreenPill Live Admin",
+      "message": "hhshs"
+    },
+    {
+      "message": "hdhdbdbfhfbbc",
+      "timestamp": "1623427746765",
+      "subject": "bdbxbxb",
+      "phone": "5965956683",
+      "name": "kjfklsgjkl\tk",
+      "email": "dgdg@dhdj.xnxn"
+    },
+    {
+      "timestamp": "1626508958843",
+      "phone": "1111111111",
+      "message": "bn",
+      "email": "jp@gmail.com",
+      "subject": "vjjfj",
+      "name": "jayesh p patel"
+    },
+    {
+      "phone": "9825429100",
+      "timestamp": "1625909392282",
+      "email": "vikash@greenpill.in",
+      "subject": "solar",
+      "name": "Vikash Vikash",
+      "message": "3MW"
+    },
+    {
+      "phone": "2356892312",
+      "timestamp": "1623427199597",
+      "message": "dhbdbd",
+      "email": "hshd@dndn.xnxn",
+      "subject": "hzhzhz",
+      "name": "hdhdd"
+    },
+    {
+      "phone": "1111111111",
+      "message": "dghgh",
+      "name": "jayesh p patel",
+      "timestamp": "1626508818579",
+      "subject": "jjj",
+      "email": "jp@gmail.com"
+    },
+    {
+      "timestamp": "1623427209057",
+      "email": "hshd@dndn.xnxn",
+      "name": "hdhdd",
+      "subject": "hzhzhz",
+      "message": "dhbdbd",
+      "phone": "2356892312"
+    }
+  ],
+  [
+    "NOTIFICATIONS",
+    {
+      "timestamp": "1627310741714",
+      "title": "Breaking: World solar alliance launched ",
+      "shortDescription": "PM Laid foundation for World solar alliance",
+      "category": "Solar"
+    }
+  ],
+  [
+    "PARTNER PROGRAMS",
+    {
+      "timestamp": "1625909306487",
+      "name": "Vikash Vikash",
+      "phone": "9825429100",
+      "email": "vikash@greenpill.in",
+      "message": "hello",
+      "subject": "yes hi"
+    },
+    {
+      "message": "gdgfg",
+      "name": "vdg",
+      "subject": "xgxhx",
+      "phone": "1234567861",
+      "email": "bzh@djjd.dhdj",
+      "timestamp": "1623768912374"
+    },
+    {
+      "message": "gdgfg",
+      "phone": "1234567861",
+      "subject": "xgxhx",
+      "email": "bzh@djjd.dhdj",
+      "timestamp": "1623768911268",
+      "name": "vdg"
+    },
+    {
+      "timestamp": "1623770348168",
+      "message": "dvdvvd",
+      "subject": "gxgd",
+      "name": "dhdhbdbd",
+      "phone": "1234567891",
+      "email": "hshs@hzzu.jxjx"
+    },
+    {
+      "phone": "9229912345",
+      "timestamp": "1623769153534",
+      "message": "hfhfh",
+      "email": "dvvdv@gg.hh",
+      "subject": "dvsgge",
+      "name": "gg"
+    },
+    {
+      "phone": "1234567861",
+      "email": "bzh@djjd.dhdj",
+      "subject": "xgxhx",
+      "name": "vdg",
+      "timestamp": "1623768913399",
+      "message": "gdgfg"
+    },
+    {
+      "phone": "1234567861",
+      "timestamp": "1623768906520",
+      "name": "vdg",
+      "message": "gdgfg",
+      "subject": "xgxhx",
+      "email": "bzh@djjd.dhdj"
+    },
+    {
+      "name": "Priyank Jain",
+      "email": "jainpriyank789@gmail.com",
+      "timestamp": "1626689087080",
+      "message": "subject message",
+      "phone": "8141301286",
+      "subject": "subject artner"
+    },
+    {
+      "message": "hfhfh",
+      "timestamp": "1623769156504",
+      "name": "gg",
+      "subject": "dvsgge",
+      "phone": "9229912345",
+      "email": "dvvdv@gg.hh"
+    },
+    {
+      "subject": "jljsfdkldsfjl",
+      "message": "jdjlfj",
+      "email": "gfgfd@sgd.jgh",
+      "timestamp": "1623770304588",
+      "phone": "1234567898",
+      "name": "dfggfg"
+    },
+    {
+      "email": "hxhdh@dhhd.hdjd",
+      "timestamp": "1623770715846",
+      "name": "hxgx",
+      "phone": "1234567891",
+      "message": "gdgdgdh",
+      "subject": "xgdhxh"
+    },
+    {
+      "subject": "xgxhx",
+      "timestamp": "1623768914135",
+      "name": "vdg",
+      "message": "gdgfg",
+      "phone": "1234567861",
+      "email": "bzh@djjd.dhdj"
+    }
+  ],
+  [
+    "VIDEO GALLERY",
+    {
+      "timestamp": "1626701548525",
+      "link": "https://www.youtube.com/watch?v=SjSmYpUiijM&t=5s",
+      "title": "How Hydrogen Works",
+      "createdAt": "28 July 2021 "
+    },
+    {
+      "createdAt": "July 28 2021",
+      "timestamp": "1627487555713",
+      "link": "https://www.youtube.com/watch?v=SjSmYpUiijM&t=5s",
+      "title": "How Fuel Cell Works"
+    },
+    {
+      "createdAt": "27 July 2021",
+      "link": "https://www.youtube.com/watch?v=I6A--S-xXSg",
+      "timestamp": "1626701586341",
+      "title": "Introduction of Renewable Energy Type."
+    }
+  ],
+  [
+    "WHATSNEW",
+    {
+      "createdAt": "1626694838",
+      "description": "Slowly and steadily, stage is set for EV inroads in India. Indian two wheeler market mainly dominated by Hero MotoCorp, Bajaj, Honda, Yamaha and TVS are facing heat from new entrants in EV segment like, Ola Electric, Euler Moters, Blive, Ather Energy, Revolt and many more.  Some of these startups are deeply funded and attracted best talent. They have managed to get customer traction and created niche brand image by moving faster than big rivals. Obviously disruption is imminent and feel is visible on floor. The M&A and consolidation is not expected in near terms, let see who survive in EV race. ",
+      "type": "EV Startup ready for disruption in two wheeler Market",
+      "img": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/whatsnew%2Fmaxresdefault.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436",
+      "sourceLink": "http://Greenpill.in",
+      "title": "EV Startup ready for disruption in two wheeler Market"
+    },
+    {
+      "createdAt": "1627126325051",
+      "sourceLink": "http://Greenpill.in",
+      "img": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/whatsnew%2FHow-to-Change-the-Conditions-in-Opportunity-1.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436",
+      "description": "India import average 225 Million tons of crude and 200 MT of Coal and coke resulting $200 billion of import every year. with available abundance resource in RE like Solar & Wind, EV, Storage and Green hydrogen all together save over $200 billion worth of imports for India — $112 billion on crude, $9.6 billion on natural gas/LNG, $23.6 billion on coal, $16.2 billion on petroleum products and $775 million on ammonia. Indian conglomerates like Reliance, TATA, Adani, Jindal are in race to add more than 200GW of RE energy by 2030.",
+      "type": "$200 Billion opportunity ",
+      "title": "Clocking $200 Billion opportunity in Energy segment"
+    },
+    {
+      "type": "No Subsidy for SSDSP – Say GUVNL ",
+      "sourceLink": "http://Greenpill.in",
+      "description": "Latest in Gujarat, GUVNL withdraws subsidies on much hyped Small Scale Solar power Project abruptly, affecting 4000 such applicant and 2500 MW solar power projects put on hold. Although project subsidies on investment by MSME industries announced much earlier in Gujarat industrial policy 2020, sudden decision stranded solar projects worth 10000 Cr and dent investment sentiment. Subsidies across the RE projects are falling, Industry body cautions that unsubsidized solar projects planned by private businesses will simply not be built.  ",
+      "createdAt": "1626694892",
+      "img": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/whatsnew%2Fsubsidy.png?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436",
+      "title": "No Subsidy for SSDSP – Say GUVNL "
+    },
+    {
+      "description": "India is working on target of installing 175GW of Renewable Energy by 2022 and 450GW of green energy by 2030 where 40% of that nearly 180GW to come from Solar. Coming $100 Billion Green Hydrogen and Green ammonia opportunity could explode the growth of solar power. Keeping eye on electricity amendment bill to tap next $100 Billion opportunity in energy generation and distribution, where TATA & Ambani already lead the race, Reliance is setting up GIGA factories to manufacture indigenous Hydrogen Fuel Cell, Solar panel and Hi power batteries at Jamnagar. ",
+      "title": "GIGA numbers behind Reliance GIGA Factory",
+      "createdAt": "1626694919",
+      "img": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/whatsnew%2FCover-File.png?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436",
+      "type": "GIGA numbers behind Reliance GIGA Factory",
+      "sourceLink": "http://Greenpill.in"
+    },
+    {
+      "description": "Yes, you have heard right. IOC is building India's first green hydrogen plant at its Mathura refinery.  World is moving towards net zero emission and oil companies are switching to green power by decarbonizing some of their process. Extracting Hydrogen via renewable sources called green hydrogen.  Days are very near where we see hydrogen power buses on road in Delhi & Gujarat. EV charging, E-mobility, Battery storage, Green Hydrogen are the mix of technology to concentrate in near future. ",
+      "img": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/whatsnew%2FIOC.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436",
+      "createdAt": "1626694938",
+      "type": "Who is building India's first green hydrogen plant “IOC” ",
+      "sourceLink": "http://Greenpill.in",
+      "title": "Who is building India's first green hydrogen plant  “IOC” "
+    },
+    {
+      "description": "Leading chinese manufactures have said that increasing price of raw material lead to sharp increase of solar panel price and there is no respite until Q4 2022. Tight supply of the solar panel raw material is expected to persist this year that drive further price rises. Shortage of polysilicon and all time high ocean freight lead to per Wp solar price in northern direction. Prices may sustain at current level or may increase further.                                                                                        More over Government going to impose 40% BCD from 1st April 2022, now the impact of that is yet to asses in long term. Industry body cautions that unsubsidized solar parks planned by private businesses will simply not be built. Many industry expert anticipated that growth of solar industry could explode if Green hydrogen and green ammonia facilities to come online by that time. ",
+      "title": "Solar Panel Prices to remain high until Q4 2022",
+      "createdAt": "1626771726229",
+      "img": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/whatsnew%2FSolar1.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436",
+      "type": "Solar Panel Prices to remain high until Q4 2022",
+      "sourceLink": "https://greenpill.in/"
+    },
+    {
+      "title": "4 Energy Trends to know ",
+      "description": "Energy 4.0 as it is called, will enable the industry to implement intelligent energy and power management solutions based on machine to machine and machine to human interactions.\t                                                                            1.\tRooftop Solar: India to add 40GW of rooftop solar by 2030.                                                                                      2. Electrical Vehicle: Increasing fuel prices and attractive policy, it is a game changer in personal vehicle segment by 2025.                                                                                                        3. Storage: Smart and intelligent devices that store excess RE power in peak time and re-utilize at night saving grid connectivity.                                                                                                                   4. Hydrogen Mobility/Transportation: A new candidate in RE segment that makes net zero emission a reality. ",
+      "createdAt": "1626694965",
+      "img": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/whatsnew%2Frenewable-energy-montage-705444748-Shutterstock_FotoIdee.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436",
+      "sourceLink": "http://Greenpill.in",
+      "type": "4 Energy Trends to know "
+    },
+    {
+      "title": "“Kutch” - India’s  Green Hydrogen hub",
+      "img": "https://firebasestorage.googleapis.com/v0/b/greenpill-live.appspot.com/o/whatsnew%2F2-1.jpg?alt=media&token=998a4e21-aa00-45bb-85a2-a3fca5e8f436",
+      "createdAt": "1626694988",
+      "type": "“Kutch” - India’s Green Hydrogen hub",
+      "description": "Kutch is poised to become world’s largest Green hydrogen Hub. The region is known for barren land and white desert, is now attracting investment of more than 2 lakh Cr.  The 30000 MW Hybrid Renewable Energy Park and upcoming 4.75GW RE Park of NTPC REL, will produce Giga Watt Electricity and green hydrogen to power India's future energy needs.                                                                                                                                                                                     Region is also become one of the Integrated Green Energy Hub propose by National hydrogen Energy Mission (NHM) because of its strategic advantage of land mass availability, higher solar radiation and port connectivity for export market.  ",
+      "sourceLink": "http://Greenpill.in"
+    }
+  ]
+]

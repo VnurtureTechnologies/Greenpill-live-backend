@@ -9,6 +9,7 @@ const serviceAccount = require("./greenpill-live-firebase-admin");
 const flash = require('flash');
 const ensureLogin = require('connect-ensure-login');
 const passport = require('passport');
+const dbScripts = require('./storage-config/database-scripts');
 
 var app = express();
 
@@ -71,6 +72,9 @@ const upload = multer({
         fileSize: 25 * 1024 * 1024
     }
 })
+
+/* DATABASE EXPORT SCRIPT - UNCOMMENT WHEN YOU WANT TO EXPORT DATA FROM FIRESTORE*/
+// dbScripts.get_firestore_data();
 
 /* CONTROLLER MODULES IMPORTS */
 const userController = require('./controllers/userController');
