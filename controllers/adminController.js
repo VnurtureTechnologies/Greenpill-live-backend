@@ -50,15 +50,15 @@ module.exports.forgot_password = [ async(req,res,next) => {
                 .then((r) => {
                     var smtpTransport = nodemailer.createTransport({
                         host: 'smtp.gmail.com',
-                        port: 587,
-                        secure: false,
+                        port: 465,
+                        secure: true,
                         auth: {
                             type: 'OAuth2',
                             user: 'success20technology@gmail.com',                            
                             clientId: '337729940011-jcab50h6smm5fu0mj7h78j2jf4ru6e8b.apps.googleusercontent.com',
                             clientSecret: 'MzxSnrMqoKC_9cohy4XdwATs',
-                            refreshToken: '1//04tc9VYtGfg3sCgYIARAAGAQSNwF-L9IrOgn6jtzyzhNdXo4NVR8YAhfij8sZjF_DhC_onnPF536igmjn87swNvPHkbxqJll42sw',
-                            accessToken: 'ya29.a0ARrdaM_hBVWFmV6qr64cgPIhAqVUL1586Tn2zVHytOL58hU36KdFrMiJ6c7hw-CEsg-Hs7m4R8Vumd5juzdIz8lz_kKXDxZ7yu3CNMZ3_BKVxV3wQY_pIxV1lwgpE1RhBT9sbxXMzjTirZzo3gecyhvqmOKR'
+                            refreshToken: '1//04jIv5wk40EBNCgYIARAAGAQSNwF-L9IrsLyIdzF6cs88n1Lvz1IldhWXTrsoTsZ1iE5FZkHzc-vtvRZmBL1Am1lY_g184MOFjnU',
+                            accessToken: 'ya29.a0ARrdaM9ZG0yYRxwnyjZiVXl-32mj2T3E44htNSkfWbIQt60BiRxpxkeiftnLMsQsqADhbCzyPiS3eKx1_-sPbYCA8Bqj_IIW7u1m__ZYPFtpV3SVSbPkShm1QX8E_hHRboxESfKBce5nwpoqja9IGrH7aPc5'
                         }
                     });
                         
