@@ -31,16 +31,16 @@ module.exports.add_users = async(req,res,next) => {
     })
 }
 
-function response(res, news_list) {
-    
-  sorted_newsList = news_list.sort((a,b) => {
+function response(res, user_data) {
+  
+  sorted_userList = user_data.sort((a,b) => {
       return b.created_at - a.created_at
   })
 
   res.json({
       status: true,
       status_code: 201,
-      data: sorted_newsList,
+      data: sorted_userList,
       message: "list fetched successfully"
   })
 }
@@ -62,7 +62,8 @@ module.exports.get_all_users_list = (req,res,next) => {
                 "email":r.data().email,
                 "role":r.data().role,
                 "companyName":r.data().companyName,
-                "created_at": r.data().createdAt,
+                "joining_date": new Date(parseInt(r.data().timestamp) + 1000).toDateString(),
+                "created_at": r.data().timestamp,
                 "get_action_button": get_action_button(req,res,r)
             }
             user_data.push(row)
@@ -74,6 +75,7 @@ module.exports.get_all_users_list = (req,res,next) => {
         setTimeout(response, 1000, res, user_data);
     })
     .catch( (err) => {
+      console.log(err);
         res.json({
             status: false,
             status_code: 501,

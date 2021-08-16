@@ -1,6 +1,9 @@
 $(document).ready(function () {
     $("#list_table").DataTable({
-        dom: 'l<"toolbar">frtip',
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
         "responsive": true,
         "stateSave": false,
         "keys": false,
@@ -56,6 +59,7 @@ $(document).ready(function () {
             {"data": "email", "name": "email"},
             {"data": "role", "name": "role"},
             {"data": "companyName", "name": "companyName"},
+            {"data": "joining_date", "name": "joining_date"},
             {"data": "get_action_button", "name": "get_action_button"}
         ],
         "columnDefs": [
