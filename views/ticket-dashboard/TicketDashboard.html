@@ -1,0 +1,40 @@
+<html lang="en">
+    <head>
+        <title>{{title}}</title>
+        {{> header}}
+        <link rel="stylesheet" href="/css/ticketdashboard.css" />
+    </head>
+
+    <body>
+        {{> TicketSidebar}}
+        <div class="main">
+            <div class="tickets-wrapper">
+                {{#each tickets_data}}
+                <div class="card-wrapper">
+                    <div class="card-title">
+                        <h2 style="font-weight: 800;letter-spacing: 3px;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;">{{service_code}}</h2>
+                        <h4 style="font-weight: 700; font-size: 15px;">{{ticket_no}}</h4>
+                    </div>
+                    
+                    <div class="card-content">
+                        <p style="font-weight: 800;">Name: <span style="font-weight: 100;"> {{name}} </span> </p>
+                        <p style="font-weight: 800;">Ticket creation: <span style="font-weight: 100;"> {{created_at}} </span></p>
+                    </div>
+
+                    <div class="card-status">
+                        {{#ifCond status '==' 'completed'}}
+                        <button class="button-completed">Completed</button>
+                        {{/ifCond}}
+                        {{#ifCond status '==' 'pending'}}
+                        <button class="button-pending">Pending</button>
+                        {{/ifCond}}
+                        {{#ifCond status '==' 'blocked'}}
+                        <button class="button-blocked">Blocked</button>
+                        {{/ifCond}}
+                    </div>
+                </div>
+                {{/each}}
+            </div>
+        </div>
+    </body>
+</html>

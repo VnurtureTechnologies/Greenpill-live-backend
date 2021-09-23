@@ -42,6 +42,32 @@ database.settings({ ignoreUndefinedProperties: true });
 
 /* common header and footer */
 hbs.registerPartials(__dirname + '/views/common');
+hbs.registerHelper('ifCond', function (v1, operator, v2, options) {
+    switch (operator) {
+        case '==':
+            return (v1 == v2) ? options.fn(this) : options.inverse(this);
+        case '===':
+            return (v1 === v2) ? options.fn(this) : options.inverse(this);
+        case '!=':
+            return (v1 != v2) ? options.fn(this) : options.inverse(this);
+        case '!==':
+            return (v1 !== v2) ? options.fn(this) : options.inverse(this);
+        case '<':
+            return (v1 < v2) ? options.fn(this) : options.inverse(this);
+        case '<=':
+            return (v1 <= v2) ? options.fn(this) : options.inverse(this);
+        case '>':
+            return (v1 > v2) ? options.fn(this) : options.inverse(this);
+        case '>=':
+            return (v1 >= v2) ? options.fn(this) : options.inverse(this);
+        case '&&':
+            return (v1 && v2) ? options.fn(this) : options.inverse(this);
+        case '||':
+            return (v1 || v2) ? options.fn(this) : options.inverse(this);
+        default:
+            return options.inverse(this);
+    }
+})
 
 app.set('view engine', 'html');
 app.engine('html', hbs.__express);
@@ -173,6 +199,20 @@ app.get('/dashboard', ensureLogin.ensureLoggedIn(), function (req, res) {
                 })
             })
         })
+    })
+})
+
+/* Ticket dashboard routes */
+app.get('/tickets', function(req, res) {
+    var data = [
+        { ticket_no: '1rwqr114', service_code: 'Water', name: 'Aman S', created_at: '11/07/2021', status: 'completed' },
+        { ticket_no: '2rwqd113', service_code: 'EV', name: 'Pinank D', created_at: '11/07/2021', status: 'pending' },
+        { ticket_no: '3rwqr114', service_code: 'Solar', name: 'Priyank J', created_at: '11/07/2021', status: 'blocked' },
+        { ticket_no: '4rwqr114', service_code: 'Waste', name: 'Kairav P', created_at: '11/07/2021', status: 'completed' },
+        { ticket_no: '5rwqr114', service_code: 'Water', name: 'Sagar J', created_at: '11/07/2021', status: 'pending' }
+    ]
+    res.render('ticket-dashboard/TicketDashboard', {
+        tickets_data: data
     })
 })
 
