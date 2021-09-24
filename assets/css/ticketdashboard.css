@@ -1,0 +1,80 @@
+.main {
+    min-height: 100vh;
+    width: 75%;
+    margin: 7% 0% 0% 20%;
+}
+
+.tickets-wrapper {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;    
+}
+
+.card-wrapper {
+    width: 320px;
+    height: 250px;
+    box-shadow: 5px 2px 5px 1px rgba(30,85,6,0.78);
+    border-radius: 20px;
+    margin: 3% 0% 0% 5%;
+    display: flex;
+    flex-direction: column;
+    /* -webkit-transition: 1s ease;
+    -o-transition: 1s ease; */
+    transition: 2s ease-in-out;
+}
+
+.card-wrapper:hover {
+    background-color: #7ee8fa;
+    background-image: linear-gradient(315deg, #7ee8fa 0%, #80ff72 74%);
+    /* transform: rotateY(360deg); */
+    cursor: pointer;
+}
+
+.card-wrapper:hover h2 {
+    color: white;
+}
+
+.card-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 4%;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-left: 4%;
+}
+
+.card-status{ 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 4%;
+}
+
+.button-completed {
+    background-color: #00b712;
+    background-image: linear-gradient(315deg, #00b712 0%, #5aff15 74%);
+    border-radius: 10px;
+    color: white;
+    text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
+}
+
+.button-pending {
+    background-color: #fbb034;
+    background-image: linear-gradient(315deg, #fbb034 0%, #ffdd00 74%);
+    border-radius: 10px;
+    color: white;
+    text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
+}
+
+.button-blocked {
+    background-color: #990000;
+    background-image: linear-gradient(147deg, #990000 0%, #ff0000 74%);
+    border-radius: 10px;
+    color: white;
+    text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
+}

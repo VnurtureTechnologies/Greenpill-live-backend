@@ -42,6 +42,32 @@ database.settings({ ignoreUndefinedProperties: true });
 
 /* common header and footer */
 hbs.registerPartials(__dirname + '/views/common');
+hbs.registerHelper('ifCond', function (v1, operator, v2, options) {
+    switch (operator) {
+        case '==':
+            return (v1 == v2) ? options.fn(this) : options.inverse(this);
+        case '===':
+            return (v1 === v2) ? options.fn(this) : options.inverse(this);
+        case '!=':
+            return (v1 != v2) ? options.fn(this) : options.inverse(this);
+        case '!==':
+            return (v1 !== v2) ? options.fn(this) : options.inverse(this);
+        case '<':
+            return (v1 < v2) ? options.fn(this) : options.inverse(this);
+        case '<=':
+            return (v1 <= v2) ? options.fn(this) : options.inverse(this);
+        case '>':
+            return (v1 > v2) ? options.fn(this) : options.inverse(this);
+        case '>=':
+            return (v1 >= v2) ? options.fn(this) : options.inverse(this);
+        case '&&':
+            return (v1 && v2) ? options.fn(this) : options.inverse(this);
+        case '||':
+            return (v1 || v2) ? options.fn(this) : options.inverse(this);
+        default:
+            return options.inverse(this);
+    }
+})
 
 app.set('view engine', 'html');
 app.engine('html', hbs.__express);
@@ -90,7 +116,7 @@ const greeniController = require('./controllers/greeniController');
 const adminController = require('./controllers/adminController');
 const videoController = require('./controllers/videoController');
 const mobiledashboardController = require('./controllers/mobiledashboardController');
-
+const appUpdateController = require('./controllers/appUpdateController');
 
 var data_user;
 
@@ -156,6 +182,39 @@ app.get('/login', (req, res) => {
     res.redirect("/");
 });
 
+/* */
+// app.get('/app-update', ensureLogin.ensureLoggedIn(), function(req,res) {
+//     res.render("app-update/add", {
+//         title: 'App Update',
+//         page_title: 'App Update',
+//     });
+// })
+
+app.get('/app-update', ensureLogin.ensureLoggedIn(), function(req,res) {
+    res.render("app-update/index", {
+        title: 'App Update',
+        page_title: 'App Update',
+    })
+})
+
+app.get('/app-update/edit/:id', ensureLogin.ensureLoggedIn(), function (req, res) {
+    var id = req.params.id;
+    var data = [];
+
+    appUpdateController.get_app_update_data(id, function (app_update) {
+        data.push({ 'appUpdate_data': app_update })
+        res.render('app-update/edit', {
+            title: "App update Edit",
+            page_title: "App update edit",
+            app_update: data[0]['appUpdate_data']
+        })
+    })
+})
+
+app.post('/app-update-list', upload.none(), appUpdateController.get_app_update);
+app.post('/app-update/do_add', upload.none(), appUpdateController.add_app_update );
+app.post('/app-update/do_edit/:id', upload.none(), appUpdateController.edit_app_update);
+
 /* DASHBOARD ROUTE */
 app.get('/dashboard', ensureLogin.ensureLoggedIn(), function (req, res) {
     data_user = req.user
@@ -173,6 +232,20 @@ app.get('/dashboard', ensureLogin.ensureLoggedIn(), function (req, res) {
                 })
             })
         })
+    })
+})
+
+/* Ticket dashboard routes */
+app.get('/tickets', function(req, res) {
+    var data = [
+        { ticket_no: '1rwqr114', service_code: 'Water', name: 'Aman S', created_at: '11/07/2021', status: 'completed' },
+        { ticket_no: '2rwqd113', service_code: 'EV', name: 'Pinank D', created_at: '11/07/2021', status: 'pending' },
+        { ticket_no: '3rwqr114', service_code: 'Solar', name: 'Priyank J', created_at: '11/07/2021', status: 'blocked' },
+        { ticket_no: '4rwqr114', service_code: 'Waste', name: 'Kairav P', created_at: '11/07/2021', status: 'completed' },
+        { ticket_no: '5rwqr114', service_code: 'Water', name: 'Sagar J', created_at: '11/07/2021', status: 'pending' }
+    ]
+    res.render('ticket-dashboard/TicketDashboard', {
+        tickets_data: data
     })
 })
 
