@@ -2,10 +2,9 @@ const admin = require('firebase-admin');
 
 module.exports.add_app_update = (req,res,next) => {
     var db = admin.firestore();
-
     var data = {
         version: req.body.version,
-        last_date: req.body.last_date,
+        last_date: req.body.last_date.split('-').reverse().join('-'),
     }
 
     db.collection('app_update').add(data)
@@ -75,7 +74,8 @@ module.exports.get_app_update_data = (id, callback) => {
         const data = {
             id: response.id,
             version: response.data().version,
-            last_date: response.data().last_date,
+            last_date: response.data().last_date.split('-').reverse().join('-'),
+            today_date:new Date().toISOString().split('T')[0]
         }
         callback(data)
     })
@@ -87,10 +87,10 @@ module.exports.get_app_update_data = (id, callback) => {
 module.exports.edit_app_update = (req, res, nex) => {
     var db = admin.firestore();
     var id = req.params.id;
-
+    
     var data = {
         'version': req.body.version,
-        'last_date': req.body.last_date
+        'last_date':req.body.last_date.split('-').reverse().join('-')
     };
 
     db.collection('app_update').doc(`${id}`).update(data)
