@@ -19,7 +19,7 @@ module.exports.add_resources = async (req, res, next) => {
 
     db.collection('resources').add(data)
         .then((result) => {
-            helpers.sendGenericNotification(notifier, notifier_title, notifier_description)
+            // helpers.sendGenericNotification(notifier, notifier_title, notifier_description)
             res.json({
                 status: true,
                 status_code: 200,
@@ -92,10 +92,31 @@ module.exports.edit_resources = async (req, res, next) => {
     var db = admin.firestore();
     var id = req.params.id;
     var filelink = "";
-    var update_data = ""
+    var update_data = "";
+
     await helpers.getfolderName('resource')
     if (req.files.length !== 0) {
         if (req.files[0] && req.files[1]) {
+
+            db.collection("resources").doc(`${id}`).get().then(async (r) => {
+                let splitted_file_link = r.data().image.split('%2F')[1].split("?")
+                let splitted_pdf_link = r.data().pdfUrl.split('%2F')[2].split("?")
+
+                const data = {
+                    filelink1: splitted_file_link[0],
+                    filelink2: splitted_pdf_link[0]
+                }
+
+                filelink = data.filelink1;
+                filelink2 = data.filelink2;
+
+                await helpers.deleteImage(filelink);
+                await helpers.deletePdf(filelink2);
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+
             update_data = {
                 'title': req.body.title,
                 'description': req.body.description,
@@ -103,8 +124,22 @@ module.exports.edit_resources = async (req, res, next) => {
                 'image': await helpers.uploadImage(req.files[1]),
                 'pdfUrl': await helpers.uploadImage(req.files[0]),
             };
+
         } else {
             if (req.files[0].mimetype == "application/pdf") {
+
+                db.collection("resources").doc(`${id}`).get().then(async (r) => {
+                    let splitted_file_link = r.data().pdfUrl.split('%2F')[2].split("?")
+                    const data = {
+                        filelink1: splitted_file_link[0]
+                    }
+                    filelink = data.filelink1
+                    await helpers.deletePdf(filelink)
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+
                 update_data = {
                     'title': req.body.title,
                     'description': req.body.description,
@@ -112,6 +147,20 @@ module.exports.edit_resources = async (req, res, next) => {
                     'pdfUrl': await helpers.uploadImage(req.files[0]),
                 };
             } else {
+
+                db.collection("resources").doc(`${id}`).get().then(async (r) => {
+                    let splitted_file_link = r.data().image.split('%2F')[1].split("?")
+                    console.log(splitted_file_link);
+                    const data = {
+                        filelink1: splitted_file_link[0]
+                    }
+                    filelink = data.filelink1
+                    await helpers.deleteImage(filelink)
+                })
+                .catch((err) => {
+                    console.log(err);
+                });
+
                 update_data = {
                     'title': req.body.title,
                     'description': req.body.description,
@@ -120,20 +169,6 @@ module.exports.edit_resources = async (req, res, next) => {
                 };
             }
         }
-        // db.collection("resources")
-        //     .doc(`${id}`)
-        //     .get()
-        //     .then(async (r) => {
-        //         const data = {
-        //             filelink1: r.data().image
-        //         }
-        //         filelink = data.filelink1
-        //         await helpers.deleteImage(filelink)
-        //     })
-        //     .catch((err) => {
-        //         console.log(err)
-        //     });
-
     } else {
         update_data = {
             'title': req.body.title,
@@ -184,13 +219,15 @@ module.exports.get_resources_data = function (resources_id, callback) {
     db.collection('resources').doc(`${resources_id}`)
         .get()
         .then((r) => {
+
+            let splitted_pdf_url = r.data().pdfUrl.split("%2F")[2].split("?");
             const data = {
                 id: r.id,
                 title: r.data().title,
                 productRef: r.data().productRef,
                 image: r.data().image,
                 description: r.data().description,
-                pdfUrl: r.data().pdfUrl,
+                pdfUrl: splitted_pdf_url[0],
             }
             callback(data);
         })
@@ -198,25 +235,32 @@ module.exports.get_resources_data = function (resources_id, callback) {
             callback([]);
         })
 }
+
 module.exports.delete_resources = async (req, res, next) => {
     var db = admin.firestore();
     var id = req.params.id;
     var filelink = "";
     await helpers.getfolderName('resource')
 
-    db.collection("resources")
-        .doc(`${id}`)
-        .get()
-        .then(async (r) => {
-            const data = {
-                filelink1: r.data().image
-            }
-            filelink = data.filelink1
-            await helpers.deleteImage(filelink)
-        })
-        .catch((err) => {
-            console.log(err)
-        });
+    db.collection("resources").doc(`${id}`).get().then(async (r) => {
+        console.log(r);
+        let splitted_file_link = r.data().image.split('%2F')[1].split("?")
+        let splitted_pdf_link = r.data().pdfUrl.split('%2F')[2].split("?")
+
+        const data = {
+            filelink1: splitted_file_link[0],
+            filelink2: splitted_pdf_link[0]
+        }
+
+        filelink = data.filelink1;
+        filelink2 = data.filelink2;
+
+        await helpers.deleteImage(filelink);
+        await helpers.deletePdf(filelink2);
+    })
+    .catch((err) => {
+        console.log(err);
+    });
 
     db.collection('resources').doc(`${id}`).delete()
         .then((r) => {

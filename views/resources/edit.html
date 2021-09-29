@@ -57,6 +57,9 @@
                         <div class="floating-label left_fld">
                             <label> Update PDF<span class="required"> (accepts PDF only )</span></label>
                             <input type="file" accept="application/pdf" name="resources-image" />
+                            <br/>
+                            <br/>
+                            <p><strong>PDF Uploaded</strong>: {{resources.pdfUrl}}</p>
                         </div>
 
                         <div class="claerfix"></div>
@@ -66,7 +69,7 @@
                             <label>
                                 <input type="file" accept="image/jpeg, image/png" name="resources-image"
                                     onchange="readURL(this);" />
-                                <img id="blah" src="#" alt="your image" />
+                                <img id="blah" src="{{resources.image}}" alt="your image" />
                             </label>
                         </div>
 

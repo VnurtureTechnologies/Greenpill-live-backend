@@ -97,6 +97,19 @@ module.exports.edit_news = async (req, res, next) => {
     var update_data = '';
 
     if (req.file) {
+
+        db.collection("news_and_innovation").doc(`${id}`).get().then(async (r) => {
+            let splitted_file_link = r.data().images[0].split('%2F')[1].split("?")
+            const data = {
+                filelink1: splitted_file_link[0]
+            }
+            filelink = data.filelink1
+            await helpers.deleteImage(filelink)
+        })
+        .catch((err) => {
+            console.log(err);
+        });
+
         update_data = {
             'title': req.body.title,
             'description': req.body.description,
@@ -105,15 +118,15 @@ module.exports.edit_news = async (req, res, next) => {
             'youtubeUrl': req.body.youtube_url,
             'images': [await helpers.uploadImage(req.file)]
         }
-    } else {
+        } else {
         update_data = {
             'title': req.body.title,
             'description': req.body.description,
             'productRef': req.body.int_user_id,
             'sourceLink': req.body.source_link,
             'youtubeUrl': req.body.youtube_url,
+            }
         }
-    }
     db.collection('news_and_innovation').doc(`${id}`).update(update_data)
         .then((r) => {
             res.json({
@@ -169,12 +182,14 @@ module.exports.delete_news = async (req, res, next) => {
     var id = req.params.id;
     await helpers.getfolderName('news&innovation')
     var filelink = "";
+
     db.collection("news_and_innovation")
         .doc(`${id}`)
         .get()
         .then(async (r) => {
+            let splitted_file_link = r.data().images[0].split('%2F')[1].split("?")
             const data = {
-                filelink1: r.data().images[0]
+                filelink1: splitted_file_link[0]
             }
             filelink = data.filelink1
             await helpers.deleteImage(filelink)

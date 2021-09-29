@@ -34,11 +34,15 @@ exports.uploadImage = (file) => new Promise((resolve, reject) => {
 });
 
 exports.deleteImage = (filelink) => new Promise((resolve, reject) => {
-    // var filename = filelink.split('/o/')[1].split('?')[0]
     const bucket = admin.storage().bucket('greenpill-live.appspot.com');
     const filelink1 = filelink;
     bucket.file(`${foldername1}/${filelink1}`).delete();
 });
+
+exports.deletePdf = (filelink) => new Promise((resolve, reject) => {
+    const bucket = admin.storage().bucket('greenpill-live.appspot.com');
+    bucket.file(`${foldername1}/pdfs/${filelink}}`).delete();
+})
 
 exports.sendGenericNotification = async function (notifier, title, description) {
     var db = admin.firestore();

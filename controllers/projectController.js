@@ -129,14 +129,16 @@ module.exports.edit_project = async (req, res, next) => {
 
     if (req.file) {
         db.collection("project").doc(`${id}`).get().then(async (r) => {
+            let splitted_file_link = r.data().images[0].split('%2F')[1].split("?")
             const data = {
-                filelink1: r.data().images[0]
+                filelink1: splitted_file_link[0]
             }
             filelink = data.filelink1
             await helpers.deleteImage(filelink)
         })
-            .catch((err) => {
-            });
+        .catch((err) => {
+            console.log(err);
+        });
 
         update_data = {
             'title': req.body.project_title,
@@ -178,17 +180,20 @@ module.exports.delete_project = async (req, res, next) => {
     var id = req.params.id;
     await helpers.getfolderName('projects');
     var filelink = "";
+    
     db.collection("project")
         .doc(`${id}`)
         .get()
         .then(async (r) => {
+            let splitted_file_link = r.data().images[0].split('%2F')[1].split("?")
             const data = {
-                filelink1: r.data().images[0]
+                filelink1: splitted_file_link[0]
             }
             filelink = data.filelink1
             await helpers.deleteImage(filelink)
         })
         .catch((err) => {
+            console.log(err);
         });
 
     db.collection('project').doc(`${id}`).delete()
