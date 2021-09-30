@@ -53,8 +53,9 @@ $(document).ready(function () {
             // }
         },
         "columns": [
-            {"data": "firstName", "name": "firstName"},
-            {"data": "lastName", "name": "lastName"},
+            // {"data": "firstName", "name": "firstName"},
+            // {"data": "lastName", "name": "lastName"},
+            {"data": "name", "name": "name"},
             {"data": "mobileNumber", "name": "mobileNumber"},
             {"data": "email", "name": "email"},
             {"data": "role", "name": "role"},

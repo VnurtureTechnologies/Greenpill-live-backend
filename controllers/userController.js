@@ -56,8 +56,9 @@ module.exports.get_all_users_list = (req,res,next) => {
         results.forEach( (r) => {
             var row={
                 "id":r.id,
-                "firstName":r.data().firstName,
-                "lastName":r.data().lastName,
+                // "firstName":r.data().firstName,
+                // "lastName":r.data().lastName,
+                "name": r.data().name,
                 "mobileNumber":r.data().mobileNumber,
                 "email":r.data().email,
                 "role":r.data().role,
@@ -108,12 +109,12 @@ module.exports.get_users_data = function(users_id,callback) {
     .then( (r) => {
         const data = {
             id:r.id,
-            firstName:r.data().firstName,
-            lastName:r.data().lastName,
+            // firstName:r.data().firstName,
+            // lastName:r.data().lastName,
+            name: r.data().name,
             mobileNumber:r.data().mobileNumber,
             role:r.data().role,
             companyName:r.data().companyName,
-                
         }
         callback(data);
     })
@@ -182,15 +183,17 @@ module.exports.edit_user = (req,res,next) => {
     var update_data = ""
     if(req.body.role!=""){
       update_data = {
-        'firstName' : req.body.firstName,
-        'lastName' : req.body.lastName,
+        // 'firstName' : req.body.firstName,
+        // 'lastName' : req.body.lastName,
+        'name': req.body.name,
         'mobileNumber' : req.body.mobileNumber,
         'role' : req.body.role,
         'companyName' : req.body.companyName,
     }
     }else{update_data = {
-      'firstName' : req.body.firstName,
-      'lastName' : req.body.lastName,
+      // 'firstName' : req.body.firstName,
+      // 'lastName' : req.body.lastName,
+      'name': req.body.name,
       'mobileNumber' : req.body.mobileNumber,
       'companyName' : req.body.companyName,
   }}
