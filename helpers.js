@@ -14,10 +14,10 @@ exports.uploadImage = (file) => new Promise((resolve, reject) => {
     const file_name = originalname.replace(/ /g, "_");
     var gcsFileName = "";
     if (file.mimetype == "application/pdf") {
-        gcsFileName = `${foldername1}/pdfs/${file_name}`;
+        gcsFileName = `${foldername1}/pdfs/${Date.now()}_${file_name}`;
     }
     else {
-        gcsFileName = `${foldername1}/${file_name}`;
+        gcsFileName = `${foldername1}/${Date.now()}_${file_name}`;
     }
 
     const blob = bucket.file(gcsFileName);
