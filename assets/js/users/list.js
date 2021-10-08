@@ -61,6 +61,7 @@ $(document).ready(function () {
             {"data": "role", "name": "role"},
             {"data": "companyName", "name": "companyName"},
             {"data": "joining_date", "name": "joining_date"},
+            {"data":"loginType","name":"loginType"},
             {"data": "get_action_button", "name": "get_action_button"}
         ],
         "columnDefs": [
