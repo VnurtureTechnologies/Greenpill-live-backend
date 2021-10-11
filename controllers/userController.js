@@ -63,6 +63,7 @@ module.exports.get_all_users_list = (req,res,next) => {
                 "email":r.data().email,
                 "role":r.data().role,
                 "companyName":r.data().companyName,
+                "loginType":r.data().loginType,
                 "joining_date": new Date(parseInt(r.data().timestamp) + 1000).toDateString(),
                 "created_at": r.data().timestamp,
                 "get_action_button": get_action_button(req,res,r)
