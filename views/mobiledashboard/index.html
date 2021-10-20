@@ -32,6 +32,7 @@
                                 <option value="product">Product</option>
                                 <option value="news">News</option>
                                 <option value="resources">Downloads</option>
+                                <option value="services">Services</option>
                             </select>
                         </div>
 
@@ -40,6 +41,16 @@
                             <label>Choose a product<span class="required">*</span></label>
                             <select class="floating-select" name="producttype" required>
                                 {{#each products}}
+                                <option value="{{this.id}}">{{this.title}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+
+                        <div class="claerfix"></div>
+                        <div id="services" class="floating-label left_fld">
+                            <label>Choose a product<span class="required">*</span></label>
+                            <select class="floating-select" name="servicestype" required>
+                                {{#each services}}
                                 <option value="{{this.id}}">{{this.title}}</option>
                                 {{/each}}
                             </select>
@@ -81,20 +92,29 @@
     <script>
         $(document).ready(function () {
             $("#product").hide();
+            $("#services").hide();
             $("#newsResources").hide();
 
             $('#selected').on('change', function () {
                 if (this.value == "nonex") {
                     $("#product").hide();
+                    $("#services").hide();
                     $("#newsResources").hide();
 
                 } else if (this.value == 'product') {
                     $("#product").show();
+                    $("#services").hide();
+                    $("#newsResources").hide();
+
+                }else if (this.value == 'services') {
+                    $("#services").show();
+                    $("#product").hide();
                     $("#newsResources").hide();
 
                 }
                 else {
                     $("#newsResources").show();
+                    $("#services").hide();
                     $("#product").hide();
 
                 }

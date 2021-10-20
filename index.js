@@ -630,11 +630,15 @@ app.get('/mobiledashboard', ensureLogin.ensureLoggedIn(), function (req, res) {
         data.push({ 'product': products })
         mobiledashboardController.get_products_where_type_newsresources(function (newsResources) {
             data.push({ 'NewsResources': newsResources })
-            res.render("mobiledashboard/index", {
-                title: 'Add image',
-                page_title: 'Add image to Mobile Dashboard',
-                products: data[0]['product'],
-                newsResources: data[1]['NewsResources'],
+            mobiledashboardController.get_services(function(services_data){
+                data.push({ 'services': services_data })
+                res.render("mobiledashboard/index", {
+                    title: 'Add image',
+                    page_title: 'Add image to Mobile Dashboard',
+                    products: data[0]['product'],
+                    newsResources: data[1]['NewsResources'],
+                    services:data[2]['services'],
+                })
             })
         })  
     })
