@@ -168,3 +168,24 @@ module.exports.get_services = function (callback) {
             callback([]);
         })
 }
+
+module.exports.get_sub_services = function (callback) {
+    var db = admin.firestore();
+    const subservices_data = [];
+    db.collection('serviceDetails')
+        .get()
+        .then((results) => {
+            results.docs.forEach((r) => {
+                data = {
+                    id: r.id,
+                    title: r.data().title,
+                    serviceRef:r.data().serviceRef
+                }
+                subservices_data.push(data);
+            })
+            callback(subservices_data);
+        })
+        .catch((err) => {
+            callback([]);
+        })
+}

@@ -644,9 +644,24 @@ app.get('/mobiledashboard', ensureLogin.ensureLoggedIn(), function (req, res) {
     })
 });
 
-
-// app.post('/mobiledashboard/do_add',upload.single('image'),mobiledashboardController.update_image);
 app.post('/mobiledashboard/do_add', upload.single('image'), mobiledashboardController.update_image);
+
+app.get('/mobiledashboard/subui', ensureLogin.ensureLoggedIn(), function (req, res) {
+    var data = []
+    mobiledashboardController.get_services(function(services_data){
+        data.push({ 'services': services_data })
+        mobiledashboardController.get_sub_services(function (subservices_data) {
+        data.push({ 'subservices_data': subservices_data })
+        // console.log("data",data[1]['subservices_data'])
+            res.render("mobiledashboard/subui", {
+                title: 'Add image',
+                page_title: 'Add image to Mobile Dashboard',
+                services: data[0]['services'],
+                subservices_data:data[1]['subservices_data']
+            })
+        })
+    })
+});
 
 
 
