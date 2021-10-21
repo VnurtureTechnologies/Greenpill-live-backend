@@ -663,6 +663,7 @@ app.get('/mobiledashboard/subui', ensureLogin.ensureLoggedIn(), function (req, r
     })
 });
 
+app.post('/mobiledashboard/update_subui',upload.array('image_pdf',2), mobiledashboardController.update_subui);
 
 
 const PORT = process.env.PORT || 8080;

@@ -107,6 +107,98 @@ module.exports.update_image = async (req, res, next) => {
     }
 }
 
+module.exports.update_subui = async (req, res, next) => {
+    var db = admin.firestore();
+    var id;
+    var data;
+    if(req.body.type == 'services'){
+        await helpers.getfolderName('services/subui')
+        id = req.body.subservicetype
+
+        if(req.files[0] && req.files[1]){
+            db.collection("serviceDetails").doc(`${id}`).get()
+            .then(async (r) => {
+            const data = {
+            filelink1: r.data().image.split('%2F')[2].split('?')[0],
+            filelink2: r.data().pdfUrl.split('%2F')[3].split('?')[0]
+            }
+            await helpers.deleteImage(data.filelink1)
+            await helpers.deletePdf(data.filelink2)
+            })
+            .catch((err) => {
+                console.log("delete err", err)
+            });
+            data = {
+                image: await helpers.uploadImage(req.files[1]),
+                pdfUrl: await helpers.uploadImage(req.files[0]),
+            }
+        }
+        else if(req.files[0]){
+            if(req.files[0].mimetype == 'application/pdf'){
+                db.collection("serviceDetails").doc(`${id}`).get()
+                .then(async (r) => {
+                const data = {
+                filelink1: r.data().pdfUrl.split('%2F')[3].split('?')[0]
+                }
+                await helpers.deletePdf(data.filelink1)
+                })
+                .catch((err) => {
+                    console.log("delete err", err)
+                });
+    
+                data = {
+                    pdfUrl: await helpers.uploadImage(req.files[0]),
+                }
+            }
+            else{
+                db.collection("serviceDetails").doc(`${id}`).get()
+                .then(async (r) => {
+                const data = {
+                filelink1: r.data().image.split('%2F')[2].split('?')[0]
+                }
+                await helpers.deleteImage(data.filelink1)
+                })
+                .catch((err) => {
+                    console.log("delete err", err)
+                });
+                data = {
+                    image: await helpers.uploadImage(req.files[0]),
+                }
+            }   
+        }else{
+            res.json({
+                status: false,
+                status_code: 501,
+                message: "nothing to update"
+            })
+        }
+
+        db.collection('serviceDetails').doc(`${id}`).update(data)
+        .then((r) => {
+            res.json({
+                status: true,
+                status_code: 200,
+                message: "Image Added Successfully",
+                redirect: "/dashboard"
+            })
+        })
+        .catch((err) => {
+            res.json({
+                status: false,
+                status_code: 501,
+                message: "Internal server error"
+            })
+        })
+    }
+    else{
+        res.json({
+            status: false,
+            status_code: 501,
+            message: "Internal server error"
+        })
+    }
+}
+
 module.exports.get_products_where_type_product = function (callback) {
     var db = admin.firestore();
     const product_data = [];

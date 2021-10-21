@@ -38,11 +38,13 @@ exports.deleteImage = (filelink) => new Promise((resolve, reject) => {
     const bucket = admin.storage().bucket('greenpill-live.appspot.com');
     const filelink1 = filelink;
     bucket.file(`${foldername1}/${filelink1}`).delete();
+    resolve('done');
 });
 
 exports.deletePdf = (filelink) => new Promise((resolve, reject) => {
     const bucket = admin.storage().bucket('greenpill-live.appspot.com');
-    bucket.file(`${foldername1}/pdfs/${filelink}}`).delete();
+    bucket.file(`${foldername1}/pdfs/${filelink}`).delete();
+    resolve('done')
 })
 
 var selectedServiceId = '';
@@ -54,8 +56,8 @@ function setServiceId(sel) {
 console.log(selectedServiceId);
 
 hbs.registerHelper('isServiceSelected', function(value, options) {
-    console.log(value);
-    console.log(options);
+    // console.log(value);
+    // console.log(options);
 })
 
 exports.sendGenericNotification = async function (notifier, title, description) {

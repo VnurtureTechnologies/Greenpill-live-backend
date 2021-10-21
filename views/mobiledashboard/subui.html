@@ -44,46 +44,29 @@
                             </select>
                         </div>
 
-                        <!-- <div class="claerfix"></div>
-                        <div id="services" class="floating-label left_fld">
-                            <label>Choose a product<span class="required">*</span></label>
-                            <select class="floating-select" name="servicestype" required>
-                                {{#each services}}
-                                <option value="{{this.id}}">{{this.title}}</option>
-                                {{/each}}
-                            </select>
-                        </div> -->
-
                         <div class="claerfix"></div>
-
-                        <div id="subservices" class="floating-label left_fld">
+                        <div id="subservice" class="floating-label left_fld">
                             <label>Choose a sub service <span class="required">*</span></label>
-                            <select class="floating-select" name="resourcetype" required>
+                            <select class="floating-select" name="subservicetype" required>
+                                <option value="nonex">--Choose--</option>
                                 {{#each subservices_data}}
-                                {{isServiceSelected this.id}}
-                                <!-- <option value="{{this.id}}">{{this.title}}</option> -->
+                                <!-- {{isServiceSelected this.id}} -->
+                                <option value="{{this.id}}">{{this.title}}</option>
                                 {{/each}}
                             </select>
                         </div>
 
                         <div class="claerfix"></div>
-
-                        <!-- <div id="newsResources" class="floating-label left_fld">
-                            <label>Choose a type<span class="required">*</span></label>
-                            <select class="floating-select" name="resourcetype" required>
-                                {{#each newsResources}}
-                                <option value="{{this.id}}">{{this.title}}</option>
-                                {{/each}}
-                            </select>
-                        </div> -->
-
+                        <div class="floating-label left_fld">
+                            <label> Update Catlog<span class="required"> (accepts PDF only )</span></label>
+                            <input type="file" accept="application/pdf" name="image_pdf" />
+                        </div>
 
                         <div class="claerfix"></div>
-
                         <h4>Add a news image</h4>
                         <div class="floating-label right_fld browse2">
                             <label>
-                                <input type="file" accept="image/jpeg, image/png" name="image" onchange="readURL(this);" required />
+                                <input type="file" accept="image/jpeg, image/png" name="image_pdf" onchange="readURL(this);"/>
                                 <img id="blah" src="#" alt="your image" />
                             </label>
                         </div>
@@ -144,7 +127,7 @@
             }
         }
     </script>
-    <script src="/js/mobiledashboard/add.js"></script>
+    <script src="/js/mobiledashboard/update_subui.js"></script>
     <script src="/helpers.js"></script>
 </body>
 
