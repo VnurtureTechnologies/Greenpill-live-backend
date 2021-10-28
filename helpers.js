@@ -47,19 +47,6 @@ exports.deletePdf = (filelink) => new Promise((resolve, reject) => {
     resolve('done')
 })
 
-var selectedServiceId = '';
-
-function setServiceId(sel) {
-    selectedServiceId = sel.options[sel.selectedIndex].text;
-}
-
-console.log(selectedServiceId);
-
-hbs.registerHelper('isServiceSelected', function(value, options) {
-    // console.log(value);
-    // console.log(options);
-})
-
 exports.sendGenericNotification = async function (notifier, title, description) {
     var db = admin.firestore();
 

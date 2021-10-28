@@ -261,10 +261,11 @@ module.exports.get_services = function (callback) {
         })
 }
 
-module.exports.get_sub_services = function (callback) {
+module.exports.get_sub_services = async(req, res, next) => {
     var db = admin.firestore();
     const subservices_data = [];
     db.collection('serviceDetails')
+        .where('serviceRef', '==', `${req.params.serviceRef}`)
         .get()
         .then((results) => {
             results.docs.forEach((r) => {
@@ -275,9 +276,9 @@ module.exports.get_sub_services = function (callback) {
                 }
                 subservices_data.push(data);
             })
-            callback(subservices_data);
+            res.send(subservices_data);
         })
         .catch((err) => {
-            callback([]);
+            console.log(err);
         })
 }
