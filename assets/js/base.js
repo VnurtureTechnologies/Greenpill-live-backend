@@ -17,7 +17,6 @@ function readURL(input) {
 
 
 function form_action(url, type, datatype, data) {
-    console.log(url);
     $('.validation_error').remove();
     $('form :submit');
     $.ajax({

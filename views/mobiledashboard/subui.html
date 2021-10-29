@@ -26,54 +26,39 @@
                     <div class="field_inner_sec">
 
                         <div class="floating-label left_fld">
-                            <label>Choose a product<span class="required">*</span></label>
+                            <label>Choose a type<span class="required">*</span></label>
                             <select id="selected" class="floating-select" name="type" required>
                                 <option value="nonex">--Choose--</option>
-                                <option value="product">Product</option>
-                                <option value="news">News</option>
-                                <option value="resources">Downloads</option>
-                                <option value="services">Services</option>
-                            </select>
-                        </div>
-
-                        <div class="claerfix"></div>
-                        <div id="product" class="floating-label left_fld">
-                            <label>Choose a product<span class="required">*</span></label>
-                            <select class="floating-select" name="producttype" required>
-                                {{#each products}}
-                                <option value="{{this.id}}">{{this.title}}</option>
-                                {{/each}}
+                                <option value="services">servcies</option>
                             </select>
                         </div>
 
                         <div class="claerfix"></div>
                         <div id="services" class="floating-label left_fld">
-                            <label>Choose a product<span class="required">*</span></label>
-                            <select class="floating-select" name="servicestype" required>
+                            <label>Choose a Service <span class="required">*</span></label>
+                            <select class="floating-select" name="servicetype" id="services_tab" required>
+                                <option value="nonex">--Choose--</option>
                                 {{#each services}}
-                                <option value="{{this.id}}">{{this.title}}</option>
+                                    <option value="{{this.id}}">{{this.title}}</option>
                                 {{/each}}
                             </select>
                         </div>
 
                         <div class="claerfix"></div>
-
-                        <div id="newsResources" class="floating-label left_fld">
-                            <label>Choose a type<span class="required">*</span></label>
-                            <select class="floating-select" name="resourcetype" required>
-                                {{#each newsResources}}
-                                <option value="{{this.id}}">{{this.title}}</option>
-                                {{/each}}
-                            </select>
+                        <div id="subservice" class="floating-label left_fld">
                         </div>
 
+                        <div class="claerfix"></div>
+                        <div class="floating-label left_fld">
+                            <label> Update Catlog<span class="required"> (accepts PDF only )</span></label>
+                            <input type="file" accept="application/pdf" name="image_pdf" />
+                        </div>
 
                         <div class="claerfix"></div>
-
                         <h4>Add a news image</h4>
                         <div class="floating-label right_fld browse2">
                             <label>
-                                <input type="file" accept="image/jpeg, image/png" name="image" onchange="readURL(this);" required />
+                                <input type="file" accept="image/jpeg, image/png" name="image_pdf" onchange="readURL(this);"/>
                                 <img id="blah" src="#" alt="your image" />
                             </label>
                         </div>
@@ -90,34 +75,31 @@
     <!-- END -->
     {{> footer}}
     <script>
+
         $(document).ready(function () {
-            $("#product").hide();
+
             $("#services").hide();
-            $("#newsResources").hide();
+            $("#subservices").hide();
 
             $('#selected').on('change', function () {
                 if (this.value == "nonex") {
-                    $("#product").hide();
                     $("#services").hide();
-                    $("#newsResources").hide();
-
-                } else if (this.value == 'product') {
-                    $("#product").show();
-                    $("#services").hide();
-                    $("#newsResources").hide();
-
+                    $("#subservices").hide();
                 }else if (this.value == 'services') {
                     $("#services").show();
-                    $("#product").hide();
-                    $("#newsResources").hide();
-
+                    $("#subservices").hide();
                 }
                 else {
-                    $("#newsResources").show();
                     $("#services").hide();
-                    $("#product").hide();
+                    $("#subservices").hide();                }
+            });
 
+            $('#services').on('change', function () {
+                if (this.value == "nonex") {
+                    $("#subservices").hide();
                 }
+                else {
+                    $("#subservices").show();                }
             });
         });
     </script>
@@ -137,7 +119,7 @@
             }
         }
     </script>
-    <script src="/js/mobiledashboard/add.js"></script>
+    <script src="/js/mobiledashboard/update_subui.js"></script>
 </body>
 
 </html>

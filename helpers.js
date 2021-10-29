@@ -1,6 +1,7 @@
 const gc = require('./storage-config/storage');
 const admin = require("firebase-admin");
 var db = admin.firestore();
+var hbs = require('hbs');
 
 
 var foldername1 = '';
@@ -37,11 +38,13 @@ exports.deleteImage = (filelink) => new Promise((resolve, reject) => {
     const bucket = admin.storage().bucket('greenpill-live.appspot.com');
     const filelink1 = filelink;
     bucket.file(`${foldername1}/${filelink1}`).delete();
+    resolve('done');
 });
 
 exports.deletePdf = (filelink) => new Promise((resolve, reject) => {
     const bucket = admin.storage().bucket('greenpill-live.appspot.com');
-    bucket.file(`${foldername1}/pdfs/${filelink}}`).delete();
+    bucket.file(`${foldername1}/pdfs/${filelink}`).delete();
+    resolve('done')
 })
 
 exports.sendGenericNotification = async function (notifier, title, description) {
