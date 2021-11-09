@@ -117,6 +117,7 @@ const adminController = require('./controllers/adminController');
 const videoController = require('./controllers/videoController');
 const mobiledashboardController = require('./controllers/mobiledashboardController');
 const appUpdateController = require('./controllers/appUpdateController');
+const serviceStaffController = require('./controllers/serviceStaffController');
 
 var data_user;
 
@@ -662,6 +663,29 @@ app.get('/mobiledashboard/subui', function (req, res) {
 app.get('/mobiledashboard/get_subservices_data/:serviceRef', upload.none(), mobiledashboardController.get_sub_services);
 
 app.post('/mobiledashboard/update_subui',upload.array('image_pdf',2), mobiledashboardController.update_subui);
+
+app.get("/servicestaff/add",ensureLogin.ensureLoggedIn(), function (req, res) {
+  var data = [];
+  mobiledashboardController.get_services(function (services_data) {
+    data.push({ services: services_data });
+    res.render("serviceStaff/add", {
+      title: "add service Staff",
+      page_title: "Add Service Staff",
+      services: data[0]["services"],
+    });
+  });
+});
+
+app.post('/servicestaff/do_add', upload.none(),serviceStaffController.add_serviceStaff);
+
+app.get('/servicestaff-list', ensureLogin.ensureLoggedIn(), function (req, res) {
+    res.render("serviceStaff/index", {
+        title: 'Service Staff',
+        page_title: 'Service Staff-list'
+    })
+});
+
+app.post('/servicemen-list',upload.none(),serviceStaffController.get_servicemen_list);
 
 
 const PORT = process.env.PORT || 8080;

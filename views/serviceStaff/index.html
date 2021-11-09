@@ -1,0 +1,50 @@
+<html lang="en">
+    <head>
+        <title>{{title}}</title>
+        {{> header}}
+        <!-- DATA TALE LIBRARY -->
+        <link rel="stylesheet" href="/plugins/datatables.net-dt/css/jquery.dataTables.css">
+        <link rel="stylesheet" href="/plugins/datatables.net-responsive-bs/css/responsive.bootstrap.css">
+        <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.6.2/css/buttons.dataTables.min.css">
+    </head>
+    <body>
+        {{> sidebars}}
+        <div class="content-wrapper">
+            <div class="body_content">
+                <div class="dashboard_table common_table ">
+                    <div class="datatable_title"><h4>{{page_title}}</h4></div>
+					<input type="hidden" name="is_trash" value="0">
+                    <table id="list_table" class="table table-striped table-bordered dt-responsive recent_riders_table" cellspacing="0" width="100%">
+                        <thead>
+                            <tr>
+                                <!-- <th>First Name</th>
+                                <th>Last Name</th> -->
+                                <th>Full Name</th>
+                                <th>Email</th>
+								<th>Mobile No</th>
+                                <th>Location</th>
+                                <th>Speciality</th>
+                                <th>Password</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!-- END -->
+        {{> footer}}
+        <script src="/plugins/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="/plugins/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <script src="/plugins/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="/plugins/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/dataTables.buttons.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.flash.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/pdfmake.min.js"></script>
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.html5.min.js"></script>
+        <script type="text/javascript" src="https://cdn.datatables.net/buttons/1.6.2/js/buttons.print.min.js"></script>
+        <script src="/js/serviceStaff/list.js"></script>
+    </body>	
+</html>

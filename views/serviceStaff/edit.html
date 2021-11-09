@@ -1,0 +1,86 @@
+<html lang="en">
+
+<head>
+    <title>{{title}}</title>
+    {{> header}}
+    <style>
+        .tag_fields {
+            height: 150px;
+            overflow-y: scroll;
+            scrollbar-color: rgb(78, 140, 191);
+            scrollbar-width: thin;
+        }
+    </style>
+</head>
+
+<body>
+    {{> sidebars}}
+    <div class="content-wrapper">
+        <div class="body_content">
+            <div class="common_field_sec">
+                <div class="common_sec_title">
+                    <h2>{{page_title}}</h2>
+                </div>
+
+                <form action="javascript:void(0);" class="add_form" data-id="{{servicestaff.id}}">
+                    <div class="field_inner_sec">
+
+                        <div class="floating-label left_fld">
+                            <label> Full Name <span class="required">*</span></label>
+                            <input class="floating-input" id="rest_name" name="fullname" type="text" required value="{{servicesstaff.fullname}}">
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld">
+                            <label> Email<span class="required">*</span></label>
+                            <input class="floating-input" id="rest_name" name="email" type="text" required value="{{servicesstaff.email}}">
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld">
+                            <label> Mobile No<span class="required">*</span></label>
+                            <input class="floating-input" id="rest_name" name="mobile_no" type="text" required value="{{servicesstaff.mobile_no}}">
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld">
+                            <label>Location </label>
+                            <input class="floating-input" id="rest_name" name="location" type="text" value="{{servicesstaff.location}}">
+                        </div>
+
+                        <div class="claerfix"></div>
+                        <div id="speciality" class="floating-label left_fld">
+                            <label> Speciality <span class="required">*</span></label>
+                            {{#each services}}
+                            <input type="checkbox" id="specialist" name="{{this.titile}" value="{{this.title}}" >
+                            <label for="{{this.title}}" >{{this.title}}</label>
+                            {{/each}}
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld">
+                            <label> Password</label>
+                            <input class="floating-input" id="rest_name" name="password" type="text" value="{{servicesstaff.password}}">
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                    <div class="form_submit_sec">
+                        <button type="submit" class="btn">Submit</button>
+                    </div>
+                </form>        
+                 </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- END -->
+{{> footer}}
+<script src="/js/serviceStaff/edit.js"></script>
+</body>
+
+</html>
