@@ -249,6 +249,11 @@ app.get('/tickets', function(req, res) {
     })
 })
 
+app.get('/ticket-edit', function(req, res) {
+    res.render('ticket-dashboard/Ticketedit', {
+    })
+})
+
 /*admin routes */
 app.get('/admin', ensureLogin.ensureLoggedIn(), function (req, res) {
     var data = [];
