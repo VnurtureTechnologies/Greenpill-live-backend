@@ -63,6 +63,7 @@ module.exports.get_whatsnew_list = (req, res) => {
           title: r.data().title,
           description: r.data().description,
           type: r.data().type,
+          show: get_checkbox_for_showing(r),
           created_at: r.data().createdAt,
           get_action_button: get_action_button(req, res, r),
         };
@@ -79,6 +80,26 @@ module.exports.get_whatsnew_list = (req, res) => {
       });
     });
 };
+
+function get_checkbox_for_showing(r) {
+  var html = "";
+
+  if(r.data().show == true) {
+    html += '<span style="margin-left: 20px">';
+    // html += '<a href="/whatsnew/editShow">';
+    html += '<input type="checkbox" id="show_check" checked data-id="' + r.id + '" />';
+    // html += '</a>';
+    html += "</span>"    
+  } else {
+    html += '<span style="margin-left: 20px">';
+    // html += '<a href="/whatsnew/editShow">';
+    html += '<input type="checkbox" id="show_check" data-id="' + r.id + '" />';
+    // html += '</a>';
+    html += "</span>"    
+  }
+
+  return html
+}
 
 function get_action_button(req, res, data) {
   var html = "";
@@ -116,6 +137,32 @@ module.exports.get_whatsnew_data = function (whatsnew_id, callback) {
       callback([]);
     });
 };
+
+module.exports.edit_trending_show = async(req, res, next) => {
+  var db = admin.firestore();
+  var id = req.params.id;
+  var flag = req.params.flag;
+  var data = "";
+
+  if(flag == 'true') {
+    data = {
+      'show': true
+    }
+  } else if(flag == 'false') {
+    data = {
+      'show': false
+    }
+  }
+
+  await db.collection('whatsnew').doc(`${id}`)
+  .update(data)
+  .then((r) => {
+    res.send("Trending flag set successfully");
+  })
+  .catch((err) => {
+    console.log(err);
+  })
+}
 
 module.exports.edit_whatsnew = async (req, res, next) => {
   await helpers.getfolderName('whatsnew')
