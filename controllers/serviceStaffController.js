@@ -1,22 +1,20 @@
 const admin = require("firebase-admin");
 const bcrypt = require("bcrypt");
 
-module.exports.get_servicemen_list = (req,res,next) => {
-  console.log("in service men")
+module.exports.get_servicestaff_list = (req,res,next) => {
     var db = admin.firestore();
     var sericemen_data = []
-    db.collection('serviceMen')
+    db.collection('serviceStaff')
     .get()
     .then( (results) => {
-      console.log("r",results)
         results.forEach( (r) => {
             var row={
                 "id":r.id,
                 "fullname":r.data().fullname,
                 "email":r.data().email,
                 "mobile_no":r.data().mobile_no,
-                "specialist":r.data().specialist,
                 "location": r.data().location,
+                "speciality":r.data().speciality,
                 "password": r.data().password,
                 "get_action_button": get_action_button(req,res,r)
             }
@@ -50,7 +48,7 @@ module.exports.add_serviceStaff = async (req, res, next) => {
       res.json({
         status: true,
         status_code: 200,
-        redirect: '/dashboard',
+        redirect: '/servicestaff-list',
         message: "Service Staff Added Successfully",
       });
     })
@@ -83,7 +81,80 @@ function response(res, resources_list) {
       status: true,
       status_code: 201,
       data: sorted_resourcesList,
-      message: "Resources List Fetched Successfully"
+      message: "Staff List Fetched Successfully"
   })
 }
 
+
+module.exports.delete_serviceStaff = async (req, res, next) => {
+  var db = admin.firestore();
+  var id = req.params.id;
+
+  db.collection('serviceStaff').doc(`${id}`).delete()
+      .then((r) => {
+          res.json({
+              status: true,
+              status_code: 200,
+              message: "Staff Deleted Successfully",
+              redirect: "/servicestaff-list"
+          })
+      })
+      .catch((err) => {
+          res.json({
+              status: false,
+              status_code: 501,
+              message: "Internal server error",
+          })
+      })
+}
+
+module.exports.get_servicestaff_data = function (id, callback) {
+  var db = admin.firestore();
+  db.collection("serviceStaff")
+    .doc(`${id}`)
+    .get()
+    .then((r) => {
+      const data = {
+        id: r.id,
+        email: r.data().email,
+        fullname: r.data().fullname,
+        location: r.data().location,
+        mobile_no: r.data().mobile_no,
+        password: r.data().password,
+        speciality: r.data().speciality,
+      };
+      callback(data);
+    })
+    .catch((err) => {
+      callback([]);
+    });
+};
+
+module.exports.edit_serviceStaff = async(req,res,next)=>{
+  var db = admin.firestore();
+  var id = req.params.id
+
+  update_data = {
+    'email':req.body.email,
+    'fullname':req.body.fullname,
+    'location':req.body.location,
+    'mobile_no':req.body.mobile_no,
+    'password':req.body.password,
+    'speciality':req.body.speciality
+  }
+
+  db.collection('serviceStaff').doc(`${id}`).update(update_data).then((r)=>{
+    res.json({
+      status:true,
+      status_code:200,
+      message:"Staff updated Successfully",
+      redirect: "/servicestaff-list"
+    })
+  }).catch((err)=>{
+    res.json({
+      status:false,
+      status_code:501,
+      message:"Internal Server Error"
+    })
+  })
+}

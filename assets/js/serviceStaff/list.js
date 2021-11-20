@@ -42,7 +42,7 @@ $(document).ready(function () {
             }
         },
         "ajax": {
-            url: '/servicemen-list',
+            url: '/servicestaff-list',
             type: "post",
             dataType: 'json',
             // data: function (d) {

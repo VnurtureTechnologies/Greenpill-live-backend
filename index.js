@@ -685,7 +685,30 @@ app.get('/servicestaff-list', ensureLogin.ensureLoggedIn(), function (req, res) 
     })
 });
 
-app.post('/servicemen-list',upload.none(),serviceStaffController.get_servicemen_list);
+app.post('/servicestaff-list',upload.none(),serviceStaffController.get_servicestaff_list);
+
+app.get('/servicestaff/edit/:id', ensureLogin.ensureLoggedIn(), function (req, res) {
+    var id = req.params.id;
+    var data = [];
+
+    serviceStaffController.get_servicestaff_data(id, function (servicestaff) {
+        data.push({ 'servicestaff_data': servicestaff})
+            mobiledashboardController.get_services(function(services_data){
+                data.push({services:services_data})
+                res.render('serviceStaff/edit', {
+                    title: "Edit staff info",
+                    page_title: "Edit staff info",
+                    servicestaff: data[0]['servicestaff_data'],
+                    services:data[1]['services']
+            })
+        })
+    })
+});
+
+app.post('/servicestaff/do_edit/:id',upload.none(),serviceStaffController.edit_serviceStaff)
+
+app.delete('/servicestaff-delete/:id', serviceStaffController.delete_serviceStaff);
+
 
 
 const PORT = process.env.PORT || 8080;
