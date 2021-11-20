@@ -1,0 +1,91 @@
+<html lang="en">
+    <head>
+        <title>{{title}}</title>
+        {{> header}}
+        <link rel="stylesheet" href="/css/ticketdashboard.css" />
+        <link rel="stylesheet" href="/plugins/datatables.net-dt/css/jquery.dataTables.css">
+        <link rel="stylesheet" href="/plugins/datatables.net-responsive-bs/css/responsive.bootstrap.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" 
+        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" 
+        crossorigin="anonymous" 
+        referrerpolicy="no-referrer" />
+    </head>
+    <body>
+        {{> TicketSidebar}}
+            <div class="content-wrapper">
+                <div class="body_content">
+                    <div class="common_field_sec">
+                        <div class="common_sec_title">
+                            <h2>Edit Ticket</h2>
+                        </div>
+        
+                        <form action="javascript:void(0);" class="edit_form" data-id="{{ticket.id}}">
+                            <div class="field_inner_sec">
+        
+                                <div class="floating-label left_fld">
+                                    <label> Ticket Data </label>
+                                    <input class="floating-input" id="rest_name" value="{{ticket.data}}" name="data" type="text">
+                                </div>
+
+                                <div class="floating-label right_fld">
+                                    <label> Ticket Details </label>
+                                    <input class="floating-input" id="rest_name" value="{{notification.details}}" name="details" type="text">
+                                </div>
+        
+                                <div class="claerfix"></div>
+        
+                                <div class="floating-label left_fld">
+                                    <label> Service Man </label>
+                                    <input class="floating-input" id="rest_name" value="{{ticket.serviceman}}" name="serviceman" type="text">
+                                </div>
+                                
+                                <div class="floating-label right_fld">
+                                    <label> Quote </label>
+                                    <input class="floating-input" id="rest_name" value="{{ticket.serviceman}}" name="serviceman" type="text">
+                                </div>
+
+                                <div class="claerfix"></div>
+
+                                <div class="floating-label left_fld">
+                                    <label> Payment </label>
+                                    <input class="floating-input" id="rest_name" value="{{ticket.serviceman}}" name="serviceman" type="text">
+                                </div>
+                                
+                                <div class="floating-label right_fld">
+                                    <label> Status </label>
+                                    <input class="floating-input" id="rest_name" value="{{ticket.serviceman}}" name="serviceman" type="text">
+                                </div>
+
+                                <div class="claerfix"></div>
+
+                                <div class="floating-label left_fld">
+                                    <label> Draft </label>
+                                    <input class="floating-input" id="rest_name" value="{{ticket.serviceman}}" name="serviceman" type="text">
+                                </div>
+
+                                <button style="margin: 3% 0% 3% 4%;" class='manual_upload btn' id="manual_upload" type="button" >   
+                                    <span class="fas fa-plus"></span>
+                                    Additional Information
+                                </button>
+                                 <div class="add_more_options" data-count="1"></div>
+                                    <div class="add_more_field">
+                                    </div>
+                                </div>
+        
+                            <div class="form_submit_sec">
+                                <button type="submit" class="btn">Submit</button>
+                            </div>
+                        </form>        
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <!-- END -->
+        {{> footer}}
+        <script src="/plugins/datatables.net/js/jquery.dataTables.min.js"></script>
+        <script src="/plugins/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+        <script src="/plugins/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+        <script src="/plugins/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    </body>
+</html>

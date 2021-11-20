@@ -53,6 +53,7 @@ $(document).ready(function () {
             {"data": "title", "name": "title"},
             {"data": "description", "name": "description"},
             {"data": "type", "name": "type"},
+            {"data": "show", "name": "show"},
             {"data": "get_action_button", "name": "get_action_button"}
         ],
         "columnDefs": [
@@ -78,6 +79,40 @@ $(document).ready(function () {
             }
         });
     });
+
+    $(document).on( 'click', '#show_check' , function () {
+        var id = $(this).attr('data-id');
+        var flag = "";
+        if(this.checked) {
+            flag = 'true'; 
+        } else {
+            flag = 'false';
+        }
+
+        var checkers = document.querySelectorAll('#show_check');
+        var count = 0;
+        checkers.forEach((c) => {
+            if(c.checked) {
+                count += 1
+            }
+        })
+
+        if(count <= 8) {
+            $.ajax({
+                url: `/whatsnew/editShow/` + id +  '/' + flag,
+                type: 'POST',
+                data: flag,
+                success: function(data) {
+                    Swal.fire("Trending flag set successfully");
+                }
+            })
+        } else {
+            Swal.fire("Can only set 8 trending topics");
+            $(this).prop('checked', false);
+        }
+         
+    })
+    
 });
 
 function do_btn_action(url, data, type) {

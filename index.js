@@ -250,6 +250,11 @@ app.get('/tickets', function(req, res) {
     })
 })
 
+app.get('/ticket-edit', function(req, res) {
+    res.render('ticket-dashboard/Ticketedit', {
+    })
+})
+
 /*admin routes */
 app.get('/admin', ensureLogin.ensureLoggedIn(), function (req, res) {
     var data = [];
@@ -499,7 +504,7 @@ app.get('/whatsnew/add', ensureLogin.ensureLoggedIn(), function (req, res) {
 })
 
 
-app.get('/whatsnew/list', ensureLogin.ensureLoggedIn(), function (req, res) {
+app.get('/whatsnew/list', function (req, res) {
     res.render('whatsnew/index', {
         title: 'whatsnew',
         page_title: 'Trending List'
@@ -520,6 +525,7 @@ app.get('/whatsnew/edit/:id', ensureLogin.ensureLoggedIn(), function (req, res) 
     })
 })
 
+app.post('/whatsnew/editShow/:id/:flag', upload.none(), whatsnewController.edit_trending_show);
 app.post('/whatsnew-list', upload.none(), whatsnewController.get_whatsnew_list);
 app.post('/whatsnew/do_add', upload.single('whatsnew_image'), whatsnewController.add_whatsnew);
 app.post('/whatsnew/do_edit/:id', upload.single('whatsnew_img'), whatsnewController.edit_whatsnew);
