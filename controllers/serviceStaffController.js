@@ -33,15 +33,28 @@ module.exports.get_servicestaff_list = (req,res,next) => {
 
 module.exports.add_serviceStaff = async (req, res, next) => {
   var db = admin.firestore();
-  const data = {
-    fullname: req.body.fullname,
-    email: req.body.email,
-    mobile_no: req.body.mobile_no,
-    location: req.body.location,
-    speciality: req.body.speciality,
-    password: req.body.password,
-  };
-
+  var data
+  if(Array.isArray(req.body.speciality)){
+    data = {
+      fullname: req.body.fullname,
+      email: req.body.email,
+      mobile_no: req.body.mobile_no,
+      location: req.body.location,
+      speciality: req.body.speciality,
+      password: req.body.password,
+    }; 
+  }
+  else{
+    data = {
+      fullname: req.body.fullname,
+      email: req.body.email,
+      mobile_no: req.body.mobile_no,
+      location: req.body.location,
+      speciality: [req.body.speciality],
+      password: req.body.password,
+    }; 
+  }
+  
   db.collection("serviceStaff")
     .add(data)
     .then((result) => {
@@ -108,9 +121,20 @@ module.exports.delete_serviceStaff = async (req, res, next) => {
       })
 }
 
-module.exports.get_servicestaff_data = function (id, callback) {
+module.exports.get_servicestaff_data = async function (id, callback) {
   var db = admin.firestore();
-  db.collection("serviceStaff")
+  var services_data = []
+
+  await db.collection("bookingServices").get()
+  .then((results) => {
+      results.docs.forEach((r) => {
+        services_data.push(r.data().title);
+      })
+  })
+  .catch((err) => {
+      console.log("err",err)
+  });
+  await db.collection("serviceStaff")
     .doc(`${id}`)
     .get()
     .then((r) => {
@@ -123,6 +147,8 @@ module.exports.get_servicestaff_data = function (id, callback) {
         password: r.data().password,
         speciality: r.data().speciality,
       };
+      data["services"] = services_data.filter((id1) => !data.speciality.some((id2) => id2 === id1));
+      console.log("data",data)
       callback(data);
     })
     .catch((err) => {
@@ -133,14 +159,25 @@ module.exports.get_servicestaff_data = function (id, callback) {
 module.exports.edit_serviceStaff = async(req,res,next)=>{
   var db = admin.firestore();
   var id = req.params.id
-
-  update_data = {
-    'email':req.body.email,
-    'fullname':req.body.fullname,
-    'location':req.body.location,
-    'mobile_no':req.body.mobile_no,
-    'password':req.body.password,
-    'speciality':req.body.speciality
+  var update_data
+  if(Array.isArray(req.body.speciality)){
+    update_data = {
+      'email':req.body.email,
+      'fullname':req.body.fullname,
+      'location':req.body.location,
+      'mobile_no':req.body.mobile_no,
+      'password':req.body.password,
+      'speciality':req.body.speciality
+    }
+  }else{
+    update_data = {
+      'email':req.body.email,
+      'fullname':req.body.fullname,
+      'location':req.body.location,
+      'mobile_no':req.body.mobile_no,
+      'password':req.body.password,
+      'speciality':[req.body.speciality]
+    }
   }
 
   db.collection('serviceStaff').doc(`${id}`).update(update_data).then((r)=>{
