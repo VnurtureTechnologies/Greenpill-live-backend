@@ -45,17 +45,14 @@
                             <thead>
                                 <tr>
                                     <th>Ticket No</th>
-                                    <th>User Data</th>
-                                    <th>Details</th>
                                     <th>Service Man</th>
-                                    <th>Quote</th>
+                                    <th>Final Cost</th>
                                     <th>Payment</th>
                                     <th>Status</th>
-                                    <th>Draft</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <!-- <tbody>
                                 {{#each tickets_data}}
                                     <tr>
                                         <td>{{ticket_no}}</td>
@@ -69,7 +66,7 @@
                                         <td><span><a href="/ticket-edit"><i class="fa fa-pencil"></i></a></span>&nbsp;&nbsp;&nbsp;<span><i class="fa fa-trash"></i></span></td>
                                     </tr>
                                 {{/each}}
-                            </tbody>
+                            </tbody> -->
                         </table>
                     </div>
                 </div>
@@ -77,6 +74,7 @@
         </div>
         <!-- END -->
         {{> footer}}
+        <script src="/js/tickets/list.js"></script>
         <script src="/plugins/datatables.net/js/jquery.dataTables.min.js"></script>
         <script src="/plugins/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
         <script src="/plugins/datatables.net-responsive/js/dataTables.responsive.min.js"></script>

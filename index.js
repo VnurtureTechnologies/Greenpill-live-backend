@@ -118,6 +118,7 @@ const videoController = require('./controllers/videoController');
 const mobiledashboardController = require('./controllers/mobiledashboardController');
 const appUpdateController = require('./controllers/appUpdateController');
 const serviceStaffController = require('./controllers/serviceStaffController');
+const ticketController = require("./controllers/ticketController");
 
 var data_user;
 
@@ -238,22 +239,10 @@ app.get('/dashboard', ensureLogin.ensureLoggedIn(), function (req, res) {
 
 /* Ticket dashboard routes */
 app.get('/tickets', function(req, res) {
-    var data = [
-        { ticket_no: '1rwqr114', service_code: 'Water', name: 'Aman S', created_at: '11/07/2021', status: 'completed' },
-        { ticket_no: '2rwqd113', service_code: 'EV', name: 'Pinank D', created_at: '11/07/2021', status: 'pending' },
-        { ticket_no: '3rwqr114', service_code: 'Solar', name: 'Priyank J', created_at: '11/07/2021', status: 'blocked' },
-        { ticket_no: '4rwqr114', service_code: 'Waste', name: 'Kairav P', created_at: '11/07/2021', status: 'completed' },
-        { ticket_no: '5rwqr114', service_code: 'Water', name: 'Sagar J', created_at: '11/07/2021', status: 'pending' }
-    ]
-    res.render('ticket-dashboard/TicketDashboard', {
-        tickets_data: data
-    })
+    res.render('ticket-dashboard/TicketDashboard', {})
 })
 
-app.get('/ticket-edit', function(req, res) {
-    res.render('ticket-dashboard/Ticketedit', {
-    })
-})
+app.post('/tickets-list', upload.none(), ticketController.get_all_tickets);
 
 /*admin routes */
 app.get('/admin', ensureLogin.ensureLoggedIn(), function (req, res) {
@@ -283,6 +272,36 @@ app.get('/user-list', ensureLogin.ensureLoggedIn(), function (req, res) {
         page_title: 'Users-list'
     })
 });
+
+
+app.get('/ticket-edit/:id', function(req, res) {
+    const id = req.params.id;
+    const data = [];
+    
+    ticketController.get_ticket_data(id, function(fetchedData) {
+        data.push({ 'user_data': fetchedData[0]});
+        data.push({ 'ticket_data': fetchedData[1]})
+        res.render('ticket-dashboard/Ticketedit', {
+            title: "Ticket Edit",
+            page_title: "Edit ticket",
+            user_data: data[0]["user_data"],
+            ticket_data: data[1]["ticket_data"]
+        })
+    })
+})
+
+app.get('/ticket-internal-edit/:id', (req, res) => {
+    const id = req.params.id;
+    const data = [];
+    
+    ticketController.get_ticket_data(id, function(fetchedData) {
+        res.json({
+            data: fetchedData
+        })
+    })
+});
+
+app.post('/tickets/do_edit/:id', upload.array('ticket_files_performa', 'ticket_files_quotation'), ticketController.edit_ticket);
 
 app.get('/users/edit/:id', ensureLogin.ensureLoggedIn(), function (req, res) {
     var id = req.params.id;
