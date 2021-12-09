@@ -31,7 +31,7 @@ const sumFromArray = (propertyName, array) => {
     let sum = 0;
     if(Array.isArray(array) && array.length > 0) {
         array.forEach(item => {
-            sum += parseInt(item[propertyName]) ?? 0;
+            sum += parseInt(item[propertyName]);
           });
           return sum;
     } else { return '-'}
