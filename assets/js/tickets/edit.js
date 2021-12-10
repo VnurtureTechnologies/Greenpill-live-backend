@@ -13,7 +13,7 @@ $(document).ready( function() {
                 var payment_html = "";
                 payment_html += `<div class="floating-label left_fld">`;
                 payment_html += `<label> Payment ${index} </label>`;
-                payment_html += `<input class="floating-input" id="payment" value="${payment.amount}" name="payment" type="text">`
+                payment_html += `<input class="floating-input" id="payment" value="${payment.amount}" name="payment" type="text" disabled>`
                 payment_html += `</div>`;
 
                 $("#inner_dynamic_payment").append(payment_html);

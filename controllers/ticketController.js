@@ -60,6 +60,7 @@ module.exports.edit_ticket = async(req, res, next) => {
     let update_data = {
         status: req.body.status,
         finalCost: req.body.final_cost,
+        minPayment: req.body.min_payment,
         additionalInformation: add_info
     }
 
@@ -135,7 +136,8 @@ module.exports.get_ticket_data = function (ticket_id, callback) {
                     status: r.data().status,
                     category: r.data().category,
                     sub_category: r.data().subCategory,
-                    final_cost: r.data().finalCost
+                    final_cost: r.data().finalCost,
+                    minimum_payment: r.data().minPayment,
                 }
 
                 data.push(ticket_data);
