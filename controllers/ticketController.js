@@ -11,7 +11,7 @@ module.exports.get_all_tickets = async (req, res, next) => {
         result.forEach((r) => {
             var row = {
                 "id": r.data().timestamp,
-                "service men": r.data().servicemen || '-',
+                "service men": r.data().serviceStaff || '-',
                 "final cost": r.data().finalCost || '-',
                 "payment": sumFromArray('amount', r.data().payments),
                 "status": r.data().status,
@@ -61,6 +61,7 @@ module.exports.edit_ticket = async(req, res, next) => {
         status: req.body.status,
         finalCost: req.body.final_cost,
         minPayment: req.body.min_payment,
+        serviceStaff: req.body.service_staff,
         additionalInformation: add_info
     }
 
@@ -136,6 +137,7 @@ module.exports.get_ticket_data = function (ticket_id, callback) {
                     status: r.data().status,
                     category: r.data().category,
                     sub_category: r.data().subCategory,
+                    serviceStaff: r.data().serviceStaff || "-- Choose --",
                     final_cost: r.data().finalCost,
                     minimum_payment: r.data().minPayment,
                 }
