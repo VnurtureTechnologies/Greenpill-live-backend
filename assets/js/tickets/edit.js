@@ -6,7 +6,6 @@ $(document).ready( function() {
         url: `/ticket-internal-edit/${ticketId}`,
         type: 'GET',
     }).done((response) => {
-        console.log(response);
         ticket_data = response;
         if(response.data[2].payment) {
             response.data[2].payment.forEach((payment, index) => {
@@ -38,7 +37,7 @@ $(document).ready( function() {
         if(response.data[5]) {
             var select = "";
             select += `<select id="selected" class="floating-select" name="service_staff">
-                            <option value="">-- Choose --</option>`;
+                            <option value="${response.data[1].serviceStaff}">${response.data[1].serviceStaff}</option>`;
                             response.data[5].forEach((staff) => {
                                 select += ` <option value="${staff}">${staff}</option> `
                             })
