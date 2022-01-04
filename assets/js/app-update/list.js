@@ -50,13 +50,16 @@ $(document).ready(function () {
             // }
         },
         "columns": [
-            {"data": "version", "name": "version"},
-            {"data": "last_date", "name": "last_date"},
+            { "data": "androidVersion", "name": "androidVersion" },
+            { "data": "androidDate", "name": "androidDate" },
+            { "data": "iosVersion", "name": "iosVersion" },
+            { "data": "iosDate", "name": "iosDate" },
+            { "data": "last_date", "name": "last_date" },
             // {"data": "action", "name": "action"},
-            {"data": "get_action_button", "name": "get_action_button"}
+            { "data": "get_action_button", "name": "get_action_button" }
         ],
         "columnDefs": [
-            {"targets": -1, "orderable": false, },
+            { "targets": -1, "orderable": false, },
         ]
     });
 
@@ -87,7 +90,7 @@ function user_delete_action(url) {
         if (response.status == false) {
             Swal.fire("Sorry!", "Unable to process your request. Please try again later.)", "error");
         } else {
-            Swal.fire('Deleted!', response.message , "success");
+            Swal.fire('Deleted!', response.message, "success");
             setTimeout(function () {
                 location.replace('/dashboard');
             }, 1200);
