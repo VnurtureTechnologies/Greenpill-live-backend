@@ -29,8 +29,11 @@ module.exports.add_news = async (req, res, next) => {
                 timestamp: Date.now().toString(),
             }
             await db.collection('notifications').add(notifidata)
-                .then((result) => { }).catch((err) => { console.log(err) })
-            helpers.sendGenericNotification(notifier, notifier_title, notifier_description);
+                .then((result) => { 
+                    console.log(result.id);
+                    helpers.sendGenericNotification(notifier, notifier_title, notifier_description, result.id);
+                }).catch((err) => { console.log(err) })
+            
             res.json({
                 status: true,
                 status_code: 200,

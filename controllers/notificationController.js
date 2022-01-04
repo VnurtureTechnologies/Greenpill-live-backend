@@ -16,7 +16,7 @@ module.exports.add_notification = async (req, res, next) => {
 
     db.collection('notifications').add(data)
         .then((result) => {
-            helpers.sendGenericNotification(notifier, notifier_title, notifier_description)
+            helpers.sendGenericNotification(notifier, notifier_title, notifier_description, result.id)
             res.json({
                 status: true,
                 status_code: 200,

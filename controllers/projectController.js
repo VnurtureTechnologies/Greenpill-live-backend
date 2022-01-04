@@ -22,7 +22,7 @@ module.exports.add_project = async (req, res) => {
     await db.collection('project')
     .add(data)
     .then((r) => {
-        helpers.sendGenericNotification(notifier, notifier_title, notifier_description);
+        helpers.sendGenericNotification(notifier, notifier_title, notifier_description, r.id);
         res.json({
             status: true,
             status_code: 200,

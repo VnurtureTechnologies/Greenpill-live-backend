@@ -19,7 +19,7 @@ module.exports.add_resources = async (req, res, next) => {
 
     db.collection('resources').add(data)
         .then((result) => {
-            // helpers.sendGenericNotification(notifier, notifier_title, notifier_description)
+            helpers.sendGenericNotification(notifier, notifier_title, notifier_description, result.id)
 
             const notifidata = {
                 title: req.body.title,
