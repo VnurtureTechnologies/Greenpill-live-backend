@@ -32,7 +32,7 @@ module.exports.get_app_update = (req, res, next) => {
     db.collection('app_update').get()
         .then((response) => {
             response.forEach((innerResponse) => {
-                console.log("IR", innerResponse.data())
+                
                 var row = {
                     "androidVersion": innerResponse.data().androidVersion,
                     "androidDate": innerResponse.data().androidDate,
@@ -43,7 +43,7 @@ module.exports.get_app_update = (req, res, next) => {
                 }
 
                 app_update_list.push(row);
-                console.log("data", app_update_list)
+                
             })
 
             res.json({
