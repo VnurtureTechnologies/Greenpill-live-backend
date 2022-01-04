@@ -19,7 +19,17 @@ module.exports.add_news = async (req, res, next) => {
     }
 
     db.collection('news_and_innovation').add(data)
-        .then((result) => {
+        .then(async (result) => {
+            const notifidata = {
+                title: req.body.title,
+                category: "News",
+                description: req.body.description,
+                refId: result.id,
+                userId: "all",
+                timestamp: Date.now().toString(),
+            }
+            await db.collection('notifications').add(notifidata)
+                .then((result) => { }).catch((err) => { console.log(err) })
             helpers.sendGenericNotification(notifier, notifier_title, notifier_description);
             res.json({
                 status: true,
@@ -39,8 +49,8 @@ module.exports.add_news = async (req, res, next) => {
 }
 
 function response(res, news_list) {
-    
-    sorted_newsList = news_list.sort((a,b) => {
+
+    sorted_newsList = news_list.sort((a, b) => {
         return b.created_at - a.created_at
     })
 
@@ -106,9 +116,9 @@ module.exports.edit_news = async (req, res, next) => {
             filelink = data.filelink1
             await helpers.deleteImage(filelink)
         })
-        .catch((err) => {
-            console.log(err);
-        });
+            .catch((err) => {
+                console.log(err);
+            });
 
         update_data = {
             'title': req.body.title,
@@ -118,15 +128,15 @@ module.exports.edit_news = async (req, res, next) => {
             'youtubeUrl': req.body.youtube_url,
             'images': [await helpers.uploadImage(req.file)]
         }
-        } else {
+    } else {
         update_data = {
             'title': req.body.title,
             'description': req.body.description,
             'productRef': req.body.int_user_id,
             'sourceLink': req.body.source_link,
             'youtubeUrl': req.body.youtube_url,
-            }
         }
+    }
     db.collection('news_and_innovation').doc(`${id}`).update(update_data)
         .then((r) => {
             res.json({

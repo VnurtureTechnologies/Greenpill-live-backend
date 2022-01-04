@@ -50,20 +50,20 @@ $(document).ready(function () {
             // }
         },
         "columns": [
-            {"data": "title", "name": "title"},
-            {"data": "shortdescription", "name": "shortdescription"},
-            {"data": "category", "name": "category"},
-            {"data": "get_action_button", "name": "get_action_button"}
+            { "data": "title", "name": "title" },
+            { "data": "description", "name": "description" },
+            { "data": "category", "name": "category" },
+            { "data": "get_action_button", "name": "get_action_button" }
         ],
         "columnDefs": [
-            {"targets": -1, "orderable": false, },
+            { "targets": -1, "orderable": false, },
         ]
     });
 
     $('#list_table').delegate('a.delete', 'click', function () {
         var id = $(this).attr('data-id');
         var action = $(this).attr('data-action');
-		var data = {action: action};
+        var data = { action: action };
         Swal.fire({
             title: 'Are you sure?',
             text: "You won't be able to revert this!",
@@ -84,13 +84,13 @@ function do_btn_action(url, data, type) {
     $.ajax({
         url: url,
         type: type,
-		data: data,
+        data: data,
         dataType: 'json',
     }).done(function (response) {
         if (response.status == false) {
             Swal.fire("Sorry!", "Unable to process your request. Please try again later.", "error");
         } else {
-            Swal.fire(response.title, response.message , "success");
+            Swal.fire(response.title, response.message, "success");
             if (response.redirect != '') {
                 setTimeout(function () {
                     location.replace(response.redirect);

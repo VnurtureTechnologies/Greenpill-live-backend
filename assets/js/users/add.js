@@ -1,8 +1,6 @@
-$(document).ready( function() {
-    $(document).on('submit', '.add_form', function() {
-        console.log("in add.js");
+$(document).ready(function () {
+    $(document).on('submit', '.add_form', function () {
         var formData = new FormData(this);
-        console.log(formData)
-        form_action('/users/do_add','POST','JSON', formData);
+        form_action('/users/do_add', 'POST', 'JSON', formData);
     })
 })

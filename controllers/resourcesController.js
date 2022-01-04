@@ -20,6 +20,18 @@ module.exports.add_resources = async (req, res, next) => {
     db.collection('resources').add(data)
         .then((result) => {
             // helpers.sendGenericNotification(notifier, notifier_title, notifier_description)
+
+            const notifidata = {
+                title: req.body.title,
+                category: "Resources",
+                description: req.body.description,
+                refId: result.id,
+                userId: "all",
+                timestamp: Date.now().toString(),
+            }
+            db.collection('notifications').add(notifidata)
+                .then((result) => { }).catch((err) => { console.log(err) })
+
             res.json({
                 status: true,
                 status_code: 200,
@@ -113,9 +125,9 @@ module.exports.edit_resources = async (req, res, next) => {
                 await helpers.deleteImage(filelink);
                 await helpers.deletePdf(filelink2);
             })
-            .catch((err) => {
-                console.log(err);
-            });
+                .catch((err) => {
+                    console.log(err);
+                });
 
             update_data = {
                 'title': req.body.title,
@@ -136,9 +148,9 @@ module.exports.edit_resources = async (req, res, next) => {
                     filelink = data.filelink1
                     await helpers.deletePdf(filelink)
                 })
-                .catch((err) => {
-                    console.log(err);
-                });
+                    .catch((err) => {
+                        console.log(err);
+                    });
 
                 update_data = {
                     'title': req.body.title,
@@ -157,9 +169,9 @@ module.exports.edit_resources = async (req, res, next) => {
                     filelink = data.filelink1
                     await helpers.deleteImage(filelink)
                 })
-                .catch((err) => {
-                    console.log(err);
-                });
+                    .catch((err) => {
+                        console.log(err);
+                    });
 
                 update_data = {
                     'title': req.body.title,
@@ -243,7 +255,6 @@ module.exports.delete_resources = async (req, res, next) => {
     await helpers.getfolderName('resource')
 
     db.collection("resources").doc(`${id}`).get().then(async (r) => {
-        console.log(r);
         let splitted_file_link = r.data().image.split('%2F')[1].split("?")
         let splitted_pdf_link = r.data().pdfUrl.split('%2F')[2].split("?")
 
@@ -258,9 +269,9 @@ module.exports.delete_resources = async (req, res, next) => {
         await helpers.deleteImage(filelink);
         await helpers.deletePdf(filelink2);
     })
-    .catch((err) => {
-        console.log(err);
-    });
+        .catch((err) => {
+            console.log(err);
+        });
 
     db.collection('resources').doc(`${id}`).delete()
         .then((r) => {
