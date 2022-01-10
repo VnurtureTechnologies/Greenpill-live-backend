@@ -72,7 +72,7 @@ exports.deleteTicketsPdf = (filelink) => new Promise((resolve, reject) => {
     resolve('done')
 })
 
-exports.sendGenericNotification = async function (notifier, title, description) {
+exports.sendGenericNotification = async function (notifier, title, description, document_id) {
     var db = admin.firestore();
 
     const notification_options = {
@@ -91,7 +91,8 @@ exports.sendGenericNotification = async function (notifier, title, description) 
             data: {
                 click_action: 'FLUTTER_NOTIFICATION_CLICK',
                 status: 'done',
-                screen: 'notification'
+                screen: 'notification',
+                notification_id: document_id
             }
         }
     }
@@ -104,7 +105,8 @@ exports.sendGenericNotification = async function (notifier, title, description) 
             data: {
                 click_action: 'FLUTTER_NOTIFICATION_CLICK',
                 status: 'done',
-                screen: 'product'
+                screen: 'project',
+                notification_id: document_id
             }
         }
     }
@@ -117,7 +119,8 @@ exports.sendGenericNotification = async function (notifier, title, description) 
             data: {
                 click_action: 'FLUTTER_NOTIFICATION_CLICK',
                 status: 'done',
-                screen: 'news'
+                screen: 'news',
+                news_id: document_id
             }
         }
     }
@@ -130,7 +133,8 @@ exports.sendGenericNotification = async function (notifier, title, description) 
             data: {
                 click_action: 'FLUTTER_NOTIFICATION_CLICK',
                 status: 'done',
-                screen: 'resources'
+                screen: 'resources',
+                resource_id: document_id
             }
         }
     }

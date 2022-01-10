@@ -27,37 +27,40 @@
 
                         <div class="floating-label left_fld">
                             <label> Title </label>
-                            <input class="floating-input" id="rest_name" value="{{notification.title}}" name="title" type="text">
+                            <input class="floating-input" id="rest_name" value="{{notification.title}}" name="title"
+                                type="text">
                         </div>
 
                         <div class="claerfix"></div>
 
                         <div class="floating-label left_fld">
-                            <label> Short Description </label>
-                            <input class="floating-input" id="rest_name" value="{{notification.shortdescription}}" name="shortdescription" type="text">
+                            <label> Description </label>
+                            <input class="floating-input" id="rest_name" value="{{notification.description}}"
+                                name="description" type="text">
                         </div>
 
                         <div class="claerfix"></div>
 
                         <div class="floating-label left_fld">
                             <label> Category </label>
-                            <input class="floating-input" id="rest_name" value="{{notification.category}}" name="category" type="text">
+                            <input class="floating-input" id="rest_name" value="{{notification.category}}"
+                                name="category" type="text">
                         </div>
 
                         <div class="claerfix"></div>
 
-                    <div class="form_submit_sec">
-                        <button type="submit" class="btn">Submit</button>
-                    </div>
-                </form>        
-                 </div>
+                        <div class="form_submit_sec">
+                            <button type="submit" class="btn">Submit</button>
+                        </div>
+                </form>
+            </div>
             </form>
         </div>
     </div>
-</div>
-<!-- END -->
-{{> footer}}
-<script src="/js/notification/edit.js"></script>
+    </div>
+    <!-- END -->
+    {{> footer}}
+    <script src="/js/notification/edit.js"></script>
 </body>
 
 </html>
