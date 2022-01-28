@@ -140,7 +140,7 @@ app.post('/login', passport.authenticate('local', {
     res.status(200).send("All is well")
 })
 
-app.get('/forgot-password', function(req, res) {
+app.get('/forgot-password', function (req, res) {
     res.render('login/forgot_pwd', { title: 'Forgot Password ' });
 });
 
@@ -148,30 +148,30 @@ app.post('/forgot-password', adminController.forgot_password);
 
 app.post('/change-password', adminController.change_password);
 
-app.get('/reset/:token', async(req,res) => {
+app.get('/reset/:token', async (req, res) => {
     var db = admin.firestore();
 
     await db.collection('admin').where('resetPasswordToken', '==', req.params.token)
-    .get()
-    .then((r) => {
-        if(r._size == 0) {
-            res.json({
-                status: false,
-                message: "Invalid token",
-                redirect: ('/')
-            })
-        }
-        else if (r.docs[0].data().resetPasswordExpires < Date.now()) {
-            res.json({
-                status: false,
-                message: "The link has expired",
-                redirect: ('/')
-            })
-        }
-        else {
-            res.render('login/reset_pwd', {title: 'Reset Password'})
-        }
-    })
+        .get()
+        .then((r) => {
+            if (r._size == 0) {
+                res.json({
+                    status: false,
+                    message: "Invalid token",
+                    redirect: ('/')
+                })
+            }
+            else if (r.docs[0].data().resetPasswordExpires < Date.now()) {
+                res.json({
+                    status: false,
+                    message: "The link has expired",
+                    redirect: ('/')
+                })
+            }
+            else {
+                res.render('login/reset_pwd', { title: 'Reset Password' })
+            }
+        })
 
 })
 
@@ -192,7 +192,7 @@ app.get('/login', (req, res) => {
 //     });
 // })
 
-app.get('/app-update', ensureLogin.ensureLoggedIn(), function(req,res) {
+app.get('/app-update', ensureLogin.ensureLoggedIn(), function (req, res) {
     res.render("app-update/index", {
         title: 'App Update',
         page_title: 'App Update',
@@ -214,7 +214,7 @@ app.get('/app-update/edit/:id', ensureLogin.ensureLoggedIn(), function (req, res
 })
 
 app.post('/app-update-list', upload.none(), appUpdateController.get_app_update);
-app.post('/app-update/do_add', upload.none(), appUpdateController.add_app_update );
+app.post('/app-update/do_add', upload.none(), appUpdateController.add_app_update);
 app.post('/app-update/do_edit/:id', upload.none(), appUpdateController.edit_app_update);
 
 /* DASHBOARD ROUTE */
@@ -238,7 +238,7 @@ app.get('/dashboard', ensureLogin.ensureLoggedIn(), function (req, res) {
 })
 
 /* Ticket dashboard routes */
-app.get('/tickets', function(req, res) {
+app.get('/tickets', function (req, res) {
     res.render('ticket-dashboard/TicketDashboard', {})
 })
 
@@ -274,13 +274,13 @@ app.get('/user-list', ensureLogin.ensureLoggedIn(), function (req, res) {
 });
 
 
-app.get('/ticket-edit/:id', function(req, res) {
+app.get('/ticket-edit/:id', function (req, res) {
     const id = req.params.id;
     const data = [];
-    
-    ticketController.get_ticket_data(id, function(fetchedData) {
-        data.push({ 'user_data': fetchedData[0]});
-        data.push({ 'ticket_data': fetchedData[1]})
+
+    ticketController.get_ticket_data(id, function (fetchedData) {
+        data.push({ 'user_data': fetchedData[0] });
+        data.push({ 'ticket_data': fetchedData[1] })
         res.render('ticket-dashboard/Ticketedit', {
             title: "Ticket Edit",
             page_title: "Edit ticket",
@@ -293,8 +293,8 @@ app.get('/ticket-edit/:id', function(req, res) {
 app.get('/ticket-internal-edit/:id', (req, res) => {
     const id = req.params.id;
     const data = [];
-    
-    ticketController.get_ticket_data(id, function(fetchedData) {
+
+    ticketController.get_ticket_data(id, function (fetchedData) {
         res.json({
             data: fetchedData
         })
@@ -509,8 +509,8 @@ app.get('/resources/edit/:id', ensureLogin.ensureLoggedIn(), function (req, res)
 })
 
 app.post('/resources-list', upload.none(), resourcesController.get_resources_list);
-app.post('/resources/do_add', upload.array('resource-image',2), resourcesController.add_resources);
-app.post('/resources/do_edit/:id', upload.array('resources-image',2), resourcesController.edit_resources);
+app.post('/resources/do_add', upload.array('resource-image', 2), resourcesController.add_resources);
+app.post('/resources/do_edit/:id', upload.array('resources-image', 2), resourcesController.edit_resources);
 app.delete('/resources-delete/:id', resourcesController.delete_resources);
 
 
@@ -638,16 +638,16 @@ app.post('/partnerp-list', upload.none(), partnerpController.get_all_partnerp_li
 
 app.delete('/partnerp-delete/:id', partnerpController.delete_partnerp);
 
-app.get('/greeni-list', ensureLogin.ensureLoggedIn(), function (req, res) {
-    res.render("greeni/index", {
-        title: 'green idea',
-        page_title: 'Green Idea'
+app.get('/inquiry-list', ensureLogin.ensureLoggedIn(), function (req, res) {
+    res.render("inquiry/index", {
+        title: 'New Inquiry',
+        page_title: 'New Inquiry'
     })
 });
 
-app.post('/greeni-list', upload.none(), greeniController.get_all_greeni_list);
+app.post('/inquiry-list', upload.none(), greeniController.get_all_greeni_list);
 
-app.delete('/greeni-delete/:id', greeniController.delete_greeni);
+app.delete('/inquiry-delete/:id', greeniController.delete_greeni);
 
 /* mobile dashboard routes */
 app.get('/mobiledashboard', ensureLogin.ensureLoggedIn(), function (req, res) {
@@ -656,17 +656,17 @@ app.get('/mobiledashboard', ensureLogin.ensureLoggedIn(), function (req, res) {
         data.push({ 'product': products })
         mobiledashboardController.get_products_where_type_newsresources(function (newsResources) {
             data.push({ 'NewsResources': newsResources })
-            mobiledashboardController.get_services(function(services_data){
+            mobiledashboardController.get_services(function (services_data) {
                 data.push({ 'services': services_data })
                 res.render("mobiledashboard/index", {
                     title: 'Add image',
                     page_title: 'Add image to Mobile Dashboard',
                     products: data[0]['product'],
                     newsResources: data[1]['NewsResources'],
-                    services:data[2]['services'],
+                    services: data[2]['services'],
                 })
             })
-        })  
+        })
     })
 });
 
@@ -674,34 +674,34 @@ app.post('/mobiledashboard/do_add', upload.single('image'), mobiledashboardContr
 
 app.get('/mobiledashboard/subui', function (req, res) {
     var data = []
-    mobiledashboardController.get_services(function(services_data){
+    mobiledashboardController.get_services(function (services_data) {
         data.push({ 'services': services_data })
-            res.render("mobiledashboard/subui", {
-                title: 'Add image',
-                page_title: 'Add image to Mobile Dashboard',
-                services: data[0]['services'],
-                subservices_data:data[1]['subservices_data']
-            })
+        res.render("mobiledashboard/subui", {
+            title: 'Add image',
+            page_title: 'Add image to Mobile Dashboard',
+            services: data[0]['services'],
+            subservices_data: data[1]['subservices_data']
+        })
     })
 });
 
 app.get('/mobiledashboard/get_subservices_data/:serviceRef', upload.none(), mobiledashboardController.get_sub_services);
 
-app.post('/mobiledashboard/update_subui',upload.array('image_pdf',2), mobiledashboardController.update_subui);
+app.post('/mobiledashboard/update_subui', upload.array('image_pdf', 2), mobiledashboardController.update_subui);
 
-app.get("/servicestaff/add",ensureLogin.ensureLoggedIn(), function (req, res) {
-  var data = [];
-  mobiledashboardController.get_services(function (services_data) {
-    data.push({ services: services_data });
-    res.render("serviceStaff/add", {
-      title: "add service Staff",
-      page_title: "Add Service Staff",
-      services: data[0]["services"],
+app.get("/servicestaff/add", ensureLogin.ensureLoggedIn(), function (req, res) {
+    var data = [];
+    mobiledashboardController.get_services(function (services_data) {
+        data.push({ services: services_data });
+        res.render("serviceStaff/add", {
+            title: "add service Staff",
+            page_title: "Add Service Staff",
+            services: data[0]["services"],
+        });
     });
-  });
 });
 
-app.post('/servicestaff/do_add', upload.none(),serviceStaffController.add_serviceStaff);
+app.post('/servicestaff/do_add', upload.none(), serviceStaffController.add_serviceStaff);
 
 app.get('/servicestaff-list', ensureLogin.ensureLoggedIn(), function (req, res) {
     res.render("serviceStaff/index", {
@@ -710,27 +710,27 @@ app.get('/servicestaff-list', ensureLogin.ensureLoggedIn(), function (req, res) 
     })
 });
 
-app.post('/servicestaff-list',upload.none(),serviceStaffController.get_servicestaff_list);
+app.post('/servicestaff-list', upload.none(), serviceStaffController.get_servicestaff_list);
 
 app.get('/servicestaff/edit/:id', ensureLogin.ensureLoggedIn(), function (req, res) {
     var id = req.params.id;
     var data = [];
 
     serviceStaffController.get_servicestaff_data(id, function (servicestaff) {
-        data.push({ 'servicestaff_data': servicestaff})
-            mobiledashboardController.get_services(function(services_data){
-                data.push({services:services_data})
-                res.render('serviceStaff/edit', {
-                    title: "Edit staff info",
-                    page_title: "Edit staff info",
-                    servicestaff: data[0]['servicestaff_data'],
-                    services:data[1]['services']
+        data.push({ 'servicestaff_data': servicestaff })
+        mobiledashboardController.get_services(function (services_data) {
+            data.push({ services: services_data })
+            res.render('serviceStaff/edit', {
+                title: "Edit staff info",
+                page_title: "Edit staff info",
+                servicestaff: data[0]['servicestaff_data'],
+                services: data[1]['services']
             })
         })
     })
 });
 
-app.post('/servicestaff/do_edit/:id',upload.none(),serviceStaffController.edit_serviceStaff)
+app.post('/servicestaff/do_edit/:id', upload.none(), serviceStaffController.edit_serviceStaff)
 
 app.delete('/servicestaff-delete/:id', serviceStaffController.delete_serviceStaff);
 
