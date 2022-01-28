@@ -50,6 +50,7 @@ $(document).ready(function () {
             // }
         },
         "columns": [
+            { "data": "date", "name": "date" },
             { "data": "name", "name": "name" },
             { "data": "phone", "name": "phone" },
             { "data": "email", "name": "email" },

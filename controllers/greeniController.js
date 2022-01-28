@@ -30,6 +30,7 @@ module.exports.get_all_greeni_list = (req, res, next) => {
                     "subject": r.data().subject,
                     "message": r.data().message,
                     "created_at": r.data().timestamp,
+                    "date": new Date(r.data().timestamp * 1000).toGMTString(),
                     "get_action_button": get_action_button(req, res, r)
                 }
                 partnerp_data.push(row)
@@ -37,6 +38,7 @@ module.exports.get_all_greeni_list = (req, res, next) => {
             setTimeout(response, 1000, res, partnerp_data);
         })
         .catch((err) => {
+            console.log("err", err);
             res.json({
                 status: false,
                 status_code: 501,
