@@ -1,151 +1,166 @@
 <html lang="en">
-    <head>
-        <title>{{title}}</title>
-        {{> header}}
-        <link rel="stylesheet" href="/css/ticketdashboard.css" />
-        <link rel="stylesheet" href="/plugins/datatables.net-dt/css/jquery.dataTables.css">
-        <link rel="stylesheet" href="/plugins/datatables.net-responsive-bs/css/responsive.bootstrap.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css" 
-        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA==" 
-        crossorigin="anonymous" 
-        referrerpolicy="no-referrer" />
-    </head>
-    <body>
-        {{> TicketSidebar}}
-            <div class="content-wrapper">
-                <div class="body_content">
-                    <div class="common_field_sec">
-                        <div class="common_sec_title">
-                            <h2>Edit Ticket</h2>
-                        </div>
-        
-                        <form action="javascript:void(0);" class="edit_form" data-id="{{ticket_data.id}}">
-                            <div class="field_inner_sec" id="ticket_edit_form">
-                                
-                                <h5 style="text-align: center; margin-bottom: 10px; font-weight: 1000;">User Details</h5>
 
-                                <div class="floating-label left_fld">
-                                    <label> User Name </label>
-                                    <input class="floating-input" id="rest_name" value="{{user_data.username}}" name="username" type="text" disabled>
-                                </div>
+<head>
+    <title>{{title}}</title>
+    {{> header}}
+    <link rel="stylesheet" href="/css/ticketdashboard.css" />
+    <link rel="stylesheet" href="/plugins/datatables.net-dt/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="/plugins/datatables.net-responsive-bs/css/responsive.bootstrap.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
+        integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
 
-                                <div class="floating-label right_fld">
-                                    <label> Mobile </label>
-                                    <input class="floating-input" id="rest_name" value="{{user_data.mobile}}" name="mobile" type="text" disabled>
-                                </div>
-        
-                                <div class="claerfix"></div>
-        
-                                <div class="floating-label left_fld">
-                                    <label> Company Name </label>
-                                    <input class="floating-input" id="rest_name" value="{{user_data.companyName}}" name="companyName" type="text" disabled>
-                                </div>
-                                
-                                <div class="floating-label right_fld">
-                                    <label> Address </label>
-                                    <input class="floating-input" id="rest_name" value="{{ticket_data.address}} , {{ticket_data.city}}" name="address" type="text" disabled>
-                                </div>
-
-                                <div class="claerfix"></div>
-
-                                <h5 style="text-align: center; margin-bottom: 10px; font-weight: 1000;">Tickets Details</h5>
-
-                                <div class="floating-label left_fld">
-                                    <label>Status</label>
-                                    <select id="selected" class="floating-select" name="status">
-                                        <option value="{{ticket_data.status}}">{{ticket_data.status}}</option>
-                                        <option value="pending">Pending</option> 
-                                        <option value="approved">Approved</option> 
-                                        <option value="InProgress">In Progress</option> 
-                                        <option value="completed">Completed</option> 
-                                        <option value="blocked">Blocked</option> 
-                                    </select>
-                                </div>
-                                
-                                <div class="floating-label right_fld">
-                                    <label> Category </label>
-                                    <input class="floating-input" id="rest_name" value="{{ticket_data.category}}" name="category" type="text" disabled>
-                                </div>
-
-                                <div class="claerfix"></div>
-
-                                <div class="floating-label left_fld">
-                                    <label> Sub Category </label>
-                                    <input class="floating-input" id="rest_name" value="{{ticket_data.sub_category}}" name="sub_category" type="text" disabled>
-                                </div>
-
-                                <div class="floating-label right_fld">
-                                    <label> Final Cost </label>
-                                    <input class="floating-input" id="rest_name" value="{{ticket_data.final_cost}}" name="final_cost" type="text">
-                                </div>
-
-                                <div class="claerfix"></div>
-
-                                <div class="floating-label left_fld" id="serviceStaff">
-                                    <label>Service men</label>
-                                </div>
-
-                                <div class="floating-label right_fld" id="serviceStaff">
-                                    <label>Minimum Payment</label>
-                                    <input class="floating-input" id="rest_name" value="{{ticket_data.minimum_payment}}" name="min_payment" type="text"> 
-                                </div>
-
-                                <div class="claerfix"></div>
-
-                                <div id="dynamic_payment_segment">
-                                    <h5 style="text-align: center; margin-bottom: 10px; font-weight: 1000;">Payment Details</h5>
-                                    <div id="inner_dynamic_payment">
-                                        
-                                    </div>
-                                </div>
-
-                                <div class="claerfix"></div>
-
-                                <div class="floating-label left_fld" style="display:flex; flex-direction: column">
-                                    <label> Performa Index </label>
-                                    <input type="file" id="performa_file" name="ticket_files_performa" class='not_appended manual_upload btn' placeholder="Upload Performa Invoice" />
-                                </div>
-
-                                <div class="floating-label left_fld" style="display:flex; flex-direction: column">
-                                    <label> Quotation File </label>
-                                    <input type="file" name="ticket_files_quotation" class='not_appended manual_upload btn' placeholder="Upload Quotation File" />
-                                </div>
-
-                                <div class="claerfix"></div>
-
-                                <div id="dynamic_document_segment">
-                                    <h5 style="text-align: center; margin-bottom: 10px; font-weight: 1000;">Documents</h5>
-                                    <div id="inner_dynamic_document" style="display: flex; justify-content: center; margin-top: 1rem;">
-                                        
-                                    </div>
-                                </div>
-
-                                <div style="display: flex; justify-content: center; margin-right: 2rem;">
-                                    <button style="margin: 3% 0% 3% 4%;" class='not_appended manual_upload btn' id="additional_info" type="button" >   
-                                        <span id="add_sign" class="fas fa-plus"></span>
-                                        Additional Information
-                                    </button>
-                                </div>
-
-                                <div id="inner_dynamic_add_info">
-                                        
-                                </div>
-        
-                            <div class="form_submit_sec">
-                                <button type="submit" class="btn">Submit</button>
-                            </div>
-                        </form>        
-                        </div>
-                    </form>
+<body>
+    {{> TicketSidebar}}
+    <div class="content-wrapper">
+        <div class="body_content">
+            <div class="common_field_sec">
+                <div class="common_sec_title">
+                    <h2>Edit Ticket</h2>
                 </div>
+
+                <form action="javascript:void(0);" class="edit_form" data-id="{{ticket_data.id}}">
+                    <div class="field_inner_sec" id="ticket_edit_form">
+
+                        <h5 style="text-align: center; margin-bottom: 10px; font-weight: 1000;">User Details</h5>
+
+                        <div class="floating-label left_fld">
+                            <label> User Name </label>
+                            <input class="floating-input" id="rest_name" value="{{user_data.username}}" name="username"
+                                type="text" disabled>
+                        </div>
+
+                        <div class="floating-label right_fld">
+                            <label> Mobile </label>
+                            <input class="floating-input" id="rest_name" value="{{user_data.mobile}}" name="mobile"
+                                type="text" disabled>
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld">
+                            <label> Company Name </label>
+                            <input class="floating-input" id="rest_name" value="{{user_data.companyName}}"
+                                name="companyName" type="text" disabled>
+                        </div>
+
+                        <div class="floating-label right_fld">
+                            <label> Address </label>
+                            <input class="floating-input" id="rest_name"
+                                value="{{ticket_data.address}} , {{ticket_data.city}}" name="address" type="text"
+                                disabled>
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <h5 style="text-align: center; margin-bottom: 10px; font-weight: 1000;">Tickets Details</h5>
+
+                        <div class="floating-label left_fld">
+                            <label>Status</label>
+                            <select id="selected" class="floating-select" name="status">
+                                <option value="{{ticket_data.status}}">{{ticket_data.status}}</option>
+                                <option value="pending">Pending</option>
+                                <option value="approved">Approved</option>
+                                <option value="InProgress">In Progress</option>
+                                <option value="completed">Completed</option>
+                                <option value="blocked">Blocked</option>
+                            </select>
+                        </div>
+
+                        <div class="floating-label right_fld">
+                            <label> Category </label>
+                            <input class="floating-input" id="rest_name" value="{{ticket_data.category}}"
+                                name="category" type="text" disabled>
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld">
+                            <label> Sub Category </label>
+                            <input class="floating-input" id="rest_name" value="{{ticket_data.sub_category}}"
+                                name="sub_category" type="text" disabled>
+                        </div>
+
+                        <div class="floating-label right_fld">
+                            <label> Final Cost </label>
+                            <input class="floating-input" id="rest_name" value="{{ticket_data.final_cost}}"
+                                name="final_cost" type="text">
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld" id="serviceStaff">
+                            <label>Service men</label>
+                        </div>
+
+                        <div class="floating-label right_fld" id="serviceStaff">
+                            <label>Minimum Payment</label>
+                            <input class="floating-input" id="rest_name" value="{{ticket_data.minimum_payment}}"
+                                name="min_payment" type="text">
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div id="dynamic_payment_segment">
+                            <h5 style="text-align: center; margin-bottom: 10px; font-weight: 1000;">Payment Details</h5>
+                            <div id="inner_dynamic_payment">
+
+                            </div>
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld" style="display:flex; flex-direction: column">
+                            <label> Performa Index </label>
+                            <input type="file" id="performa_file" name="performa_file"
+                                class='not_appended manual_upload btn' placeholder="Upload Performa Invoice" />
+                        </div>
+
+                        <div class="floating-label left_fld" style="display:flex; flex-direction: column">
+                            <label> Quotation File </label>
+                            <input type="file" name="quotation_file" class='not_appended manual_upload btn'
+                                placeholder="Upload Quotation File" />
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div id="dynamic_document_segment">
+                            <h5 style="text-align: center; margin-bottom: 10px; font-weight: 1000;">Documents</h5>
+                            <div id="inner_dynamic_document"
+                                style="display: flex; justify-content: center; margin-top: 1rem;">
+
+                            </div>
+                        </div>
+
+                        <div style="display: flex; justify-content: center; margin-right: 2rem;">
+                            <button style="margin: 3% 0% 3% 4%;" class='not_appended manual_upload btn'
+                                id="additional_info" type="button">
+                                <span id="add_sign" class="fas fa-plus"></span>
+                                Additional Information
+                            </button>
+                        </div>
+
+                        <div id="inner_dynamic_add_info">
+
+                        </div>
+
+                        <div class="form_submit_sec">
+                            <button type="submit" class="btn">Submit</button>
+                        </div>
+                </form>
             </div>
+            </form>
         </div>
-        <!-- END -->
-        {{> footer}}
-        <script src="/js/tickets/edit.js"></script>
-        <script src="/plugins/datatables.net/js/jquery.dataTables.min.js"></script>
-        <script src="/plugins/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-        <script src="/plugins/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-        <script src="/plugins/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-    </body>
+    </div>
+    </div>
+    <!-- END -->
+    {{> footer}}
+    <script src="/js/tickets/edit.js"></script>
+    <script src="/plugins/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="/plugins/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="/plugins/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="/plugins/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+</body>
+
 </html>
