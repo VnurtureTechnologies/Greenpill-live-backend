@@ -11,7 +11,7 @@ function response(res, news_list) {
         status: true,
         status_code: 201,
         data: sorted_newsList,
-        message: "list fetched successfully"
+        message: "Inquiry fetched successfully"
     })
 }
 
@@ -30,7 +30,7 @@ module.exports.get_all_greeni_list = (req, res, next) => {
                     "subject": r.data().subject,
                     "message": r.data().message,
                     "created_at": r.data().timestamp,
-                    "date": new Date(r.data().timestamp * 1000).toGMTString(),
+                    "date": `${r.createTime.toDate().toISOString()}`.split("T")[0].split('-').reverse().join('-'),
                     "get_action_button": get_action_button(req, res, r)
                 }
                 partnerp_data.push(row)
