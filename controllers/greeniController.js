@@ -38,7 +38,6 @@ module.exports.get_all_greeni_list = (req, res, next) => {
             setTimeout(response, 1000, res, partnerp_data);
         })
         .catch((err) => {
-            console.log("err", err);
             res.json({
                 status: false,
                 status_code: 501,
