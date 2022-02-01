@@ -69,22 +69,20 @@ module.exports.edit_ticket = async (req, res, next) => {
         await db.collection('clientBooking').doc(`${id}`)
             .get()
             .then(async (response) => {
-                if (response.data().performaInvoice) {
-                    let category = response.data().category;
-                    let sub_category = response.data().subCategory;
-                    helpers.getfolderName(`bookings/${category}/${sub_category}/${response.id}`);
+                let category = response.data().category;
+                let sub_category = response.data().subCategory;
+                helpers.getfolderName(`bookings/${category}/${sub_category}/${response.id}`);
 
-                    if (req.files.performa_file && req.files.performa_file[0].fieldname == "performa_file") {
-                        const performaUrl = await helpers.uploadTicketsPdf(req.files.performa_file[0]);
-                        update_data['performaInvoice'] = performaUrl;
-                        helpers.deleteObject(response.data().performaInvoice)
-                    }
+                if (req.files.performa_file && req.files.performa_file[0].fieldname == "performa_file") {
+                    const performaUrl = await helpers.uploadTicketsPdf(req.files.performa_file[0]);
+                    update_data['performaInvoice'] = performaUrl;
+                    helpers.deleteObject(response.data().performaInvoice)
+                }
 
-                    if (req.files.quotation_file && req.files.quotation_file[0].fieldname == "quotation_file") {
-                        const quotationUrl = await helpers.uploadTicketsPdf(req.files.quotation_file[0]);
-                        update_data['quotationFile'] = quotationUrl;
-                        helpers.deleteObject(response.data().quotationFile)
-                    }
+                if (req.files.quotation_file && req.files.quotation_file[0].fieldname == "quotation_file") {
+                    const quotationUrl = await helpers.uploadTicketsPdf(req.files.quotation_file[0]);
+                    update_data['quotationFile'] = quotationUrl;
+                    helpers.deleteObject(response.data().quotationFile)
                 }
             })
     }
