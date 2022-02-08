@@ -41,6 +41,12 @@ exports.deleteImage = (filelink) => new Promise((resolve, reject) => {
     resolve('done');
 });
 
+exports.deleteObject = (filelink) => new Promise((resolve, reject) => {
+    const bucket = admin.storage().bucket('greenpill-live.appspot.com');
+    bucket.file(`${filelink.split("greenpill-live.appspot.com/o/")[1].replace(/%2F/g, "/").replace(/%20/g, " ").split("?alt=")[0]}`).delete();
+    resolve('done');
+});
+
 exports.deletePdf = (filelink) => new Promise((resolve, reject) => {
     const bucket = admin.storage().bucket('greenpill-live.appspot.com');
     bucket.file(`${foldername1}/pdfs/${filelink}`).delete();
@@ -114,7 +120,7 @@ exports.sendGenericNotification = async function (notifier, title, description, 
         message = {
             notification: {
                 title: `News - ${title}`,
-                body:  description
+                body: description
             },
             data: {
                 click_action: 'FLUTTER_NOTIFICATION_CLICK',
