@@ -315,7 +315,7 @@ app.get('/ticket-internal-edit/:id', (req, res) => {
     })
 });
 
-app.post('/tickets/do_edit/:id', upload.array('ticket_files_performa', 'ticket_files_quotation'), ticketController.edit_ticket);
+app.post('/tickets/do_edit/:id', upload.fields([{ name: 'performa_file', maxCount: 1 }, { name: 'quotation_file', maxCount: 1 }]), ticketController.edit_ticket);
 
 app.get('/users/edit/:id', ensureLogin.ensureLoggedIn(), function (req, res) {
     var id = req.params.id;
@@ -652,16 +652,16 @@ app.post('/partnerp-list', upload.none(), partnerpController.get_all_partnerp_li
 
 app.delete('/partnerp-delete/:id', partnerpController.delete_partnerp);
 
-app.get('/greeni-list', ensureLogin.ensureLoggedIn(), function (req, res) {
-    res.render("greeni/index", {
-        title: 'green idea',
-        page_title: 'Green Idea'
+app.get('/inquiry-list', ensureLogin.ensureLoggedIn(), function (req, res) {
+    res.render("inquiry/index", {
+        title: 'New Inquiry',
+        page_title: 'New Inquiry'
     })
 });
 
-app.post('/greeni-list', upload.none(), greeniController.get_all_greeni_list);
+app.post('/inquiry-list', upload.none(), greeniController.get_all_greeni_list);
 
-app.delete('/greeni-delete/:id', greeniController.delete_greeni);
+app.delete('/inquiry-delete/:id', greeniController.delete_greeni);
 
 /* mobile dashboard routes */
 app.get('/mobiledashboard', ensureLogin.ensureLoggedIn(), function (req, res) {
