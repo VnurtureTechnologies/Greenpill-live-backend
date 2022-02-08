@@ -301,7 +301,7 @@ app.get('/ticket-internal-edit/:id', (req, res) => {
     })
 });
 
-app.post('/tickets/do_edit/:id', upload.array('ticket_files_performa', 'ticket_files_quotation'), ticketController.edit_ticket);
+app.post('/tickets/do_edit/:id', upload.fields([{ name: 'performa_file', maxCount: 1 }, { name: 'quotation_file', maxCount: 1 }]), ticketController.edit_ticket);
 
 app.get('/users/edit/:id', ensureLogin.ensureLoggedIn(), function (req, res) {
     var id = req.params.id;
