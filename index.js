@@ -119,6 +119,7 @@ const mobiledashboardController = require('./controllers/mobiledashboardControll
 const appUpdateController = require('./controllers/appUpdateController');
 const serviceStaffController = require('./controllers/serviceStaffController');
 const ticketController = require("./controllers/ticketController");
+const ratingController = require("./controllers/ratingController");
 
 var data_user;
 
@@ -216,6 +217,19 @@ app.get('/app-update/edit/:id', ensureLogin.ensureLoggedIn(), function (req, res
 app.post('/app-update-list', upload.none(), appUpdateController.get_app_update);
 app.post('/app-update/do_add', upload.none(), appUpdateController.add_app_update);
 app.post('/app-update/do_edit/:id', upload.none(), appUpdateController.edit_app_update);
+
+// Rating Route
+
+app.get('/rating-list', ensureLogin.ensureLoggedIn(), function (req, res) {
+    res.render("rating/index", {
+        title: 'Ratings',
+        page_title: 'Rating list'
+    })
+});
+
+app.post('/rating-list', upload.none(), ratingController.get_rating_list);
+
+app.delete('/rating-delete/:id', ratingController.delete_rating);
 
 /* DASHBOARD ROUTE */
 app.get('/dashboard', ensureLogin.ensureLoggedIn(), function (req, res) {
