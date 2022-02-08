@@ -638,16 +638,16 @@ app.post('/partnerp-list', upload.none(), partnerpController.get_all_partnerp_li
 
 app.delete('/partnerp-delete/:id', partnerpController.delete_partnerp);
 
-app.get('/greeni-list', ensureLogin.ensureLoggedIn(), function (req, res) {
-    res.render("greeni/index", {
-        title: 'green idea',
-        page_title: 'Green Idea'
+app.get('/inquiry-list', ensureLogin.ensureLoggedIn(), function (req, res) {
+    res.render("inquiry/index", {
+        title: 'New Inquiry',
+        page_title: 'New Inquiry'
     })
 });
 
-app.post('/greeni-list', upload.none(), greeniController.get_all_greeni_list);
+app.post('/inquiry-list', upload.none(), greeniController.get_all_greeni_list);
 
-app.delete('/greeni-delete/:id', greeniController.delete_greeni);
+app.delete('/inquiry-delete/:id', greeniController.delete_greeni);
 
 /* mobile dashboard routes */
 app.get('/mobiledashboard', ensureLogin.ensureLoggedIn(), function (req, res) {
