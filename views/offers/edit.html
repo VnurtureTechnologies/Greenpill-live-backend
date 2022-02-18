@@ -1,0 +1,132 @@
+<html lang="en">
+
+<head>
+    <title>{{title}}</title>
+    {{> header}}
+    <style>
+        .tag_fields {
+            height: 150px;
+            overflow-y: scroll;
+            scrollbar-color: rgb(78, 140, 191);
+            scrollbar-width: thin;
+        }
+    </style>
+</head>
+
+<body>
+    {{> sidebars}}
+    <div class="content-wrapper">
+        <div class="body_content">
+            <div class="common_field_sec">
+                <div class="common_sec_title">
+                    <h2>{{page_title}}</h2>
+                </div>
+
+                <form action="javascript:void(0);" class="edit_form" data-id={{offer.id}} enctype="multipart/form-data">
+                    <div class="field_inner_sec">
+
+                        <div class="floating-label left_fld">
+                            <label> Title </label>
+                            <input class="floating-input" id="title" value="{{offer.title}}" name="title" type="text">
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld">
+                            <label> Description </label>
+                            <input class="floating-input" id="description" value="{{offer.description}}"
+                                name="description" type="text">
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld">
+                            <label> Start Date </label>
+                            <input class="floating-input" id="start_date" name="start_date" type="date"
+                                value="{{offer.start_date}}">
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld">
+                            <label> End Date </label>
+                            <input class="floating-input" id="end_date" name="end_date" type="date"
+                                value="{{offer.end_date}}">
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld">
+                            <label> Category </label>
+                            <input class="floating-input" id="category" value="{{offer.category}}" name="category"
+                                type="text">
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <h4>Add a Banner image</h4>
+                        <div class="floating-label right_fld browse2">
+                            <label>
+                                <input type="file" accept="image/jpeg, image/png" name="banner_image"
+                                    onchange="readURL(this,'banner_image');" />
+                                <img id="banner_image" src="#" alt="your image" />
+                            </label>
+                        </div>
+                        <div class="claerfix"></div>
+
+                        <h4>Add a Detail image</h4>
+                        <div class="floating-label right_fld browse2">
+                            <label>
+                                <input type="file" accept="image/jpeg, image/png" name="detail_image"
+                                    onchange="readURL(this,'detail_image');" />
+                                <img id="detail_image" src="#" alt="your image" />
+                            </label>
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld">
+                            <label> Is Paid </label><br>
+                            <input id="is_paid" name="is_paid" type="radio" onclick="show()" value=true> Yes
+                            &nbsp;
+                            <input id="is_paid" name="is_paid" type="radio" onclick="hide()" value=false>
+                            No
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld amount" id="amount">
+                            <label> Amount </label>
+                            <input class="floating-input" id="amount" name="amount" type="number"
+                                value="{{offer.amount}}">
+                        </div>
+                    </div>
+
+
+                    <div class="form_submit_sec">
+                        <button type="submit" class="btn">Submit</button>
+                    </div>
+                </form>
+            </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    <!-- END -->
+    {{> footer}}
+    <script>
+        var is_paid = "{{offer.is_paid}}"
+        var elements = document.getElementsByName('is_paid');
+        if (is_paid == "true") {
+            elements[0].checked = true;
+            document.getElementById('amount').style.display = 'block';
+        } else {
+            elements[1].checked = true;
+            document.getElementById('amount').style.display = 'none';
+        }
+
+    </script>
+    <script src="/js/offers/edit.js"></script>
+</body>
+
+</html>
