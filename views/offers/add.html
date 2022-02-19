@@ -1,0 +1,116 @@
+<html lang="en">
+
+<head>
+    <title>{{title}}</title>
+    {{> header}}
+    <style>
+        .tag_fields {
+            height: 150px;
+            overflow-y: scroll;
+            scrollbar-color: rgb(78, 140, 191);
+            scrollbar-width: thin;
+        }
+    </style>
+</head>
+
+<body>
+    {{> sidebars}}
+    <div class="content-wrapper">
+        <div class="body_content">
+            <div class="common_field_sec">
+                <div class="common_sec_title">
+                    <h2>{{page_title}}</h2>
+                </div>
+
+                <form action="javascript:void(0);" class="add_form" enctype="multipart/form-data">
+                    <div class="field_inner_sec">
+
+                        <div class="floating-label left_fld">
+                            <label> Title <span class="required">*</span></label>
+                            <input class="floating-input" id="title" name="title" type="text" required>
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld">
+                            <label> Description <span class="required">*</span></label>
+                            <input class="floating-input" id="description" name="description" type="text" required>
+                        </div>
+
+                        <div class="claerfix"></div>
+
+
+                        <div class="floating-label left_fld">
+                            <label> Start Date <span class="required">*</span></label>
+                            <input class="floating-input" id="start_date" name="start_date" type="date" required>
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld">
+                            <label> End Date <span class="required">*</span></label>
+                            <input class="floating-input" id="end_date" name="end_date" type="date" required>
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld">
+                            <label> Category <span class="required">*</span></label>
+                            <input class="floating-input" id="category" name="category" type="text" required>
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <h4>Add a Banner image</h4>
+                        <div class="floating-label right_fld browse2">
+                            <label>
+                                <input type="file" accept="image/jpeg, image/png" name="banner_image"
+                                    onchange="readURL(this,'banner_image');" required />
+                                <img id="banner_image" src="#" alt="your image" />
+                            </label>
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <h4>Add a Detail image</h4>
+                        <div class="floating-label right_fld browse2">
+                            <label>
+                                <input type="file" accept="image/jpeg, image/png" name="detail_image"
+                                    onchange="readURL(this,'detail_image');" required />
+                                <img id="detail_image" src="#" alt="your image" />
+                            </label>
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld">
+                            <label> Is Paid <span class="required">*</span></label><br>
+                            <input id="free" name="is_paid" type="radio" onclick="show()" value=true> Yes &nbsp;
+                            <input id="paid" name="is_paid" type="radio" onclick="hide()" checked="checked" value=false>
+                            No
+                        </div>
+
+                        <div class="claerfix"></div>
+
+                        <div class="floating-label left_fld amount" id="amount" style="display:none">
+                            <label> Amount <span class="required">*</span></label>
+                            <input class="floating-input" id="amount" name="amount" type="number">
+                        </div>
+
+                    </div>
+
+                    <div class="form_submit_sec">
+                        <button type="submit" class="btn">Submit</button>
+                    </div>
+                </form>
+            </div>
+            </form>
+        </div>
+    </div>
+    </div>
+    <!-- END -->
+    {{> footer}}
+    <script src="/js/offers/add.js"></script>
+</body>
+
+</html>

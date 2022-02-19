@@ -120,6 +120,7 @@ const appUpdateController = require('./controllers/appUpdateController');
 const serviceStaffController = require('./controllers/serviceStaffController');
 const ticketController = require("./controllers/ticketController");
 const ratingController = require("./controllers/ratingController");
+const offerController = require("./controllers/offerController");
 
 var data_user;
 
@@ -257,6 +258,54 @@ app.get('/tickets', function (req, res) {
 })
 
 app.post('/tickets-list', upload.none(), ticketController.get_all_tickets);
+
+// offers routes 
+
+app.get('/offers/add', ensureLogin.ensureLoggedIn(), function (req, res) {
+    res.render('offers/add', {
+        title: 'add offers',
+        page_title: 'Add Offers'
+    })
+})
+
+
+app.get('/offers-list', ensureLogin.ensureLoggedIn(), (req, res) => {
+    res.render('offers/index', {
+        title: 'Offers',
+        page_title: 'Offer list'
+    })
+})
+
+app.get('/offer/edit/:id', ensureLogin.ensureLoggedIn(), function (req, res) {
+    var id = req.params.id;
+    var data = [];
+
+    offerController.get_offer_data(id, function (offer) {
+        data.push({ 'offer_data': offer })
+        res.render('offers/edit', {
+            title: "Offer Edit",
+            page_title: "Edit Offer",
+            offer: data[0]['offer_data'],
+        })
+    })
+})
+
+
+app.post('/offers/do_add', upload.fields([{ name: 'banner_image', maxCount: 1 }, { name: 'detail_image', maxCount: 1 }]), offerController.add_offer);
+app.post('/offers/do_edit/:id', upload.fields([{ name: 'banner_image', maxCount: 1 }, { name: 'detail_image', maxCount: 1 }]), offerController.edit_offer);
+
+app.post('/offers-list', upload.none(), offerController.get_offer_list);
+app.delete('/offers-delete/:id', offerController.delete_offer);
+
+
+app.get('/booked-offers-list', ensureLogin.ensureLoggedIn(), (req, res) => {
+    res.render('offers/booked-offer', {
+        title: 'Booked Offers',
+        page_title: 'Booked for Offer list'
+    })
+})
+
+app.post('/booked-offer-list', upload.none(), offerController.get_booked_offer_list);
 
 /*admin routes */
 app.get('/admin', ensureLogin.ensureLoggedIn(), function (req, res) {
