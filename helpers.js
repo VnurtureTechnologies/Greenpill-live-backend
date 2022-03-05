@@ -153,13 +153,15 @@ exports.sendGenericNotification = async function (notifier, title, description, 
         .get()
         .then((result) => {
             result.forEach((r) => {
-                admin.messaging().sendToDevice(r.data().fcmtoken, message, notification_options)
-                    .then((r) => {
-                        console.log(r);
-                    })
-                    .catch(err => {
-                        console.log(err);
-                    })
+                if (r.data().fcmtoken) {
+                    admin.messaging().sendToDevice(r.data().fcmtoken, message, notification_options)
+                        .then((r) => {
+                            console.log(r);
+                        })
+                        .catch(err => {
+                            console.log(err);
+                        })
+                }
             })
         })
         .catch((err) => {

@@ -1,6 +1,9 @@
 $(document).ready(function () {
     $("#list_table").DataTable({
-        dom: 'l<"toolbar">frtip',
+        dom: 'Bfrtip',
+        buttons: [
+            'copy', 'csv', 'excel', 'pdf', 'print'
+        ],
         "responsive": true,
         "stateSave": false,
         "keys": false,
@@ -42,19 +45,20 @@ $(document).ready(function () {
             }
         },
         "ajax": {
-            url: '/tickets-list',
+            url: '/user-list-20',
             type: "post",
             dataType: 'json',
-            // data: function (d) {
-            //     d.is_dashboard = $('[name=is_dashboard]').val();
-            // }
         },
         "columns": [
-            { "data": "id", "name": "id" },
-            { "data": "service men", "name": "service men" },
-            { "data": "final cost", "name": "final cost" },
-            { "data": "payment", "name": "payment" },
-            { "data": "status", "name": "status" },
+            // {"data": "firstName", "name": "firstName"},
+            // {"data": "lastName", "name": "lastName"},
+            { "data": "name", "name": "name" },
+            { "data": "mobileNumber", "name": "mobileNumber" },
+            { "data": "email", "name": "email" },
+            { "data": "role", "name": "role" },
+            { "data": "companyName", "name": "companyName" },
+            { "data": "joining_date", "name": "joining_date" },
+            { "data": "loginType", "name": "loginType" },
             { "data": "get_action_button", "name": "get_action_button" }
         ],
         "columnDefs": [
@@ -76,7 +80,7 @@ $(document).ready(function () {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.value) {
-                do_btn_action('/ticket-delete/' + id, data, 'delete');
+                do_btn_action('/users-delete/' + id, data, 'delete');
             }
         });
     });
