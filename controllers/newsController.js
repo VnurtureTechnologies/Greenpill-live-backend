@@ -1,5 +1,6 @@
 const admin = require('firebase-admin');
 const helpers = require('../helpers');
+const moment = require('moment');
 
 module.exports.add_news = async (req, res, next) => {
     var db = admin.firestore();
@@ -15,6 +16,7 @@ module.exports.add_news = async (req, res, next) => {
         sourceLink: req.body.source_link,
         youtubeUrl: req.body.youtube_url,
         createdAt: Date.now().toString(),
+        date: moment(Date.now()).format('D-MMM-YYYY'),
         images: [await helpers.uploadImage(req.file)]
     }
 
@@ -29,11 +31,11 @@ module.exports.add_news = async (req, res, next) => {
                 timestamp: Date.now().toString(),
             }
             await db.collection('notifications').add(notifidata)
-                .then((result) => { 
+                .then((result) => {
                     console.log(result.id);
                     helpers.sendGenericNotification(notifier, notifier_title, notifier_description, result.id);
                 }).catch((err) => { console.log(err) })
-            
+
             res.json({
                 status: true,
                 status_code: 200,
@@ -68,7 +70,6 @@ function response(res, news_list) {
 module.exports.get_news_list = async (req, res) => {
     var db = admin.firestore();
     var news_list = [];
-
     await db.collection('news_and_innovation')
         .get()
         .then((result) => {
@@ -200,6 +201,7 @@ module.exports.delete_news = async (req, res, next) => {
         .doc(`${id}`)
         .get()
         .then(async (r) => {
+            console.log("r.data()", r.data())
             let splitted_file_link = r.data().images[0].split('%2F')[1].split("?")
             const data = {
                 filelink1: splitted_file_link[0]

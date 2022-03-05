@@ -110,6 +110,28 @@ const editTicketData = (update_data, id, res) => {
         })
 }
 
+module.exports.delete_ticket = async (req, res, next) => {
+    var db = admin.firestore();
+
+    await db.collection('clientBooking').doc(`${req.params.id}`).delete()
+        .then((r) => {
+            res.json({
+                status: true,
+                status_code: 200,
+                message: "Ticket Deleted Successfully",
+                redirect: "/tickets"
+            })
+        })
+        .catch((err) => {
+            res.json({
+                status: false,
+                status_code: 501,
+                message: "Internal server error",
+            })
+        })
+}
+
+
 module.exports.get_ticket_data = function (ticket_id, callback) {
     var db = admin.firestore();
     const data = []

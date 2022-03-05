@@ -252,12 +252,46 @@ app.get('/dashboard', ensureLogin.ensureLoggedIn(), function (req, res) {
     })
 })
 
+app.post('/user-list-20', upload.none(), userController.get_20_users_list);
+
+
 /* Ticket dashboard routes */
-app.get('/tickets', function (req, res) {
+app.get('/tickets', ensureLogin.ensureLoggedIn(), function (req, res) {
     res.render('ticket-dashboard/TicketDashboard', {})
 })
 
 app.post('/tickets-list', upload.none(), ticketController.get_all_tickets);
+
+app.get('/ticket-edit/:id', function (req, res) {
+    const id = req.params.id;
+    const data = [];
+
+    ticketController.get_ticket_data(id, function (fetchedData) {
+        data.push({ 'user_data': fetchedData[0] });
+        data.push({ 'ticket_data': fetchedData[1] })
+        res.render('ticket-dashboard/Ticketedit', {
+            title: "Ticket Edit",
+            page_title: "Edit ticket",
+            user_data: data[0]["user_data"],
+            ticket_data: data[1]["ticket_data"]
+        })
+    })
+})
+
+app.get('/ticket-internal-edit/:id', (req, res) => {
+    const id = req.params.id;
+    const data = [];
+
+    ticketController.get_ticket_data(id, function (fetchedData) {
+        res.json({
+            data: fetchedData
+        })
+    })
+});
+
+app.post('/tickets/do_edit/:id', upload.fields([{ name: 'performa_file', maxCount: 1 }, { name: 'quotation_file', maxCount: 1 }]), ticketController.edit_ticket);
+
+app.delete('/ticket-delete/:id', ticketController.delete_ticket);
 
 // offers routes 
 
@@ -335,36 +369,6 @@ app.get('/user-list', ensureLogin.ensureLoggedIn(), function (req, res) {
         page_title: 'Users-list'
     })
 });
-
-
-app.get('/ticket-edit/:id', function (req, res) {
-    const id = req.params.id;
-    const data = [];
-
-    ticketController.get_ticket_data(id, function (fetchedData) {
-        data.push({ 'user_data': fetchedData[0] });
-        data.push({ 'ticket_data': fetchedData[1] })
-        res.render('ticket-dashboard/Ticketedit', {
-            title: "Ticket Edit",
-            page_title: "Edit ticket",
-            user_data: data[0]["user_data"],
-            ticket_data: data[1]["ticket_data"]
-        })
-    })
-})
-
-app.get('/ticket-internal-edit/:id', (req, res) => {
-    const id = req.params.id;
-    const data = [];
-
-    ticketController.get_ticket_data(id, function (fetchedData) {
-        res.json({
-            data: fetchedData
-        })
-    })
-});
-
-app.post('/tickets/do_edit/:id', upload.fields([{ name: 'performa_file', maxCount: 1 }, { name: 'quotation_file', maxCount: 1 }]), ticketController.edit_ticket);
 
 app.get('/users/edit/:id', ensureLogin.ensureLoggedIn(), function (req, res) {
     var id = req.params.id;
