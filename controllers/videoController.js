@@ -5,12 +5,16 @@ const helpers = require("../helpers");
 module.exports.add_video = async (req, res, next) => {
   var db = admin.firestore();
   await helpers.getfolderName('videoGallery')
+  var notifier = "video notification";
+  var notifier_title = req.body.title;
+  var notifier_description = 'New Video Published. click here... ';
+
   var today = new Date();
   const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "June",
     "July", "Aug", "Sep", "Oct", "Nov", "Dec"
   ];
-  const mon =monthNames[today.getMonth()];
-  const date=today.getDate();
+  const mon = monthNames[today.getMonth()];
+  const date = today.getDate();
   const year = today.getFullYear();
   const today1 = mon + ' ' + date + ' ' + year;
   const data = {
@@ -21,7 +25,19 @@ module.exports.add_video = async (req, res, next) => {
   };
   db.collection("videoGallery")
     .add(data)
-    .then((result) => {
+    .then(async (result) => {
+      const notifidata = {
+        title: req.body.title,
+        category: "Video",
+        refId: result.id,
+        userId: "all",
+        timestamp: Date.now().toString(),
+      }
+      await db.collection('notifications').add(notifidata)
+        .then((result) => { }).catch((err) => { console.log(err) })
+
+      helpers.sendGenericNotification(notifier, notifier_title, notifier_description, result.id);
+
       res.json({
         status: true,
         status_code: 200,
@@ -41,16 +57,16 @@ module.exports.add_video = async (req, res, next) => {
 
 
 function response(res, news_list) {
-    
-  sorted_newsList = news_list.sort((a,b) => {
-      return b.created_at - a.created_at
+
+  sorted_newsList = news_list.sort((a, b) => {
+    return b.created_at - a.created_at
   })
 
   res.json({
-      status: true,
-      status_code: 201,
-      data: sorted_newsList,
-      message: "list fetched successfully"
+    status: true,
+    status_code: 201,
+    data: sorted_newsList,
+    message: "list fetched successfully"
   })
 }
 
