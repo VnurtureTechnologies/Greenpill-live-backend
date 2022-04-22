@@ -1,10 +1,11 @@
 const admin = require('firebase-admin');
+const helpers = require('../helpers');
 
 module.exports.add_app_update = (req, res, next) => {
     var db = admin.firestore();
     var data = {
         version: req.body.version,
-        last_date: req.body.last_date.split('-').reverse().join('-'),
+        last_date: req.body.last_date.split('-')?.reverse().join('-') || "",
     }
 
     db.collection('app_update').add(data)
@@ -32,7 +33,7 @@ module.exports.get_app_update = (req, res, next) => {
     db.collection('app_update').get()
         .then((response) => {
             response.forEach((innerResponse) => {
-                
+
                 var row = {
                     "androidVersion": innerResponse.data().androidVersion,
                     "androidDate": innerResponse.data().androidDate,
@@ -43,7 +44,7 @@ module.exports.get_app_update = (req, res, next) => {
                 }
 
                 app_update_list.push(row);
-                
+
             })
 
             res.json({
@@ -92,23 +93,40 @@ module.exports.get_app_update_data = (id, callback) => {
 module.exports.edit_app_update = (req, res, nex) => {
     var db = admin.firestore();
     var id = req.params.id;
+    var notifier = "app update";
+    var notifier_title = 'Greenpil Live App Updated';
+    var notifier_description = `new version of ${req.body.OStype} - ${data.req.body.version} is available`;
 
     if (req.body.OStype == "android_version") {
         var data = {
             'androidVersion': req.body.version,
-            'androidDate': req.body.last_date.split('-').reverse().join('-')
+            'androidDate': req.body?.last_date?.split('-').reverse().join('-') || ""
         }
     } else if (req.body.OStype == "ios_version") {
         var data = {
             'iosVersion': req.body.version,
-            'iosDate': req.body.last_date.split('-').reverse().join('-')
+            'iosDate': req.body?.last_date?.split('-').reverse().join('-') || ""
         }
     } else {
         return false
     }
 
     db.collection('app_update').doc(`${id}`).update(data)
-        .then((response) => {
+        .then(async (response) => {
+
+            const notifidata = {
+                title: 'Grrenpil Live App Updated',
+                category: "App Update",
+                userId: "all",
+                description: `new version of ${req.body.OStype} - ${data.req.body.version} is available`,
+                timestamp: Date.now().toString(),
+            }
+
+            await db.collection('notifications').add(notifidata)
+                .then((result) => {
+                    helpers.sendGenericNotification(notifier, notifier_title, notifier_description, result.id);
+                }).catch((err) => { console.log(err) })
+
             res.json({
                 status: true,
                 status_code: 200,

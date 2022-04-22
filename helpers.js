@@ -144,6 +144,90 @@ exports.sendGenericNotification = async function (notifier, title, description, 
             }
         }
     }
+    else if (notifier == "app update") {
+        message = {
+            notification: {
+                title: `${title}`,
+                body: description
+            },
+            data: {
+                click_action: 'FLUTTER_NOTIFICATION_CLICK',
+                status: 'done',
+                screen: 'notification',
+                resource_id: document_id
+            }
+        }
+    }
+    else if (notifier == "video notification") {
+        message = {
+            notification: {
+                title: `${title}`,
+                body: description
+            },
+            data: {
+                click_action: 'FLUTTER_NOTIFICATION_CLICK',
+                status: 'done',
+                screen: 'video_player',
+                resource_id: document_id
+            }
+        }
+    }
+    else if (notifier == "ticket status created") {
+        message = {
+            notification: {
+                title: `your request gets successfully generated.`,
+                body: 'please wait until our executive gets approve it'
+            },
+            data: {
+                click_action: 'FLUTTER_NOTIFICATION_CLICK',
+                status: 'done',
+                screen: 'my_service_booking',
+                resource_id: document_id
+            }
+        }
+    }
+    else if (notifier == "ticket status approved") {
+        message = {
+            notification: {
+                title: `your request gets approved by our executive team.`,
+                body: 'Click to view estimation cost'
+            },
+            data: {
+                click_action: 'FLUTTER_NOTIFICATION_CLICK',
+                status: 'done',
+                screen: 'my_service_booking',
+                resource_id: document_id
+            }
+        }
+    }
+    else if (notifier == "ticket status inprogress") {
+        message = {
+            notification: {
+                title: `your request gets updated to inprogress state`,
+                body: 'click to view more details'
+            },
+            data: {
+                click_action: 'FLUTTER_NOTIFICATION_CLICK',
+                status: 'done',
+                screen: 'my_service_booking',
+                resource_id: document_id
+            }
+        }
+    }
+    else if (notifier == "ticket status closed") {
+        message = {
+            notification: {
+                title: `your request gets completed successfully`,
+                body: 'Thank you for being patience & cordination.'
+            },
+            data: {
+                click_action: 'FLUTTER_NOTIFICATION_CLICK',
+                status: 'done',
+                screen: 'my_service_booking',
+                resource_id: document_id
+            }
+        }
+    }
     else {
         console.log("Invalid notifier");
     }

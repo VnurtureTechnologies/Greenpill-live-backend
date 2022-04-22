@@ -20,14 +20,23 @@ module.exports.add_project = async (req, res) => {
     }
 
     await db.collection('project')
-    .add(data)
-    .then((r) => {
-        helpers.sendGenericNotification(notifier, notifier_title, notifier_description, r.id);
-        res.json({
-            status: true,
-            status_code: 200,
-            message: "Project Added Successfully",
-            redirect: "/projects"
+        .add(data)
+        .then(async (r) => {
+            const notifidata = {
+                title: req.body.title,
+                category: "Project",
+                refId: r.id,
+                userId: "all",
+                timestamp: Date.now().toString(),
+            }
+            await db.collection('notifications').add(notifidata)
+                .then((result) => { }).catch((err) => { console.log(err) })
+            helpers.sendGenericNotification(notifier, notifier_title, notifier_description, r.id);
+            res.json({
+                status: true,
+                status_code: 200,
+                message: "Project Added Successfully",
+                redirect: "/projects"
             })
         })
         .catch((err) => {
@@ -42,7 +51,7 @@ module.exports.add_project = async (req, res) => {
 
 function response(res, project_list) {
 
-    sorted_projectList = project_list.sort((a,b) => {
+    sorted_projectList = project_list.sort((a, b) => {
         return b.created_at - a.created_at
     })
 
@@ -136,9 +145,9 @@ module.exports.edit_project = async (req, res, next) => {
             filelink = data.filelink1
             await helpers.deleteImage(filelink)
         })
-        .catch((err) => {
-            console.log(err);
-        });
+            .catch((err) => {
+                console.log(err);
+            });
 
         update_data = {
             'title': req.body.project_title,
@@ -180,7 +189,7 @@ module.exports.delete_project = async (req, res, next) => {
     var id = req.params.id;
     await helpers.getfolderName('projects');
     var filelink = "";
-    
+
     db.collection("project")
         .doc(`${id}`)
         .get()
