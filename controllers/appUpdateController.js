@@ -5,7 +5,7 @@ module.exports.add_app_update = (req, res, next) => {
     var db = admin.firestore();
     var data = {
         version: req.body.version,
-        last_date: req.body.last_date.split('-')?.reverse().join('-') || "",
+        last_date: req.body.last_date.split('-').reverse().join('-') || "",
     }
 
     db.collection('app_update').add(data)
@@ -100,12 +100,12 @@ module.exports.edit_app_update = (req, res, nex) => {
     if (req.body.OStype == "android_version") {
         var data = {
             'androidVersion': req.body.version,
-            'androidDate': req.body?.last_date?.split('-').reverse().join('-') || ""
+            'androidDate': req.body.last_date.split('-').reverse().join('-') || ""
         }
     } else if (req.body.OStype == "ios_version") {
         var data = {
             'iosVersion': req.body.version,
-            'iosDate': req.body?.last_date?.split('-').reverse().join('-') || ""
+            'iosDate': req.body.last_date.split('-').reverse().join('-') || ""
         }
     } else {
         return false
