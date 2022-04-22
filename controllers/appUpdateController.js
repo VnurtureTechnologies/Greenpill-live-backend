@@ -93,9 +93,10 @@ module.exports.get_app_update_data = (id, callback) => {
 module.exports.edit_app_update = (req, res, nex) => {
     var db = admin.firestore();
     var id = req.params.id;
+    console.log("req", req.body)
     var notifier = "app update";
     var notifier_title = 'Greenpil Live App Updated';
-    var notifier_description = `new version of ${req.body.OStype} - ${data.req.body.version} is available`;
+    var notifier_description = `new version of ${req.body.OStype} - ${req.body.version} is available`;
 
     if (req.body.OStype == "android_version") {
         var data = {
@@ -118,7 +119,7 @@ module.exports.edit_app_update = (req, res, nex) => {
                 title: 'Grrenpil Live App Updated',
                 category: "App Update",
                 userId: "all",
-                description: `new version of ${req.body.OStype} - ${data.req.body.version} is available`,
+                description: `new version of ${req.body.OStype} - ${req.body.version} is available`,
                 timestamp: Date.now().toString(),
             }
 
