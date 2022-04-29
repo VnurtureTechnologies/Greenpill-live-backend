@@ -65,10 +65,31 @@ module.exports.edit_ticket = async (req, res, next) => {
         additionalInformation: add_info
     }
 
-    if (req.files) {
-        await db.collection('clientBooking').doc(`${id}`)
-            .get()
-            .then(async (response) => {
+    await db.collection('clientBooking').doc(`${id}`)
+        .get()
+        .then(async (response) => {
+
+            if (response.data().status != req.body.status) {
+                var notifier = "update ticket status notification";
+                var notifier_title = 'ticket status update';
+                var notifier_description = `your ticket status updated to ${update_data.status}`;
+                var userId = response.data().clientId
+
+                const notifidata = {
+                    title: `Ticket status gets updated to ${update_data.status}`,
+                    category: "ticket_status",
+                    userId: response.data().clientId,
+                    timestamp: Date.now().toString(),
+                }
+
+                await db.collection('notifications').add(notifidata)
+                    .then((result) => {
+                    }).catch((err) => { console.log(err) })
+
+                helpers.sendPersonalizeNotification(notifier, notifier_title, notifier_description, id, userId);
+            }
+
+            if (req.files) {
                 let category = response.data().category;
                 let sub_category = response.data().subCategory;
                 helpers.getfolderName(`bookings/${category}/${sub_category}/${response.id}`);
@@ -84,8 +105,8 @@ module.exports.edit_ticket = async (req, res, next) => {
                     update_data['quotationFile'] = quotationUrl;
                     helpers.deleteObject(response.data().quotationFile)
                 }
-            })
-    }
+            }
+        })
 
     setTimeout(editTicketData, 1000, update_data, id, res);
 }

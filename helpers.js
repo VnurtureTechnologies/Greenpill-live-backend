@@ -252,3 +252,46 @@ exports.sendGenericNotification = async function (notifier, title, description, 
             console.log(err);
         })
 }
+
+exports.sendPersonalizeNotification = async function (notifier, title, description, document_id, user_id) {
+    var db = admin.firestore();
+
+    const notification_options = {
+        priority: "high",
+        timeToLive: 60 * 60 * 24
+    }
+
+    var message = "";
+
+    if (notifier == "update ticket status notification") {
+        message = {
+            notification: {
+                title: `Notification - ${title}`,
+                body: description
+            },
+            data: {
+                click_action: 'FLUTTER_NOTIFICATION_CLICK',
+                status: 'done',
+                screen: 'notification',
+                notification_id: document_id
+            }
+        }
+    }
+
+    db.collection('users').doc(`${user_id}`)
+        .get()
+        .then((r) => {
+            if (r.data().fcmtoken) {
+                admin.messaging().sendToDevice(r.data().fcmtoken, message, notification_options)
+                    .then((r) => {
+                        console.log('personalized notification done');
+                    })
+                    .catch(err => {
+                        console.log(err);
+                    })
+            }
+        })
+        .catch((err) => {
+            callback([]);
+        })
+}
